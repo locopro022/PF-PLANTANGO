@@ -1,0 +1,13 @@
+.edit {
+    cursor: pointer;
+    text-align: center;
+}
+
+.cerrarSe {
+    transition: 500ms all;
+}
+
+.cerrarSe:hover {
+    background-color: red;
+    border-radius: 5px;
+}

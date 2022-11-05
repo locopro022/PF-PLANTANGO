@@ -1,0 +1,13 @@
+.ancho {
+    width: 35vw;
+}
+
+.deshabilitado {
+    display: none;
+}
+
+@media(max-width:1024px) {
+    .deshabilitado {
+        display: block;
+    }
+}
