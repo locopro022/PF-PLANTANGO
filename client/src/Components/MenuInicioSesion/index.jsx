@@ -4,6 +4,7 @@ import { Badge } from '@material-ui/core'
 import { useNavigate } from 'react-router-dom'
 import './MenuInicioSesion.css'
 
+//Menu despegable que aparece cuando el usuario no esta con la sesion iniciada.
 
 const MenuInicioSesion = () => {
     const navigate = useNavigate()

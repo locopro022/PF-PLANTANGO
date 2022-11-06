@@ -4,8 +4,10 @@ import './Home.css'
 
 const Home = () => {
     return (
-        <div className='containerCarro'>
-            <Carrousel />
+        <div>
+            <div className='containerCarro'>
+                <Carrousel />
+            </div>
         </div>
     )
 }

@@ -3,6 +3,8 @@ import './MenuDesplegable.css'
 import list from '../../img/list.svg'
 import { useNavigate } from 'react-router-dom'
 
+//Menu desplegable que aparece en la NavBar cuando los pixeles sean de 1024.
+
 const MenuDesplegable = () => {
     const navigate = useNavigate()
     return (

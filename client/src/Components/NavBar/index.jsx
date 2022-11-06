@@ -5,7 +5,7 @@ import { ShoppingCart } from '@material-ui/icons'
 import { IconButton, Badge } from '@material-ui/core'
 import MenuDesplegable from '../MenuDesplegable'
 import { NavLink, useNavigate } from 'react-router-dom'
-import Modal from '../Modal'
+import Carrito from '../Carrito'
 import MenuNotificaciones from '../MenuNotificaciones'
 import MenuInicioSesion from '../MenuInicioSesion'
 import MenuSesionIniciada from '../MenuSesionIniciada'
@@ -39,7 +39,7 @@ const NavBar = () => {
             <div className='containerBtns'>
                 <IconButton size='large' color='default'>
                     <Badge badgeContent={1} color='error' data-toggle="modal" data-target="#exampleModalCenter">
-                        <Modal />
+                        <Carrito />
                         <ShoppingCart color='secondary' />
                     </Badge>
                 </IconButton>

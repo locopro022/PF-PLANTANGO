@@ -2,6 +2,8 @@ import React from 'react'
 import { Notifications } from '@material-ui/icons'
 import { Badge } from '@material-ui/core'
 
+//Menu despegable de las notificaciones
+
 const MenuNotificaciones = () => {
     return (
         <div class="dropstart">

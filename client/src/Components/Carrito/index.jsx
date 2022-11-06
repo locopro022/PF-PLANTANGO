@@ -1,8 +1,13 @@
 import React from 'react'
 import './Modal.css'
+import { useSelector, useDispatch } from 'react-redux'
 
-const Modal = () => {
-    const pararProp = (e) => {
+const Carrito = () => {
+
+    const dispatch = useDispatch()
+    const arrayCarrito = useSelector(state => state.arrayCarrito) // array para mapear y mostrar en el carrito
+
+    const pararProp = (e) => { // funcion para para la propagación para el cerrado del carrito al tocar en partes del carrito.
         e.stopPropagation()
     }
 
@@ -16,7 +21,7 @@ const Modal = () => {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body containerTextModal">
+                    <div class="modal-body containerTextModal"> {/*Adentro de este div va el mapeo del array del redux. */}
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus impedit enim delectus sequi vel quos, optio eveniet suscipit laboriosam ipsa nesciunt iusto quaerat nobis minima ipsam quae quam facere ullam?
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat ullam cupiditate quidem animi, quae praesentium quibusdam amet, rem qui veritatis, est reprehenderit nesciunt voluptate maxime illum tempore ratione ut hic!
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est, voluptate. Esse officia, cumque blanditiis vitae voluptatibus excepturi exercitationem voluptate minima unde odio debitis consequuntur quae, quisquam maxime, rem atque ab.
@@ -31,4 +36,4 @@ const Modal = () => {
     )
 }
 
-export default Modal;
+export default Carrito;

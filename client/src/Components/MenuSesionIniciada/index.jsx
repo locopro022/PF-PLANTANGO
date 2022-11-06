@@ -4,6 +4,7 @@ import { Badge } from '@material-ui/core'
 import { useNavigate } from 'react-router-dom'
 import '../MenuInicioSesion/MenuInicioSesion.css'
 
+//Menu desplegable que aparece cuando la sesion esta iniciada.
 
 const MenuSesionIniciada = () => {
     const navigate = useNavigate()
