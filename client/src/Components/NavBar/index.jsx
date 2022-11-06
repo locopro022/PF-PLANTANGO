@@ -4,19 +4,20 @@ import './NavBar.css'
 import { ShoppingCart } from '@material-ui/icons'
 import { IconButton, Badge } from '@material-ui/core'
 import MenuDesplegable from '../MenuDesplegable'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Modal from '../Modal'
 import MenuNotificaciones from '../MenuNotificaciones'
 import MenuInicioSesion from '../MenuInicioSesion'
 import MenuSesionIniciada from '../MenuSesionIniciada'
 
 const NavBar = () => {
+    const navigate = useNavigate()
     const [condicionInicioSesion, setCondicionInicioSesion] = useState(false)
     return (
         <div className='containerNavBar'>
             <div className='containerUl deshabilitadoUl'>
                 <ul className='containerSpan'>
-                    <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/home'>
+                    <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/'>
                         <span className='span'>Home</span>
                     </NavLink>
                     <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/vivero'>
@@ -34,7 +35,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <MenuDesplegable />
-            <img src={platango} alt='plantango' className='imgPlan' />
+            <img src={platango} alt='plantango' className='imgPlan' onClick={() => navigate('/')} />
             <div className='containerBtns'>
                 <IconButton size='large' color='default'>
                     <Badge badgeContent={1} color='error' data-toggle="modal" data-target="#exampleModalCenter">
