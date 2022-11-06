@@ -29,8 +29,8 @@ const NavBar = () => {
                     <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/recordatorio'>
                         <span className='span'>Recordatorio</span>
                     </NavLink>
-                    <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/contacto'>
-                        <span className='span'>Contacto</span>
+                    <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/favoritos'>
+                        <span className='span'>Favoritos</span>
                     </NavLink>
                 </ul>
             </div>

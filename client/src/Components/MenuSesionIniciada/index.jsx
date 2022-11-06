@@ -16,7 +16,6 @@ const MenuSesionIniciada = () => {
                 </Badge>
             </button>
             <div class="dropdown-menu">
-                <span class="dropdown-item edit" onClick={() => navigate('/perfil')}>Perfil</span>
                 <span class="dropdown-item edit" onClick={() => navigate('/ajustes')}>Ajustes</span>
                 <span type='button' class="dropdown-item edit cerrarSe" onClick={() => navigate('/iniciarSesion')}>Cerrar sesion</span>
             </div>
