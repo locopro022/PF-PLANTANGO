@@ -1,0 +1,5 @@
+.estilos {
+    box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.48);
+    -webkit-box-shadow: 3px 6px 15px 0px rgba(0, 0, 0, 0.48);
+    -moz-box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.48);
+}
