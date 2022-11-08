@@ -1,0 +1,13 @@
+.containerGlobalHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerCarro {
+    padding: 0;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    height: 600px;
+}
