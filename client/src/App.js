@@ -5,6 +5,8 @@ import Home from "./Components/Home";
 import NavBar from "./Components/NavBar";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Footer from "./Components/Footer";
+import Vivero from "./Components/Vivero";
+import { products } from "./dummyData.js";
 
 function App() {
   const theme = createTheme({
@@ -22,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/bienvenida" element={<Chat />} />
+            <Route path="/vivero" element={<Vivero productos={products} />} />
           </Routes>
           <Footer />
         </div>
