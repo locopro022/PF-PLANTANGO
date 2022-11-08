@@ -43,7 +43,7 @@ module.exports = (sequelize) => {
         allowNull: false
       }, 
     toxicidad:{
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false
     },
     statePlant:{
