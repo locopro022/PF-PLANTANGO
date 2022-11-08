@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import './HomeApartadoHuerta.css'
 
 const HomeApartadoHuerta = () => {
-    /*     const arrayHuerta = useSelector(state => state.arrayHuerta) */
+    /*     const arrayHuerta = useSelector(state => state.arrayHuerta).slice(0,6) */
     const arrayHuerta = [
         {
             NOMBRE: 'Special title treatment',

@@ -1,4 +1,4 @@
-import { Instagram, LinkedIn, Twitter, GitHub } from "@material-ui/icons";
+import { Instagram, LinkedIn, Twitter, GitHub } from "@mui/icons-material";
 import platango from "../../img/plantangoTexto.png";
 import { useNavigate } from "react-router-dom";
 

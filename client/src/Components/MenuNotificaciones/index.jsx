@@ -1,6 +1,6 @@
 import React from 'react'
-import { Notifications } from '@material-ui/icons'
-import { Badge } from '@material-ui/core'
+import { Notifications } from '@mui/icons-material'
+import { Badge } from '@mui/material'
 
 //Menu despegable de las notificaciones
 

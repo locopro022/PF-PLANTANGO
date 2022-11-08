@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import platango from '../../img/plantangoIcono.png'
 import './NavBar.css'
-import { ShoppingCart } from '@material-ui/icons'
-import { IconButton, Badge } from '@material-ui/core'
+import { ShoppingCart } from '@mui/icons-material'
+import { IconButton, Badge } from '@mui/material'
 import MenuDesplegable from '../MenuDesplegable'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Carrito from '../Carrito'
@@ -17,7 +17,7 @@ const NavBar = () => {
         <div className='containerNavBar'>
             <div className='containerUl deshabilitadoUl'>
                 <ul className='containerSpan'>
-                    <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/'>
+                    <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/home'>
                         <span className='span'>Home</span>
                     </NavLink>
                     <NavLink className={isActive => isActive.isActive ? 'itemActivo' : 'item uno'} to='/vivero'>
