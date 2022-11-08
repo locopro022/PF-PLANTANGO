@@ -1,4 +1,4 @@
-const products = [
+const productos = [
   {
     img: "https://source.unsplash.com/user/c_v_r",
     nombre: "Una semilla (una sola)",
@@ -271,4 +271,4 @@ const products = [
   },
 ];
 
-export { products };
+export { productos };
