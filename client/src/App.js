@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Chat from "./Components/Chat";
 import Home from "./Components/Home";
 import NavBar from "./Components/NavBar";
-import { createTheme, ThemeProvider } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@mui/material";
 import Footer from "./Components/Footer";
 
 function App() {
