@@ -11,14 +11,27 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   const tabla = await Plants.findAll();
-  const { name } = req.query;
+  const { search } = req.query;
 
   try {
-    if (name) {
+    if (search) {
       const tabl2 = await Plants.findAll();
 
-      let newTable = tabl2.filter((e) =>
-        e.namePlant.toLocaleLowerCase().includes(name.toLocaleLowerCase())
+      let newTable = tabl2.filter(
+        (e) =>
+          e.namePlant
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase()) ||
+          e.ubication
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase()) ||
+          e.luminosidad
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase()) ||
+          e.riego.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+          e.tamano.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+          e.tipo.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+          e.clima.toLocaleLowerCase().includes(search.toLocaleLowerCase())
       );
 
       res.status(200).send(newTable);
