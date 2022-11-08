@@ -8,8 +8,10 @@ const dbBuild = [
     RIEGO: "Moderado",
     TAMANIO: "grande",
     TIPO: "floral , arbol",
-    "PREFERENCIA CLIMATICA": "calido, arido, resistente a la sequia",
+    PREFERENCIA_CLIMATICA: "calido, arido, resistente a la sequia",
     TOXICIDAD: false,
+    IMAGEN:
+    "https://deraiz.ar/wp-content/uploads/2022/08/ef26fd4c-8c51-4de9-86c2-3deebfba5abb.jpeg"
   },
   {
     NOMBRE: "Ibira-pita, arbol de Artigas",
@@ -20,7 +22,7 @@ const dbBuild = [
     RIEGO: "Regular",
     TAMANIO: "Grande",
     TIPO: "Árbol, floral",
-    "PREFERENCIA CLIMATICA": "Calido, humedo, poco resistente al viento",
+    PREFERENCIA_CLIMATICA: "Calido, humedo, poco resistente al viento",
     TOXICIDAD: false,
     IMAGEN:
       "https://lh3.googleusercontent.com/-ygz7zwa1fsU/TWxir1zD9QI/AAAAAAAAAws/en8IaohyZ-A/s1600/ibir%25C3%25A1-pit%25C3%25A1.gif",
@@ -34,7 +36,7 @@ const dbBuild = [
     RIEGO: "Regular",
     TAMANIO: "Grande",
     TIPO: "Arbol, floral, medicinal",
-    "PREFERENCIA CLIMATICA": "calido, templado",
+    PREFERENCIA_CLIMATICA: "calido, templado",
     TOXICIDAD: false,
     IMAGEN:
       "https://i.pinimg.com/originals/57/85/0d/57850d947a8135bfa9de58b4206af306.jpg",
@@ -48,7 +50,7 @@ const dbBuild = [
     RIEGO: "Moderado",
     TAMANIO: "Grande",
     TIPO: "arbol, floral",
-    "PREFERENCIA CLIMATICA": "calido, templado",
+    PREFERENCIA_CLIMATICA: "calido, templado",
     TOXICIDAD: false,
     IMAGEN:
       "https://cdn2.cocinadelirante.com/sites/default/files/images/2021/03/jacaranda-flor1.jpg",
@@ -62,7 +64,7 @@ const dbBuild = [
     RIEGO: "ABUNDANTE EN VERANO Y MODERADO EN INVIERNO",
     TAMANIO: "Grande",
     TIPO: "arbol, floral, frutal, huerta ",
-    "PREFERENCIA CLIMATICA": "calido, humedo, templado",
+    PREFERENCIA_CLIMATICA: "calido, humedo, templado",
     TOXICIDAD: false,
     IMAGEN:
       "https://cdn.trucosdejardineria.com/wp-content/uploads/2019/03/mangoes.jpeg",
@@ -76,7 +78,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "grande",
     TIPO: "arbol, floral",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: true,
     IMAGEN: "https://www.coolings.co.uk/shop/gallery/237918.jpg",
   },
@@ -89,7 +91,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "grande",
     TIPO: "arbol, floral, medicinal",
-    "PREFERENCIA CLIMATICA": "calido, humedo, ",
+    PREFERENCIA_CLIMATICA: "calido, humedo, ",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.viverotrevelin.com.ar/images/Planta-Exterior-Arbol-Lapacho37724Lapacho-vivero-Trevelin.png",
@@ -103,7 +105,7 @@ const dbBuild = [
     RIEGO: "Abundante  ",
     TAMANIO: "grande",
     TIPO: "arbol, frutal, de huerta, trepadora",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "https://t1.uc.ltmcdn.com/es/posts/2/6/8/como_es_la_planta_de_kiwi_macho_y_hembra_49862_0_600.jpg",
@@ -117,7 +119,7 @@ const dbBuild = [
     RIEGO: "Abundante",
     TAMANIO: "grande",
     TIPO: "arbol, floral, medicinal, frutal",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN: "https://www.ecured.cu/images/0/01/Acachiuta.jpg",
   },
@@ -130,7 +132,7 @@ const dbBuild = [
     RIEGO: "Moderado",
     TAMANIO: "Grande",
     TIPO: "arbol, floral, frutal",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Luehea_divaricata.jpg/800px-Luehea_divaricata.jpg",
@@ -144,7 +146,7 @@ const dbBuild = [
     RIEGO: "Moderado",
     TAMANIO: "Grande",
     TIPO: "arbol, floral, frutal",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://i.pinimg.com/originals/23/d9/7b/23d97b2b26f432f4564f7a0d226e15e3.jpg",
@@ -158,7 +160,7 @@ const dbBuild = [
     RIEGO: "ABUNDANTE EN VERANO Y MODERADO EN INVIERNO",
     TAMANIO: "grande",
     TIPO: "arbol, floral",
-    "PREFERENCIA CLIMATICA": "calido, humedo, resistente a la sequia",
+    PREFERENCIA_CLIMATICA: "calido, humedo, resistente a la sequia",
     TOXICIDAD: false,
     IMAGEN:
       "https://paramijardin.s3.fr-par.scw.cloud/2021/06/IMG_20210627_134231_293-e1625053666855.jpg",
@@ -172,7 +174,7 @@ const dbBuild = [
     RIEGO: "Regular, espaciado",
     TAMANIO: "mediano",
     TIPO: "arbusto, floral",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "templado, resistente a la sequia, resistente al frio",
     TOXICIDAD: false,
     IMAGEN: "https://puropaisajismo.com.ar/uploads/Senna%20corymbosa.jpg",
@@ -186,7 +188,7 @@ const dbBuild = [
     RIEGO: "Moderado",
     TAMANIO: "grande",
     TIPO: "arbol, floral",
-    "PREFERENCIA CLIMATICA": "templado, calido",
+    PREFERENCIA_CLIMATICA: "templado, calido",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.jardineriaon.com/wp-content/uploads/2020/06/albizia-julibrissin.jpg",
@@ -200,7 +202,7 @@ const dbBuild = [
     RIEGO: "poco frecuente, espaciado",
     TAMANIO: "grande",
     TIPO: "arbol, floral, medicinal",
-    "PREFERENCIA CLIMATICA": "calido, resistente a la sequia",
+    PREFERENCIA_CLIMATICA: "calido, resistente a la sequia",
     TOXICIDAD: false,
     IMAGEN:
       "https://nuestraflora.com/wp-content/uploads/2019/11/aguaribay-arbol.jpg",
@@ -214,7 +216,7 @@ const dbBuild = [
     RIEGO: "Abundante",
     TAMANIO: "grande",
     TIPO: "arbol, floral, frutal",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "http://4.bp.blogspot.com/-xStp9NIPPjc/VAc82kWad2I/AAAAAAAAQco/JgMrw7B4Vs8/s1600/Tabernaemontana%2BP.vibora%2Ba.jpg",
@@ -228,7 +230,7 @@ const dbBuild = [
     RIEGO: "abundante en verano y moderado en invierno  ",
     TAMANIO: "grande",
     TIPO: "arbol, floral",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "templado, humedo, resistente a la sequia, resistente al frio",
     TOXICIDAD: false,
     IMAGEN:
@@ -243,7 +245,7 @@ const dbBuild = [
     RIEGO: "regular, abundante en verano y moderado en invierno",
     TAMANIO: "grande",
     TIPO: "arbol, floral",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "calido, templado, resistente al frio, poco resistente al viento",
     TOXICIDAD: false,
     IMAGEN:
@@ -258,7 +260,7 @@ const dbBuild = [
     RIEGO: "poco frecuente",
     TAMANIO: "grande",
     TIPO: "arbol, floral",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "calido, templado,resistente a la sequia, poco resistente al viento",
     TOXICIDAD: false,
     IMAGEN:
@@ -273,7 +275,7 @@ const dbBuild = [
     RIEGO: "abundante",
     TAMANIO: "grande",
     TIPO: "arbol, frutal",
-    "PREFERENCIA CLIMATICA": "templado, resistente al frio, ",
+    PREFERENCIA_CLIMATICA: "templado, resistente al frio, ",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.verdeesvida.es/inc/timthumb.php?src=/files/plant/03032012190508_Bosquecillo%20abedules%20BetulA%20CC.jpg&amp;w=600",
@@ -287,7 +289,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "grande",
     TIPO: "arbol",
-    "PREFERENCIA CLIMATICA": "templado, resistente al frio, humedo",
+    PREFERENCIA_CLIMATICA: "templado, resistente al frio, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.fundacionaquae.org/wp-content/uploads/2022/01/populus-canadensis-1024x768.jpg",
@@ -301,7 +303,7 @@ const dbBuild = [
     RIEGO: "abundante",
     TAMANIO: "grande",
     TIPO: "arbol, frutal, floral, de huerta",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "templado, resistente al frio, poco resistente al viento, humedo",
     TOXICIDAD: false,
     IMAGEN:
@@ -316,7 +318,7 @@ const dbBuild = [
     RIEGO: "abundante, regular",
     TAMANIO: "grande",
     TIPO: "arbol, frutal, de huerta",
-    "PREFERENCIA CLIMATICA": "calido, humedo, reistente al frio",
+    PREFERENCIA_CLIMATICA: "calido, humedo, reistente al frio",
     TOXICIDAD: false,
     IMAGEN:
       "https://i.pinimg.com/originals/12/cb/d4/12cbd4d590e1c4f9067db3c720a67454.jpg",
@@ -331,7 +333,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "grande",
     TIPO: "arbol, floral, aromatico",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "templado, resistente al frio, humedo, poco resistente al viento",
     TOXICIDAD: false,
     IMAGEN:
@@ -346,7 +348,7 @@ const dbBuild = [
     RIEGO: "abundante en verano y moderado en invierno",
     TAMANIO: "mediano",
     TIPO: "arbol, arbusto, floral, frutal, aromático, de huerta",
-    "PREFERENCIA CLIMATICA": "templado, resistente al frio,",
+    PREFERENCIA_CLIMATICA: "templado, resistente al frio,",
     TOXICIDAD: false,
     IMAGEN:
       "https://floralife.com.ua/image/cache/catalog/encyclopedia/prunus-cerasus-enc/prunus-cerasus-article-9-1200x900.jpg",
@@ -360,7 +362,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "mediano",
     TIPO: "arbol, floral, frutal, de huerta",
-    "PREFERENCIA CLIMATICA": "templado, resistente al frio",
+    PREFERENCIA_CLIMATICA: "templado, resistente al frio",
     TOXICIDAD: false,
     IMAGEN:
       "https://catalogovallsgarden.com.ar/wp-content/uploads/2020/12/Prunus-persica.jpg",
@@ -374,7 +376,7 @@ const dbBuild = [
     RIEGO: "abundante",
     TAMANIO: "grande",
     TIPO: "arbol ",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "templado, resistente al frio, resistente a la sequia",
     TOXICIDAD: false,
     IMAGEN:
@@ -390,7 +392,7 @@ const dbBuild = [
     RIEGO: "abundante, espaciado",
     TAMANIO: "grande",
     TIPO: "arbol",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "templado, resistente al frio, rsistente a la sequia",
     TOXICIDAD: false,
     IMAGEN:
@@ -405,7 +407,7 @@ const dbBuild = [
     RIEGO: "poco frecuente, espaciado",
     TAMANIO: "mediano",
     TIPO: "de huerta, arbusto, arbol, frutal",
-    "PREFERENCIA CLIMATICA": "arido, resistente a la sequia, templado",
+    PREFERENCIA_CLIMATICA: "arido, resistente a la sequia, templado",
     TOXICIDAD: false,
     IMAGEN: "https://todoarboles.com/wp-content/uploads/2019/08/olivo.jpg.webp",
   },
@@ -418,7 +420,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "grande",
     TIPO: "arbol, floral, aromatico",
-    "PREFERENCIA CLIMATICA": "calido, humedo, resistente al frio",
+    PREFERENCIA_CLIMATICA: "calido, humedo, resistente al frio",
     TOXICIDAD: false,
     IMAGEN:
       "https://static3.tcdn.com.br/img/img_prod/350075/muda_de_kiri_japones_feita_de_semente_fc_15057_1_021260799a50a3fae31282c659c14892_20220211124812.jpg",
@@ -432,7 +434,7 @@ const dbBuild = [
     RIEGO: "abundante",
     TAMANIO: "grande",
     TIPO: "arbol , medicinal",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "resistente al frio, resistente al viento, humedo, templado",
     TOXICIDAD: false,
     IMAGEN:
@@ -447,7 +449,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "grande",
     TIPO: "arbol, medicinal, floral",
-    "PREFERENCIA CLIMATICA": "resistente a la sequia, templado ",
+    PREFERENCIA_CLIMATICA: "resistente a la sequia, templado ",
     TOXICIDAD: false,
     IMAGEN:
       "https://eadn-wc01-3142310.nxedge.io/wp-content/uploads/2019/06/Fotos-de-lapacho-amarillo-e1559653484111.jpg",
@@ -461,7 +463,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "mediano ",
     TIPO: "arbol, frutal, de huerta",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.flordeplanta.com.ar/wp-content/uploads/2011/01/mandarina_frutos.jpg",
@@ -475,7 +477,7 @@ const dbBuild = [
     RIEGO: "abundante en verano y moderado en invierno ",
     TAMANIO: "mediano",
     TIPO: "arbol, frutal, de huerta, aromatica",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "calido, humedo, templado, poco resistente al viento ",
     TOXICIDAD: false,
     IMAGEN:
@@ -491,7 +493,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "grande",
     TIPO: "arbol, aromatica, medicinal",
-    "PREFERENCIA CLIMATICA": "templado, humedo, resistente al frio",
+    PREFERENCIA_CLIMATICA: "templado, humedo, resistente al frio",
     TOXICIDAD: false,
     IMAGEN:
       "https://paisajismolmg.files.wordpress.com/2017/10/liquidambar-styraciflua.jpg?w=736",
@@ -505,7 +507,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "grande",
     TIPO: "arbol, frutal, de huerta",
-    "PREFERENCIA CLIMATICA": "templado, resistente al frio",
+    PREFERENCIA_CLIMATICA: "templado, resistente al frio",
     TOXICIDAD: false,
     IMAGEN:
       "https://hablemosdeflores.com/wp-content/uploads/2019/02/Peral-4.jpg",
@@ -519,7 +521,7 @@ const dbBuild = [
     RIEGO: "poco frecuente",
     TAMANIO: "mediano",
     TIPO: "arbusto, sin flores , apta maceta",
-    "PREFERENCIA CLIMATICA": "templado ",
+    PREFERENCIA_CLIMATICA: "templado ",
     TOXICIDAD: true,
     IMAGEN:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoGCBUVExcVFRUYFxcZGh8cGhoaGyMdIB0dISMjIBwgHR0fHysjHyAoIR8jJjUkKCwuMjIyHCM3PDcxOysxMi4BCwsLDw4PHRERHTkoIygzMTEzMTExMTEzMTMxMTExMTMxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMf/AABEIAKgBLAMBIgACEQEDEQH/xAAbAAACAgMBAAAAAAAAAAAAAAAEBQMGAAIHAf/EAEAQAAIBAgUCAwYEBQMCBgMBAAECEQMhAAQSMUEFUSJhcQYTMoGRoUJSsfAjYsHR4RRy8TOCFSRDkqLCB7LSFv/EABkBAAMBAQEAAAAAAAAAAAAAAAECAwAEBf/EACgRAAMAAgICAQMEAwEAAAAAAAABAhEhAzESQSIEUWETMnGxQoGRFP/aAAwDAQACEQMRAD8AlzFR6janYse5v8h2HkMZkNNR2powZ1AJUXPikAeZOk24/WGrRqZpjQyQR6cfxs0xZVp8lV2MxFzOoHZRJwfl87QyCNSyelqpUCpmWAgxJ8A2gajfb/dvjyp+n/yt/wChniVsbU8rQyM1MyRVrMdVOkIOgaQIntIJnaWMTGK17Qe0D16gFVrk+Ckuyjv/AJNzx2wvy3WKLVWauzsu71FIYkkgWBu0TNpsuxwb1TpL09Obo1FzeXC6SyQWSAAdYF4MXnYlpicdXi2sYwvsIvk/l0V3O5OtWFR5BVCAEFioIJ1QYsREHfftit1su6uVIgjj9/rjo3sqDX8CiWYae5I3UnuRL79hixUvYegUV84Qip8K64On8rODtzAm5a9zh+kUm166OW9C6JmMwxWkhcgAkAgGCYmJ2vc8c46N7I//AI0ZHWpm2UhTPuhD6vJywiPID5jDj/8A0eUyqe6ylIEDsNK+pY+Jj5/fCPqntHmatjUKL+Wn4fqfiP1jEL+omet/0ar9F0p1cjkVKIKdLuqCXJ84lj6thL1H23JtRpx/M9//AIgx9TiqUssWZRtqYAT3N5PlzODF6ey02YqQ6SWSblT8LC21jI3BHkcQ/U5L/BJ2ZXzWZzJ8bu4P4dl+ghfrjyt0tkoCqQWn4UAMluzT8MQSfpgzK5h0pQAC0i55JsLAmLniCInjDjJZ1XQoQSdyI3kyxHnO/pzw88aTzWxHRH0ZKaoaZGkgwxIgzeDPYiduDxJkPP8ATmymXZw2u4VCTfTOxO0+e2JOskoUM6pkg90gRcf9xtyBibN6MzlHpyJWCPkIPyvi02lr0B084RsxWqoRKimoIO4BYBeRvq0gKZ/KbRhXXYo+krIcsfkG1SD30lrW2w06Y6yjKoAYBrAdrj1Gx777kgRdWAOY1boot63n7iPrhlYFbCMh0dNLZcrNMqAs3Fo0kSL+Z5IHY4rKdJanmqq1Jij4gYs4ZfAR5ySCO64u3s8wJgmewnYWmfnMeWAvbSpqzNGitiQHdtvhJCAnjxc+YxRV8Rqb8co9TJlTSYfGFCllFoBOm3kdvNp4OEfUvZQtnVrhB7ph71hP/qg3WJmCYadrkYeU8wGYRECI8pAkW/5wT17OBQKYMA3MfKf364RXhMXz9lV9qukGrQWlT0F6byzNYgCTpFpnVU/fHP8AqXTWpOUYXHPBHBx2rp1FAGZiB4gQTuSQFHeZZdv64Re0Ps5/5xajEe7WkscywZ9/IALbkntJFYvE7GmtZZUst0f+HUd1uyMKQP5u5HzEes8YbdZ9mRWFOoIThgBcjxsON4gTh3XRCo02hjN7yeSedyPp2wXns4FRadgzG08biT9f1xF3sL5H2B9H6TTp0xpRUMbDczpiTuT4Zv3OOfe13Sy+YbLUaZeoKllUcHz2Av6DHTemuoAqOYppuTbj9Z/XCn2mqOyVTlKemtXIUsPCwSCCxb8Jiw7STbAithnkZyX2i6P/AKWp7o1adRwoLinJCN+QsRBPNu+Bsj0etVUmnTLATewBjeCxE7Hbti4dP6BSpLqqAV3JJWZFOF7CfHqJJk2IXYE4sPTKTsywLCI4XSoF/IyTPy7Y6HeEM7wcmz2UekxSopVl3B+x8wdwecQ08dR9uvZGpXrK9MqvgAOoGImAS3FztE3MTEYp/tT0CnlBTUVTVqPJkABNAkdyZJ24hTyYDTaYytMQMuLj7Mp/5Zbfm/U4rNHLyMWno1I/6dYJFj27nyxq6GNqMDLCYH8L/wCuEudre8CgAgKAL4Z1kJRKcmABO3a2ByirvGNKFqgKjQOC1pBReBiVCDTZxxt8u+F+azBODkGGG5auFkxPAP8AQY2yrEqD/U416bQBphuTO/F+Ma5On4FsNsK2MkXP2h9ol0CmiijQX4KSfijlvzGbybfO5o/U+qtUtdV4UfqTycQZLL5jNOfdo9RvxMBYf7nPhQepGLHlPZehTIbMVWrNzTpGFns1U3P/AGqP92OeqjjeaeySlt5KxlKT1H001LObhVBZj3hQJOOg+yPQzlj76vWbLNxTQzVcfzqCQo7BpPcDGlHM+7BWhTSgpsRTEE/7nPjb5nEKEFwpddR4JE/vnEL+pqtShtItWc9rQuoZWilKd30jUfOwj6ziu5vNVKp11HZj3Y/p29BhX1WrXTV7qnTIWRr96jm1rKrbzbANLKtVUFqpVwSQ1VWVZ7AAECOYMg8Xwr4uS90wNlto9NiPeMEHJ3IHcxb6n+2HWVyK09LKgqFTPefi2teQRx85uK6lValEB4FRCquLgjxCInSQCCACQLEbYIyXWhSbTqZkIBJIgAtLap5JvOwhe8408Sn+RMsteZpLVVGuDEqfpY82vHb0kFXXV6ZsRqAA37cid5A2v/XEwcOoOuLkq1jcRIM7/O+B8y5cinVMPP8ADqR27+ZkjbeMZtPYqw9E1J1KltIBg+HbeDO/+3zvffA2VeSqzGm4jgmZIPclrHaCfTElPMMt3CuDeVi/03sAt/yib4xwJ1KQARpvvI2uI47/AF3wqpApB2dIqU9SmSoJEflmCbbCQfkThZk3Zbwy6tzwQd/tbvse+DsmxDWF+x7RcRMgHtgSiBqdR8N7dr+lr/Qg+RxGrc1kDWieiGRhyARaOBtB5sBfg+RWDMydSvP4SG/of6T88KsxmBIvBU772jz8jf8ArOJ6al7BgpI0zNp4BHbYehxWOZNfknnDIOj9RK1C0/GZ/wC0WH3/AFGJurVyc9VaRApIAY3aFIj6k+unFdovofUR4fwj+h8xsfnHGDeoZsVJMQWCyZ30hQI8wQDvxHOKfrT5YyFXhYG/SqhZ5/vc8AfvnC/qObL5g3/Fa/At87Wx70mtp4giS0z8V5Bn0Nu0jCvKZghmqbsPh82/D/n0xR+2HtFn6TX97nQm9Oh8XY1BAP8A7Tb5YA6717VUJYg+GQRsBPpHIF7GMR9Gc5ei352NjNywK3byMNcbCJ2OEWXyRLCpVeYjw7hQJPPA2Hn54X9RPWRqzge9Ndivvag0gCFpncAzBMi7GbAbbcnHmRBqs1WoYAiW7LOwAv2AHO3OAKmbNSEiFtB5P809zNvXzwb70kCmkBQJY2udjzJMG22x7kYFcmDTvRvXrmqVWNFJDqCm4J/mImWi8bCTvGDMznkWyE6jYnk/f/g+dsQEKoPiE7yODNz9f1wLSzCA28IAHiEWUR32EThZ5AtY7Jcvllc6mg+FQFN5WBff+fe84lTNIIGoFvDHZQIuY+wHcbScLf8AXtUOiiLDwlyOLbA7CRt6eYwd0roKiXrN4QfEs2J/nO5nsPOZ2xV3lgyyZXauFGpmuBIHhkQQQdjyLfmNtsLfaj2YFU01LLSpJdiBqcIg0U0UbbazJt4gLkQbA2c02prpUSBA2+Q+G2wwozOcnV4ySdp2FrfLb5euHmn6GVsU532co+FKdP3aAgkklnckcz8C9v8A9djjRem0kBGtyo7H5xHymDf1wfTc1NiJjk2vvN7HcYgqKiadVQTY6VBZiewIE22v3GKLkwhlZV/aI+6ZVB3XURMxc2nkW3xX61Uk746NnOm5erBqU6lrkzBAhiWIHEJpAufgB74o/XOmvTqlfd6RpBhSW0iLy0CY5aI9NhWLyOqTB8u7adIJjtiOsb4lUaRgZjZj8sN2OSU864GkMQO2JaWaYCATGAV9MThh2wcIXLOk1HeppRZj8NKmsKvkEURHnE4C6hWSjIYrPIBBj/cRYHymcEdQ6nVqIy0kWjSNtKWm8RUc+Mn1ttYXIR52gdAhFFo1sLA/lO9vXyBnHmT9P7phq9kdHq9KqSr5g0ZML/CZwfMlSDi69I6LQekdLU2gwxWUYEbHx+JXBIKmeRuDjnC+ztXUSqqWF4VvpY9+3HMC+OidF6Q5OmskSuluQZGzKNVoncwZK3sz9KmJ/aDtG+W6PVpv8QemV0k7gqD4GUCVBXkCxBjwhVB96j0unUIJViANMyxFtpFxBG/I+2HGWyQQkAjUI8QBLRxqk6m5Oqb9p1TPSydMiCvzvPc+l7gbfWMTq2+xcFEzWWqBdaSTSiAbsrQSFtI0Ge/HGAc7mfeVG0K3iFMaSNmWzjtsd+QZ5tes/kriJYSSNU78GQQu3B33O04rWXywSqWCkH8RmSGE2gKIAvYiInywioV9nh6jWpM2tH92BBkdlgXN5ETMTHeMNM62tCFlxqAIn4SL3B2PkbeL0iOnWvBupsCO35e8cjt4hYAYlrZAa9USrgLqAEjsrRYg8GJHoRiVU084M5yBZjqpA+FveD/qrw6nZrAgN3i3edgdlqwdQ63U3IIuCe4Ewbk9t/OF2a10KgZZI2IvBkeIMOJFxxIPnAGdLUahemSFI1052KkXRh+ITIK+Q5uBUKtzo2crZacqurwsbm6sI9YgfLfeOTONK6shkCN77eZUnaOxuLc3wNk84CodLqROk8EiRx9D5EbiMaPmjWDX0QYYEyI7z5gEbWxzU69L+QOcm+ZpSNSMNpI777fTb0xolc0yCLkGRHcXJ9LH6YEq1WF7aTsQZB7wRby/5xr7zVeY/f7/AHIxCdMlULJt1BdZaIkktAPy22v/AG7Y8yj6aQcixaJ/oD5j9OLSPUcapUC0SO47k8/PuTzdlmqf8DiGgkevPrN/Ut+XFWsMeZTZrWrfw2K3t2neB67kEfLzwL09wkgwx5nZfLzY7W7WxCHYUXidx/XANCuBM/Ifv9/XDzd1PiZTge5xtbq42bccTz8pv8zgd6uowF1Lba+szYR+SfqR2GI8q7VCKY0yx27CDE+RMT3sLzhvlMt7vTU0zokNNmBtqDC4O0+lQwSTYTPisseYdGUem+7LNUj4Qfmf1vv2DDviPUNQCC0RbnaT/wDEesA436tn9TGbLtPrsB3Yj92nCls2SCAdC7Re4PJbk72FvmJwJm+RjViVoY13RQdTwd43O/7EYSVAarRTgICe9yBq+cADiLjviLqHUTUBVPJZMaixiT9TuI3HbDroCU6Ko7gGFbwAbk6CSPKx7b46o41xrOckcqmFdIppRTWwk30mInk6Fm3EsftEY0zfUifFxEKoMCCbtJ509/sDgGpXatULEHURFtrcjsLkee+PUogAkjaJP9hwf33wfNZA23pE65h32EFjub/OZ9Y7Tub4hGX1uFE1GjZbD52gDjt58YIpJrIJUhDwLE95MWnz+84Y0c0iLppppmLn5yT33325w8tvtgf5Acl0gt4dbC58KWAOy6mPofSR3GDumdO0KF0rrPxEXiwBhjc374KyUIpJYADzuTE+V+fl3mPf/ElFqYv3ja/Hqe+/aMUVekDJNQ6aDLNaSSbxa0AeuhTHct3xUM70Gk2YepmKhbUfDSpfE/ElyAF7ACIULJ3w26i9Z3KbKCCbxK3Ijk7cbEgnAWaypE3MuILARpB/LcmQDYcXiAcWl4Wxkyn9a6cQalRFQUw7aQuqwkkAFrsAAb7ws7EHCPTb746R1HpAakacsg0DZJgA2RFmJMLaTHhjTqnGvTPYRCjByGq1EYKZtTY/AYHyM9p2uBSbRTP5OcBIxsEw86B7P1K4ZjqRQG0yt2cA2g8BoBPqO5AmZy/uW0ODNjvG47ETYyPliioKsY+zmutqNOl7yD8KOCR/2NLAFSQGjTYqx0kkWnLdOBU6qdVAR4pUmx2JVgCI51Hm5nUBQ/ZfNrSrAgLrBlCxEjuAY+4vExeMdTyGdqVQpEg8SgZT6EQwmLLqHmeMRuWuh9NaEeZ6TpFmvxqGmReIJJU241cnwxbDDpdesiCl7yosAwJusbrLXK8ieBPEYa5mqin+I4WB4grB/MyoUsBHBj54WVM/QUqgzFAt+EGp7s/ImewF9wBiNdYaBs0z9XNyWp1tG493VUMh30+MIW4Menzwhqe0+ZolVzWXNzZ6bm538OrUGteCQYPGLOvUfd/9RSpuBpaQJBuCtwDz6DbGKuWrowso2KsLGTNxGxufUmOMIvH7ZMqFXSOu060e7rj3h/8ATqeBp5ChjBvPhBPrYLg3N1CWBZRrH5he0dwI2vzyIN8QD2ey+szTpO0iNQ1ArIEC4lgIgmZEg72cP0ioqBQg0BYAPHELpnjtA23xPk4/fGwuU+hLnusoikimyiLhSJHcxtE8m1+MD5Lr9A3NQpqAtUESPMiVEz3j0wVn8qdwrAn824sTxY7R9dt8VjqvTQzlmZEDHxtDAJz8FNbyRv5jeCcJHjfxrKYu+mW73xqIYYOsfECGHncWAPbCXNVNStTfxKDKzupiLR+7DfEvTOjogSWq02/DURwyPebMBKsdtLAdoY406z06os1DDKfxLtIH4wBC7bmBsN8T8KitPJsA2VzTUxJOpEnUBElDAMDup0uPVgTE4mzdXQxKkEG8/hKm6nzFx6X2wspuQYglto7zuPmMeOrBDT8X8OSJEEKb3t8/n5YosN5XZsE9LNaKhWSUeGjgzyJ2IMj0HbexZKjR91DlwzNCuokCwgRN5B5g3PbFPq5kEAkEhZB8iZ0kHY34I8uZDfpVTwlHsJO1yBuLT8Mmbjk9rLzcSb8kMkmEZ/JNScMwDI/wupsw5gkWMd9vPDGtUCUgjMNG6nuDciN7m/keZUEgZfrXu0qUnQVFPfbyYefpufrgTPPJBH/Fpt2tGOeltIClrYwytcIpCyg5ab/Xv5fY40OVog+8CMYkMCTYmIMEDmfLYRhc1a0SNUW/sP3f9SGzFrjQCNWkd+Tt8iN7b4Mw5yxVLWxx0so2tdIVmvqXwlrEQYFj4pBF5gXBKtL1LNEkICNYADdmHDW/e45BwsyTqAXY+Fe25J2A8zf0AJ4wNmusKwPhhttUzI7ExM+m/lhJd08P/o6qvHQUPdqRqGoLZRaAO97SY8+BxgbrGbSo5pk6CqQKh8SX3BUCRBO6jcbWJwuOYEeIwTMC97TwD9++NOmZP3klmsfjbmJv8uOBfHXxwp+TJ4yxv0PpsUmt4fxEEMArGFKkGGL3lvysOcM8t001CHclRKiNiE0ztwfh2v4pwZklIprTFOFVdIBsIbxGR+LUCp2sVPngetWYAkQSOBe4/U/49MS5eV08Ip4StsK106SwsACxZuTPc/YeeIdatBN7bbC0D5HnYYX0+mgk1KjOzGQokHTsBFgAN+18MApJnYcDcxJP9d7YEJe3n+Bat9JE1BdRjSAsD+sxt+5xvnKtKlKhQ1S0jhfW9jPH6YDq9QIBVb20+Z777Xt6c40GQCgEjQgA8MyT537yY746ISRJtkQquxE8nwrsAJ4A2/rgmjliALhFiIIuBA/zfHqVlWCAFH3j1n9P6HEVfPpIiLdvLt5fb+lfL7E3kOqOukQjNHJ/tzJ4/rjRlqObMAZiRx2Amb+fn9RKfUyYKUnM7GJ+wEGfXnEX+pqGR8JgnxMFMDsFI2E3+eCq2bA0p5IADU7kj4iW+tu3aZ9Lzg/IZhaVQEAd9Kgfuf35CvdLzCwWFSmytt4wdr2ibH1NgPTEvUuopTpmCNTRcTaZ2m99J+uKZYzeBlkaReqXMFmadIA0rJay25G+A+r9Jy9SqxI1EeGdWmY/7DPrz9yNkuq+7QEzqa5IHwJ+Nh2JFl85N9JGFeurUJeQoYkhew4G+NnJtnP8l1atRRlpVWpgmTpABnyaJHyONavXsy3xZis3+6o7fWWNvLY4EVSTz+9seGh2F8deV7Lp/c81F2Ja+5PrzbGobTcG/liRMq97R+/LG1PKmQDYTuBMfK04OUEL6V1erQaFqOFj4ATp/wDaTp+eOjdG6ktUBwYbaQACDF1Aa8RcIwuJK8TzUdOsCxt+Zbj52sfWPQ4s3s7nFoMmumWBUgQdWwmAGvpbezAA/hBF48nHNLrYcZLyKkghx4vxRJn+YA3K913FxcfFH1D/AFQTTTrARw8sGHqDKnsR9+Uq+2CNcUtEFhOuSSLjZAdJEGTtftjWh7aJMOjpvcMHjyixH+ccFRyRuUDx/IBmM/VSqVq0jTBuXQFhOweQFBAJF5BETvAM+R6iKqlWZdWmdWwJHB7XgbAXHcSzfrNOpI94CD+YEBrRufD9SDYbYC6l7px/0xczqAAJiBMgXMAd9o74V8yrVTh/cbHpk3Qc4tMlHdUpwdXvLLH5f7c9pw1PtHl0MUqqMTwSfTYi/wC/XFZKI4KjwgAASZO95tf6iOx4QZ3ItTYHSZH3HBBB42sf0wyieR4b2ClgvVCsGvTFMruRT07drXC+W2PM9nBTSXkz+H9bc73J/U3p+R6lKqSfEDvJkdiDuSb/AEw4GbFQ63ALiBqIvI2Pr5/1xC/p3FZb0MpT6If9Lr/CKYvAFyT3iyrzbvG4xlMrTMVF1AEQ3Btb4iBta4MTbE/+rYdjHfn/ABhh0h6VQe7rBYY2qKxV1kfzCDvxa98UXI2t9GUtCDNGCLRNx6evODqzHQhPKg/dh/8AUYm9pPZ58sRUB95RawqC2k8BxeP0PljehlA6prYoomLeNhJPw/hF+flIOFtymn6BkBov4iARqIuWIstp0z+Lie098RVquttRNzMk7z3PHz3w3zfSKToAjsjA7uQQw84AIM7GD/ZJSoMtUpFwb7G3NwSI88MqVLQHWVoJ6lmYApj8Mk/7mufoIHrqxF0ulqOo8bfuf84LodDZhrqVArMb+EsLnxGRbzET2wzy3TFC6VdL2LEGd9wDHFwQZ3BtfC+URrJnrQKmRau6ooYnS7AFvCYjVFvCYI277TiyZXJ06KhVWRuQY8LCJmLEFQp/7e8YEYCkFQAKyiNSeEEg7wZMkRI1EcGQBiReogeJrgfEbEHy8Quf74nyclUsSFVM67Z6SWLATbsbWuD5c/LGZd0JgMWN/huBtzz6id8I0rVMy2lRopTsL9yNR52+22HOUywphVUeONzeYgfc8fynCR9K63bFugwOqmGWB3mdoG0ev0OMoIKikw6KN2IAAibkzxjyqgQa6oY9kX4mjjtzcm3zOBK+bao2l0VaQEKkjSPW/pPftij4Ijc/2BbNa7INIpqXF5JBEm1jGwi94nuBcyijUqmHbmSFAH1YH+20eWJFQfzMeyjSPPxEQT5yB5Y2qF4uBTAEA2FvKbDng4bLem8Awl0skVTKqh/hqhI5Yk//ABiY8yY3xq1FhdqgUDcBBPkNRa31x4mZSy6qXp71VMn63++IKlSmN6tKRtFRSB/Y/rfiRik4EfkG0qirVQkMFJ3ZvMHY+L9IkYqVXK08vmCQ7HQzKxKgADZxM9rTEX72w8roKpUCsrKt9KEH5k6pIsLWF/5cI/aCsKmY8BL6tLSPhBNiSw/mkWvJjWNheNPIvi12BVsyaSpTuSoAaeSNyO1/tE3GCf8AVe9qAafCBLH9f35nAGYQ1Kqqt2JA9eB6+v12sVmICsiwPFoJNh5mf9syPMHmxdNvszn2NGzSJltfxVazSF/LTX/prHnZ48zPGAEWs0k1Fp32Nz6nt2jyxHWqs5JBBI2Jt4RAEdu/1xB/rosxdj3UEj6zhPN+kNhEGT6Mag1aGCXggGOJlgCFt37YY0ugIUsCRHcX7Q11+wwxXp5WPd0yDvIYgT6XB+vOCKCKwJeEqRJbWBNrEywY/ffYYtN5HlyyvHpVKY96UYTKsLgi20SRzqAgQcEJ0AMLVFn/AHWjgmFMj0BsQZwzrvS0aanihhMFiSsTIgkBgYAPlcHEbVqSSq1AyT4WOpCSRZ2BAuDuw+Lcg2iiY6wJ810OoOC3mom/aV59YwvzKuo0HZe4vz3Pn9h2xYqmepiQylQb3JUTHBJJmRa8WEg3wI+Z8MNDwYHKQe3Pn8ztth0zZRV3J2nGhcE3t3O5w3zWVDGxG0zEfOB25wqzWXO4/v8AX+4wQYySUc6yjTYj97cYa5HqJ/C0xaCLfTt6YrjKRjxapBsb4nfCqCm0W0ZpWMix7TP0OM99I0kA778G23zA+neMIKWeBgER54Py+aBMbsbevbHK+Jw8opnKMzCEGxgRAEG3Igau/P8AxjzL5rSNJtfkEfWdsTVbzI+n2uRbCuuhRpHPb974osWsMDWOiwHMahJ3/XBeTqCALSfP9z+/PFaoZj5YYGvaQTBxzvi8XgZlvynX6iUmoghgxgsb25ABtvzfb54BzT3n9/vn54UZLNWInf6+U/vjBVauNM+h/p/THPfH8hezyuqkyYM8b/0j5x/gjKhVFgATuYA7WncDb64XJV5j+n24+mDKTM4AjmdW/F4/Y254rtSL0xzlAXAC3Jt5/v8AdtseZvO06fhQB25afDP8oF29Z9ARBwvPUCqMiEXEFovHYdp58vXC8VQPxSfQnHOuLyeaClrLLDl+pK6hKggHYj8PnBMx3vxgQOruUF7EDSQO8yYaB5RedxhfSdjt4jwJg+XxT/jBlFPGBUqMSPFoWDEkab2A3Jm/pvjq4+GZWRBv0zKsE0hjAWWqQBIM3Hn9tu+CkzSiFoE6hYuV+GxsJgFu1jbnC7N5gMp1tpQ3AGxi0EiZ07ws7i8DAlfqpImmAoFgWgXP5RsB5bc2OC6dakylLbGb0kRZqVDEbuZNrgCZJFybbFpsbYgzXtCiD+EoI/MbAWEQo4PkRvhRQqF3IUszHhpJn6NI+X0xtX9la3xtFOZ3PpEafEJkDa3MY08Kb+bA7f8AigbP9ZrOC3vGVZuEOgfMqAx+vOF9DL1qt1p1Gj8enxW3I/ER9frYv+keyeYWpqcUxYGCdlO7sYAUSNzc6TA5xZ6WRUBYqM5mAYgahuFBlpHoODFycdDlSvihH5YOV1kZXuIIJF5sfP54NzSmsoqIIcfEBeZ7+U2J4ME/FIvXW+lUq5NMBmrIRLJpDLsYaZFwZEnjjCjMdEzNIzSpqwA2Qh3Pm3r2HlbAbeOtgSrBSGMHaJ78eRw79ns0oR9X5dI79/X9/LAvWKVRTNSk1IyN1K3G28DbGgYJSUwASLyrCTwZm89x9pxn8pDK2NaPUqgYGm0c3ggepji++2NWywr6mpsC8ktSk+pKEgA/7fpOFS1IQx+ID9Tb6ifkMSdNybFtTjwAau+q8AD5/ZTicxgbGdBFFDBT8TC3l5k8CO0+mPcpmFp6l0B4b4p8h5YjzjtZVvUYyT23HoANp7k+uPB00fjJU9oO3H2xZOUt6FaZY2zKc6TJ/ESZ8pNrD+uDP/EKYQgIqWG2x7SYFxJuInAFfKkSYJNhAEyORM2jjnfGqI1rEbAeo4nYx9Nsc/imS/2MKddWaXRTaDsJvxpAg+mNqmZVdQVES1wgueCZO0W/ZwppzLNGnVIBgzPB7dhIONlJIBNyDxcEx33+WN+msgy0SVVps/iAFvW/qST38vQ3xlfLo9gqqs3CqAdPPjIL/LEbgg/oJjtt2H98eshA1EqpmI27m8C1uPMfK6mvuMvIFzmTUqBTp6Txdj84uB9DvhRnMpOxkxc3HHJ2P0GHBkkbAb95+0/KNzgOsrG0QCb/AL+X64vCaKpiSrl/IH1/pxhdXoEcYsFSmbwD9MC1aZ/Kf6YdDKhFBGJqOaYb3GDKlPuPtgatS+3bBaT7GTCKOYJFsTvVJEW85v8ATCg0yLj9/LElPMHY4lXH7Q6ZOwK3FxgjL1yRA/fzwKKk4jmDM4VznsOMPQ3pNHmfKP8AnBjVvCP33wqp1ARM4IL+H6f1xC4yzJYDaJJEzH98EnM6FIBliPW3n8pwt9+ANzb5f8/5wOXJMDc/sYD4wYyMWrzz/wA8k4Jy9K5LHSF+I/vb74HyuVKke8BXYxEMQfIi1tifkDwRTCwGgNYaSwIRfFvaS33HEdzPGatdjGkwVA6kAkjxFYAPIXYncXiPTETZ5VkU5/mYk+I8evEWERzgLMhtUOdX4t7QZiIMR6Rt6YkKIpEOVBPME6TGyCDf7+W2KLib7JuvsF5XI1KpQ6hcd5B5vF1Ci8EDyw46R7O02ADs1SBJAMXjkC9+1rAWNoSe7qEh9JVFB06yBaxJiDM/rEWth9k6vuhq94HcyPi85P4jaYIvwfTDeCnoBYMnQp06cU1WmCDGgRtAknc3vJiYjG1JgfEFkyADGw8psoAMAd2MzcEPL5xWEKVIi4U3HaIuNot2BHOGlERcnUY3+H+xJ+3rgZNhshzK1GEaWvLGBHzbk7TxtuOFXuM1BEGnNoVgraZ+EaWssWE7cbEmxUw8zpjsQNvnsPl/jHoReV1Nve9/Kdj6QcOtgwK8l0oqACAoB2tHfbj6ThxVRtOlEE/yjaewJ58yB64gr0yw30ibx38zz8yp88C5qkDpPikfi1lTHYt8cf7WOG2POhJ1zopV/esF1CfE7NUIB4CyFX0VWjthXnuhUswuoDS0WNPSAYncdpn8IO89sWPOU0ZBTepUI/FKioY/3vpYbnctYn5Vpqxy861BpzK1F8QAmwKwSv8AkCcRuX2hblvorRyDUWNOoQWQ7DaTffkf3wz6jWBRAANIUHcSxmYBEAqJ37mJtfzrmaStXepTY6TpWYgQoCsZJBExIG/64gr1Fa5Z3jYyBB+YP+YGJZaWX2aV7BBmQpOkXJJ/57QI2tv6YZZWizIGLaCZ8JmRBIuNBg22N/IbYFpZMfErwTPxRPyO23l32xKKTC2kt53P3nDLxfezOhxmc0b20RaSJBW1z82AHywOKjE2gm4ZQ3lM9jtPz88HU8hUYkmNM+OSAL7z/LJ4vt3wPXymlrmJWQVEreCPFbcQeBHIxPMnLk0prBkn8xO3BsYi945553w2U0gFJ3ieb33vECw37/RXVoktIuDt4VAG0WAiAD9d/MqnlSsu4PivpDHb6jcna25xsynsKrAQyKQIH1BH2nn7WwMcpYE/hMeGTJ7SYv8AXbyxPmMwdIWmwCwDKrIE7nSBpULG9yZJ9AMyKn42YAC4NjqgLK8XJ3OwN98XXJC6Gd/Yno5WTAgRyTJ842BI/pjen09QI1EzERC7xsLd+T37YFp5FVguzg7gAlY4Nzv2gDv2wbQpkgqlMwY+KZ+52BHY4zd1taN8jR8pRDw3iAJBgkk7E7CNgRad+eQM9TpJwzeemJ/mkvvPAG3mJNi6XlXFRZQmxsVvG243E9+/bEtbIN8JAVFLQSQTHiDaZB/KDbzwU6zsph4KPVVB8SPPNgB6gA+Q++AcxTpajqDwWvAEgf8Acd/L7nF7zPQqOlmYsQqhzeN9Uccxtgaj0yg1ULoARdRe94gaZJPxXsByp84tpdsxQ62RouYp1ApmPGpXt8rmdsaZjoNaYIptxIaI9ZA/Q7HHR8vkaNP4KUnaSPETsebX7RtthbXpfhBnyUfYkH++Ms57D5YOd1shUp7r/UfXGmmbR5fsHF4qdOQHxAAxJi5A5nsNuJ8tsC0uke9LBE1Fb6V3I3P2II7z6SWs9FY5MdoqmXXTYzvxyPTy/r5YZ9MpAMsglQ0+KYIBJExxsCB/XBtA0NlQEFdSmIIB+GZN27wd1NjsA3qBSp+LSTpHCn04+oxOkWV7xgxMs1NvCgdQDdtUKYu8WmBcFrbSOMH9Jimwampqv+dlIUMeTYsY4jSZEzthl7P9RpOxUqhaFCmAxZmaPCAQFvuSTvJ5mw5z2QpOf4bFWWxWPBNyRAJK7/ii0bDGayBW57RUa1ddMu4dpJIIGjeQIHJifFNySb3wFmKj1OXqSfOOBEjj++Ll/wCDNTa9JQVtMSdo5O0H9MMsn02k5PvKSkEcAKe5v9AANvOYAnXRCqVPLOc/6SqTeFAtuLAeh+eDundHcQ2vYj4RPNuQBtz5Yvg9maXhVZps55EgQGIkkybKL+cxwslboRp30aosSIjYb2t6W++C3+QFQyvShUe4YmYguCR81M8Dn54sFH2dBI1KoEydo4FyZAm3N/PBuVpsGPh28vl6D1wRVoahBJUiBcWYC0G5JB3i4vthQZNT0akg2VPReNzc+k7YjNKmInUwJtyPpEm/5QcbUlakypLBQSU0kkEE7QTpP+2e9sbJ1cqw2uCSHI4mdJA3/wD5bCK56YruTxOlKGZ1QCR8bNH3vBjuMSUT7tdRqMewJ1r9oZvQAj6Xno9SoVPjhCDEEzBkjmI2J9JwfSpLAZApH8tjf0i+G16CvwK6ueqG601qwNocFdp0+H1O2PKuYplPeMXpiPEWRgB6llDb86ecF1qOrdjsJkCPOZ88QDKsJIQtHaI+kkHz8t8FXgKb9kDZbUgqAK67hw9vnBme98Js9Uyt9YoB2sSEOozx4yCT6HA3WRRp1f4JGVrSSWAcI03ErTQowM7xHriqt1WgWcVqFMOCCauVqLpcgkgtRLaXBvOkoYN4nFttF4nJp1BlV3VC0KYAZdJHkRqMR68cYzJoSY0ljG0EwI4EG3mAfTCipmmqMTIaWILHck/ijvF98Oeh5opVFNjALaGLeG94ht1PYEAGBOOd8bWxqlKW0HV+nVnG2lYEgkC0c7sfoPTBFPKVaQ0yp57x5b+WLB/pWHiMjf4ePKZMGCOSb48WqgADQ9rEkzHAMWkf83nElX2PPfJTHdTI6mYtoA2UiQL+ew8wCJj54C/0VI6k1JOoeJWMd40yOTFu/wBEWYp1VBJeCqk7CYN4hhvYC97jywrzGadbzriIJJMTNhMd9o9cc88dfcOi5+7CqVT4rFhqkX2gNuYkRzfyxDrUOImy2aZgwG5EATzYiR64qlLqbQrX1WuTM9u0gCb+ccX1Tqzq0pAMbne4uBtAjjzOC+G3sGS7ZaoiKSZPmoNwQIi4Ngbz5+mNszmAUBMvtDhCCC27FoABJAP084qQ6zUVYdtwPCbgRcbnaDttfvsVluo1KoMHw2B1Gxi2nTI1NN4BNhEc4X/z3kZP1ganI6/E3JAaCZ3Bkx34JtvzMG0uhDUxp6kFn3AAW24MAEb3+WAct1RVYCs+kCIVgCSJ4QWA4khYi+Da3tPlyAA+pZkoJBPPiMRO4i21rxFc1Pf/AAdKUthvTnFJj4tRaWBAIAQXOlSSSbRqP02wm6lVf3tV2Jc+8Yg9lshU+apriPzm2rB2S6rSJqMT/wBJOBHxgQwM22Ph7ni0rl9qMvUdiyBVFyAAxYkQTJGwbfva4AwXyW5WFszehX1DOVaj1KuykglQvCmFAneCIt3M74e5XKGkpBbxH435PoZsB5TjShm6NSoqrBhoggGCPESSDpAFriZ08iMMEFKpZmhQJjaT5DcjyEnFOKqrbQqTAHpNU+GQvJIuftgrL9KKodBgwdTASRG4UDcidhcjbDYmlSCgjSWaFItIEaiBvYMDfzN8SdRzIpqzi0Akf7lggTsBfST2qG+OlPJSYKVnUInSZZdKVV/CDUWadZDt7qoJB/D4jMEGV+Z6hTpVfdpUAZELI5AJQAsSr3BLU7VYMympd2AEXtV7RUqGao1KBWpCtKEwrUKwFQUna/w1C7KPwhkEeHFU9ocxTq1nemxvMtJuL6WPOpk0au7azzir0WmATO9QepUZmIEljC7CWLRPIljjXLEeInxaRMbTJj+oxEEncbkRa5B/SPPEi0/EAReb/a8+l8K0mUWUF9EzHu61N9RhaiMdI4VgxEEdhbHa+jZo13Yq2mkhAkbMSNQUfmOmHPCqVjcxw33ZE3grc7xa0A89vXHSPYTry6Ey7j3bBfAREMsF6l+GIXUSYB8NxGAuwUtHReoZIVUtcjY8nyk/b+2EmVYaoVpI3AZZB53b7Yc9Jdn8ZBHCi4He07AD5zIMEGa/7YdFGvVBKVG8WkX1i9htf63IwlL2iF9ZQ0p1fD4jY7EjSfrx64WZfrnumqozliGZpNhBGoi538JHbnywqyVOmjnRUdSTs6kKb20sCWFzaxxEMrUqqSSdzOllg9h2i07WIPJJxC+VSTdV6RcsutKqCaYUPpDMR8MyQRPG3PBGBatN0MEH0J2wg6TVqUZG6MCQTMwTfvc77wYMXNroj08yHi4mFb0CyD/3EjD8dzfTGT8hUWUgqwkHiV+t4M/PCjqGRANmIpkW1DSVnctIgknmP8NM1ktB0sSTPN99oHOI1y52BbSZ1KD/AEG3ceYw1wqWAVGRNSNDbWSSeBsdhcx3JJ7nE1KssrJCxJUyBqgbQD4ojTHp8lmb6ZWp1GABYDxKwgWk6DEAcxHlvtgeGVgrgkhgTMCWYkSSNrzeYPOONzh9kG3L6LXkesIQWarKkAj8RG1p576RfxA4dIqkEqduRt6ERIPkcc5pE+EaQvGor34NoMWI8vrh7l+pVaZ+EGdWtRuZ51bbzt9Btiscnjquh45MdjDr9EQG10okxrYCeedI+UjHPv8A8jZYe4957u4dR7xQLjkMwJ1Dt4jHA5wT7b+01dDAUgauXZGEbnVTYMdtJOqNjFxjn/Uuq1Ks62ZgdtZDPHANSAzD1OO7jaqco6YeVlA6VT6SINtx/fBnTwS4AG7Cw332H1++FyfT54ddHEMCB85ERzI4vz+mDRTs6jRpMacjUqMFMkX4O5sIvYwT+pdbpBm66vlt3G3eT88LPZXq9SkrUtQKISV0xsAJPn4j38rwZaj2gndAe1uN14MWIMTzjzOTyT0cPJKh4ZS85mywlqqEm4W/hgW/FG8DmfLbES5lWUBn4uACYHYmyweRPe84bnI0HdUp+8HcaNTH8QGqAVJiQNhzzImbySqx0UGX4R42gat428tzvMeeGmpGaYHTrIxVfAAy+JjP/UuQb2AEgRMRPJwHXpgHcAgQygcieCP35XxOtJixApioJ2D+XJExxIttFsE5dqlaEEU1ggkKW+Gw+GSxgQL8De2KeQMCUatgxg+XPHliTLZ16f4lvb4RcdjPHMbGBM4aLlqbLq9/VL6ZI90wBEwApiCSdjFydrE4BzNFROrWZ2AMapm5sFt5ixw87HUMEbMgklocm5JNz9TfGU6wnaBA24AtqMkev7jG1PKpN9WoiRFrfI/fD/pfsk1VAGHuyTMyfgiI08k7yJwzSntjr6an7K9UzgWQjMA0TB3i4kDcg4jp55VJhiJgGRuJvE9v8YsnUvYVqYVkcOCbg+ArzLTYD5YSdQ6NWQ+NdQFp+IQdjtgrwr2Z8FIm6d1IoZCqCVi4jsBvvI3+WDW9oqhQlTDGSxUnVA2CTsQBMm4neLYR0qTGwKAg3ExHbePoL4nXJVreCUP4lggWnYb+mGwl7MuOhnSzZT3bBVOio7liSGY1Aq1PCeSi2Inm4NsWnq3tHTqAKAWUi9gJ4mTxEG1wT3iKDmEqIfEInusduMEZIsQPCGk8p9Qyzt574DTawM4porObpD3j6RA1NpAvCyYud7c40VcMs709wxK6WUmQAZiflETaPTAuZdmcsx8Vp9YHy4xRssiHT54lWRad+PWf7/fGqz64kVD9PL9MLkY2ollKkGy2AMx9PvGCum1zTbULzYyNxI1eVwCvozDEFNWhhFpB25AIF9uTifKU/EsiwgkDyv8Ap+uNkx232c6oPcqzOCdNyDqElmkiwkEC538KzzgLrXtSAERlIRgNSMpYsCJNgJXSeYuQduaZkuvhQoFOmoLAkQQF4MiJYxaJvGD8r16kU0VANYEKxWB2JBklRBIiZmd+ea6vGMEFLf4HmZemNNmhx4kIJKibspAMCVWbEGL2GFtNn1kOHK6pRlSDBuCV+EqCBJJUggMcCVOpU2AJ0kiCAoOmmATFoLNpnzFzEHEOZ6obBanu9zIABM3IgqIB5M3nc4h4VT2iVRsK6pnmVFmgXpFglQ1ZGmSBZSSUJN5DGebWw5yXU2oVQNWmm5KGWEKWDGmdIBYfDxbwkXOFrPRrIFtIUoFZRKyCQUBHhO45ETvhbms0op06RLEK5LDVeV+BizALPmtgPkcGE1hrTRvFysl49s85UCU3pHfUI0BtWzLp1Mokhrb82wq6TnKppn3hVKqtAhTB30mGJUyIPETBAxVuo9dZ6FKmWfw3JMNqN44BDASJm4IwV0nNLV8GolSxYoxNyBMyoBUA6YYTGlr4e6rOUbNeRbKHVUqJpqPSmPDB1Bpk2YqB+Xnc7C0itVpCGUOdErpV/ARxJlhIME9t4gYRZkVE92zoYqEiqqAfxCT4LapQXuYBIiS0AD3peWNPMD3VMorrLEuYKyBbZWIEWGxWLb4jceXyM5p9oe5x0ALSCUUEohEGTpJYEBmsFAYjfbaMe/6YvdaZBqBiwqM2ktO8aiVHbxWnbaQM3Ud2Kur0l0inrVfeawJ1AhRJAkgHgVONyDkuoOGqB7nxBYY6gjWgEVCDc8qJJXY2xP8ATeMpk6WOxwgpKzCohNS0ki8SdN+I3DzckmxM45X7d+z7ZWsWUfwnMobnSTcoSeRweRB7xf8A36XUtU3JWQzECdREkyVMgRc7W4OlXKDNUHpOVFMy0sSTS/I42LQZvsZIG5xf6e64770xopp49HIkOHnTaloMQO3PkeSP3xhV1TIVKFQ06i6WH3HBHkcbZKppIJE49Ol5LKOtM6X0xPeIXaNoFxEAeIwxJiB279ziwZHpb10FWkyhW4JIIIsQRwcVj2ScOFfZmUIomLfDA7gbzbaLYZVMq9MwmZ0KfEABa/bxbcfLHHyQ30wcvCrSYFlva1tSyzGmJsSAdgN/hiPIR8rkVs/rBanoAIMGowaWi9gIIE8Wk3F8eYzEnxzlHI2yPL9Xpx8NPVfXAZRt+HjVPEAeLYwCa/1TPn3k058fim/BMEknxHYknGYzFZhBQPXzjs0uZPY3OwG++wHJ2xtVz8kakUgf8D7DbnfGYzFklgtx032F+zNQe+1EAHcyCIE3gdxPltiwde6jpDe7eqCRuqxE8QxG03M8Y8xmJ1K8i8tpaN/ZqoppBalQsW/CxBAvJPJJtvNpMYn6pkVZWZS6G2oawxGzaSJ7H83yN8eYzE32M6eCp5kpTPuzqcifECLqbgbfuMSdOzHu2/iUnqJI0qxKMsbGBIMD8yj74zGYu/2mnseVPalQsLlwxiwZCdR2E+FQbXwx6d1Kk4OvJCVABFJXWSYmAHCjjc9/PGYzCNY6GYv6lWoVCx/0LK0EFdLoQTJ1WchoEG4i3E4o/tEF954KbLYjSykEAbEid/XGYzB4+xaFgPl/jEtF5IBn/Pb99sZjMVFRsjmYvv8A3++C8vqUBgs3NrifIwZO+MxmMxb/AGmVq79hpiIAMfU3vcxiEZhgZ0gbbE8drYzGYxJUyVczV3B2Pe4wVT6lVAgktBm7T6GJvH2xmMxmkbyZsnUnFiFIvxtO9yCJ84xE2bESCQ20ARb7Hf8ATjHuMwUkMyJakQI+Y1ST9vvg7p3UqlMwBI4BAMehiVtI85xmMxqSwbI3p+1jhgRSGlRBXf5qbcEjSfKD23zvtBUbSBRKCARZvFF9pvIJFtwY7AZjMSfHOQun4glf2jdR4tRO48TLO9pkzEsL3mcQ5jrAKbvBEAT4bX5kGJH1F5OPMZjLjnBN9DXpfX6ME1QlUmzB5gdjJBPAU+o7g4Lpe2KNF6QVR/02XfsZKRI3Fvw7XxmMwr4pyNIj9qOoZXN02NSoq1U8NNwhvAPhIQsdHnFj3nFKyaEkrBNiYjsJB/p88ZjMdMSpjCCXT2Qo1zdEdvdTBFIxMFQNRmWBMwAYk4t1TJVH8TU9wIk0xaLWNRSI2gibfIZjMc/K8MZWz//Z",
@@ -533,7 +535,7 @@ const dbBuild = [
     RIEGO: "abundante en verano y moderado en invierno",
     TAMANIO: "pequeño",
     TIPO: "sin flores , apta maceta",
-    "PREFERENCIA CLIMATICA": "templado, humedo, calido",
+    PREFERENCIA_CLIMATICA: "templado, humedo, calido",
     TOXICIDAD: false,
     IMAGEN: "https://m.media-amazon.com/images/I/41s1JMtZacL._AC_SY580_.jpg",
   },
@@ -546,7 +548,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "pequeño",
     TIPO: "floral , apta maceta",
-    "PREFERENCIA CLIMATICA": "templado, humedo, poco resistente al viento ",
+    PREFERENCIA_CLIMATICA: "templado, humedo, poco resistente al viento ",
     TOXICIDAD: false,
     IMAGEN:
       "https://flyingcdn-558474.b-cdn.net/wp-content/uploads/2017/02/gynuraaurantiaca.jpg",
@@ -561,7 +563,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "pequeño",
     TIPO: "floral , apta maceta",
-    "PREFERENCIA CLIMATICA": "calido, humedo, resistente al frio",
+    PREFERENCIA_CLIMATICA: "calido, humedo, resistente al frio",
     TOXICIDAD: true,
     IMAGEN:
       "https://i.pinimg.com/originals/05/31/62/05316232d53bbdb0645c9bd3d5ce47b6.jpg",
@@ -576,7 +578,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "pequeño",
     TIPO: "floral, de huerta, apta maceta",
-    "PREFERENCIA CLIMATICA":
+    PREFERENCIA_CLIMATICA:
       "templado, resistente al frio, resistente a la sequia , calido",
     TOXICIDAD: false,
     IMAGEN: "https://m.media-amazon.com/images/I/51LtT0xVJWL._SL500_.jpg",
@@ -591,7 +593,7 @@ const dbBuild = [
     RIEGO: "abundante en verano y moderado en invierno",
     TAMANIO: "pequeño",
     TIPO: "floral, sin flores, apta maceta",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://st2.depositphotos.com/2124563/48083/i/450/depositphotos_480834226-stock-photo-philodendron-imperial-green-is-a.jpg",
@@ -606,7 +608,7 @@ const dbBuild = [
     RIEGO: "poco frecuente",
     TAMANIO: "pequeño",
     TIPO: "sin flores, apta maceta, suculenta",
-    "PREFERENCIA CLIMATICA": "templado",
+    PREFERENCIA_CLIMATICA: "templado",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.purplant.es/wp-content/uploads/2020/09/pilea-peperomioides-planta-1-1024x1024.jpg",
@@ -621,7 +623,7 @@ const dbBuild = [
     RIEGO: "poco frecuente",
     TAMANIO: "pequeño, mediano",
     TIPO: "floral,  apta maceta",
-    "PREFERENCIA CLIMATICA": "templado, humedo",
+    PREFERENCIA_CLIMATICA: "templado, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://2.bp.blogspot.com/-pol8F714DAI/UdHfo-85FqI/AAAAAAAAA2s/zHzr8IiRsSQ/s520/Estrella-federal-verde-jardin.jpg",
@@ -636,7 +638,7 @@ const dbBuild = [
     RIEGO: "abundante en verano y moderado en invierno",
     TAMANIO: "mediano, grande",
     TIPO: "floral, frutal, de huerta, apta maceta, arbol",
-    "PREFERENCIA CLIMATICA": "templado, humedo",
+    PREFERENCIA_CLIMATICA: "templado, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/164/063/products/ficus-lyrata1-65a1eb82206ca5b0df15878425077865-640-0.jpg",
@@ -650,7 +652,7 @@ const dbBuild = [
     RIEGO: "abundante",
     TAMANIO: "mediano, grande",
     TIPO: "apta maceta, floral",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "https://i.pinimg.com/736x/06/1b/3e/061b3ef9b982992b3b85d4727a95e24a.jpg",
@@ -664,7 +666,7 @@ const dbBuild = [
     RIEGO: "abundante en verano y moderado en invierno",
     TAMANIO: "pequeño",
     TIPO: "apta maceta, floral",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.jardineriaon.com/wp-content/uploads/2018/08/nematanthus.jpg.webp",
@@ -678,7 +680,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "mediano , grande",
     TIPO: "apta maceta, floral",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/129/490/products/8150bf78-d95a-47b0-9ad3-1a3491fd2d09-5086d529e712b8b78e16605799259121-1024-1024.jpeg",
@@ -693,7 +695,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "paqueño",
     TIPO: "apa maceta, sin flores",
-    "PREFERENCIA CLIMATICA": "templado",
+    PREFERENCIA_CLIMATICA: "templado",
     TOXICIDAD: false,
     IMAGEN:
       "https://plantasflores.com/wp-content/uploads/2013/10/Ctenanthe-setosa-480.jpg",
@@ -707,7 +709,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "pequeño",
     TIPO: "apta maceta, sin flores",
-    "PREFERENCIA CLIMATICA": "calido, templado",
+    PREFERENCIA_CLIMATICA: "calido, templado",
     TOXICIDAD: true,
     IMAGEN:
       "https://images.hola.com/imagenes/decoracion/20220317206429/cultivar-aglaonema-plantas-interior-mc/1-64-103/cultivar-aglaonema-6-a.jpg",
@@ -722,7 +724,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "mediano",
     TIPO: "apta maceta, sin flores, trepadora",
-    "PREFERENCIA CLIMATICA": "templado, humedo",
+    PREFERENCIA_CLIMATICA: "templado, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/913/526/products/pothus-blanco-b211-fa8a91e71c6488f32c16111588403462-1024-1024.jpeg",
@@ -736,7 +738,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "pequeño",
     TIPO: "apta maceta, sin flores",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.guiadejardineria.com/wp-content/uploads/2019/04/Calathea1.jpg",
@@ -750,7 +752,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "pequeño",
     TIPO: "apto maceta, sin flores",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: false,
     IMAGEN:
       "https://www.elicriso.it/es/como_cultivar/fittonia/imagenes/fittonia_argyroneura_P1040769.JPG",
@@ -764,7 +766,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "mediano",
     TIPO: "apto maceta, sin flores",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/002/094/351/products/alocasia-cucullata11-f2e8d23ba44ad3718216484356872423-1024-1024.jpg",
@@ -778,7 +780,7 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "mediano",
     TIPO: "apto maceta, sin flores",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://1.bp.blogspot.com/-US_4PvmUjEM/YDza5rDE7XI/AAAAAAABiZg/InBf_CarHZ4BANOaWJLw1D1dUm8taFsNACLcBGAsYHQ/s693/1.jpg",
@@ -792,7 +794,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "pequeño",
     TIPO: "apto maceta, floral",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://www.elicriso.it/es/como_cultivar/anthurium/anthurium_scherzerianum.jpg",
@@ -806,7 +808,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "pequeño",
     TIPO: "apto maceta, floral",
-    "PREFERENCIA CLIMATICA": "calido, humedo",
+    PREFERENCIA_CLIMATICA: "calido, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://tuplantainterior.com.ar/wp-content/uploads/2020/09/mariana-grande.jpg",
@@ -820,7 +822,7 @@ const dbBuild = [
     RIEGO: "moderado",
     TAMANIO: "pequeño",
     TIPO: "apto maceta, sin flores",
-    "PREFERENCIA CLIMATICA": "templado",
+    PREFERENCIA_CLIMATICA: "templado",
     TOXICIDAD: true,
     IMAGEN:
       "https://cdn.shopify.com/s/files/1/0274/2589/8634/products/aralia_elegantisima_product_shot_1200x.png?v=1643076082",
@@ -834,11 +836,11 @@ const dbBuild = [
     RIEGO: "regular",
     TAMANIO: "mediano",
     TIPO: "arbusto, floral, aromática, medicinal",
-    "PREFERENCIA CLIMATICA": "templado, humedo",
+    PREFERENCIA_CLIMATICA: "templado, humedo",
     TOXICIDAD: true,
     IMAGEN:
       "https://www.gtush.com/wp-content/uploads/2021/01/Hortensias-Planta-y-Flor.jpg",
   },
 ];
 
-export default dbBuild;
+module.exports = dbBuild;

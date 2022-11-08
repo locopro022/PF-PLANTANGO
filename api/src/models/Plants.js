@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       unique:true,
     },
     descripPlant:{
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     ubication:{
@@ -49,7 +49,12 @@ module.exports = (sequelize) => {
     },
     statePlant:{
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: true
+    },
+    imagePlant:{
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   },{
     freezeTableName: true,
