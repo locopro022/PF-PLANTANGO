@@ -3,30 +3,34 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('ShoppingCarts', {
-    idUser: {
+  sequelize.define('Discounts', {
+    codDiscount: {
       type: DataTypes.STRING,
       primaryKey: true,
       unique: true
     },
-    dateShopping:{
-      type: DataTypes.DATE,
-      allowNull: false,
+    codProd:{
+      type: DataTypes.STRING,
+      allowNull: true,
       unique:true,
     },
-    amountShopping:{
-      type: DataTypes.DECIMAL,
+    startDate:{
+      type: DataTypes.DATE,
       allowNull: false
     },
-    taxShopping:{
-      type: DataTypes.DECIMAL,
+    endDate:{
+      type: DataTypes.DATE,
       allowNull: false
     },
-    stateShopping:{
-        type: DataTypes.BOOLEAN,
+    percentDiscount:{
+        type: DataTypes.DECIMAL,
         allowNull: false
+      },      
+      amount:{
+        type: DataTypes.DECIMAL,
+        allowNull: true
       }      
-  },{
+   },{
     freezeTableName: true,
     timestamps: false
   });

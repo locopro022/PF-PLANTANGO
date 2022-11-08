@@ -3,22 +3,20 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('PlantUser', {
-    idUser: {
-        type: DataTypes.STRING,
-        primaryKey: true
-      },  
-    codPlant: {
+  sequelize.define('RelatedProduct', {
+    codProd: {
       type: DataTypes.STRING,
-      primaryKey: true
+      primaryKey: true,
+      unique: true
     },
-    dateFavorite:{
-      type: DataTypes.DATE,
-      allowNull: false
+    codProdRelated:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique:true,
     },
-    dateDrop:{
-        type: DataTypes.DATE,
-        allowNull: true
+    stateProdRelated:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false
     }
   },{
     freezeTableName: true,

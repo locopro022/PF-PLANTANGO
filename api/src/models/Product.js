@@ -3,50 +3,46 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Plants', {
-    codPlant: {
+  sequelize.define('Product', {
+    codProd: {
       type: DataTypes.STRING,
       primaryKey: true,
       unique: true
     },
-    namePlant:{
+    nameProd:{
       type: DataTypes.STRING,
       allowNull: false,
       unique:true,
     },
-    descripPlant:{
+    descripProd:{
       type: DataTypes.STRING,
       allowNull: false
     },
-    ubication:{
+    codCategory:{
       type: DataTypes.STRING,
       allowNull: false
     },
-    luminosidad:{
-        type: DataTypes.STRING,
+    starts:{
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    riego:{
-        type: DataTypes.STRING,
+    price:{
+        type: DataTypes.DECIMAL,
         allowNull: false
     },
-    tamano:{
-        type: DataTypes.STRING,
+    actualStock:{
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    tipo:{
-        type: DataTypes.STRING,
+    minStock:{
+        type: DataTypes.INTEGER,
         allowNull: false
     },  
-    clima:{
-        type: DataTypes.STRING,
+    maxStock:{
+        type: DataTypes.INTEGER,
         allowNull: false
       }, 
-    toxicidad:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    statePlant:{
+    stateProd:{
         type: DataTypes.BOOLEAN,
         allowNull: false
     }

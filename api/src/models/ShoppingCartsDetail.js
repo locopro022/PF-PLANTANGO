@@ -3,27 +3,27 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('ShoppingCarts', {
+  sequelize.define('ShoppingCarts_Detail', {
     idUser: {
       type: DataTypes.STRING,
       primaryKey: true,
       unique: true
     },
-    dateShopping:{
-      type: DataTypes.DATE,
+    codProd:{
+      type: DataTypes.STRING,
       allowNull: false,
       unique:true,
     },
-    amountShopping:{
+    quantity:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    price:{
       type: DataTypes.DECIMAL,
       allowNull: false
     },
-    taxShopping:{
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    stateShopping:{
-        type: DataTypes.BOOLEAN,
+    codDiscount:{
+        type: DataTypes.STRING,
         allowNull: false
       }      
   },{
