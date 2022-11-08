@@ -26,6 +26,7 @@ module.exports = (sequelize) => {
     luminosidad:{
         type: DataTypes.STRING,
         allowNull: false
+        
     },
     riego:{
         type: DataTypes.STRING,
