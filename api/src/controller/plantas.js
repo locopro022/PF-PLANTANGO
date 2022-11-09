@@ -61,3 +61,6 @@ const getDbId = async (id) => {
         console.log(error.message);
     }
 }
+
+
+console.log("holaaa",getDbInfo());
