@@ -25,7 +25,7 @@ const Filtros = (props) => {
       <div className="card filtro">
         <div className="container">
           <div
-            className="container pt-4"
+            className="container pt-4 mb-2"
             style={{
               display: "flex",
               alignItems: "center",
@@ -35,7 +35,7 @@ const Filtros = (props) => {
             <h3 className="text-center d-inline">Filtros</h3>
             <button
               type="button"
-              class="btn btn-outline-danger d-inline"
+              class="btn btn-outline-danger d-inline mb-3"
               onClick={borrar}
             >
               Borrar Filtros

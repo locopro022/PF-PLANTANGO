@@ -9,10 +9,12 @@ import CreacionDePlanta from "./Components/CreacionDePlanta";
 import Huerta from "./Components/Huerta";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getVivero } from "./redux/actions";
+import { getHuerta, getHuertaDetail } from "./redux/actions";
+import Detalle from "./Components/Detalle";
 
 function App() {
   const dispatch = useDispatch();
+
   const theme = createTheme({
     palette: {
       secondary: {
@@ -20,8 +22,9 @@ function App() {
       },
     },
   });
+
   useEffect(() => {
-    dispatch(getVivero());
+    dispatch(getHuerta());
   }, []);
   return (
     <ThemeProvider theme={theme}>
@@ -34,6 +37,10 @@ function App() {
             <Route path="/bienvenida" element={<Chat />} />
             <Route path="/creacionPlanta" element={<CreacionDePlanta />} />
             <Route path="/huerta" element={<Huerta />} />
+            <Route
+              path="/huerta/:id"
+              element={<Detalle from={getHuertaDetail} />}
+            />
           </Routes>
           <Footer />
         </div>
