@@ -4,13 +4,15 @@ const ContainerFormPlanta = () => {
     return (
         <div className='containerPlanta'>
             <form className='text-center'>
-                <div className="mb-3">
-                    <label for="exampleInputEmail1" className="form-label">Ingrese el nombre de la planta</label>
-                    <input type="email" className="form-control anchoInput" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                </div>
-                <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">Ingrese una descripcion</label>
-                    <input type="password" className="form-control anchoInput" id="exampleInputPassword1" />
+                <div className="mb-3" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '800px', justifyContent: 'space-around' }}>
+                    <div>
+                        <label for="exampleInputEmail1" className="form-label">Ingrese el nombre de la planta</label>
+                        <input type="email" className="form-control anchoInput" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    </div>
+                    <div>
+                        <label for="exampleInputPassword1" className="form-label">Ingrese una descripcion</label>
+                        <input type="password" className="form-control anchoInput" id="exampleInputPassword1" />
+                    </div>
                 </div>
                 <div className="mb-3">
                     <label for="exampleInputPassword1" className="form-label">Luminosidad</label>
