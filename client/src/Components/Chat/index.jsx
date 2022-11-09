@@ -97,13 +97,13 @@ const Chat = () => {
                                 <div className='containerGrootH'>
                                     <img src={groot} alt='groot' className='imgGroot' />
                                     <div className='containerText'>
-                                        <h6>Quieres dejar un recordatorio de riego?</h6>
+                                        <h6>Quieres registrate en nuestra pagina?</h6>
                                     </div>
                                 </div>
                                 <div className='containerButtons'>
                                     <div className='cardButton'>
                                         <button
-                                            onClick={opcionElegida}
+                                            onClick={() => navigate('/iniciarSesion')}
                                             name='tercero'
                                             value='color1'
                                             type='button'
