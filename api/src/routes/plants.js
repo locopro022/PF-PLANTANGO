@@ -65,21 +65,24 @@ router.get("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
-  const { obj } = req.body;
-
+  const obj = req.body;
   try {
     if (
-      obj.codPlant &&
-      obj.namePlant &&
-      obj.descripPlant &&
-      obj.ubication &&
-      obj.luminosidad &&
-      obj.riego &&
-      obj.tipo &&
-      obj.clima &&
-      obj.toxicidad
+      !obj.codPlant ||
+      !obj.namePlant ||
+      !obj.descripPlant ||
+      !obj.ubication ||
+      !obj.luminosidad ||
+      !obj.riego ||
+      !obj.tamano ||
+      !obj.tipo ||
+      !obj.clima ||
+      obj.toxicidad === undefined
     ) {
-      const aCambiar = await Plants.findByPk(obj.id);
+      return res
+        .status(400)
+        .send("Necesitamos que completes la informacion obligatoria");
+    } else {
       await Plants.destroy({ where: { codPlant: obj.codPlant }, force: true });
       let nObj = {
         codPlant: obj.codPlant,
@@ -92,11 +95,11 @@ router.put("/", async (req, res) => {
         tipo: obj.tipo,
         clima: obj.clima,
         toxicidad: obj.toxicidad,
-        statePlant: obj.statePlant||true,
-        imagePlant: dbBuild[i].IMAGEN||undefined,
+        statePlant: obj.statePlant || true,
+        imagePlant: obj.imagePlant || undefined,
       };
       await Plants.create(nObj);
-    } else {
+      return res.status(201).send("Los cambios fueron realizados con exito.");
     }
   } catch (error) {
     res.status(400).send(error);
