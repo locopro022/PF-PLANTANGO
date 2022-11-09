@@ -73,7 +73,7 @@ const Chat = () => {
                                         className='btn btn-outline-success button-tam'
                                     >Si 😁</button>
                                     <button
-                                        onClick={() => navigate("/")}
+                                        onClick={() => navigate("/home")}
                                         type='button'
                                         className='btn btn-outline-danger button-tam'
                                     >No 😞</button>
