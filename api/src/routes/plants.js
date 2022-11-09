@@ -105,4 +105,62 @@ router.put("/", async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+router.get("/types", async (req, res) => {
+  const tabla = await Plants.findAll();
+  try {
+    let setR = new Set();
+    let setT = new Set();
+    let setTi = new Set();
+    let setC = new Set();
+
+    let arrRiego = [];
+    let arrTamano = [];
+    let arrTipo = [];
+    let arrClima = [];
+
+    for (let i = 0; i < tabla.length; i++) {
+      let sRiego = tabla[i].riego.split(",");
+      sRiego.map((e) => arrRiego.push(e));
+      let sTamano = tabla[i].tamano.split(",");
+      sTamano.map((e) => arrTamano.push(e));
+      let sTipo = tabla[i].tipo.split(",");
+      sTipo.map((e) => arrTipo.push(e));
+      let sClima = tabla[i].clima.split(",");
+      sClima.map((e) => arrClima.push(e));
+    }
+
+    let i = 0;
+    while (
+      i < arrRiego.length ||
+      i < arrTamano.length ||
+      i < arrTipo.length ||
+      i < arrClima.length
+    ) {
+      if (arrRiego[i]) {
+        setR.add(arrRiego[i]);
+      }
+      if (arrTamano[i]) {
+        setT.add(arrTamano[i]);
+      }
+      if (arrTipo[i]) {
+        setTi.add(arrTipo[i]);
+      }
+      if (arrClima[i]) {
+        setC.add(arrClima[i]);
+      }
+      i++;
+    }
+
+    let objFinal = {
+      riego: Array.from(setR),
+      tamano: Array.from(setT),
+      tipo: Array.from(setTi),
+      clima: Array.from(setC),
+    };
+    return res.status(200).send(objFinal);
+  } catch (e) {
+    return res.status(400).send(e);
+  }
+});
 module.exports = router;
