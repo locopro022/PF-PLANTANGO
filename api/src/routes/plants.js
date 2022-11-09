@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
+const {getDbId} = require ("../controller/plantas.js")
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -35,7 +36,9 @@ router.get("/", async (req, res) => {
       );
 
       res.status(200).send(newTable);
+
     } else {
+
       if (!tabla.length) {
         for (let i = 0; i < dbBuild.length; i++) {
           let nObj = {
@@ -64,6 +67,60 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.put("/", async (req, res) => {
+  const obj = req.body;
+  try {
+    if (
+      !obj.codPlant ||
+      !obj.namePlant ||
+      !obj.descripPlant ||
+      !obj.ubication ||
+      !obj.luminosidad ||
+      !obj.riego ||
+      !obj.tamano ||
+      !obj.tipo ||
+      !obj.clima ||
+      obj.toxicidad === undefined
+    ) {
+      return res
+        .status(400)
+        .send("Necesitamos que completes la informacion obligatoria");
+    } else {
+      await Plants.destroy({ where: { codPlant: obj.codPlant }, force: true });
+      let nObj = {
+        codPlant: obj.codPlant,
+        namePlant: obj.namePlant,
+        descripPlant: obj.descripPlant,
+        ubication: obj.ubication,
+        luminosidad: obj.luminosidad,
+        riego: obj.riego,
+        tamano: obj.tamano,
+        tipo: obj.tipo,
+        clima: obj.clima,
+        toxicidad: obj.toxicidad,
+        statePlant: obj.statePlant || true,
+        imagePlant: obj.imagePlant || undefined,
+      };
+      await Plants.create(nObj);
+      return res.status(201).send("Los cambios fueron realizados con exito.");
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
+//ENCONTRAR PLANTA POR PARAMS 
+router.get("/:id", async (req, res)=>{
+  try {
+    const {id} = req.params;
+
+    let plant = await getDbId(id)
+    console.log(plant);
+    return res.status(200).json(plant)
+
+  } catch (error) {
+    res.status(400).json("Error en Routes -> plants.js: ",error.message)
+  }
+})
 
 module.exports = router;
