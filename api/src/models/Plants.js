@@ -50,7 +50,7 @@ module.exports = (sequelize) => {
     },
     statePlant:{
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        allowNull: true,
         defaultValue: true
     },
     imagePlant:{

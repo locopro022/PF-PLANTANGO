@@ -63,4 +63,43 @@ router.get("/", async (req, res) => {
     return res.status(400).send("algo salio mal");
   }
 });
+
+router.put("/", async (req, res) => {
+  const { obj } = req.body;
+
+  try {
+    if (
+      obj.codPlant &&
+      obj.namePlant &&
+      obj.descripPlant &&
+      obj.ubication &&
+      obj.luminosidad &&
+      obj.riego &&
+      obj.tipo &&
+      obj.clima &&
+      obj.toxicidad
+    ) {
+      const aCambiar = await Plants.findByPk(obj.id);
+      await Plants.destroy({ where: { codPlant: obj.codPlant }, force: true });
+      let nObj = {
+        codPlant: obj.codPlant,
+        namePlant: obj.namePlant,
+        descripPlant: obj.descripPlant,
+        ubication: obj.ubication,
+        luminosidad: obj.luminosidad,
+        riego: obj.riego,
+        tamano: obj.tamano,
+        tipo: obj.tipo,
+        clima: obj.clima,
+        toxicidad: obj.toxicidad,
+        statePlant: obj.statePlant||true,
+        imagePlant: dbBuild[i].IMAGEN||undefined,
+      };
+      await Plants.create(nObj);
+    } else {
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 module.exports = router;
