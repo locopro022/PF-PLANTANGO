@@ -2,7 +2,7 @@ import Cartas from "../Cartas";
 import Filtros from "../Filtros";
 import { filtros } from "../../dummyData.js";
 import { productos } from "../../dummyData.js";
-import AlPrincipio from '../AlPrincipio'
+import AlPrincipio from "../AlPrincipio";
 
 const Vivero = () => {
   return (
@@ -25,7 +25,7 @@ const Vivero = () => {
         </div>
       </div>
     </>
-  )
+  );
 };
 
 export default Vivero;
