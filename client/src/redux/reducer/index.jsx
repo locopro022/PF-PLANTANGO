@@ -19,12 +19,12 @@ const rootReducer = (state = initialState, action) => {
     case GET_ARRAY_VIVERO:
       return {
         ...state,
-        arrayVivero: [...action.payload.map((planta) => plantaACarta(planta))],
+        arrayVivero: [...action.payload],
       };
     case GET_ARRAY_HUERTA:
       return {
         ...state,
-        arrayHuerta: [...action.payload],
+        arrayHuerta: [...action.payload.map((planta) => plantaACarta(planta))],
       };
     case GET_ARRAY_NOTIFICACIONES:
       return {

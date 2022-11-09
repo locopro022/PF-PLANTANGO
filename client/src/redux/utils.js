@@ -18,4 +18,33 @@ const plantaACarta = ({
   caracteristica: tipo.split(","),
   img: imagePlant,
 });
-export { plantaACarta };
+
+const plantaADetalle = ({
+  codPlant,
+  namePlant,
+  descripPlant,
+  ubication,
+  luminosidad,
+  riego,
+  tamano,
+  tipo,
+  clima,
+  toxicidad,
+  statePlant,
+  imagePlant,
+}) => ({
+  title: namePlant.split(",")[0],
+  subtitle: namePlant.split(",").slice(1),
+  img: imagePlant,
+  description: descripPlant,
+  caracteristics: [
+    { type: "tipo", value: tipo },
+    { type: "ubication", value: ubication },
+    { type: "luminosidad", value: luminosidad },
+    { type: "riego", value: riego },
+    { type: "tamano", value: tamano },
+    { type: "clima", value: clima },
+    { type: "toxicidad", value: toxicidad },
+  ],
+});
+export { plantaACarta, plantaADetalle };

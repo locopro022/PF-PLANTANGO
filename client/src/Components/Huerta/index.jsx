@@ -4,7 +4,7 @@ import { filtros } from "../../dummyData.js";
 import { useSelector } from "react-redux";
 
 const Vivero = () => {
-  const productos = useSelector((state) => state.arrayVivero);
+  const productos = useSelector((state) => state.arrayHuerta);
   return (
     <div className="container-fluid">
       <h3 className="">Bienvenido la huerta!</h3>
