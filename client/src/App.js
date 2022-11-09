@@ -5,10 +5,14 @@ import Home from "./Components/Home";
 import NavBar from "./Components/NavBar";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Footer from "./Components/Footer";
-import CreacionDePlanta from './Components/CreacionDePlanta'
-import Vivero from "./Components/Vivero";
+import CreacionDePlanta from "./Components/CreacionDePlanta";
+import Huerta from "./Components/Huerta";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getVivero } from "./redux/actions";
 
 function App() {
+  const dispatch = useDispatch();
   const theme = createTheme({
     palette: {
       secondary: {
@@ -16,6 +20,9 @@ function App() {
       },
     },
   });
+  useEffect(() => {
+    dispatch(getVivero());
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -26,7 +33,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/bienvenida" element={<Chat />} />
             <Route path="/creacionPlanta" element={<CreacionDePlanta />} />
-            <Route path="/vivero" element={<Vivero />} />
+            <Route path="/huerta" element={<Huerta />} />
           </Routes>
           <Footer />
         </div>
