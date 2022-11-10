@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
+const {Op} = require("sequelize")
 const {getDbId, llenarDB, filter, serchByName, filterType} = require ("../controller/plantas.js")
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -44,14 +45,18 @@ return res.status(200).json(response)
   
 })
 
+//prueba filtros con sequelize
 router.get("/prueba", async (req,res)=> {
 
   const {xname} = req.query;
 
-  const response = await Plants.findAll()
+  const response = await Plants.findAll({
+    where:{
+      namePlant: {[Op.substring]: xname}
+    }
+  })
             return res.status(200).json(response)
 })
-
 
 
 router.put("/", async (req, res) => {
