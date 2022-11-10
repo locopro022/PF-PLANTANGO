@@ -45,11 +45,11 @@ module.exports = (sequelize) => {
       }, 
     toxicidad:{
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: true
     },
     statePlant:{
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        allowNull: true,
         defaultValue: true
     },
     imagePlant:{
