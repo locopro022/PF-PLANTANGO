@@ -11,7 +11,7 @@ const dbBuild = [
     PREFERENCIA_CLIMATICA: "calido, arido, resistente a la sequia",
     TOXICIDAD: false,
     IMAGEN:
-    "https://deraiz.ar/wp-content/uploads/2022/08/ef26fd4c-8c51-4de9-86c2-3deebfba5abb.jpeg"
+      "https://deraiz.ar/wp-content/uploads/2022/08/ef26fd4c-8c51-4de9-86c2-3deebfba5abb.jpeg"
   },
   {
     NOMBRE: "Ibira-pita, arbol de Artigas",
