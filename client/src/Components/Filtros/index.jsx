@@ -19,7 +19,7 @@ const Filtros = (props) => {
   };
   useEffect(() => {
     if (filters !== null) props.apply(filters);
-  });
+  }, [filters]);
   return (
     renderer && (
       <div className="card filtro">

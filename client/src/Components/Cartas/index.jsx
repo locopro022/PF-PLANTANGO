@@ -30,7 +30,7 @@ const Cartas = (props) => {
                   )}
                   {item.caracteristica && (
                     <p className="cuerpo-caracteristica">
-                      {item.caracteristica.map((caracteristica, index) => (
+                      {item.caracteristica.map((caracteristica, i) => (
                         <span
                           className="cuerpo-caracteristica-caracteristica"
                           key={i}
