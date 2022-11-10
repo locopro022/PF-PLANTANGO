@@ -1,36 +1,6 @@
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
 
-//TRAER DATOS DE LA DB
-const getDbInfo = async () => {
-  try {
-    
-    let db = await Plants.findAll();
-
-    // let planta = await db.map((response) => {
-
-    //   return {
-    //     namePlant: response.namePlant,
-    //     descripPlant: response.descripPlant,
-    //   ubication: response.ubication,
-    //   light: response.luminosidad,
-    //   wather: response.riego,
-    //   size: response.tamano,
-    //   type: response.tipo,
-    //   clima: response.clima,
-    //   toxicity: response.toxicidad,
-    //   imagePlant: response.imagePlant
-    //   };
-    // });
-
-    console.log("planta",db);
-return db;
-
-  } catch (error) {
-    throw new Error("Error en controller -> getDbInfo");
-  }
-};
-
 
 //BUSCAR POR ID EN LA DB
 const getDbId = async (id) => {
@@ -135,8 +105,64 @@ const llenarDB = async ()=>{
 // return db;
 }
 
+//FILTRAR POR NOMBRE 
+const serchByName = async (search)=>{
+
+  const db = await Plants.findAll();
+
+console.log("SEARCH: ",search);
+
+  const response = await db.filter( (e) => e.namePlant.toLowerCase().includes(search.toString().toLowerCase()));
+
+  if(!response){throw new Error("Ninguna busqueda encontro coincidencia")};
+
+console.log("response",response);
+
+ return response;
+}
+
+//FILTROS
+const filter = async (ubi)=>{
+  console.log("ENTRE AL FILTER");
+  
+  console.log("ubication:",ubi);
+ 
+  const db = await Plants.findAll();
+
+
+const response = await db.filter(plant => { if(plant.ubication.includes(ubi)){ return plant }
+  return null;
+  } )
+
+
+console.log("response: ",response);
+
+if(!response){throw new Error("Ninguna busqueda encontro coincidencia")};
+
+
+//console.log("RESPONSE: ",response);
+ return response;
+}
+
+
+const filterType = async (type) => {
+  const db = await Plants.findAll();
+
+  console.log("TYPE: ",type);
+  const response = await db.filter(plant => { if(plant.type.includes(type)){ return plant }
+  return null;
+  } )
+
+  if(!response){throw new Error("Ninguna busqueda encontro coincidencia")};
+
+
+return response;
+}
 module.exports = {
-    getDbInfo,
+    
     getDbId,
-    llenarDB
+    llenarDB,
+    filter,
+    serchByName,
+    filterType
 }

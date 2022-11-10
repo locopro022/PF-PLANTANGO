@@ -1,90 +1,60 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
-const {getDbId, getDbInfo, llenarDB} = require ("../controller/plantas.js")
+const {getDbId, llenarDB, filter, serchByName, filterType} = require ("../controller/plantas.js")
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
 
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-//PRUEBA DE GETPLANTS
-router.get("/prueba", async (req,res)=> {
+//PRUEBA DE GETPLANTS + FILTROS POR QUERY 
+router.get("/", async (req,res)=> {
+  const {search , ubication, type} = req.query;
+
+  console.log("TYPE: ",type);
 
   const db = await Plants.findAll()
+  
+  if(search){
+    const response= await serchByName(search);
+    console.log("response",response);
+    return res.status(200).json(response)
+  }
+
+  if(ubication ){
+const response = await filter(ubication)
+return res.status(200).json(response)
+  }
+
+  if(type ){
+    const response = await filterType(type)
+    console.log("TYPE 1: ",type);
+    return res.status(200).json(response)
+      }
+
   if(!db.length){
-    console.log("ESTOY VACIO");
     const ddb = await llenarDB()
-
     const prueba = await Plants.bulkCreate(ddb)
-    //const database = Plants.findAll()
-    //const prueba = await Plants.bulkCreate(ddb,{ignoreDuplicates: true,})
-
-    res.status(200).send(prueba)
+    return res.status(200).json(prueba)
   }else{
-    res.status(200).send("YA LLENO")
+    return res.status(200).json("respuesta que no")
   }
   
 })
 
-router.get("/", async (req, res) => {
-  const tabla = await Plants.findAll();
-  const { search } = req.query;
+router.get("/prueba", async (req,res)=> {
 
-  
-    if (search) {
-      const tabl2 = await Plants.findAll();
+  const {xname} = req.query;
 
-      let newTable = tabl2.filter(
-        (e) =>
-          e.namePlant
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.ubication
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.ligth
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.whater.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.size.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.type.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.climate.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-      );
+  const response = await Plants.findAll()
+            return res.status(200).json(response)
+})
 
-      res.status(200).send(newTable);
 
-    } else {
-
-      if (!tabla.length) {
-        for (let i = 0; i < dbBuild.length; i++) {
-          let nObj = {
-            namePlant: dbBuild[i].NOMBRE,
-            descripPlant: dbBuild[i].DESCRIPCION,
-            ubication: dbBuild[i].UBICACION,
-            ligth: dbBuild[i].LUMINOSIDAD,
-            whater: dbBuild[i].RIEGO,
-            size: dbBuild[i].TAMANIO,
-            type: dbBuild[i].TIPO,
-            climate: dbBuild[i].PREFERENCIA_CLIMATICA,
-            toxicity: dbBuild[i].TOXICIDAD,
-            statePlant: true,
-            imagePlant: dbBuild[i].IMAGEN,
-          };
-          await Plants.create(nObj);
-        }
-        const tabla2 = await Plants.findAll();
-        return res.status(201).send(tabla2);
-      } else {
-        return res.status(200).send(tabla);
-      }
-    }
-
-    
-  
-});
 
 router.put("/", async (req, res) => {
   const obj = req.body;
@@ -219,6 +189,63 @@ router.get("/types", async (req,res)=>{
 //   } catch (e) {
 //     return res.status(400).send(e);
 //   }
+// });
+
+// router.get("/", async (req, res) => {
+//   const tabla = await Plants.findAll();
+//   const { search } = req.query;
+
+  
+//     if (search) {
+//       const tabl2 = await Plants.findAll();
+
+//       let newTable = tabl2.filter(
+//         (e) =>
+//           e.namePlant
+//             .toLocaleLowerCase()
+//             .includes(search.toLocaleLowerCase()) ||
+//           e.ubication
+//             .toLocaleLowerCase()
+//             .includes(search.toLocaleLowerCase()) ||
+//           e.ligth
+//             .toLocaleLowerCase()
+//             .includes(search.toLocaleLowerCase()) ||
+//           e.whater.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+//           e.size.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+//           e.type.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+//           e.climate.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+//       );
+
+//       res.status(200).send(newTable);
+
+//     } else {
+
+//       if (!tabla.length) {
+//         for (let i = 0; i < dbBuild.length; i++) {
+//           let nObj = {
+//             namePlant: dbBuild[i].NOMBRE,
+//             descripPlant: dbBuild[i].DESCRIPCION,
+//             ubication: dbBuild[i].UBICACION,
+//             ligth: dbBuild[i].LUMINOSIDAD,
+//             whater: dbBuild[i].RIEGO,
+//             size: dbBuild[i].TAMANIO,
+//             type: dbBuild[i].TIPO,
+//             climate: dbBuild[i].PREFERENCIA_CLIMATICA,
+//             toxicity: dbBuild[i].TOXICIDAD,
+//             statePlant: true,
+//             imagePlant: dbBuild[i].IMAGEN,
+//           };
+//           await Plants.create(nObj);
+//         }
+//         const tabla2 = await Plants.findAll();
+//         return res.status(201).send(tabla2);
+//       } else {
+//         return res.status(200).send(tabla);
+//       }
+//     }
+
+    
+  
 // });
 
 module.exports = router;
