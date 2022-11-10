@@ -9,8 +9,8 @@ export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
 const API_URL = "http://localhost:3001";
 
 const api = async (url, parameter = {}) => {
-  const response = await fetch(`${API_URL}/${url}`, parameter);
-  return response.json();
+  const response = await axios.get(`${API_URL}/${url}`, parameter);
+  return response.data;
 };
 
 // const postApi = async (url, content, parameter = {}) => {
@@ -33,16 +33,18 @@ export const getHuertaDetail = (id) => {
   });
 };
 
-export const getHuerta = () => (dispatch) => {
-  console.log("Getting every game!");
+export const getHuerta =
+  (e = null) =>
+  (dispatch) => {
+    console.log("Getting every game!");
 
-  return api(`plants`).then((data) =>
-    dispatch({
-      type: GET_ARRAY_HUERTA,
-      payload: data,
-    })
-  );
-};
+    return api(`plants`, { params: e }).then((data) =>
+      dispatch({
+        type: GET_ARRAY_HUERTA,
+        payload: data,
+      })
+    );
+  };
 
 export const crearPlanta = (planta) => async () => {
   await axios.post('http://localhost:3001/createplant',
