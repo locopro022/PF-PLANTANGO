@@ -6,8 +6,9 @@ const Cartas = (props) => {
     <div className="cartas">
       {/* <!-- producto... --> */}
       {props.items &&
-        props.items.map((item) => (
+        props.items.map((item, i) => (
           <Link
+            key={i}
             to={`${window.location.pathname}/${item.id}`}
             style={{ textDecoration: "none", color: "black" }}
           >
@@ -29,8 +30,11 @@ const Cartas = (props) => {
                   )}
                   {item.caracteristica && (
                     <p className="cuerpo-caracteristica">
-                      {item.caracteristica.map((caracteristica) => (
-                        <span className="cuerpo-caracteristica-caracteristica">
+                      {item.caracteristica.map((caracteristica, index) => (
+                        <span
+                          className="cuerpo-caracteristica-caracteristica"
+                          key={i}
+                        >
                           {caracteristica}
                         </span>
                       ))}
