@@ -22,9 +22,7 @@ router.get("/", async (req,res)=> {
   if(search){
     const response= await serchByName(search);
     console.log("response",response);
-    return res.status(200).json(response)
-  }
-
+    return res.status(200).json(response)}
   if(ubication ){
 const response = await filter(ubication)
 return res.status(200).json(response)
