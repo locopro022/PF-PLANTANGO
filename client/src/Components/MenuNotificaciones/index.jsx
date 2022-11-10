@@ -1,14 +1,14 @@
-import React from 'react'
-import { Notifications } from '@mui/icons-material'
-import { Badge } from '@mui/material'
+import React from "react";
+import { Notifications } from "@mui/icons-material";
+import { Badge } from "@mui/material";
 
 //Menu despegable de las notificaciones
 
 const MenuNotificaciones = () => {
   return (
-    <div class="dropstart">
+    <div className="dropstart">
       <button
-        class="btn btn-light backgroundBtn"
+        className="btn btn-light backgroundBtn"
         type="button"
         aria-expanded="false"
         id="dropdownMenu1"
@@ -18,8 +18,8 @@ const MenuNotificaciones = () => {
           <Notifications color="secondary" />
         </Badge>
       </button>
-      <div class="dropdown-menu">
-        <p class="dropdown-item">No tiene ninguna notificación</p>
+      <div className="dropdown-menu">
+        <p className="dropdown-item">No tiene ninguna notificación</p>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
-const dbBuild = require("../dbBuild");
-const {getDbId, getDbInfo} = require ("../controller/plantas.js")
+const { getDbId, getDbInfo } = require("../controller/plantas.js");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -11,57 +10,38 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.get("/", async (req, res) => {
-  const tabla = await Plants.findAll();
-  const { search } = req.query;
-
   try {
-    if (search) {
-      const tabl2 = await Plants.findAll();
+    const { query } = req.query;
 
-      let newTable = tabl2.filter(
-        (e) =>
-          e.namePlant
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.ubication
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.luminosidad
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.riego.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.tamano.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.tipo.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.clima.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-      );
+    if (query) {
+      const plantasDB = await Plants.findAll();
 
-      res.status(200).send(newTable);
-
-    } else {
-
-      if (!tabla.length) {
-        for (let i = 0; i < dbBuild.length; i++) {
-          let nObj = {
-            namePlant: dbBuild[i].NOMBRE,
-            descripPlant: dbBuild[i].DESCRIPCION,
-            ubication: dbBuild[i].UBICACION,
-            luminosidad: dbBuild[i].LUMINOSIDAD,
-            riego: dbBuild[i].RIEGO,
-            tamano: dbBuild[i].TAMANIO,
-            tipo: dbBuild[i].TIPO,
-            clima: dbBuild[i].PREFERENCIA_CLIMATICA,
-            toxicidad: dbBuild[i].TOXICIDAD,
-            statePlant: true,
-            imagePlant: dbBuild[i].IMAGEN,
-          };
-          await Plants.create(nObj);
-        }
-        const tabla2 = await Plants.findAll();
-        return res.status(201).send(tabla2);
-      } else {
-        return res.status(200).send(tabla);
-      }
+      res
+        .status(200)
+        .send(
+          plantasDB.filter(
+            (e) =>
+              e.namePlant
+                .toLocaleLowerCase()
+                .includes(query.toLocaleLowerCase()) ||
+              e.ubication
+                .toLocaleLowerCase()
+                .includes(query.toLocaleLowerCase()) ||
+              e.luminosidad
+                .toLocaleLowerCase()
+                .includes(query.toLocaleLowerCase()) ||
+              e.riego.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
+              e.tamano
+                .toLocaleLowerCase()
+                .includes(query.toLocaleLowerCase()) ||
+              e.tipo.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
+              e.clima.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+          )
+        );
+      return;
     }
+    const plantas = await getDbInfo();
+    res.status(200).send(plantas);
   } catch (error) {
     return res.status(400).send("algo salio mal");
   }
@@ -109,23 +89,21 @@ router.put("/", async (req, res) => {
   }
 });
 
-
-//ENCONTRAR PLANTA POR PARAMS 
-router.get("/:id", async (req, res)=>{
+//ENCONTRAR PLANTA POR PARAMS
+router.get("/:id", async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
 
-    let plant = await getDbId(id)
-    
-    return res.status(200).json(plant)
+    let plant = await getDbId(id);
 
+    return res.status(200).json(plant);
   } catch (error) {
-    res.status(400).json("Error en Routes -> plants.js: ",error.message)
+    res.status(400).json("Error en Routes -> plants.js: ", error.message);
   }
-})
+});
 
 router.get("/types", async (req, res) => {
-  const tabla = await Plants.findAll();
+  const tabla = await getDbInfo();
   try {
     let setR = new Set();
     let setT = new Set();
@@ -176,9 +154,11 @@ router.get("/types", async (req, res) => {
       tipo: Array.from(setTi),
       clima: Array.from(setC),
     };
-    return res.status(200).send(objFinal);
+
+    res.status(200).send(objFinal);
   } catch (e) {
-    return res.status(400).send(e);
+    console.log("En el catch del plants/types");
+    res.status(400).send(e);
   }
 });
 
