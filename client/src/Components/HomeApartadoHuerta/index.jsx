@@ -4,39 +4,39 @@ import { useSelector } from 'react-redux'
 import './HomeApartadoHuerta.css'
 
 const HomeApartadoHuerta = () => {
-    /*     const arrayHuerta = useSelector(state => state.arrayHuerta).slice(0,6) */
-    const arrayHuerta = [
-        {
-            NOMBRE: 'Special title treatment',
-            TIPO: 'With supporting text below as a natural lead-in to additional content.',
-            IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
-        },
-        {
-            NOMBRE: 'Special title treatment',
-            TIPO: 'With supporting text below as a natural lead-in to additional content.',
-            IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
-        },
-        {
-            NOMBRE: 'Special title treatment',
-            TIPO: 'With supporting text below as a natural lead-in to additional content.',
-            IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
-        },
-        {
-            NOMBRE: 'Special title treatment',
-            TIPO: 'With supporting text below as a natural lead-in to additional content.',
-            IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
-        },
-        {
-            NOMBRE: 'Special title treatment',
-            TIPO: 'With supporting text below as a natural lead-in to additional content.',
-            IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
-        },
-        {
-            NOMBRE: 'Special title treatment',
-            TIPO: 'With supporting text below as a natural lead-in to additional content.',
-            IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
-        }
-    ]
+    const arrayHuerta = useSelector(state => state.arrayHuerta).slice(0,6)
+    // const arrayHuerta = [
+    //     {
+    //         NOMBRE: 'Special title treatment',
+    //         TIPO: 'With supporting text below as a natural lead-in to additional content.',
+    //         IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
+    //     },
+    //     {
+    //         NOMBRE: 'Special title treatment',
+    //         TIPO: 'With supporting text below as a natural lead-in to additional content.',
+    //         IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
+    //     },
+    //     {
+    //         NOMBRE: 'Special title treatment',
+    //         TIPO: 'With supporting text below as a natural lead-in to additional content.',
+    //         IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
+    //     },
+    //     {
+    //         NOMBRE: 'Special title treatment',
+    //         TIPO: 'With supporting text below as a natural lead-in to additional content.',
+    //         IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
+    //     },
+    //     {
+    //         NOMBRE: 'Special title treatment',
+    //         TIPO: 'With supporting text below as a natural lead-in to additional content.',
+    //         IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
+    //     },
+    //     {
+    //         NOMBRE: 'Special title treatment',
+    //         TIPO: 'With supporting text below as a natural lead-in to additional content.',
+    //         IMAGEN: 'https://previews.123rf.com/images/thvideo/thvideo2209/thvideo220903005/191917616-3d-render-of-a-gate-wall-to-a-beautiful-enchanted-garden.jpg'
+    //     }
+    // ]
     return (
         <>
             {arrayHuerta.length ?
