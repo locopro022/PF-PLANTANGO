@@ -40,8 +40,8 @@ const Detalle = (props) => {
           <p className="card p-4">{item.description}</p>
         ) : null}
         {item.caracteristics
-          ? item.caracteristics.map((carac) => (
-              <div className="container">
+          ? item.caracteristics.map((carac, i) => (
+              <div className="container" d key={i}>
                 <h5>
                   <strong style={{ textTransform: "uppercase" }}>
                     {carac.type}
