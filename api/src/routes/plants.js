@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
-const {getDbId} = require ("../controller/plantas.js")
+const {getDbId, getDbInfo} = require ("../controller/plantas.js")
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -109,14 +109,14 @@ router.put("/", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
+
 //ENCONTRAR PLANTA POR PARAMS 
 router.get("/:id", async (req, res)=>{
   try {
     const {id} = req.params;
 
     let plant = await getDbId(id)
-    console.log(plant);
+    
     return res.status(200).json(plant)
 
   } catch (error) {
@@ -124,7 +124,6 @@ router.get("/:id", async (req, res)=>{
   }
 })
 
-=======
 router.get("/types", async (req, res) => {
   const tabla = await Plants.findAll();
   try {
@@ -182,5 +181,5 @@ router.get("/types", async (req, res) => {
     return res.status(400).send(e);
   }
 });
->>>>>>> ec6856458a7826c8acec5ef624e8c196e0364cd5
+
 module.exports = router;
