@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
             size: dbBuild[i].TAMANIO,
             type: dbBuild[i].TIPO,
             climate: dbBuild[i].PREFERENCIA_CLIMATICA,
-            toxicidad: dbBuild[i].TOXICIDAD,
+            toxicity: dbBuild[i].TOXICIDAD,
             statePlant: true,
             imagePlant: dbBuild[i].IMAGEN,
           };

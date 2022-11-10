@@ -58,7 +58,7 @@ const getDbId = async (id) => {
       wather: response.riego,
       size: response.tamano,
       type: response.tipo,
-      clima: response.clima,
+      climate: response.clima,
       toxicity: response.toxicidad,
       imagePlant: response.imagePlant
     };

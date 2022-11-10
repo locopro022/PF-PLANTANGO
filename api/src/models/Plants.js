@@ -23,27 +23,27 @@ module.exports = (sequelize) => {
       type:DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
     },
-    luminosidad:{
+    ligth:{
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false
     },
-    riego:{
+    whater:{
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false
     },
-    tamano:{
+    size:{
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false
     },
-    tipo:{
+    type:{
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false
     },  
-    clima:{
+    climate:{
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false
       }, 
-    toxicidad:{
+      toxicity:{
         type: DataTypes.BOOLEAN,
         allowNull: true
     },
