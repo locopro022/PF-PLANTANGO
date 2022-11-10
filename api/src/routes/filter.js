@@ -38,7 +38,7 @@ router.get("/toxicidadfalse", async (req,res)=> {
     
 
         try {
-            const {obj }=req.body;
+            const {obj}=req.body;
             console.log("OBJ",obj);
 
             const valor = Object.values(obj)
