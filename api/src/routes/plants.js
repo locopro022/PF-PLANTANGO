@@ -10,11 +10,16 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+//PRUEBA DE GETPLANTS
+router.get("/prueba", async (req,res)=> {
+
+})
+
 router.get("/", async (req, res) => {
   const tabla = await Plants.findAll();
   const { search } = req.query;
 
-  try {
+  
     if (search) {
       const tabl2 = await Plants.findAll();
 
@@ -26,13 +31,13 @@ router.get("/", async (req, res) => {
           e.ubication
             .toLocaleLowerCase()
             .includes(search.toLocaleLowerCase()) ||
-          e.luminosidad
+          e.ligth
             .toLocaleLowerCase()
             .includes(search.toLocaleLowerCase()) ||
-          e.riego.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.tamano.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.tipo.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.clima.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+          e.whater.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+          e.size.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+          e.type.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+          e.climate.toLocaleLowerCase().includes(search.toLocaleLowerCase())
       );
 
       res.status(200).send(newTable);
@@ -62,9 +67,9 @@ router.get("/", async (req, res) => {
         return res.status(200).send(tabla);
       }
     }
-  } catch (error) {
-    return res.status(400).send("algo salio mal");
-  }
+
+    
+  
 });
 
 router.put("/", async (req, res) => {
@@ -124,6 +129,7 @@ router.get("/:id", async (req, res)=>{
   }
 })
 
+//DEVUELVE OBJETO CON ARRAYS PARA EL FILTRADO
 router.get("/types", async (req,res)=>{
 
   try {
@@ -134,7 +140,7 @@ router.get("/types", async (req,res)=>{
       whater:["poco frecuente","espaciado","abundante","regular","moderado","abundante en verano y moderado en invierno"],
       size:["grande","mediano","pequeño"],
       type:["floral","sin flores","apta maceta","arbol","aromatica","huerta","medicinal","frutal","arbusto","suculenta","cactus","trepadora"],
-      climate: ["calido","humedo","templado","resistente al frio","resistente a la sequia","poco resistente al viento","arido"]
+      climate: ["calido","humedo","templado","resistente al frio","resistente a la sequia","poco resistente al viento","arido","resistente al viento"]
     }
 
     res.status(200).json(objeto)
