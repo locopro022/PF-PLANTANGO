@@ -17,6 +17,7 @@ const plantaACarta = ({
   subnombre: namePlant.split(",").slice(1),
   caracteristica: tipo.split(","),
   img: imagePlant,
+  descripcion: descripPlant,
 });
 
 const plantaADetalle = ({
