@@ -21,27 +21,27 @@ module.exports = (sequelize) => {
     },
     ubication:{
       type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false
+      allowNull: true
     },
     ligth:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },
     whater:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },
     size:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },
     type:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },  
     climate:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
       }, 
       toxicity:{
         type: DataTypes.BOOLEAN,

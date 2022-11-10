@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
-const {getDbId, getDbInfo} = require ("../controller/plantas.js")
+const {getDbId, getDbInfo, llenarDB} = require ("../controller/plantas.js")
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -13,6 +13,20 @@ const router = Router();
 //PRUEBA DE GETPLANTS
 router.get("/prueba", async (req,res)=> {
 
+  const db = await Plants.findAll()
+  if(!db.length){
+    console.log("ESTOY VACIO");
+    const ddb = await llenarDB()
+
+    const prueba = await Plants.bulkCreate(ddb)
+    //const database = Plants.findAll()
+    //const prueba = await Plants.bulkCreate(ddb,{ignoreDuplicates: true,})
+
+    res.status(200).send(prueba)
+  }else{
+    res.status(200).send("YA LLENO")
+  }
+  
 })
 
 router.get("/", async (req, res) => {

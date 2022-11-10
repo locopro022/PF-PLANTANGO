@@ -1,4 +1,5 @@
 const { Plants } = require("../db");
+const dbBuild = require("../dbBuild");
 
 //TRAER DATOS DE LA DB
 const getDbInfo = async () => {
@@ -70,7 +71,72 @@ const getDbId = async (id) => {
   }
 };
 
+
+//LLENAR DB 
+const llenarDB = async ()=>{
+ let db =  dbBuild.map((planta)=>{
+  
+    return {
+    namePlant: planta.NOMBRE,
+    descripPlant: planta.DESCRIPCION,
+    ubication: planta.UBICACION,
+    ligth: planta.LUMINOSIDAD,
+    whater: planta.RIEGO,
+   size: planta.TAMANIO,
+    type: planta.TIPO,
+    climate: planta.PREFERENCIA_CLIMATICA,
+    toxicity: planta.TOXICIDAD,
+    statePlant: true,
+    imagePlant: planta.IMAGEN,
+  }
+  })
+
+  return db;
+// for (let i = 0; i < dbBuild.length; i++) {
+//   let nObj = {
+//     namePlant: dbBuild[i].NOMBRE,
+//     descripPlant: dbBuild[i].DESCRIPCION,
+//     ubication: dbBuild[i].UBICACION,
+//     ligth: dbBuild[i].LUMINOSIDAD,
+//     whater: dbBuild[i].RIEGO,
+//     size: dbBuild[i].TAMANIO,
+//     type: dbBuild[i].TIPO,
+//     climate: dbBuild[i].PREFERENCIA_CLIMATICA,
+//     toxicity: dbBuild[i].TOXICIDAD,
+//     statePlant: true,
+//     imagePlant: dbBuild[i].IMAGEN,
+//   };
+//   await Plants.create(nObj);
+// }
+// const tabla2 = await Plants.findAll();
+// return tabla2;""
+  
+// for ( i in dbBuild )
+//     { 
+//       console.log("TAMAÑO: ",dbBuild[i].TAMANIO);
+//     Plants.create({
+//    namePlant: dbBuild[i].NOMBRE,
+//     descripPlant: dbBuild[i].DESCRIPCION,
+//     ubication: dbBuild[i].UBICACION,
+//     ligth: dbBuild[i].LUMINOSIDAD,
+//     whater: dbBuild[i].RIEGO,
+//     size: dbBuild[i].TAMANIO,
+//     type: dbBuild[i].TIPO,
+//     climate: dbBuild[i].PREFERENCIA_CLIMATICA,
+//     toxicity: dbBuild[i].TOXICIDAD,
+//     statePlant: true,
+//     imagePlant: dbBuild[i].IMAGEN,
+   
+//     });
+
+// }
+
+// const db = await Plants.findAll();
+// return db;
+}
+
 module.exports = {
     getDbInfo,
-    getDbId
+    getDbId,
+    llenarDB
 }
