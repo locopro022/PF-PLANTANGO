@@ -44,11 +44,8 @@ export const getHuerta = () => (dispatch) => {
   );
 };
 
-export const plantaCreada = (planta) => async () => {
-  await axios.post(
-    {
-      /*Ruta de back*/
-    },
+export const crearPlanta = (planta) => async () => {
+  await axios.post('http://localhost:3001/createplant',
     planta
   );
 };
