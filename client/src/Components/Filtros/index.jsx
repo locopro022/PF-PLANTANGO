@@ -35,7 +35,7 @@ const Filtros = (props) => {
             <h3 className="text-center d-inline">Filtros</h3>
             <button
               type="button"
-              class="btn btn-outline-danger d-inline mb-3"
+              className="btn btn-outline-danger d-inline mb-3"
               onClick={borrar}
             >
               Borrar Filtros
@@ -55,11 +55,11 @@ const Filtros = (props) => {
                     <div className="form-group form-check" key={index}>
                       <input
                         type="checkbox"
-                        class="form-check-input"
+                        className="form-check-input"
                         name={question}
                         id={option}
                       />
-                      <label class="form-check-label" htmlFor={option}>
+                      <label className="form-check-label" htmlFor={option}>
                         {option}
                       </label>
                     </div>

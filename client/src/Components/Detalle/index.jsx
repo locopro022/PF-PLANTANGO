@@ -1,4 +1,3 @@
-import { ArtTrackSharp } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -9,10 +8,7 @@ const Detalle = (props) => {
   //   faltaria agregar "breadcrumbs" para volver hacia atras , etc
 
   useEffect(() => {
-    props.from(id).then((data) => {
-      setItem(data);
-      console.log(data);
-    });
+    props.from(id).then(setItem);
   }, []);
   return (
     <div className="container-fluid media">
@@ -40,8 +36,8 @@ const Detalle = (props) => {
           <p className="card p-4">{item.description}</p>
         ) : null}
         {item.caracteristics
-          ? item.caracteristics.map((carac) => (
-              <div className="container">
+          ? item.caracteristics.map((carac, index) => (
+              <div className="container" key={index}>
                 <h5>
                   <strong style={{ textTransform: "uppercase" }}>
                     {carac.type}

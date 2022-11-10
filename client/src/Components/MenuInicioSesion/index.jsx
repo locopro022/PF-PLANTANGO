@@ -1,17 +1,17 @@
-import React from 'react'
-import { AccountCircle } from '@mui/icons-material'
-import { Badge } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import './MenuInicioSesion.css'
+import React from "react";
+import { AccountCircle } from "@mui/icons-material";
+import { Badge } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import "./MenuInicioSesion.css";
 
 //Menu despegable que aparece cuando el usuario no esta con la sesion iniciada.
 
 const MenuInicioSesion = () => {
   const navigate = useNavigate();
   return (
-    <div class="dropstart">
+    <div className="dropstart">
       <button
-        class="btn btn-light backgroundBtn"
+        className="btn btn-light backgroundBtn"
         type="button"
         aria-expanded="false"
         id="dropdownMenu1"
@@ -21,9 +21,9 @@ const MenuInicioSesion = () => {
           <AccountCircle color="secondary" />
         </Badge>
       </button>
-      <div class="dropdown-menu">
+      <div className="dropdown-menu">
         <span
-          class="dropdown-item edit"
+          className="dropdown-item edit"
           onClick={() => navigate("/iniciarSesion")}
         >
           Iniciar sesión

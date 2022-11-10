@@ -26,15 +26,15 @@ const api = async (url, parameter = {}) => {
 // };
 
 export const getHuertaDetail = (id) => {
-  return api(`plants`).then((plantas) => {
-    let planta = plantas.find((planta) => planta.codPlant === id);
+  console.log("Buscando la planta a la que le diste click!");
+  return api(`plants/${id}`).then((planta) => {
     let detalle = plantaADetalle(planta);
     return detalle;
   });
 };
 
 export const getHuerta = () => (dispatch) => {
-  console.log("Getting every game!");
+  console.log("Consiguiendo todas las plantas guacho!");
 
   return api(`plants`).then((data) =>
     dispatch({

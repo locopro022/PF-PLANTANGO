@@ -18,6 +18,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    imageProd:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     codCategory:{
       type: DataTypes.STRING,
       allowNull: false
