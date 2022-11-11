@@ -22,25 +22,24 @@ router.get("/", async (req, res) => {
   try {
     const { search, filter, sort, page } = req.query;
     // Vendran estos cuatro parametros, busqueda por nombre, filtros, ordenamientos y pagina.
-    console.log("la pagina que pidieron es la:", page);
 
-    // Craemos un objeto llamado WHERE que servira de WHERE para Sequelize.
-    // let where = { ...filter };
+    let sequelizeFilter = {};
 
-    // for (let key in filter) {
-    //   where[key] = { [Op.like]: { [Op.any]: [...filter[key]] } };
-    // }
+    for (let key in filter)
+      sequelizeFilter[key] = { [Op.overlap]: filter[key] };
+    console.log("Este es el sequelize filter", sequelizeFilter);
 
     const { count, rows } = await Plants.findAndCountAll({
       where: {
-        ...filter,
+        ...sequelizeFilter,
       },
       // order: [["alguna propiedad", "sequelize.literal es una buena funcion aca"]],
       order: [["codPlant", "DESC"]],
       limit: 12,
-      offset: page || 0,
+      offset: (page || 0) * 12,
     });
-    console.log("La cantidad de resultados son:", count);
+
+    console.log("Cantidad de resultados", count);
 
     return res.status(200).json({
       page_count: Math.ceil(count / 12),
