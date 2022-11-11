@@ -23,15 +23,30 @@ router.get("/", async (req, res) => {
     const { search, filter, sort, page } = req.query;
     // Vendran estos cuatro parametros, busqueda por nombre, filtros, ordenamientos y pagina.
 
+
+    // if(search){
+    //   const response = await Plants.findAll({
+    //     where: {
+    //       namePlant: { [Op.iLike]: search },
+    //     },
+    //   });
+    //   return res.status(200).json(response);
+    // }
+
+
     let sequelizeFilter = {};
 
     for (let key in filter)
-      sequelizeFilter[key] = { [Op.overlap]: filter[key] };
+      sequelizeFilter[key] = { [Op.contains]: filter[key] };
     console.log("Este es el sequelize filter", sequelizeFilter);
 
+
+    if(search){}
     const { count, rows } = await Plants.findAndCountAll({
       where: {
-        ...sequelizeFilter,
+        // ...filter,
+        ...(!search?sequelizeFilter:{namePlant:{[Op.iLike]:`%${search}%`}}),
+        
       },
       // order: [["alguna propiedad", "sequelize.literal es una buena funcion aca"]],
       order: [["codPlant", "DESC"]],
@@ -47,10 +62,13 @@ router.get("/", async (req, res) => {
       page: page || 0,
     });
   } catch (e) {
-    console.log("hubo alto quilombo en la ruta de plantas" + e);
+    console.log("Error en getPlants" + e);
     res.status(400).send(e);
   }
 });
+
+// search?{namePlant: {[Op.iLike]: %${search}%}}:null
+// namePlant: search?{[Op.iLike]: %${search}%}:null
 
 //prueba filtros con sequelize
 router.get("/prueba", async (req, res) => {
