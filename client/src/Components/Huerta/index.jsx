@@ -18,9 +18,6 @@ const Vivero = () => {
 
   useEffect(() => {
     console.log("En la huerta los filtros son", filtros);
-    return () => {
-      dispatch(constrainHuerta("clear"));
-    };
   }, []);
 
   const applyFilters = (e) => {
