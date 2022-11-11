@@ -6,6 +6,7 @@ import "./HomeApartadoHuerta.css";
 const HomeApartadoHuerta = () => {
   const arrayHuerta = useSelector((state) => state.arrayHuerta);
   const arrayRecortado = arrayHuerta.results?.slice(0, 6)
+  console.log(arrayHuerta)
   return (
     <>
       {

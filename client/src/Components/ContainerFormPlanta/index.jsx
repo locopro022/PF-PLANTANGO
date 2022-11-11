@@ -1,38 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ContainerFormPlanta.css";
 import { crearPlanta } from "../../redux/actions";
-import { useDispatch } from "react-redux";
 import { Obligatorio } from "../Obligatorio";
+import { useDispatch, useSelector } from "react-redux";
+import { getTiposHuerta } from '../../redux/actions'
+import { useNavigate } from 'react-router-dom'
 
 const ContainerFormPlanta = () => {
+  const navigate = useNavigate()
+  const tipos = useSelector(state => state.tiposHuerta)
   const dispatch = useDispatch();
   const [ocultar, setOcultar] = useState({
     namePlant: false,
     descripPlant: false,
     ubication: false,
-    luminosidad: false,
-    riego: false,
-    tamano: false,
-    tipo: false,
-    clima: false,
+    ligth: false,
+    whater: false,
+    size: false,
+    type: false,
+    climate: false,
   });
   const [planta, setPlanta] = useState({
     namePlant: "",
     descripPlant: "",
     ubication: [],
-    luminosidad: [],
-    riego: [],
-    tamano: [],
-    tipo: [],
-    clima: [],
-    toxicidad: "",
+    ligth: [],
+    whater: [],
+    size: [],
+    type: [],
+    climate: [],
+    toxicity: "",
     imagePlant: "",
   });
   const changeValue = (e) => {
     if (
       e.target.name === "namePlant" ||
       e.target.name === "descripPlant" ||
-      e.target.name === "toxicidad" ||
+      e.target.name === "toxicity" ||
       e.target.name === "imagePlant"
     ) {
       setPlanta({
@@ -68,9 +72,21 @@ const ContainerFormPlanta = () => {
       }
     }
   };
-
-  const sendPlant = () => {
-    dispatch(crearPlanta(planta));
+  console.log(planta.namePlant.length)
+  const sendPlant = (e) => {
+    e.preventDefault()
+    if (
+      planta.namePlant.length &&
+      planta.ubication.length &&
+      planta.ligth.length &&
+      planta.whater.length &&
+      planta.size.length &&
+      planta.type.length &&
+      planta.climate.length
+    ) {
+      dispatch(crearPlanta(planta));
+      navigate('/huerta')
+    }
     /*         cloudinary.createUploadWidget({
                     cloudName: 'doycjj3gx',
                     uploadPreset: 'preset_pabs',
@@ -84,7 +100,6 @@ const ContainerFormPlanta = () => {
   };
   const eliminar = (e) => {
     e.preventDefault();
-    console.log(planta[e.target.name]);
     if (
       !planta[e.target.name].filter((quedan) => quedan !== e.target.value)
         .length
@@ -100,6 +115,10 @@ const ContainerFormPlanta = () => {
       ),
     });
   };
+
+  useEffect(() => {
+    dispatch(getTiposHuerta())
+  }, [])
 
   return (
     <div className="containerPlanta">
@@ -122,7 +141,7 @@ const ContainerFormPlanta = () => {
               />
             </div>
             <div hidden={ocultar.namePlant}>
-              <Obligatorio ocultar={planta.ubication.length} />
+              <Obligatorio ocultar={planta.ubication?.length} />
             </div>
           </div>
         </div>
@@ -143,13 +162,18 @@ const ContainerFormPlanta = () => {
                   name="ubication"
                 >
                   <option selected>Ubicación</option>
-                  <option value="Afuera">Afuera</option>
-                  <option value="Adentro">Adentro</option>
+                  {
+                    tipos.ubication?.map(ele => {
+                      return (
+                        <option value={ele}>{ele}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
                 {!ocultar.ubication ? (
-                  <Obligatorio ocultar={planta.ubication.length} tipo={"2"} />
+                  <Obligatorio ocultar={planta.ubication?.length} tipo={"2"} />
                 ) : (
                   <div className="containerSelec">
                     {planta.ubication.map((elem) => {
@@ -184,21 +208,26 @@ const ContainerFormPlanta = () => {
                 <select
                   class="custom-select"
                   id="inputGroupSelect01"
-                  name="luminosidad"
-                  value={planta.luminosidad}
+                  name="ligth"
+                  value={planta.ligth}
                   onChange={changeValue}
                 >
                   <option selected>Luminosidad</option>
-                  <option value="Mucha">Mucha</option>
-                  <option value="Poca">Poca</option>
+                  {
+                    tipos.ligth?.map(ele => {
+                      return (
+                        <option value={ele}>{ele}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
-                {!ocultar.luminosidad ? (
-                  <Obligatorio ocultar={planta.luminosidad.length} tipo={"3"} />
+                {!ocultar.ligth ? (
+                  <Obligatorio ocultar={planta.ligth?.length} tipo={"3"} />
                 ) : (
                   <div className="containerSelec">
-                    {planta.luminosidad.map((elem) => {
+                    {planta.ligth.map((elem) => {
                       return (
                         <div className="containerElem">
                           <h6>{elem}</h6>
@@ -207,7 +236,7 @@ const ContainerFormPlanta = () => {
                             className="btn-success btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
-                            name="luminosidad"
+                            name="ligth"
                           >
                             X
                           </button>
@@ -232,23 +261,27 @@ const ContainerFormPlanta = () => {
                 <select
                   class="custom-select"
                   id="inputGroupSelect01"
-                  name="riego"
-                  value={planta.riego}
+                  name="whater"
+                  value={planta.whater}
                   onChange={changeValue}
                 >
                   <option selected>Riego</option>
-                  <option value="Mucho">Mucho</option>
-                  <option value="Poco">Poco</option>
-                  <option value="Masomenos">Masomenos</option>
+                  {
+                    tipos.whater?.map(ele => {
+                      return (
+                        <option value={ele}>{ele}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
                 <div>
-                  {!ocultar.riego ? (
-                    <Obligatorio ocultar={planta.tamano.length} tipo={"4"} />
+                  {!ocultar.whater ? (
+                    <Obligatorio ocultar={planta.whater?.length} tipo={"4"} />
                   ) : (
                     <div className="containerSelec">
-                      {planta.riego.map((elem) => {
+                      {planta.whater?.map((elem) => {
                         return (
                           <div className="containerElem">
                             <h6>{elem}</h6>
@@ -257,7 +290,7 @@ const ContainerFormPlanta = () => {
                               className="btn-success btnElem"
                               onClick={(e) => eliminar(e)}
                               value={elem}
-                              name="riego"
+                              name="whater"
                             >
                               X
                             </button>
@@ -281,22 +314,26 @@ const ContainerFormPlanta = () => {
                 <select
                   class="custom-select"
                   id="inputGroupSelect01"
-                  name="tamano"
-                  value={planta.tamano}
+                  name="size"
+                  value={planta.size}
                   onChange={changeValue}
                 >
                   <option selected>Tamaño</option>
-                  <option value="Chico">Chico</option>
-                  <option value="Mediano">Mediano</option>
-                  <option value="Grande">Grande</option>
+                  {
+                    tipos.size?.map(ele => {
+                      return (
+                        <option value={ele}>{ele}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
-                {!ocultar.tamano ? (
-                  <Obligatorio ocultar={planta.tamano.length} tipo={"5"} />
+                {!ocultar.size ? (
+                  <Obligatorio ocultar={planta.size?.length} tipo={"5"} />
                 ) : (
                   <div className="containerSelec">
-                    {planta.tamano.map((elem) => {
+                    {planta.size?.map((elem) => {
                       return (
                         <div className="containerElem">
                           <h6>{elem}</h6>
@@ -305,7 +342,7 @@ const ContainerFormPlanta = () => {
                             className="btn-success btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
-                            name="tamano"
+                            name="size"
                           >
                             X
                           </button>
@@ -331,21 +368,25 @@ const ContainerFormPlanta = () => {
                   class="custom-select"
                   id="inputGroupSelect01"
                   onChange={changeValue}
-                  value={planta.tipo}
-                  name="tipo"
+                  value={planta.type}
+                  name="type"
                 >
                   <option selected>Tipo</option>
-                  <option value="Arbol">Arbol</option>
-                  <option value="Planta">Planta</option>
-                  <option value="Berdolada">Berdolada</option>
+                  {
+                    tipos.type?.map(ele => {
+                      return (
+                        <option value={ele}>{ele}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
-                {!ocultar.tipo ? (
-                  <Obligatorio ocultar={planta.tipo.length} tipo={"6"} />
+                {!ocultar.type ? (
+                  <Obligatorio ocultar={planta.type?.length} tipo={"6"} />
                 ) : (
                   <div className="containerSelec">
-                    {planta.tipo.map((elem) => {
+                    {planta.type?.map((elem) => {
                       return (
                         <div className="containerElem">
                           <h6>{elem}</h6>
@@ -354,7 +395,7 @@ const ContainerFormPlanta = () => {
                             className="btn-success btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
-                            name="tipo"
+                            name="type"
                           >
                             X
                           </button>
@@ -377,22 +418,26 @@ const ContainerFormPlanta = () => {
                 <select
                   class="custom-select"
                   id="inputGroupSelect01"
-                  value={planta.clima}
+                  value={planta.climate}
                   onChange={changeValue}
-                  name="clima"
+                  name="climate"
                 >
                   <option selected>Preferencia climatica</option>
-                  <option value="Lluvia">Lluvia</option>
-                  <option value="Soleado">Soleado</option>
-                  <option value="Templado">Templado</option>
+                  {
+                    tipos.climate?.map(ele => {
+                      return (
+                        <option value={ele}>{ele}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
-                {!ocultar.clima ? (
-                  <Obligatorio ocultar={planta.clima.length} tipo={"7"} />
+                {!ocultar.climate ? (
+                  <Obligatorio ocultar={planta.climate?.length} tipo={"7"} />
                 ) : (
                   <div className="containerSelec">
-                    {planta.clima.map((elem) => {
+                    {planta.climate?.map((elem) => {
                       return (
                         <div className="containerElem">
                           <h6 style={{ margin: "0" }}>{elem}</h6>
@@ -401,7 +446,7 @@ const ContainerFormPlanta = () => {
                             className="btn-success btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
-                            name="clima"
+                            name="climate"
                           >
                             X
                           </button>
@@ -424,9 +469,9 @@ const ContainerFormPlanta = () => {
             <select
               class="custom-select"
               id="inputGroupSelect01"
-              name="toxicidad"
+              name="toxicity"
               onChange={changeValue}
-              value={planta.toxicidad}
+              value={planta.toxicity}
             >
               <option selected>Toxicidad</option>
               <option value="True">True</option>

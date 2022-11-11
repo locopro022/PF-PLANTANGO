@@ -3,7 +3,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/plants.js");
-
+const UserR = require("./routes/user.js");
 require("./db.js");
 
 const server = express();
@@ -26,6 +26,7 @@ server.use((req, res, next) => {
 });
 
 server.use("/plants", routes);
+server.use("/user",UserR)
 
 // Error catching endware.
 server.use((err, req, res, next) => {
