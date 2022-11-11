@@ -7,50 +7,66 @@ export const Obligatorio = (props) => {
         switch (tipo) {
             case "1":
                 return (
-                    <div className='warning'>
-                        Se requiere un nombre.
+                    <div className='altoCase'>
+                        <div className='warning'>
+                            Se requiere un nombre.
+                        </div>
                     </div>
                 )
             case "2":
                 return (
-                    <div className='warning'>
-                        Se requiere una ubicación.
+                    <div className='altoCase'>
+                        <div className='warning'>
+                            Se requiere una ubicación.
+                        </div>
                     </div>
                 )
             case "3":
                 return (
-                    <div className='warning'>
-                        Se requiere luminosidad.
+                    <div className='altoCase'>
+                        <div className='warning'>
+                            Se requiere luminosidad.
+                        </div>
                     </div>
                 )
             case "4":
                 return (
-                    <div className='warning'>
-                        Se requiere un tipo riego.
+                    <div className='altoCase'>
+                        <div className='warning'>
+                            Se requiere un tipo riego.
+                        </div>
                     </div>
                 )
             case "5":
                 return (
-                    <div className='warning'>
-                        Se requiere un tamaño.
+                    <div className='altoCase'>
+                        <div className='warning'>
+                            Se requiere un tamaño.
+                        </div>
                     </div>
                 )
             case "6":
                 return (
-                    <div className='warning'>
-                        Se requiere un tipo.
+                    <div className='altoCase'>
+                        <div className='warning'>
+                            Se requiere un tipo.
+                        </div>
                     </div>
                 )
             case "7":
                 return (
-                    <div className='warning'>
-                        Se quiere un clima.
+                    <div className='altoCase'>
+                        <div className='warning'>
+                            Se quiere un clima.
+                        </div>
                     </div>
                 )
             default:
                 return (
-                    <div className='warning'>
-                        Se requiere un nombre.
+                    <div className='altoCase'>
+                        <div className='warning'>
+                            Se requiere un nombre.
+                        </div>
                     </div>
                 )
         }
