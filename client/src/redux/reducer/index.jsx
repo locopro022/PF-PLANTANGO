@@ -38,6 +38,7 @@ const rootReducer = (state = initialState, action) => {
             ? {}
             : {
                 ...state.constrainHuerta,
+                page: 0,
                 [action.payload.type]: action.payload.value,
               },
       };
