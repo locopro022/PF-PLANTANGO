@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
     let sequelizeFilter = {};
 
     for (let key in filter)
-      sequelizeFilter[key] = { [Op.overlap]: filter[key] };
+      sequelizeFilter[key] = { [Op.contains]: filter[key] };
     console.log("Este es el sequelize filter", sequelizeFilter);
 
 
@@ -45,8 +45,8 @@ router.get("/", async (req, res) => {
     const { count, rows } = await Plants.findAndCountAll({
       where: {
         // ...filter,
-        ...sequelizeFilter,
-        namePlant:  search?{[Op.iLike]: search}:null
+        ...(!search?sequelizeFilter:{namePlant:{[Op.iLike]:`%${search}%`}}),
+        
       },
       // order: [["alguna propiedad", "sequelize.literal es una buena funcion aca"]],
       order: [["codPlant", "DESC"]],
