@@ -32,7 +32,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       creationDate: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
       },
       nPhone: {
         type: DataTypes.STRING,
