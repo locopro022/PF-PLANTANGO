@@ -1,38 +1,57 @@
+import { Link } from "react-router-dom";
 import "./index.css";
 
-const Cartas = (props) => (
-  <div className="cartas">
-    {/* <!-- producto... --> */}
-    {props.productos &&
-      props.productos.map((producto) => (
-        <div className="carta">
-          <img src={producto.img} alt="Un producto" className="imagen cabeza" />
-          <div className="cuerpo">
-            <div>
-              <h3 className="cuerpo-titulo">
-                <a href="#">
-                  <span
-                    aria-hidden="true"
-                    className="cuerpo-descripcion"
-                  ></span>
-                  {producto.nombre}
-                </a>
-              </h3>
-              <p className="cuerpo-caracteristica">
-                {producto.caracteristica.map((caracteristica) => (
-                  <span className="cuerpo-caracteristica-caracteristica">
-                    {caracteristica}
-                  </span>
-                ))}
-              </p>
+const Cartas = (props) => {
+  return (
+    <div className="cartas">
+      {/* <!-- producto... --> */}
+      {props.items &&
+        props.items.map((item, i) => (
+          <Link
+            key={i}
+            to={`${window.location.pathname}/${item.id}`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <div className="card carta">
+              {item.caracteristica && (
+                <img
+                  src={item.img}
+                  alt="Un producto"
+                  className="imagen cabeza"
+                />
+              )}
+              <div className="cuerpo">
+                <div>
+                  {item.nombre && (
+                    <h3 className="cuerpo-titulo">{item.nombre}</h3>
+                  )}
+                  {item.subnombre && (
+                    <h4 className="cuerpo-subtitulo">{item.subnombre}</h4>
+                  )}
+                  {item.caracteristica && (
+                    <p className="cuerpo-caracteristica">
+                      {item.caracteristica.map((caracteristica, i) => (
+                        <span
+                          className="cuerpo-caracteristica-caracteristica"
+                          key={i}
+                        >
+                          {caracteristica}
+                        </span>
+                      ))}
+                    </p>
+                  )}
+                </div>
+                {item.precio && (
+                  <p className="cuerpo-precio">${item.precio / 100}</p>
+                )}
+              </div>
             </div>
-            <p className="cuerpo-precio">${producto.precio / 100}</p>
-          </div>
-        </div>
-      ))}
+          </Link>
+        ))}
 
-    {/* <!-- More products... --> */}
-  </div>
-);
+      {/* <!-- More products... --> */}
+    </div>
+  );
+};
 
 export default Cartas;

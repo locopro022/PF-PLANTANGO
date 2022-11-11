@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
-const {getDbId, getDbInfo} = require ("../controller/plantas.js")
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -12,33 +11,18 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   const tabla = await Plants.findAll();
-  const { search } = req.query;
+  const { name } = req.query;
 
   try {
-    if (search) {
+    if (name) {
       const tabl2 = await Plants.findAll();
 
-      let newTable = tabl2.filter(
-        (e) =>
-          e.namePlant
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.ubication
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.luminosidad
-            .toLocaleLowerCase()
-            .includes(search.toLocaleLowerCase()) ||
-          e.riego.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.tamano.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.tipo.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
-          e.clima.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      let newTable = tabl2.filter((e) =>
+        e.namePlant.toLocaleLowerCase().includes(name.toLocaleLowerCase())
       );
 
       res.status(200).send(newTable);
-
     } else {
-
       if (!tabla.length) {
         for (let i = 0; i < dbBuild.length; i++) {
           let nObj = {
@@ -109,39 +93,68 @@ router.put("/", async (req, res) => {
   }
 });
 
-
-//ENCONTRAR PLANTA POR PARAMS 
-router.get("/:id", async (req, res)=>{
+//ENCONTRAR PLANTA POR PARAMS
+router.get("/:id", async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
 
-    let plant = await getDbId(id)
-    
-    return res.status(200).json(plant)
+    let plant = await getDbId(id);
 
+    return res.status(200).json(plant);
   } catch (error) {
-    res.status(400).json("Error en Routes -> plants.js: ",error.message)
+    res.status(400).json("Error en Routes -> plants.js: ", error.message);
   }
-})
+});
 
-router.get("/types", async (req,res)=>{
-
+router.get("/types", async (req, res) => {
   try {
-    
-    let objeto ={
+    let objeto = {
       ubication: ["interior", "exterior"],
-      ligth: ["pleno sol","media sombra","luz filtrada","intensa sin exposición solar directa"],
-      whater:["poco frecuente","espaciado","abundante","regular","moderado","abundante en verano y moderado en invierno"],
-      size:["grande","mediano","pequeño"],
-      type:["floral","sin flores","apta maceta","arbol","aromatica","huerta","medicinal","frutal","arbusto","suculenta","cactus","trepadora"],
-      climate: ["calido","humedo","templado","resistente al frio","resistente a la sequia","poco resistente al viento","arido"]
-    }
+      ligth: [
+        "pleno sol",
+        "media sombra",
+        "luz filtrada",
+        "intensa sin exposición solar directa",
+      ],
+      whater: [
+        "poco frecuente",
+        "espaciado",
+        "abundante",
+        "regular",
+        "moderado",
+        "abundante en verano y moderado en invierno",
+      ],
+      size: ["grande", "mediano", "pequeño"],
+      type: [
+        "floral",
+        "sin flores",
+        "apta maceta",
+        "arbol",
+        "aromatica",
+        "huerta",
+        "medicinal",
+        "frutal",
+        "arbusto",
+        "suculenta",
+        "cactus",
+        "trepadora",
+      ],
+      climate: [
+        "calido",
+        "humedo",
+        "templado",
+        "resistente al frio",
+        "resistente a la sequia",
+        "poco resistente al viento",
+        "arido",
+      ],
+    };
 
-    res.status(200).json(objeto)
+    res.status(200).json(objeto);
   } catch (error) {
-    throw new Error("Error en routes -> get./types ",error.message)
+    throw new Error("Error en routes -> get./types ", error.message);
   }
-})
+});
 
 // router.get("/types", async (req, res) => {
 //   const tabla = await Plants.findAll();

@@ -21,7 +21,7 @@ const NavBar = () => {
             className={(isActive) =>
               isActive.isActive ? "itemActivo" : "item uno"
             }
-            to="/"
+            to="/home"
           >
             <span className="span">Home</span>
           </NavLink>
@@ -64,7 +64,7 @@ const NavBar = () => {
         src={platango}
         alt="plantango"
         className="imgPlan"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/home")}
       />
       <div className="containerBtns">
         <IconButton size="large" color="default">

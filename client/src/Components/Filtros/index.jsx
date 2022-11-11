@@ -1,60 +1,91 @@
-import { Card } from "@mui/material";
+import { useEffect, useState } from "react";
 
-const options = null;
-const question = null;
-
-const Filtros = () => (
-  <div className="card filtro">
-    HOLA
-    {options &&
-      "checkbox" in options &&
-      options.checkbox.map((option, index) => (
-        <div key={index} className="m-2 mx-0 animate-instantiate">
-          <input type="checkbox" id={option} className="peer hidden" />
-          <label className="" htmlFor={option}>
-            {option}
-          </label>
+const Filtros = (props) => {
+  const [renderer, setRenderer] = useState(true);
+  const [filters, setFilters] = useState(null);
+  const cambio = (e) => {
+    const selected = {
+      type: e.target.name,
+      value: e.target.id,
+    };
+    e.target.checked
+      ? setFilters([...(filters || []), selected])
+      : setFilters(filters.filter((item) => item.value !== selected.value));
+  };
+  const borrar = () => {
+    setFilters([]);
+    setRenderer(false);
+    setTimeout(() => setRenderer(true), 0);
+  };
+  useEffect(() => {
+    if (filters !== null) props.apply(filters);
+  }, [filters]);
+  return (
+    renderer && (
+      <div className="card filtro">
+        <div className="container">
+          <div
+            className="container pt-4 mb-2"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <h3 className="text-center d-inline">Filtros</h3>
+            <button
+              type="button"
+              class="btn btn-outline-danger d-inline mb-3"
+              onClick={borrar}
+            >
+              Borrar Filtros
+            </button>
+          </div>
+          {props.filtros?.map(({ options, question }, index) => (
+            <div className="container-fluid" key={index}>
+              <h5>{question}</h5>
+              <form
+                onChange={cambio}
+                onSubmit={cambio}
+                className="container-fluid"
+              >
+                {options &&
+                  "checkbox" in options &&
+                  options.checkbox.map((option, index) => (
+                    <div className="form-group form-check" key={index}>
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        name={question}
+                        id={option}
+                      />
+                      <label class="form-check-label" htmlFor={option}>
+                        {option}
+                      </label>
+                    </div>
+                  ))}
+                {options &&
+                  "radio" in options &&
+                  options.radio.map((option, index) => (
+                    <div key={index} className="form-group form-check">
+                      <input
+                        type="radio"
+                        id={option}
+                        name={question}
+                        className="form-check-input"
+                      />
+                      <label className="form-check-label" htmlFor={option}>
+                        {option}
+                      </label>
+                    </div>
+                  ))}
+              </form>
+            </div>
+          ))}
         </div>
-      ))}
-    {options &&
-      "radio" in options &&
-      options.radio.map((option, index) => (
-        <div key={index} className="">
-          <input
-            type="radio"
-            id={option}
-            name={question}
-            className="peer hidden"
-          />
-          <label className="" htmlFor={option}>
-            {option}
-          </label>
-        </div>
-      ))}
-    {options &&
-      "buttons" in options &&
-      options.buttons.map((button, index) => (
-        <div key={index} className="">
-          <button onClick={() => button.callback(null)} className="">
-            {button.name}
-          </button>
-        </div>
-      ))}
-    {/* {options && "reset" in options && (
-      <div className="">
-        <button
-          onClick={() => {
-            setCollected([]);
-            setMessages([{ value: props.filters[0].question }]);
-            setCurrent(0);
-          }}
-          className=""
-        >
-          {options.reset}
-        </button>
       </div>
-    )} */}
-  </div>
-);
+    )
+  );
+};
 
 export default Filtros;

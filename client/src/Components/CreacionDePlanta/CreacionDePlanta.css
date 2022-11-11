@@ -1,0 +1,27 @@
+.containerCreacionPlanta {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.containerPlanta {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.anchoInput {
+    width: 100%;
+}
+
+.witdhBtn {
+    width: 60%;
+}
+
+.altoContainer {
+    height: auto;
+}
