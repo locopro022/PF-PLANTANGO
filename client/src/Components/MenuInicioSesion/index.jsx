@@ -3,10 +3,12 @@ import { AccountCircle } from '@mui/icons-material'
 import { Badge } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import './MenuInicioSesion.css'
+import { useAuth0 } from "@auth0/auth0-react";
 
 //Menu despegable que aparece cuando el usuario no esta con la sesion iniciada.
 
 const MenuInicioSesion = () => {
+  const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
   return (
     <div class="dropstart">
@@ -24,7 +26,7 @@ const MenuInicioSesion = () => {
       <div class="dropdown-menu">
         <span
           class="dropdown-item edit"
-          onClick={() => navigate("/iniciarSesion")}
+          onClick={() => loginWithRedirect()}
         >
           Iniciar sesión
         </span>
