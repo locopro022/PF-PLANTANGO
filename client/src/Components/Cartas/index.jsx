@@ -17,6 +17,7 @@ const Cartas = (props) => {
                 <img
                   src={item.img}
                   alt="Un producto"
+                  loading="lazy"
                   className="imagen cabeza"
                 />
               )}

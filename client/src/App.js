@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getHuerta, getHuertaDetail, getTiposHuerta } from "./redux/actions";
 import Detalle from "./Components/Detalle";
+import Breadcrumbs from "./Components/Breadcrumbs";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <NavBar />
+          <Breadcrumbs exclude={["home"]} start={"home"} />
           <Routes>
             <Route path="/" element={<Chat />} />
             <Route path="/home" element={<Home />} />
