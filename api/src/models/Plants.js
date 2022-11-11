@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       unique: true
     },
     namePlant:{
-      type:DataTypes.ARRAY(DataTypes.STRING),
+      type:DataTypes.STRING,
       allowNull: false,
       unique:true,
     },
@@ -20,28 +20,28 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     ubication:{
-      type:DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true
     },
     ligth:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },
     whater:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },
     size:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },
     type:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
     },  
     climate:{
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
+        allowNull: true
       }, 
       toxicity:{
         type: DataTypes.BOOLEAN,
