@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { DailyUser, User, Plants } = require("../db");
+const { DailyUser, User, Plants, Favorites } = require("../db");
 
 const UserR = Router();
 
@@ -25,13 +25,10 @@ UserR.put("/daily/:id", async (req, res) => {
     if (!id) {
       return res.status(400).send({ error: "No se encontro la id" });
     } else {
-      const daily = await DailyUser.findAll({ where: { UserIdUser: id } });
-      await DailyUser.destroy({ where: { UserIdUser: id }, force: true });
-      await DailyUser.create({
-        codDaily: daily.codDaily,
-        title: title,
-        cont: body,
-      });
+      await DailyUser.update(
+        { title: title, cont: body },
+        { where: { UserIdUser: id } }
+      );
       return res
         .status(201)
         .send({ message: "Los datos se cambiaron exitosamente" });
@@ -88,7 +85,7 @@ UserR.post("/favorites/:idU/:idP", async (req, res) => {
   try {
     const { idU, idP } = req.params;
     if (!idU || !idP) {
-      return res.status(400).send({ error: "No eviaste la id del usuario" });
+      return res.status(400).send({ error: "No eviaste la id del usuario o planta" });
     }
     const user = await User.findByPk(idU);
     const planta = await Plants.findByPk(idP);
@@ -102,5 +99,22 @@ UserR.post("/favorites/:idU/:idP", async (req, res) => {
   }
 });
 
-UserR.get("/");
+UserR.get("/favorites/:idU", async (req, res) => {
+  try {
+
+  const {idU} = req.params;
+  if(!idU){
+    return res.status(400).send({ error: "No eviaste la id del usuario" });
+  }
+
+  const favId = await Favorites.findAll({where:{UserIdUser:idU}});
+
+  const plantasF = await Plants.findAll({where:{codPlant:favId[0].dataValues.PlantCodPlant}})
+
+  res.status(200).send(plantasF);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
 module.exports = UserR;
