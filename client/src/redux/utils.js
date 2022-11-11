@@ -42,7 +42,7 @@ const plantaADetalle = ({
       type: "toxicity",
       value: toxicity
         ? "Si, y bastante. Tenga cuidado!"
-        : "No pasa na ura. Podes dejar a exequiel solo con la plantita.",
+        : "No tiene toxicidad",
     },
   ],
 });
