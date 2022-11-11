@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
-const { Op } = require("sequelize");
+const { Op, BOOLEAN } = require("sequelize");
 const {
   getDbId,
   llenarDB,
@@ -40,18 +40,14 @@ router.get("/", async (req, res) => {
       sequelizeFilter[key] = { [Op.contains]: filter[key] };
     console.log("Este es el sequelize filter", sequelizeFilter);
 
-
-    let sequelizeSort = sort || ["namePlant", "ASC"];
-
     const { count, rows } = await Plants.findAndCountAll({
       where: {
         // ...filter,
-        ...(!search?sequelizeFilter:{namePlant:{[Op.iLike]:`%${search}%`}}),
-        
+        ...(!search ? sequelizeFilter : { namePlant: { [Op.iLike]: `%${search}%` } }),
+
       },
-      
       // order: [["alguna propiedad", "sequelize.literal es una buena funcion aca"]],
-      order: [sequelizeSort ],
+      order: [["codPlant", "DESC"]],
       limit: 12,
       offset: (page || 0) * 12,
     });
@@ -146,6 +142,42 @@ router.get("/:id", async (req, res) => {
     res.status(400).json("Error en Routes -> plants.js: ", error.message);
   }
 });
+
+//CREACION DE PLANTA
+
+router.post("/creacion", (req, res) => {
+  try {
+    let {
+      namePlant,
+      descripPlant,
+      imagePlant,
+      ubication,
+      ligth,
+      whater,
+      size,
+      type,
+      toxicity,
+      climate
+    } = req.body
+    if (toxicity === "false" || toxicity === '') toxicity = false
+    else toxicity = true
+    let newPlant = Plants.create({
+      namePlant,
+      descripPlant,
+      imagePlant,
+      ubication,
+      ligth,
+      whater,
+      size,
+      type,
+      toxicity,
+      climate
+    })
+    res.status(201).json(`Planta ${newPlant.namePlant} creada con exito`)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
 
 //DEVUELVE OBJETO CON ARRAYS PARA EL FILTRADO
 
