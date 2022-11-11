@@ -1,7 +1,11 @@
 const { Router } = require("express");
 const { DailyUser, User } = require("../db");
 
+
 const UserR = Router();
+
+
+
 
 UserR.get("/daily/:id", async (req, res) => {
   const { id } = req.params;
@@ -76,4 +80,37 @@ UserR.get("/", async(req, res)=>{
   return res.status(200).json(userTable);
 
 })
+
+UserR.put("/:idUser", async (req,res)=>{
+
+  try {
+    const {idUser} = req.params;
+
+    console.log(idUser);
+
+    let { username, email, pass, name, lastName, nPhone } = req.body;
+
+    if (!idUser) {
+      return res.status(400).send({ error: "No se encontro la id" });}
+
+if(idUser){
+  console.log("idUser: ",idUser);
+  console.log("UserName: ",username);
+  console.log("email: ",email);
+  console.log("name: ",name);
+
+await User.update({ username: username, email :email, pass : pass, name: name, lastName: lastName, nPhone:nPhone }, {
+  where: { idUser}
+})
+res.status(200).json("Se modifico exitosamente el ususario")
+} else {
+  throw new Error("ERROR /modify/:id")
+}
+
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+
+})
+
 module.exports = UserR;
