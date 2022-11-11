@@ -1,6 +1,8 @@
 import {
   GET_ARRAY_VIVERO,
   GET_ARRAY_HUERTA,
+  GET_TIPOS_HUERTA,
+  CONSTRAIN_HUERTA,
   GET_ARRAY_NOTIFICACIONES,
   GET_ARRAY_CARRITO,
 } from "../actions";
@@ -9,7 +11,9 @@ import { plantaACarta } from "../utils";
 
 const initialState = {
   arrayVivero: [],
-  arrayHuerta: [],
+  arrayHuerta: {},
+  tiposHuerta: {},
+  constrainHuerta: {},
   arrayNotificaciones: [],
   arrayCarrito: [],
 };
@@ -21,10 +25,26 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         arrayVivero: [...action.payload],
       };
+    case GET_TIPOS_HUERTA:
+      return {
+        ...state,
+        tiposHuerta: action.payload,
+      };
+    case CONSTRAIN_HUERTA:
+      return {
+        ...state,
+        constrainHuerta:
+          action.payload === "clear"
+            ? {}
+            : {
+                ...state.constrainHuerta,
+                [action.payload.type]: action.payload.value,
+              },
+      };
     case GET_ARRAY_HUERTA:
       return {
         ...state,
-        arrayHuerta: [...action.payload.map((planta) => plantaACarta(planta))],
+        arrayHuerta: { ...action.payload },
       };
     case GET_ARRAY_NOTIFICACIONES:
       return {

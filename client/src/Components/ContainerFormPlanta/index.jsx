@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import './ContainerFormPlanta.css'
-import { crearPlanta } from '../../redux/actions'
-import { useDispatch } from 'react-redux'
-import { Obligatorio } from '../Obligatorio'
+import React, { useState } from "react";
+import "./ContainerFormPlanta.css";
+import { crearPlanta } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { Obligatorio } from "../Obligatorio";
 
 const ContainerFormPlanta = () => {
     const dispatch = useDispatch()
@@ -64,9 +64,10 @@ const ContainerFormPlanta = () => {
             }
         }
     }
-    const sendPlant = () => {
-        dispatch(crearPlanta(planta))
-        /*         cloudinary.createUploadWidget({
+  };
+  const sendPlant = () => {
+    dispatch(crearPlanta(planta));
+    /*         cloudinary.createUploadWidget({
                     cloudName: 'doycjj3gx',
                     uploadPreset: 'preset_pabs',
                 }, (err, result) => {

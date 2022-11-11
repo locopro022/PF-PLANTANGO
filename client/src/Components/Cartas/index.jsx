@@ -5,7 +5,7 @@ const Cartas = (props) => {
   return (
     <div className="cartas">
       {/* <!-- producto... --> */}
-      {props.items &&
+      {props.items?.map &&
         props.items.map((item, i) => (
           <Link
             key={i}
@@ -13,7 +13,7 @@ const Cartas = (props) => {
             style={{ textDecoration: "none", color: "black" }}
           >
             <div className="card carta">
-              {item.caracteristica && (
+              {item.img && (
                 <img
                   src={item.img}
                   alt="Un producto"

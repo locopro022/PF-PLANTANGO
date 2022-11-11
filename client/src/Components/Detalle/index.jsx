@@ -1,4 +1,4 @@
-import { ArtTrackSharp } from "@mui/icons-material";
+import { ArtTrackSharp, SetMealOutlined } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -9,9 +9,8 @@ const Detalle = (props) => {
   //   faltaria agregar "breadcrumbs" para volver hacia atras , etc
 
   useEffect(() => {
-    props.from(id).then((data) => {
-      setItem(data);
-      console.log(data);
+    props.from(id).then((plant) => {
+      setItem(plant);
     });
   }, []);
   return (
@@ -41,7 +40,7 @@ const Detalle = (props) => {
         ) : null}
         {item.caracteristics
           ? item.caracteristics.map((carac, i) => (
-              <div className="container" d key={i}>
+              <div className="container" key={i}>
                 <h5>
                   <strong style={{ textTransform: "uppercase" }}>
                     {carac.type}
