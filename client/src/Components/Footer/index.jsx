@@ -1,8 +1,10 @@
 import { Instagram, LinkedIn, Twitter, GitHub } from "@mui/icons-material";
 import platango from "../../img/plantangoTexto.png";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Footer = () => {
+  const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
   const iniciarSesion = () => {
     navigate("/iniciarSesion");
@@ -70,7 +72,7 @@ const Footer = () => {
             <button
               type="button"
               class="btn btn-outline-light btn-rounded"
-              onClick={iniciarSesion}
+              onClick={() => loginWithRedirect()}
             >
               Sign up!
             </button>
