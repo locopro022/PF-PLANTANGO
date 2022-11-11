@@ -72,12 +72,21 @@ const ContainerFormPlanta = () => {
       }
     }
   };
-
+  console.log(planta.namePlant.length)
   const sendPlant = (e) => {
-    console.log('hola')
     e.preventDefault()
-    dispatch(crearPlanta(planta));
-    navigate('/huerta')
+    if (
+      planta.namePlant.length &&
+      planta.ubication.length &&
+      planta.ligth.length &&
+      planta.whater.length &&
+      planta.size.length &&
+      planta.type.length &&
+      planta.climate.length
+    ) {
+      dispatch(crearPlanta(planta));
+      navigate('/huerta')
+    }
     /*         cloudinary.createUploadWidget({
                     cloudName: 'doycjj3gx',
                     uploadPreset: 'preset_pabs',
