@@ -5,6 +5,7 @@ import Pagination from "../Pagination";
 import { constrainHuerta, getHuerta } from "../../redux/actions";
 import { useEffect } from "react";
 import { plantaACarta } from "../../redux/utils";
+import AlPrincipio from '../AlPrincipio'
 
 const Vivero = () => {
   const filtros = useSelector((state) => state.tiposHuerta);
@@ -29,27 +30,30 @@ const Vivero = () => {
     dispatch(constrainHuerta({ type: "filter", value: e }));
   };
   return (
-    <div className="container-fluid">
-      <h3 className="">Bienvenido la huerta!</h3>
-      <div className="">
-        <div className="row">
-          <div className="col-2">
-            <Filtros filtros={filtros} apply={applyFilters} />
-          </div>
-          {/* El que tenga muchisimas ganas, le pone estilos. */}
-          <div className="col">
-            <Pagination
-              max={productos.page_count}
-              curr={productos.page}
-              apply={(e) =>
-                dispatch(constrainHuerta({ type: "page", value: e }))
-              }
-            />
-            <Cartas items={productos.results?.map(plantaACarta)} />
+    <>
+      <AlPrincipio />
+      <div className="container-fluid">
+        <h3 className="">Bienvenido la huerta!</h3>
+        <div className="">
+          <div className="row">
+            <div className="col-2">
+              <Filtros filtros={filtros} apply={applyFilters} />
+            </div>
+            {/* El que tenga muchisimas ganas, le pone estilos. */}
+            <div className="col">
+              <Pagination
+                max={productos.page_count}
+                curr={productos.page}
+                apply={(e) =>
+                  dispatch(constrainHuerta({ type: "page", value: e }))
+                }
+              />
+              <Cartas items={productos.results?.map(plantaACarta)} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

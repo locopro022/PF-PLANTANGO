@@ -52,16 +52,16 @@ export const getHuertaDetail = async (id) => {
 
 export const getHuerta =
   (e = null) =>
-  (dispatch) => {
-    return get(`plants`, { params: e }).then((data) => {
-      console.log("las Plantas llegaron asi:", data);
-      dispatch({
-        type: GET_ARRAY_HUERTA,
-        payload: data,
+    (dispatch) => {
+      return get(`plants`, { params: e }).then((data) => {
+        console.log("las Plantas llegaron asi:", data);
+        dispatch({
+          type: GET_ARRAY_HUERTA,
+          payload: data,
+        });
       });
-    });
-  };
+    };
 
 export const crearPlanta = (planta) => async () => {
-  await axios.post(`${API_URL}/createplant`, planta);
+  await axios.post(`${API_URL}/plants/creacion`, planta)
 };
