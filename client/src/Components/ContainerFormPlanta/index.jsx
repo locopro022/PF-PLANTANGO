@@ -72,7 +72,7 @@ const ContainerFormPlanta = () => {
       }
     }
   };
-  console.log(planta.namePlant.length)
+
   const sendPlant = (e) => {
     e.preventDefault()
     if (
