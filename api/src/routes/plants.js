@@ -41,15 +41,17 @@ router.get("/", async (req, res) => {
     console.log("Este es el sequelize filter", sequelizeFilter);
 
 
-    if(search){}
+    let sequelizeSort = sort || ["namePlant", "ASC"];
+
     const { count, rows } = await Plants.findAndCountAll({
       where: {
         // ...filter,
         ...(!search?sequelizeFilter:{namePlant:{[Op.iLike]:`%${search}%`}}),
         
       },
+      
       // order: [["alguna propiedad", "sequelize.literal es una buena funcion aca"]],
-      order: [["codPlant", "DESC"]],
+      order: [sequelizeSort ],
       limit: 12,
       offset: (page || 0) * 12,
     });
