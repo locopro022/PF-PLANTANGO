@@ -48,7 +48,7 @@ UserR.post("/", async (req, res) => {
   if (lastName === "") lastName = null;
   if (nPhone === "") nPhone = null;
 
-  const nUser = await User.create({
+  await User.create({
     username,
     email,
     pass,
@@ -57,7 +57,7 @@ UserR.post("/", async (req, res) => {
     nPhone,
   });
   const tUser = await User.findAll({ where: { email } });
-  const nDaily = await DailyUser.create({
+  await DailyUser.create({
     UserIdUser: tUser[0].dataValues.idUser,
   });
 
@@ -65,9 +65,15 @@ UserR.post("/", async (req, res) => {
     .status(201)
     .send({ message: `${username}, tu usuario fue creado con exito!` });
 });
-module.exports = UserR;
 
-// {
-//   "username": "Agustin",
-//   "email": "asd@asd.asd"
-// }
+UserR.get("/", async(req, res)=>{
+  const {username} = req.body;
+
+  if(!username){
+    return res.status(400).json({ error: "falta ingresar un usuario" });
+  }
+  const userTable = await User.findAll({where:{username}})
+  return res.status(200).json(userTable);
+
+})
+module.exports = UserR;
