@@ -1,50 +1,53 @@
 import React from "react";
-import s from './pagination.module.css'
+import { useDispatch, useSelector } from "react-redux";
+import { constrainHuerta } from "../../redux/actions";
+import s from "./pagination.module.css";
 
 const Pagination = (props) => {
-  const paginate = props.paginate;
+  const max = props.max;
+  const curr = props.curr;
+  const apply = props.apply;
+  // const { page_count, page } = useSelector((state) => state.arrayHuerta);
+  // const dispatch = useDispatch();
 
-  if(Math.ceil(props.totalCards / props.cartasPorPag) < props.currentPage){
-    paginate(1);
-  }
+  const movements = {
+    prev: () => (curr > 0 ? parseInt(curr) - 1 : parseInt(curr)),
+    next: () => (curr < max - 1 ? parseInt(curr) + 1 : parseInt(curr)),
+  };
 
-  const numeroPagina = [];
-  for(let i = 1; i <= Math.ceil(props.totalCards / props.cartasPorPag); i++){
-    numeroPagina.push(i)
-  }
+  console.log(max, curr);
 
-  const items = props.items
+  const move = (dir) => {
+    apply(movements[dir] ? movements[dir]() : dir);
+  };
 
-  return(
-    <div className={s.container}>
-      {/* <h1>Pagina: {props.currentPage}</h1> */}
-      {/* <button style={s.btn} onClick={props.prevHandler}>Prev</button> */}
-      <div>
-        <ul>
-          {
-            numeroPagina.length > 0 &&
-            numeroPagina.map((p, index) => 
-              p === props.currentPage ? (
-                <li key={index}>
-                  <button className={s.btn} onClick={() => paginate(p)}>{p}</button>
-                </li>
-              ) : (
-                <li key={index}>
-                  <button className={s.btn} onClick={() => paginate(p)}>{p}</button>
-                </li>
-              )
-            )
-          }
-        </ul>
-
-      </div>
-      <div className={s.prevNext}>
-        <button className={s.btn2} onClick={props.prevHandler}>Prev</button>
-        <button className={s.btn2} onClick={props.nextHandler}>Next</button>
-      </div>
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        height: "2rem",
+        margin: "1rem",
+      }}
+    >
+      {max > 1 && (
+        <>
+          <button onClick={() => move("prev")}>{"<"}</button>
+          {Array(max)
+            .fill("exequiel")
+            .map((exequiel, index) => (
+              <button
+                onClick={() => move(index)}
+                style={curr == index ? { backgroundColor: "lightgreen" } : {}}
+              >
+                {index + 1}
+              </button>
+            ))}
+          <button onClick={() => move("next")}>{">"}</button>
+        </>
+      )}
     </div>
-  )
-}
-
+  );
+};
 
 export default Pagination;

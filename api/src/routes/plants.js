@@ -19,34 +19,37 @@ const router = Router();
 
 //PRUEBA DE GETPLANTS + FILTROS POR QUERY
 router.get("/", async (req, res) => {
-  const { search, ubication, type } = req.query;
+  try {
+    const { search, filter, sort, page } = req.query;
+    // Vendran estos cuatro parametros, busqueda por nombre, filtros, ordenamientos y pagina.
+    console.log("la pagina que pidieron es la:", page);
 
-  console.log("TYPE: ", type);
+    // Craemos un objeto llamado WHERE que servira de WHERE para Sequelize.
+    // let where = { ...filter };
 
-  const db = await Plants.findAll();
+    // for (let key in filter) {
+    //   where[key] = { [Op.like]: { [Op.any]: [...filter[key]] } };
+    // }
 
-  if (search) {
-    const response = await serchByName(search);
-    console.log("response", response);
-    return res.status(200).json(response);
-  }
-  if (ubication) {
-    const response = await filter(ubication);
-    return res.status(200).json(response);
-  }
+    const { count, rows } = await Plants.findAndCountAll({
+      where: {
+        ...filter,
+      },
+      // order: [["alguna propiedad", "sequelize.literal es una buena funcion aca"]],
+      order: [["codPlant", "DESC"]],
+      limit: 12,
+      offset: page || 0,
+    });
+    console.log("La cantidad de resultados son:", count);
 
-  if (type) {
-    const response = await filterType(type);
-    console.log("TYPE 1: ", type);
-    return res.status(200).json(response);
-  }
-
-  if (!db.length) {
-    const ddb = await llenarDB();
-    const prueba = await Plants.bulkCreate(ddb);
-    return res.status(200).json(prueba);
-  } else {
-    return res.status(200).json("respuesta que no");
+    return res.status(200).json({
+      page_count: Math.ceil(count / 12),
+      results: rows,
+      page: page || 0,
+    });
+  } catch (e) {
+    console.log("hubo alto quilombo en la ruta de plantas" + e);
+    res.status(400).send(e);
   }
 });
 
@@ -61,6 +64,71 @@ router.get("/prueba", async (req, res) => {
   });
   return res.status(200).json(response);
 });
+
+router.get("/types", async (req, res) => {
+  try {
+    const objeto = {
+      ubication: ["interior", "exterior"],
+      ligth: [
+        "pleno sol",
+        "media sombra",
+        "luz filtrada",
+        "intensa sin exposición solar directa",
+      ],
+      whater: [
+        "poco frecuente",
+        "espaciado",
+        "abundante",
+        "regular",
+        "moderado",
+        "abundante en verano y moderado en invierno",
+      ],
+      size: ["grande", "mediano", "pequeño"],
+      type: [
+        "floral",
+        "sin flores",
+        "apta maceta",
+        "arbol",
+        "aromatica",
+        "huerta",
+        "medicinal",
+        "frutal",
+        "arbusto",
+        "suculenta",
+        "cactus",
+        "trepadora",
+      ],
+      climate: [
+        "calido",
+        "humedo",
+        "templado",
+        "resistente al frio",
+        "resistente a la sequia",
+        "poco resistente al viento",
+        "arido",
+        "resistente al viento",
+      ],
+    };
+
+    return res.status(200).json(objeto);
+  } catch (error) {
+    throw new Error("Error en routes -> get./types ", error.message);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    let plant = await getDbId(id);
+
+    return res.status(200).json(plant);
+  } catch (error) {
+    res.status(400).json("Error en Routes -> plants.js: ", error.message);
+  }
+});
+
+//DEVUELVE OBJETO CON ARRAYS PARA EL FILTRADO
 
 router.put("/", async (req, res) => {
   const obj = req.body;
@@ -105,69 +173,6 @@ router.put("/", async (req, res) => {
 });
 
 //ENCONTRAR PLANTA POR PARAMS
-router.get("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    let plant = await getDbId(id);
-
-    return res.status(200).json(plant);
-  } catch (error) {
-    res.status(400).json("Error en Routes -> plants.js: ", error.message);
-  }
-});
-
-//DEVUELVE OBJETO CON ARRAYS PARA EL FILTRADO
-router.get("/types", async (req, res) => {
-  try {
-    let objeto = {
-      ubication: ["interior", "exterior"],
-      ligth: [
-        "pleno sol",
-        "media sombra",
-        "luz filtrada",
-        "intensa sin exposición solar directa",
-      ],
-      whater: [
-        "poco frecuente",
-        "espaciado",
-        "abundante",
-        "regular",
-        "moderado",
-        "abundante en verano y moderado en invierno",
-      ],
-      size: ["grande", "mediano", "pequeño"],
-      type: [
-        "floral",
-        "sin flores",
-        "apta maceta",
-        "arbol",
-        "aromatica",
-        "huerta",
-        "medicinal",
-        "frutal",
-        "arbusto",
-        "suculenta",
-        "cactus",
-        "trepadora",
-      ],
-      climate: [
-        "calido",
-        "humedo",
-        "templado",
-        "resistente al frio",
-        "resistente a la sequia",
-        "poco resistente al viento",
-        "arido",
-        "resistente al viento",
-      ],
-    };
-
-    res.status(200).json(objeto);
-  } catch (error) {
-    throw new Error("Error en routes -> get./types ", error.message);
-  }
-});
 
 // router.get("/types", async (req, res) => {
 //   const tabla = await Plants.findAll();

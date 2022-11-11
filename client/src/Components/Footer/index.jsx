@@ -11,7 +11,7 @@ const Footer = () => {
   };
   return (
     <footer
-      class="bg-dark text-center text-white"
+      className="bg-dark text-center text-white"
       style={{
         bottom: 0,
         width: "100%",
@@ -20,7 +20,7 @@ const Footer = () => {
       }}
     >
       <div
-        class=""
+        className=""
         style={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -38,28 +38,28 @@ const Footer = () => {
         </div>
         <div>
           <a
-            class="btn btn-outline-light btn-floating m-1"
+            className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
             <Twitter />
           </a>
           <a
-            class="btn btn-outline-light btn-floating m-1"
+            className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
             <Instagram />
           </a>
           <a
-            class="btn btn-outline-light btn-floating m-1"
+            className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
             <LinkedIn />
           </a>
           <a
-            class="btn btn-outline-light btn-floating m-1"
+            className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
@@ -67,11 +67,11 @@ const Footer = () => {
           </a>
         </div>
         <div>
-          <p class="d-flex justify-content-center align-items-center">
+          <p className="d-flex justify-content-center align-items-center">
             <span style={{ marginRight: "1rem" }}>Registrese, es gratis!</span>
             <button
               type="button"
-              class="btn btn-outline-light btn-rounded"
+              className="btn btn-outline-light btn-rounded"
               onClick={() => loginWithRedirect()}
             >
               Sign up!

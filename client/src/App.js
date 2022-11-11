@@ -9,7 +9,7 @@ import CreacionDePlanta from "./Components/CreacionDePlanta";
 import Huerta from "./Components/Huerta";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getHuerta, getHuertaDetail } from "./redux/actions";
+import { getHuerta, getHuertaDetail, getTiposHuerta } from "./redux/actions";
 import Detalle from "./Components/Detalle";
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getHuerta());
+    dispatch(getTiposHuerta());
   }, []);
   return (
     <ThemeProvider theme={theme}>
