@@ -49,7 +49,6 @@ const ContainerFormPlanta = () => {
         }
         else {
             if (!(planta[e.target.name].includes(e.target.value))) {
-                console.log([...planta[e.target.name], e.target.value].length)
                 setPlanta({
                     ...planta,
                     [e.target.name]: [...planta[e.target.name], e.target.value]
@@ -76,6 +75,18 @@ const ContainerFormPlanta = () => {
                     }
                 }) */
         /*Enviamos el coso */
+    }
+    const eliminar = (e) => {
+        e.preventDefault()
+        console.log(planta[e.target.name])
+        if (!planta[e.target.name].filter(quedan => quedan !== e.target.value).length) setOcultar({
+            ...ocultar,
+            [e.target.name]: false
+        })
+        setPlanta({
+            ...planta,
+            [e.target.name]: [...planta[e.target.name]].filter(quedan => quedan !== e.target.value)
+        })
     }
 
 
@@ -127,7 +138,24 @@ const ContainerFormPlanta = () => {
                                     !ocultar.ubication ?
                                         <Obligatorio ocultar={planta.ubication.length} tipo={"2"} />
                                         :
-                                        <div>Hola</div>
+                                        <div className='containerSelec'>
+                                            {
+                                                planta.ubication.map(elem => {
+                                                    return (
+                                                        <div className='containerElem'>
+                                                            <h6>{elem}</h6>
+                                                            <button
+                                                                type='button'
+                                                                className='btn-success btnElem'
+                                                                onClick={(e) => eliminar(e)}
+                                                                value={elem}
+                                                                name='ubication'
+                                                            >X</button>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                 }
                             </div>
                         </div>
@@ -155,12 +183,28 @@ const ContainerFormPlanta = () => {
                                     !ocultar.luminosidad ?
                                         <Obligatorio ocultar={planta.luminosidad.length} tipo={"3"} />
                                         :
-                                        <div>Hola</div>
+                                        <div className='containerSelec'>
+                                            {
+                                                planta.luminosidad.map(elem => {
+                                                    return (
+                                                        <div className='containerElem'>
+                                                            <h6>{elem}</h6>
+                                                            <button
+                                                                type='button'
+                                                                className='btn-success btnElem'
+                                                                onClick={(e) => eliminar(e)}
+                                                                value={elem}
+                                                                name='luminosidad'>X</button>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                 }
                             </div>
                         </div>
                     </div>
-                </div>
+                </div >
                 <div className="mb-3 containerFlex" >
                     <div class="input-group mb-3 directionColumna">
                         <div>
@@ -187,7 +231,23 @@ const ContainerFormPlanta = () => {
                                         !ocultar.riego ?
                                             <Obligatorio ocultar={planta.tamano.length} tipo={"4"} />
                                             :
-                                            <div>Hola</div>
+                                            <div className='containerSelec'>
+                                                {
+                                                    planta.riego.map(elem => {
+                                                        return (
+                                                            <div className='containerElem'>
+                                                                <h6>{elem}</h6>
+                                                                <button
+                                                                    type='button'
+                                                                    className='btn-success btnElem'
+                                                                    onClick={(e) => eliminar(e)}
+                                                                    value={elem}
+                                                                    name='riego'>X</button>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
                                     }
                                 </div>
                             </div>
@@ -217,7 +277,23 @@ const ContainerFormPlanta = () => {
                                     !ocultar.tamano ?
                                         <Obligatorio ocultar={planta.tamano.length} tipo={"5"} />
                                         :
-                                        <div>Hola</div>
+                                        <div className='containerSelec'>
+                                            {
+                                                planta.tamano.map(elem => {
+                                                    return (
+                                                        <div className='containerElem'>
+                                                            <h6>{elem}</h6>
+                                                            <button
+                                                                type='button'
+                                                                className='btn-success btnElem'
+                                                                onClick={(e) => eliminar(e)}
+                                                                value={elem}
+                                                                name='tamano'>X</button>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                 }
                             </div>
                         </div>
@@ -248,7 +324,23 @@ const ContainerFormPlanta = () => {
                                     !ocultar.tipo ?
                                         <Obligatorio ocultar={planta.tipo.length} tipo={"6"} />
                                         :
-                                        <div>Hola</div>
+                                        <div className='containerSelec'>
+                                            {
+                                                planta.tipo.map(elem => {
+                                                    return (
+                                                        <div className='containerElem'>
+                                                            <h6>{elem}</h6>
+                                                            <button
+                                                                type='button'
+                                                                className='btn-success btnElem'
+                                                                onClick={(e) => eliminar(e)}
+                                                                value={elem}
+                                                                name='tipo'>X</button>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                 }
                             </div>
                         </div>
@@ -277,7 +369,24 @@ const ContainerFormPlanta = () => {
                                     !ocultar.clima ?
                                         <Obligatorio ocultar={planta.clima.length} tipo={"7"} />
                                         :
-                                        <div>Hola</div>
+                                        <div className='containerSelec'>
+                                            {
+                                                planta.clima.map(elem => {
+                                                    return (
+                                                        <div className='containerElem'>
+                                                            <h6 style={{ margin: "0" }}>{elem}</h6>
+                                                            <button
+                                                                type='button'
+                                                                className='btn-success btnElem'
+                                                                onClick={(e) => eliminar(e)}
+                                                                value={elem}
+                                                                name='clima'
+                                                            >X</button>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                 }
                             </div>
                         </div>
@@ -340,9 +449,9 @@ const ContainerFormPlanta = () => {
                     <div className='directionColumna2'>
                     </div>
                 </div> */}
-                <button type="submit" onClick={sendPlant} className="btn btn-success btn-sm widthBtn">Submit</button>
-            </form>
-        </div>
+                <button type="submit" onClick={sendPlant} className="btn btn-success btn-sm widthBtn">Crear</button>
+            </form >
+        </div >
     )
 }
 

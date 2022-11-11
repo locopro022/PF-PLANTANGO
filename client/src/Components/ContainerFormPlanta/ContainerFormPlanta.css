@@ -29,3 +29,35 @@
     flex-direction: row;
     width: 300px
 }
+
+.containerSelec {
+    height: 60px;
+    overflow: auto;
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+}
+
+.containerSelec::-webkit-scrollbar {
+    display: none;
+}
+
+.containerElem {
+    margin-top: 10px;
+    display: flex;
+    height: 25px;
+    justify-content: center;
+    width: 50%;
+    border-bottom: 1px solid rgb(40, 167, 69);
+    border-left: 1px solid rgb(40, 167, 69);
+    border-right: 1px solid rgb(40, 167, 69);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.btnElem {
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 0rem;
+    margin-left: 10px;
+}
