@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './chat.css'
 import groot from '../../img/groot.png'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Chat = () => {
     const navigate = useNavigate()
+    const { loginWithRedirect } = useAuth0();
 
     const [pregunta, setPregunta] = useState({
         primer: false,
@@ -103,7 +105,7 @@ const Chat = () => {
                                 <div className='containerButtons'>
                                     <div className='cardButton'>
                                         <button
-                                            onClick={() => navigate('/iniciarSesion')}
+                                            onClick={() => loginWithRedirect()}
                                             name='tercero'
                                             value='color1'
                                             type='button'
