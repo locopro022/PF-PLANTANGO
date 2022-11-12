@@ -11,7 +11,7 @@ const ContainerCardHuertaHome = (props) => {
             <div className="card-img-overlay">
                 <h6 className="card-title" style={{ color: 'white', textShadow: '2px 2px 2px black' }}>{planta.namePlant}</h6>
                 <p className="card-text" style={{ color: 'white', textShadow: '2px 2px 2px black', fontSize: '14px' }}>{descripcion}</p>
-                <button className='btn btn-success' onClick={() => navigate('/huerta')}>Visitar huerta</button>
+                <button className='btn degrade' onClick={() => navigate('/huerta')}>Visitar huerta</button>
             </div>
         </div>
     )

@@ -185,7 +185,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Ubicación
                   </label>
                 </div>
@@ -236,7 +236,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Luminosidad
                   </label>
                 </div>
@@ -289,7 +289,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Riego
                   </label>
                 </div>
@@ -342,7 +342,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Tamaño
                   </label>
                 </div>
@@ -395,7 +395,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Tipo
                   </label>
                 </div>
@@ -446,7 +446,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Clima
                   </label>
                 </div>
@@ -497,7 +497,7 @@ const ContainerFormPlanta = () => {
         <div className="mb-3 containerFlex">
           <div class="input-group mb-3 directionColumna">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">
+              <label class="input-group-text degrade" for="inputGroupSelect01">
                 Toxicidad
               </label>
             </div>
@@ -514,7 +514,7 @@ const ContainerFormPlanta = () => {
             </select>
           </div>
           <div className="directionColumna2">
-            <label for="exampleInputPassword1" className="form-label">
+            <label for="exampleInputPassword1" className="form-label ">
               Descripción
             </label>
             <textarea
@@ -527,41 +527,15 @@ const ContainerFormPlanta = () => {
             />
           </div>
         </div>
-        {/*         <div className="mb-3 containerFlex">
-          <div>
-            <label for="exampleInputEmail1" className="form-label">
-              Imagen en link
-            </label>
-            <input
-              style={{ width: "25rem" }}
-              type="text"
-              className="form-control anchoInput"
-              id="exampleInputEmail1"
-              name="imagePlant"
-              value={planta.imagePlant}
-              onChange={changeValue}
-            />
-          </div>
-        </div> */}
-        {/*         <div className="mb-3 containerFlex">
-          <div className='directionColumna2'>
-            <input
-              onChange={uploadImage}
-              style={{ cursor: 'pointer' }}
-              className='form-control'
-              type='file'
-              name='imagePlant'
-              value={planta.imagePlant}
-            />
-          </div>
-          <div className='directionColumna2'>
-          </div>
-        </div> */}
         <button
           type="submit"
           onClick={sendPlant}
-          className="btn btn-success btn-sm widthBtn"
+          className="btn btn-sm widthBtn buttonCrear"
         >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
           Crear
         </button>
       </form>
