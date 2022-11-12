@@ -33,11 +33,12 @@
 }
 
 .containerPuntitos {
-    width: 500px;
+    width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 70px;
+    margin-top: 30px;
 }
 
 .containerh3 {
@@ -45,12 +46,13 @@
 }
 
 .containerOpcion {
-    width: 500px;
+    width: 400px;
     display: flex;
-    margin-top: 20px;
+    margin-top: 30px;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
 }
 
 .tituloChat {
@@ -107,6 +109,21 @@
 .containerPreguntas::-webkit-scrollbar {
     width: 0px;
     background: transparent;
+}
+
+.ocultarOpciones {
+    position: absolute;
+    left: 0;
+    width: 399px;
+    height: 244px;
+    background-color: rgb(3, 3, 3, 0.75);
+    color: #28a745;
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    cursor: no-drop;
+    top: 0;
 }
 
 #ultimo {
