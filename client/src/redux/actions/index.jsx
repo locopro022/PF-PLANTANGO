@@ -9,6 +9,8 @@ export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
 export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
 
+export const URL = "URL"
+
 const API_URL = "http://localhost:3001";
 
 const get = async (url, parameter = {}) => {
@@ -65,3 +67,7 @@ export const getHuerta =
 export const crearPlanta = (planta) => async () => {
   await axios.post(`${API_URL}/plants/creacion`, planta)
 };
+
+export const urlPlantaCreada = (url) => (dispatch) => {
+  return dispatch({ type: URL, payload: url })
+}
