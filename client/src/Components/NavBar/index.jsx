@@ -9,10 +9,12 @@ import Carrito from "../Carrito";
 import MenuNotificaciones from "../MenuNotificaciones";
 import MenuInicioSesion from "../MenuInicioSesion";
 import MenuSesionIniciada from "../MenuSesionIniciada";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
+  const {isAuthenticated} = useAuth0()
   const navigate = useNavigate();
-  const [condicionInicioSesion, setCondicionInicioSesion] = useState(false);
+  console.log("cuenta logueada?",isAuthenticated);
   return (
     <div className="containerNavBar">
       <div className="containerUl deshabilitadoUl">
@@ -79,7 +81,7 @@ const NavBar = () => {
           </Badge>
         </IconButton>
         <MenuNotificaciones />
-        {condicionInicioSesion ? <MenuSesionIniciada /> : <MenuInicioSesion />}
+        {isAuthenticated ? <MenuSesionIniciada /> : <MenuInicioSesion />}
       </div>
     </div>
   );

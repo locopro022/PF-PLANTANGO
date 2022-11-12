@@ -3,10 +3,12 @@ import { AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import "../MenuInicioSesion/MenuInicioSesion.css";
 import { Badge } from "@mui/material";
+import { useAuth0 } from "@auth0/auth0-react";
 
 //Menu desplegable que aparece cuando la sesion esta iniciada.
 
 const MenuSesionIniciada = () => {
+  const {logout} = useAuth0()
   const navigate = useNavigate();
   return (
     <div className="dropdown-center">
@@ -31,7 +33,7 @@ const MenuSesionIniciada = () => {
         <span
           type="button"
           className="dropdown-item edit cerrarSe"
-          onClick={() => navigate("/iniciarSesion")}
+          onClick={() => logout()}
         >
           Cerrar sesion
         </span>
