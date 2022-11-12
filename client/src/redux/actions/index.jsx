@@ -8,6 +8,7 @@ export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
 export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
+export const GET_SEARCH = "GET_SEARCH";
 
 const API_URL = "http://localhost:3001";
 
@@ -65,3 +66,15 @@ export const getHuerta =
 export const crearPlanta = (planta) => async () => {
   await axios.post(`${API_URL}/plants/creacion`, planta)
 };
+
+export const getSearch = (search)=> {
+  try {
+    return(dispatch)=>{
+      fetch(`http://localhost:3001/plants?search=${search}`)
+      .then ((response)=> response.json())
+      .then((data)=> dispatch({ type: GET_SEARCH, payload: data}))
+    }
+  } catch (error) {
+    throw new Error("Error en actions  -> getSearch")
+  }
+}

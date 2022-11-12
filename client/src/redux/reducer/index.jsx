@@ -5,6 +5,7 @@ import {
   CONSTRAIN_HUERTA,
   GET_ARRAY_NOTIFICACIONES,
   GET_ARRAY_CARRITO,
+  GET_SEARCH
 } from "../actions";
 
 import { plantaACarta } from "../utils";
@@ -57,6 +58,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         arrayCarrito: [...action.payload],
       };
+      case GET_SEARCH: 
+      return {
+        ...state,
+        arrayHuerta: action.payload
+      }
     default:
       return state;
   }

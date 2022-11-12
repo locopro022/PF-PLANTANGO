@@ -6,6 +6,7 @@ import { constrainHuerta, getHuerta } from "../../redux/actions";
 import { useEffect } from "react";
 import { plantaACarta } from "../../redux/utils";
 import AlPrincipio from '../AlPrincipio'
+import SearchBarHuerta from "../SearchBarHuerta/SearchBarHuerta.jsx";
 
 const Vivero = () => {
   const filtros = useSelector((state) => state.tiposHuerta);
@@ -32,6 +33,7 @@ const Vivero = () => {
       <div className="container-fluid">
         <h3 className="">Bienvenido la huerta!</h3>
         <div className="">
+          <div><SearchBarHuerta/></div>
           <div className="row">
             <div className="col-2">
               <Filtros filtros={filtros} apply={applyFilters} />
