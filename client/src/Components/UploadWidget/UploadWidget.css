@@ -1,0 +1,69 @@
+.buttonUp {
+    background-color: transparent;
+    border: none;
+    color: rgb(51, 240, 95);
+    cursor: pointer;
+    transition: .5 all;
+    position: relative;
+    padding: 10px 5px;
+    transition: 800ms all;
+    border: 1px solid rgb(51, 240, 95);
+    ;
+}
+
+.buttonUp span {
+    position: absolute;
+    background: #fff;
+}
+
+.buttonUp span:nth-child(1) {
+    width: 20px;
+    height: 1px;
+    background-color: rgb(51, 240, 95);
+    top: -7px;
+    left: -7px;
+    transition: 800ms all;
+}
+
+.buttonUp:hover span:nth-child(1) {
+    width: 112%;
+}
+
+.buttonUp span:nth-child(2) {
+    width: 20px;
+    height: 1px;
+    background-color: rgb(51, 240, 95);
+    bottom: -7px;
+    right: -7px;
+    transition: 800ms all;
+}
+
+.buttonUp:hover span:nth-child(2) {
+    width: 112%;
+}
+
+.buttonUp span:nth-child(3) {
+    width: 1px;
+    height: 20px;
+    background-color: rgb(51, 240, 95);
+    bottom: -7px;
+    right: -7px;
+    transition: 800ms all
+}
+
+.buttonUp:hover span:nth-child(3) {
+    height: 57px;
+}
+
+.buttonUp span:nth-child(4) {
+    width: 1px;
+    height: 20px;
+    background-color: rgb(51, 240, 95);
+    top: -7px;
+    left: -7px;
+    transition: 800ms all;
+}
+
+.buttonUp:hover span:nth-child(4) {
+    height: 57px;
+}

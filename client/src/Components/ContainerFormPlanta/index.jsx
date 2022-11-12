@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./ContainerFormPlanta.css";
 import { crearPlanta } from "../../redux/actions";
 import { Obligatorio } from "../Obligatorio";
 import { useDispatch, useSelector } from "react-redux";
 import { getTiposHuerta } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
+import UploadWidget from "../UploadWidget";
+import imgDefault from '../../img/default.jpg'
+import axios from "axios";
 
 const ContainerFormPlanta = () => {
   const navigate = useNavigate()
   const tipos = useSelector(state => state.tiposHuerta)
+  const url = useSelector(state => state.url)
   const dispatch = useDispatch();
+  console.log("aca", typeof url)
   const [ocultar, setOcultar] = useState({
     namePlant: false,
     descripPlant: false,
@@ -32,6 +37,17 @@ const ContainerFormPlanta = () => {
     toxicity: "",
     imagePlant: "",
   });
+
+  console.log(planta)
+
+  const uploadImage = async (e) => {
+    /*     let dataform = new FormData();
+        dataform.append("file", files[0]);
+        dataform.append("upload_preset", "imagen");
+        const res = await axios.post("https://api.cloudinary.com/v1_1/doycjj3gx/upload", dataform)
+        console.log("res", res) */
+  }
+
   const changeValue = (e) => {
     if (
       e.target.name === "namePlant" ||
@@ -116,12 +132,31 @@ const ContainerFormPlanta = () => {
     });
   };
 
+  const deleteImg = () => {
+    setPlanta({
+      ...planta,
+      imagePlant: ''
+    })
+  }
+
   useEffect(() => {
-    dispatch(getTiposHuerta())
-  }, [])
+    !tipos?.length && dispatch(getTiposHuerta())
+    setPlanta({
+      ...planta,
+      imagePlant: url
+    })
+  }, [url])
 
   return (
     <div className="containerPlanta">
+      <div className="containerUpload">
+        <div className="hiddenBtn" hidden={planta.imagePlant.length ? true : false}></div>
+        <button className="btnBorrar" hidden={planta.imagePlant.length ? false : true} onClick={deleteImg}>X</button>
+        <img src={planta.imagePlant?.length ? planta.imagePlant : imgDefault} className='imgSubir' alt='img' />
+        <div>
+          <UploadWidget />
+        </div>
+      </div>
       <form className="text-center">
         <div className="mb-3 containerFlex">
           <div>
@@ -492,7 +527,7 @@ const ContainerFormPlanta = () => {
             />
           </div>
         </div>
-        <div className="mb-3 containerFlex">
+        {/*         <div className="mb-3 containerFlex">
           <div>
             <label for="exampleInputEmail1" className="form-label">
               Imagen en link
@@ -507,21 +542,21 @@ const ContainerFormPlanta = () => {
               onChange={changeValue}
             />
           </div>
-        </div>
-        {/*                 <div className="mb-3 containerFlex">
-                    <div className='directionColumna2'>
-                        <input
-                            onChange={changeValue}
-                            style={{ cursor: 'pointer' }}
-                            className='form-control'
-                            type='file'
-                            name='imagePlant'
-                            value={planta.imagePlant}
-                        />
-                    </div>
-                    <div className='directionColumna2'>
-                    </div>
-                </div> */}
+        </div> */}
+        {/*         <div className="mb-3 containerFlex">
+          <div className='directionColumna2'>
+            <input
+              onChange={uploadImage}
+              style={{ cursor: 'pointer' }}
+              className='form-control'
+              type='file'
+              name='imagePlant'
+              value={planta.imagePlant}
+            />
+          </div>
+          <div className='directionColumna2'>
+          </div>
+        </div> */}
         <button
           type="submit"
           onClick={sendPlant}
