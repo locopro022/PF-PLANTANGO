@@ -13,7 +13,7 @@ const MenuSesionIniciada = () => {
   const { isAuthenticated } = useAuth0()
   const navigate = useNavigate();
   return (
-    <div className="dropdown-center">
+    <div className="btn-group dropleft">
       <button
 
         className="btn btn-light backgroundBtn"
@@ -29,16 +29,9 @@ const MenuSesionIniciada = () => {
       <div className="dropdown-menu">
         <span
           className="dropdown-item edit"
-          onClick={() => navigate("/perfil")}
+          onClick={() => navigate("/ajustes")}
         >
-          Datos del usuario
-        </span>
-        <span
-          type="button"
-          className="dropdown-item edit"
-          onClick={() => navigate('/creacionPlanta')}
-        >
-          Crear planta
+          Ajustes
         </span>
         <span
           type="button"
