@@ -55,6 +55,7 @@ const ContainerFormPlanta = () => {
       e.target.name === "toxicity" ||
       e.target.name === "imagePlant"
     ) {
+      if (e.target.value === "Toxicidad") e.target.value = "";
       setPlanta({
         ...planta,
         [e.target.name]: e.target.value,
@@ -218,7 +219,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className="btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="ubication"
@@ -270,7 +271,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="ligth"
@@ -325,7 +326,7 @@ const ContainerFormPlanta = () => {
                             <h6>{elem}</h6>
                             <button
                               type="button"
-                              className="btn-success btnElem"
+                              className=" btnElem"
                               onClick={(e) => eliminar(e)}
                               value={elem}
                               name="whater"
@@ -378,7 +379,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="size"
@@ -432,7 +433,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="type"
@@ -484,7 +485,7 @@ const ContainerFormPlanta = () => {
                           <h6 style={{ margin: "0" }}>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="climate"

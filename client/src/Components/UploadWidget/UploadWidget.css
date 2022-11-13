@@ -18,6 +18,18 @@
     border: 1px solid rgb(40, 189, 75);
 }
 
+.buttonUp:hover {
+    background-image: linear-gradient(to left,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+}
+
 .buttonUp span {
     position: absolute;
     background: #fff;
