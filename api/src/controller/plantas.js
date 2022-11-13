@@ -39,22 +39,25 @@ const getDbId = async (id) => {
 
 //LLENAR DB
 const llenarDB = async () => {
-  const db = dbBuild.map((planta) => {
-    return {
-      namePlant: planta.NOMBRE,
-      descripPlant: planta.DESCRIPCION,
-      ubication: planta.UBICACION,
-      ligth: planta.LUMINOSIDAD,
-      whater: planta.RIEGO,
-      size: planta.TAMANIO,
-      type: planta.TIPO,
-      climate: planta.PREFERENCIA_CLIMATICA,
-      toxicity: planta.TOXICIDAD,
-      statePlant: true,
-      imagePlant: planta.IMAGEN,
-    };
-  });
-  await Plants.bulkCreate(db);
+  const tabla = await Plants.findAll();
+  if (!tabla.length) {
+    const db = dbBuild.map((planta) => {
+      return {
+        namePlant: planta.NOMBRE,
+        descripPlant: planta.DESCRIPCION,
+        ubication: planta.UBICACION,
+        ligth: planta.LUMINOSIDAD,
+        whater: planta.RIEGO,
+        size: planta.TAMANIO,
+        type: planta.TIPO,
+        climate: planta.PREFERENCIA_CLIMATICA,
+        toxicity: planta.TOXICIDAD,
+        statePlant: true,
+        imagePlant: planta.IMAGEN,
+      };
+    });
+    await Plants.bulkCreate(db);
+  }
 
   // for (let i = 0; i < dbBuild.length; i++) {
   //   let nObj = {
