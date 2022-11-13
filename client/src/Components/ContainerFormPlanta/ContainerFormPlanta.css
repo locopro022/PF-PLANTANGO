@@ -93,11 +93,24 @@
     border: none;
     color: #000;
     cursor: pointer;
+    font-size: 18px;
     transition: .5 all;
     position: relative;
     padding: 10px 5px;
     transition: 800ms all;
     border: 1px solid rgb(40, 189, 75);
+}
+
+.buttonCrear:hover {
+    background-image: linear-gradient(to left,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
 }
 
 .buttonCrear span {
@@ -106,61 +119,61 @@
 }
 
 .buttonCrear span:nth-child(1) {
-    width: 20px;
-    height: 1px;
+    width: 25px;
+    height: 2px;
     background-color: rgb(40, 189, 75);
-    bottom: -7px;
-    left: -7px;
+    bottom: -5px;
+    left: -5px;
     transition: 800ms all;
 }
 
 .buttonCrear:hover span:nth-child(1) {
-    width: 107%;
+    width: 105%;
 }
 
 .buttonCrear span:nth-child(2) {
-    width: 20px;
-    height: 1px;
+    width: 25px;
+    height: 2px;
     background-color: rgb(40, 189, 75);
-    top: -7px;
-    right: -7px;
+    top: -5px;
+    right: -5px;
     transition: 800ms all;
 }
 
 .buttonCrear:hover span:nth-child(2) {
-    width: 107%;
+    width: 105%;
 }
 
 .buttonCrear span:nth-child(3) {
-    width: 1px;
-    height: 20px;
+    width: 2px;
+    height: 25px;
     background-color: rgb(40, 189, 75);
-    top: -7px;
-    right: -7px;
+    top: -5px;
+    right: -5px;
     transition: 800ms all
 }
 
 .buttonCrear:hover span:nth-child(3) {
-    height: 55px;
+    height: 57px;
 }
 
 .buttonCrear span:nth-child(4) {
-    width: 1px;
-    height: 20px;
+    width: 2px;
+    height: 25px;
     background-color: rgb(40, 189, 75);
-    bottom: -7px;
-    left: -7px;
+    bottom: -5px;
+    left: -5px;
     transition: 800ms all;
 }
 
 .buttonCrear:hover span:nth-child(4) {
-    height: 55px;
+    height: 57px;
 }
 
 .anchoDeInput {
     display: flex;
     flex-direction: row;
-    width: 300px
+    width: 300px;
 }
 
 .containerSelec {
@@ -177,16 +190,38 @@
 
 .containerElem {
     margin-top: 10px;
+    margin-left: 5px;
     display: flex;
     height: auto;
     justify-content: center;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    position: relative;
+}
+
+.containerElem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80%;
+    height: 2px;
+    background-color: #07f362;
 }
 
 .btnElem {
     font-size: 14px;
     cursor: pointer;
+    border: none;
     line-height: 0rem;
     margin-left: 10px;
+    background-image: linear-gradient(to left,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+    height: 20px;
+    border-radius: 5px;
 }

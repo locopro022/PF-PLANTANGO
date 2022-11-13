@@ -55,6 +55,7 @@ const ContainerFormPlanta = () => {
       e.target.name === "toxicity" ||
       e.target.name === "imagePlant"
     ) {
+      if (e.target.value === "Toxicidad") e.target.value = "";
       setPlanta({
         ...planta,
         [e.target.name]: e.target.value,
@@ -195,6 +196,7 @@ const ContainerFormPlanta = () => {
                   value={planta.ubication}
                   onChange={changeValue}
                   name="ubication"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Ubicación</option>
                   {
@@ -217,7 +219,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className="btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="ubication"
@@ -246,6 +248,7 @@ const ContainerFormPlanta = () => {
                   name="ligth"
                   value={planta.ligth}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Luminosidad</option>
                   {
@@ -268,7 +271,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="ligth"
@@ -299,6 +302,7 @@ const ContainerFormPlanta = () => {
                   name="whater"
                   value={planta.whater}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Riego</option>
                   {
@@ -322,7 +326,7 @@ const ContainerFormPlanta = () => {
                             <h6>{elem}</h6>
                             <button
                               type="button"
-                              className="btn-success btnElem"
+                              className=" btnElem"
                               onClick={(e) => eliminar(e)}
                               value={elem}
                               name="whater"
@@ -352,6 +356,7 @@ const ContainerFormPlanta = () => {
                   name="size"
                   value={planta.size}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Tamaño</option>
                   {
@@ -374,7 +379,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="size"
@@ -405,6 +410,7 @@ const ContainerFormPlanta = () => {
                   onChange={changeValue}
                   value={planta.type}
                   name="type"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Tipo</option>
                   {
@@ -427,7 +433,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="type"
@@ -456,6 +462,7 @@ const ContainerFormPlanta = () => {
                   value={planta.climate}
                   onChange={changeValue}
                   name="climate"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Preferencia climatica</option>
                   {
@@ -478,7 +485,7 @@ const ContainerFormPlanta = () => {
                           <h6 style={{ margin: "0" }}>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="climate"
@@ -507,6 +514,7 @@ const ContainerFormPlanta = () => {
               name="toxicity"
               onChange={changeValue}
               value={planta.toxicity}
+              style={{ cursor: "pointer" }}
             >
               <option selected>Toxicidad</option>
               <option value="True">True</option>
