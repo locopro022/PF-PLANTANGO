@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.imCont {
+  display: grid;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+/* .leaf {
+  position: relative;
+  width: 8rem;
+  height: auto;
+} */

@@ -1,24 +1,26 @@
-import { Instagram, LinkedIn, Twitter, GitHub } from "@material-ui/icons";
+import { Instagram, LinkedIn, Twitter, GitHub } from "@mui/icons-material";
 import platango from "../../img/plantangoTexto.png";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Footer = () => {
+  const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
   const iniciarSesion = () => {
     navigate("/iniciarSesion");
   };
   return (
     <footer
-      class="bg-dark text-center text-white"
+      className="bg-dark text-center text-white"
       style={{
-        bottom: "0",
+        bottom: 0,
         width: "100%",
         padding: "1rem",
         marginTop: "2rem",
       }}
     >
       <div
-        class=""
+        className=""
         style={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -36,28 +38,28 @@ const Footer = () => {
         </div>
         <div>
           <a
-            class="btn btn-outline-light btn-floating m-1"
+            className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
             <Twitter />
           </a>
           <a
-            class="btn btn-outline-light btn-floating m-1"
+            className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
             <Instagram />
           </a>
           <a
-            class="btn btn-outline-light btn-floating m-1"
+            className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
             <LinkedIn />
           </a>
           <a
-            class="btn btn-outline-light btn-floating m-1"
+            className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
@@ -65,12 +67,12 @@ const Footer = () => {
           </a>
         </div>
         <div>
-          <p class="d-flex justify-content-center align-items-center">
+          <p className="d-flex justify-content-center align-items-center">
             <span style={{ marginRight: "1rem" }}>Registrese, es gratis!</span>
             <button
               type="button"
-              class="btn btn-outline-light btn-rounded"
-              onClick={iniciarSesion}
+              className="btn btn-outline-light btn-rounded"
+              onClick={() => loginWithRedirect()}
             >
               Sign up!
             </button>

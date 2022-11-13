@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './chat.css'
 import groot from '../../img/groot.png'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Chat = () => {
     const navigate = useNavigate()
+    const { loginWithRedirect } = useAuth0();
 
     const [pregunta, setPregunta] = useState({
         primer: false,
@@ -73,10 +75,13 @@ const Chat = () => {
                                         className='btn btn-outline-success button-tam'
                                     >Si 😁</button>
                                     <button
-                                        onClick={() => navigate("/")}
+                                        onClick={() => navigate("/home")}
                                         type='button'
                                         className='btn btn-outline-danger button-tam'
                                     >No 😞</button>
+                                </div>
+                                <div className='ocultarOpciones' hidden={elegido.segundo ? false : true}>
+                                    <h4>Opcion ya seleccionada</h4>
                                 </div>
                             </div>
                         </div>
@@ -97,13 +102,13 @@ const Chat = () => {
                                 <div className='containerGrootH'>
                                     <img src={groot} alt='groot' className='imgGroot' />
                                     <div className='containerText'>
-                                        <h6>Quieres dejar un recordatorio de riego?</h6>
+                                        <h6>Quieres registrate en nuestra pagina?</h6>
                                     </div>
                                 </div>
                                 <div className='containerButtons'>
                                     <div className='cardButton'>
                                         <button
-                                            onClick={opcionElegida}
+                                            onClick={() => loginWithRedirect()}
                                             name='tercero'
                                             value='color1'
                                             type='button'
@@ -116,6 +121,9 @@ const Chat = () => {
                                             type='button'
                                             className='btn btn-outline-danger button-tam'
                                         >No 👎🏻</button>
+                                    </div>
+                                    <div className='ocultarOpciones' hidden={elegido.tercero ? false : true}>
+                                        <h4>Opcion ya seleccionada</h4>
                                     </div>
                                 </div>
                             </div>

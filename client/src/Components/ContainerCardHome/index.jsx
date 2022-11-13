@@ -15,7 +15,7 @@ const ContainerCardHome = (props) => {
                 <img className='card-img-top' src={produc.IMAGEN} />
                 <h5 className="card-title" style={{ marginTop: '10px' }}>{produc.NOMBRE}</h5>
                 <p className="card-text" >{produc.TIPO}</p>
-                <a className="btn btn-success" style={{ color: '#fff' }} onClick={() => navigate('/vivero')} >Visitar vivero</a>
+                <a className="btn degrade" onClick={() => navigate('/vivero')} >Visitar vivero</a>
             </div>
         </div>
     )

@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 const ContainerCardHuertaHome = (props) => {
     const navigate = useNavigate()
-    const { planta } = props
+    const { planta, key } = props
+    let descripcion = planta.descripPlant?.split(' ').slice(0, 10).join(' ') + '...'
     return (
-        <div className="card text-bg-dark estilos" style={{ width: '20rem', marginTop: '15px' }}>
-            <img src={planta.IMAGEN} className="card-img" alt="img" style={{ height: 'auto' }} />
+        <div key={key} className="card text-bg-dark estilos" style={{ width: '20rem', marginTop: '15px', display: 'block', height: '12rem', overflow: 'hidden', cursor: 'pointer' }}>
+            <img src={planta.imagePlant} className="card-img" alt="img" style={{ height: 'auto' }} />
             <div className="card-img-overlay">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <button className='btn btn-success' onClick={() => navigate('/huerta')}>Visitar huerta</button>
+                <h6 className="card-title" style={{ color: 'white', textShadow: '2px 2px 2px black' }}>{planta.namePlant}</h6>
+                <p className="card-text" style={{ color: 'white', textShadow: '2px 2px 2px black', fontSize: '14px' }}>{descripcion}</p>
+                <button className='btn degrade' onClick={() => navigate('/huerta')}>Visitar huerta</button>
             </div>
         </div>
     )
