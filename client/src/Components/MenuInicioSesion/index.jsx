@@ -9,7 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const MenuInicioSesion = () => {
   const { loginWithRedirect } = useAuth0();
   return (
-    <div className="dropstart">
+    <div className="btn-group dropleft">
       <button
         className="btn btn-light backgroundBtn"
         type="button"
