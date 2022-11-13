@@ -23,14 +23,14 @@ const Breadcrumbs = (props) => {
         console.log("Se esta haciendo esta comparacion: \n", item, pathname);
         return `/${item}` === pathname;
       }) && (
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          {breadcrumbs.map((ruta, index) => (
-            <Link key={index} to={ruta.to} style={{ marginRight: "0.2rem" }}>
-              /{ruta.name}
-            </Link>
-          ))}
-        </div>
-      )}
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            {breadcrumbs.map((ruta, index) => (
+              <Link key={index} to={ruta.to} style={{ marginRight: "0.2rem" }}>
+                /{ruta.name}
+              </Link>
+            ))}
+          </div>
+        )}
     </div>
   );
 };
