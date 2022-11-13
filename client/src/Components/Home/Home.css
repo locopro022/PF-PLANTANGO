@@ -11,3 +11,9 @@
     justify-content: center;
     height: 600px;
 }
+
+@media(min-width:2000px) {
+    .containerCarro {
+        height: 1000px;
+    }
+}

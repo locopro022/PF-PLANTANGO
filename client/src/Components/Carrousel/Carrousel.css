@@ -31,3 +31,9 @@
             #56efb4,
             #4ceec5);
 }
+
+@media(min-width:2000px) {
+    .itemImg {
+        height: 1000px;
+    }
+}

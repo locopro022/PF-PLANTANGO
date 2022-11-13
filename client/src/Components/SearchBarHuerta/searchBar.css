@@ -1,40 +1,43 @@
-.searchbox{
-    width: 50%;
-     margin: auto;
-     max-width: 350px;
-   display: flex;
+.searchbox {
+    width: 70%;
+    margin: auto;
+    max-width: 350px;
+    display: flex;
 }
 
-.search-button{
-width: 75%;
-
-border: 2px solid whitesmoke;
-border-radius: 2px;
-border-right: 0px;
-
-padding: 12px;
-background-color: transparent;
-color: rgb(130, 227, 164);
-
-}
-
-.search-input{
-    width: 75%;;
+.search-button {
+    width: 75%;
+    background-color: transparent;
     border: 2px solid whitesmoke;
     border-radius: 2px;
     border-right: 0px;
-    font-size: "Playfair+Display", serif ;
     padding: 12px;
-    
-    background-color: whitesmoke;
-    color: #adabaa;
-    }
+    background-color: transparent;
+    color: rgb(130, 227, 164);
 
-.search-button{
+}
+
+.search-input {
+    width: 100%;
+    outline: none;
+    border: 2px solid whitesmoke;
+    border-radius: 2px;
+    border-right: 0px;
+    font-size: "Playfair+Display", serif;
+    padding: 12px;
+    background-color: transparent;
+    color: #adabaa;
+}
+
+.search-button {
     width: 70px;
     background: whitesmoke;
     color: rgb(39, 72, 57);
-    float:right;
+    float: right;
     border-left: 0px;
+    cursor: pointer;
+}
 
+.search-button::first-letter {
+    text-transform: uppercase;
 }

@@ -26,27 +26,63 @@ const Pagination = (props) => {
       style={{
         display: "flex",
         flexDirection: "row",
+        justifyContent: 'center',
         height: "2rem",
         margin: "1rem",
       }}
     >
       {max > 1 && (
         <>
-          <button onClick={() => move("prev")}>{"<"}</button>
+          <button onClick={() => move("prev")} style={{
+            background:
+              "linear-gradient(to right, #bafd4e, #79f952, #53f65b, #54f35c, #54f090, #56ed9a, #56efb4, #4ceec5)",
+            marginRight: "10px",
+            border: 'none',
+            width: '35px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            outline: 'none'
+          }}>{"<"}</button>
           {Array(max)
             .fill("exequiel")
             .map((exequiel, index) => (
               <button
                 onClick={() => move(index)}
-                style={curr == index ? { backgroundColor: "lightgreen" } : {}}
+                style={curr == index ? {
+                  background:
+                    "linear-gradient(to right, #bafd4e, #79f952, #53f65b, #54f35c, #54f090, #56ed9a, #56efb4, #4ceec5)",
+                  margin: '0px 10px',
+                  border: 'none',
+                  width: '35px',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  outline: 'none'
+                } : {
+                  margin: '0px 10px',
+                  border: 'none',
+                  width: '35px',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  outline: 'none'
+                }}
               >
                 {index + 1}
               </button>
             ))}
-          <button onClick={() => move("next")}>{">"}</button>
+          <button onClick={() => move("next")} style={{
+            background:
+              "linear-gradient(to right, #bafd4e, #79f952, #53f65b, #54f35c, #54f090, #56ed9a, #56efb4, #4ceec5)",
+            marginLeft: "10px",
+            border: 'none',
+            width: '35px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            outline: 'none'
+          }}>{">"}</button>
         </>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 
