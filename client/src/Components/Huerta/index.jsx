@@ -6,6 +6,7 @@ import { constrainHuerta, getHuerta } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { plantaACarta } from "../../redux/utils";
 import AlPrincipio from '../AlPrincipio'
+import Loading from "../Loading";
 
 const Vivero = () => {
   const [iniciarPagina, setIniciarPagina] = useState(true)
@@ -32,33 +33,41 @@ const Vivero = () => {
   return (
     <>
       {
-        iniciarPagina || productos.results?.length <= 6
+        !iniciarPagina
           ?
-          <AlPrincipio />
+          <>
+            {
+              iniciarPagina || productos.results?.length <= 6
+                ?
+                <AlPrincipio />
+                :
+                null
+            }
+            <div className="container-fluid">
+              <h3 className="">Bienvenido la huerta!</h3>
+              <div className="">
+                <div className="row">
+                  <div className="col-2">
+                    <Filtros filtros={filtros} apply={applyFilters} />
+                  </div>
+                  {/* El que tenga muchisimas ganas, le pone estilos. */}
+                  <div className="col">
+                    <Pagination
+                      max={productos.page_count}
+                      curr={productos.page}
+                      apply={(e) =>
+                        dispatch(constrainHuerta({ type: "page", value: e }))
+                      }
+                    />
+                    <Cartas items={productos.results?.map(plantaACarta)} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
           :
-          null
+          <Loading />
       }
-      <div className="container-fluid">
-        <h3 className="">Bienvenido la huerta!</h3>
-        <div className="">
-          <div className="row">
-            <div className="col-2">
-              <Filtros filtros={filtros} apply={applyFilters} />
-            </div>
-            {/* El que tenga muchisimas ganas, le pone estilos. */}
-            <div className="col">
-              <Pagination
-                max={productos.page_count}
-                curr={productos.page}
-                apply={(e) =>
-                  dispatch(constrainHuerta({ type: "page", value: e }))
-                }
-              />
-              <Cartas items={productos.results?.map(plantaACarta)} />
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 };

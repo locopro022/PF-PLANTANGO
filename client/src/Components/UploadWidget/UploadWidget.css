@@ -24,53 +24,53 @@
 }
 
 .buttonUp span:nth-child(1) {
-    width: 20px;
-    height: 1px;
+    width: 25px;
+    height: 2px;
     background-color: rgb(40, 189, 75);
-    top: -7px;
-    left: -7px;
+    top: -5px;
+    left: -5px;
     transition: 800ms all;
 }
 
 .buttonUp:hover span:nth-child(1) {
-    width: 113%;
+    width: 110%;
 }
 
 .buttonUp span:nth-child(2) {
-    width: 20px;
-    height: 1px;
+    width: 25px;
+    height: 2px;
     background-color: rgb(40, 189, 75);
-    bottom: -7px;
-    right: -7px;
+    bottom: -5px;
+    right: -5px;
     transition: 800ms all;
 }
 
 .buttonUp:hover span:nth-child(2) {
-    width: 113%;
+    width: 110%;
 }
 
 .buttonUp span:nth-child(3) {
-    width: 1px;
-    height: 20px;
+    width: 2px;
+    height: 25px;
     background-color: rgb(40, 189, 75);
-    bottom: -7px;
-    right: -7px;
+    bottom: -5px;
+    right: -5px;
     transition: 800ms all
 }
 
 .buttonUp:hover span:nth-child(3) {
-    height: 57px;
+    height: 54px;
 }
 
 .buttonUp span:nth-child(4) {
-    width: 1px;
-    height: 20px;
+    width: 2px;
+    height: 25px;
     background-color: rgb(40, 189, 75);
-    top: -7px;
-    left: -7px;
+    top: -5px;
+    left: -5px;
     transition: 800ms all;
 }
 
 .buttonUp:hover span:nth-child(4) {
-    height: 57px;
+    height: 54px;
 }

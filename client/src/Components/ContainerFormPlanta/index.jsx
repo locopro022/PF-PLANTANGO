@@ -195,6 +195,7 @@ const ContainerFormPlanta = () => {
                   value={planta.ubication}
                   onChange={changeValue}
                   name="ubication"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Ubicación</option>
                   {
@@ -246,6 +247,7 @@ const ContainerFormPlanta = () => {
                   name="ligth"
                   value={planta.ligth}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Luminosidad</option>
                   {
@@ -299,6 +301,7 @@ const ContainerFormPlanta = () => {
                   name="whater"
                   value={planta.whater}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Riego</option>
                   {
@@ -352,6 +355,7 @@ const ContainerFormPlanta = () => {
                   name="size"
                   value={planta.size}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Tamaño</option>
                   {
@@ -405,6 +409,7 @@ const ContainerFormPlanta = () => {
                   onChange={changeValue}
                   value={planta.type}
                   name="type"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Tipo</option>
                   {
@@ -456,6 +461,7 @@ const ContainerFormPlanta = () => {
                   value={planta.climate}
                   onChange={changeValue}
                   name="climate"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Preferencia climatica</option>
                   {
@@ -507,6 +513,7 @@ const ContainerFormPlanta = () => {
               name="toxicity"
               onChange={changeValue}
               value={planta.toxicity}
+              style={{ cursor: "pointer" }}
             >
               <option selected>Toxicidad</option>
               <option value="True">True</option>
