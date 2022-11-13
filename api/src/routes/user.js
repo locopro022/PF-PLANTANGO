@@ -105,10 +105,10 @@ UserR.get("/favorites/:idU", async (req, res) => {
   try {
     const { idU } = req.params;
     if (!idU) {
-      return res.status(400).send({ error: "No eviaste la id del usuario" });
+      return res.status(400).send({ error: "No eviaste el id del usuario" });
     }
 
-    const favId = await Favorites.findAll({ where: { UserIdUser: idU } });
+    const favId = await Favorites.findAll({ where: { UserIdUser: idU} });
 
     const plantasF = await Plants.findAll({
       where: { codPlant: favId[0].dataValues.PlantCodPlant },
