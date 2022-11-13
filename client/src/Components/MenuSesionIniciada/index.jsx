@@ -26,7 +26,7 @@ const MenuSesionIniciada = () => {
       <div className="dropdown-menu">
         <span
           className="dropdown-item edit"
-          onClick={() => navigate("/ajustes")}
+          onClick={() => navigate("/perfil")}
         >
           Ajustes
         </span>
