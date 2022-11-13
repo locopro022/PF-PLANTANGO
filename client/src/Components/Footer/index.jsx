@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Footer = () => {
   const { loginWithRedirect } = useAuth0();
-  const { isAuthenticated } = useAuth0
+  const { isAuthenticated } = useAuth0()
   return (
     <footer
       className="bg-dark text-center text-white"
@@ -63,7 +63,7 @@ const Footer = () => {
           </a>
         </div>
         <div>
-        {isAuthenticated? 
+        {isAuthenticated? null :
           <p className="d-flex justify-content-center align-items-center">
             <span style={{ marginRight: "1rem" }}>Registrese, es gratis!</span>
             <button
@@ -73,7 +73,7 @@ const Footer = () => {
             >
               Sign up!
             </button>
-          </p>: null}
+          </p> }
         </div>
       </div>
     </footer>
