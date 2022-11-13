@@ -11,6 +11,7 @@ export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
 export const ACTIVAR = 'ACTIVAR'
 
 export const URL = "URL"
+export const GET_SEARCH = "GET_SEARCH";
 
 const API_URL = "http://localhost:3001";
 
@@ -75,4 +76,15 @@ export const urlPlantaCreada = (url) => (dispatch) => {
 
 export const activaciones = (nombre) => dispatch => {
   return dispatch({ type: ACTIVAR, payload: nombre })
+}
+export const getSearch = (search)=> {
+  try {
+    return(dispatch)=>{
+      fetch(`http://localhost:3001/plants?search=${search}`)
+      .then ((response)=> response.json())
+      .then((data)=> dispatch({ type: GET_SEARCH, payload: data}))
+    }
+  } catch (error) {
+    throw new Error("Error en actions  -> getSearch")
+  }
 }

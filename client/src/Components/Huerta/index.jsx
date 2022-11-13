@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { plantaACarta } from "../../redux/utils";
 import AlPrincipio from '../AlPrincipio'
 import Loading from "../Loading";
+import SearchBarHuerta from "../SearchBarHuerta/SearchBarHuerta.jsx";
 
 const Vivero = () => {
   const [iniciarPagina, setIniciarPagina] = useState(true)
@@ -46,6 +47,7 @@ const Vivero = () => {
             <div className="container-fluid">
               <h3 className="">Bienvenido la huerta!</h3>
               <div className="">
+          <div><SearchBarHuerta/></div>
                 <div className="row">
                   <div className="col-2">
                     <Filtros filtros={filtros} apply={applyFilters} />

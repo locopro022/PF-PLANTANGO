@@ -36,6 +36,8 @@ router.get("/", async (req, res) => {
 
     let sequelizeFilter = {};
 
+
+    let sequelizeSort = sort || ["namePlant","ASC"]
     for (let key in filter)
       sequelizeFilter[key] = { [Op.contains]: filter[key] };
     console.log("Este es el sequelize filter", sequelizeFilter);
@@ -44,10 +46,10 @@ router.get("/", async (req, res) => {
       where: {
         // ...filter,
         ...(!search ? sequelizeFilter : { namePlant: { [Op.iLike]: `%${search}%` } }),
-
+        
       },
       // order: [["alguna propiedad", "sequelize.literal es una buena funcion aca"]],
-      order: [["codPlant", "DESC"]],
+      order: [sequelizeSort],
       limit: 12,
       offset: (page || 0) * 12,
     });
