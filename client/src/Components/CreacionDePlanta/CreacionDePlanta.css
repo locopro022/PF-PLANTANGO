@@ -1,9 +1,20 @@
+.backgroundCrear {
+    background-image: linear-gradient(to right,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+}
+
 .containerCreacionPlanta {
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .containerPlanta {
@@ -12,6 +23,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.shadowForm {
+    box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 3px 6px 15px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.15);
 }
 
 .anchoInput {

@@ -8,6 +8,9 @@ export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
 export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
+export const ACTIVAR = 'ACTIVAR'
+
+export const URL = "URL"
 export const GET_SEARCH = "GET_SEARCH";
 
 const API_URL = "http://localhost:3001";
@@ -67,6 +70,13 @@ export const crearPlanta = (planta) => async () => {
   await axios.post(`${API_URL}/plants/creacion`, planta)
 };
 
+export const urlPlantaCreada = (url) => (dispatch) => {
+  return dispatch({ type: URL, payload: url })
+}
+
+export const activaciones = (nombre) => dispatch => {
+  return dispatch({ type: ACTIVAR, payload: nombre })
+}
 export const getSearch = (search)=> {
   try {
     return(dispatch)=>{

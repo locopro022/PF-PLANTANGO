@@ -80,6 +80,9 @@ const Chat = () => {
                                         className='btn btn-outline-danger button-tam'
                                     >No 😞</button>
                                 </div>
+                                <div className='ocultarOpciones' hidden={elegido.segundo ? false : true}>
+                                    <h4>Opcion ya seleccionada</h4>
+                                </div>
                             </div>
                         </div>
                         :
@@ -118,6 +121,9 @@ const Chat = () => {
                                             type='button'
                                             className='btn btn-outline-danger button-tam'
                                         >No 👎🏻</button>
+                                    </div>
+                                    <div className='ocultarOpciones' hidden={elegido.tercero ? false : true}>
+                                        <h4>Opcion ya seleccionada</h4>
                                     </div>
                                 </div>
                             </div>

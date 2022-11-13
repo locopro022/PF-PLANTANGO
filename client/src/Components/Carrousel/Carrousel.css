@@ -5,3 +5,29 @@
 .object {
     width: 90vw;
 }
+
+.degrade {
+    background-image: linear-gradient(to right,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+    color: #000;
+}
+
+.degrade:hover {
+    color: #000;
+    background-image: linear-gradient(to left,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+}

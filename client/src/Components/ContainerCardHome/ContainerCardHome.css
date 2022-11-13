@@ -2,4 +2,11 @@
     box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.15);
     -webkit-box-shadow: 3px 6px 15px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.15);
+    transition: 250ms all;
+}
+
+.estilos:hover {
+    box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 3px 6px 15px 0px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.6);
 }

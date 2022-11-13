@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./ContainerFormPlanta.css";
 import { crearPlanta } from "../../redux/actions";
 import { Obligatorio } from "../Obligatorio";
 import { useDispatch, useSelector } from "react-redux";
 import { getTiposHuerta } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom'
+import UploadWidget from "../UploadWidget";
+import imgDefault from '../../img/default.jpg'
+import axios from "axios";
 
 const ContainerFormPlanta = () => {
   const navigate = useNavigate()
   const tipos = useSelector(state => state.tiposHuerta)
+  const url = useSelector(state => state.url)
   const dispatch = useDispatch();
+  console.log("aca", typeof url)
   const [ocultar, setOcultar] = useState({
     namePlant: false,
     descripPlant: false,
@@ -32,6 +37,7 @@ const ContainerFormPlanta = () => {
     toxicity: "",
     imagePlant: "",
   });
+
   const changeValue = (e) => {
     if (
       e.target.name === "namePlant" ||
@@ -39,6 +45,7 @@ const ContainerFormPlanta = () => {
       e.target.name === "toxicity" ||
       e.target.name === "imagePlant"
     ) {
+      if (e.target.value === "Toxicidad") e.target.value = "";
       setPlanta({
         ...planta,
         [e.target.name]: e.target.value,
@@ -87,16 +94,6 @@ const ContainerFormPlanta = () => {
       dispatch(crearPlanta(planta));
       navigate('/huerta')
     }
-    /*         cloudinary.createUploadWidget({
-                    cloudName: 'doycjj3gx',
-                    uploadPreset: 'preset_pabs',
-                }, (err, result) => {
-                    if (!err && result & result.event === 'success') {
-                        console.log('Imagen subida con exito', result.info)
-                    }
-                }) */
-    /*Enviamos el coso */
-    //   Imaginate usar lenguaje apropiado incluso por accidente. >:(
   };
   const eliminar = (e) => {
     e.preventDefault();
@@ -116,12 +113,30 @@ const ContainerFormPlanta = () => {
     });
   };
 
+  const deleteImg = () => {
+    setPlanta({
+      ...planta,
+      imagePlant: ''
+    })
+  }
   useEffect(() => {
-    dispatch(getTiposHuerta())
-  }, [])
+    if (!tipos) dispatch(getTiposHuerta())
+    setPlanta({
+      ...planta,
+      imagePlant: url
+    })
+  }, [url])
 
   return (
     <div className="containerPlanta">
+      <div className="containerUpload">
+        <div className="hiddenBtn" hidden={planta.imagePlant.length ? true : false}></div>
+        <button className="btnBorrar" hidden={planta.imagePlant.length ? false : true} onClick={deleteImg}>X</button>
+        <img src={planta.imagePlant?.length ? planta.imagePlant : imgDefault} className='imgSubir' alt='img' />
+        <div>
+          <UploadWidget />
+        </div>
+      </div>
       <form className="text-center">
         <div className="mb-3 containerFlex">
           <div>
@@ -150,7 +165,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Ubicación
                   </label>
                 </div>
@@ -160,6 +175,7 @@ const ContainerFormPlanta = () => {
                   value={planta.ubication}
                   onChange={changeValue}
                   name="ubication"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Ubicación</option>
                   {
@@ -182,7 +198,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className="btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="ubication"
@@ -201,7 +217,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Luminosidad
                   </label>
                 </div>
@@ -211,6 +227,7 @@ const ContainerFormPlanta = () => {
                   name="ligth"
                   value={planta.ligth}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Luminosidad</option>
                   {
@@ -233,7 +250,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="ligth"
@@ -254,7 +271,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Riego
                   </label>
                 </div>
@@ -264,6 +281,7 @@ const ContainerFormPlanta = () => {
                   name="whater"
                   value={planta.whater}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Riego</option>
                   {
@@ -287,7 +305,7 @@ const ContainerFormPlanta = () => {
                             <h6>{elem}</h6>
                             <button
                               type="button"
-                              className="btn-success btnElem"
+                              className=" btnElem"
                               onClick={(e) => eliminar(e)}
                               value={elem}
                               name="whater"
@@ -307,7 +325,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Tamaño
                   </label>
                 </div>
@@ -317,6 +335,7 @@ const ContainerFormPlanta = () => {
                   name="size"
                   value={planta.size}
                   onChange={changeValue}
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Tamaño</option>
                   {
@@ -339,7 +358,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="size"
@@ -360,7 +379,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Tipo
                   </label>
                 </div>
@@ -370,6 +389,7 @@ const ContainerFormPlanta = () => {
                   onChange={changeValue}
                   value={planta.type}
                   name="type"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Tipo</option>
                   {
@@ -392,7 +412,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="type"
@@ -411,7 +431,7 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">
+                  <label class="input-group-text degrade" for="inputGroupSelect01">
                     Clima
                   </label>
                 </div>
@@ -421,6 +441,7 @@ const ContainerFormPlanta = () => {
                   value={planta.climate}
                   onChange={changeValue}
                   name="climate"
+                  style={{ cursor: "pointer" }}
                 >
                   <option selected>Preferencia climatica</option>
                   {
@@ -443,7 +464,7 @@ const ContainerFormPlanta = () => {
                           <h6 style={{ margin: "0" }}>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="climate"
@@ -462,7 +483,7 @@ const ContainerFormPlanta = () => {
         <div className="mb-3 containerFlex">
           <div class="input-group mb-3 directionColumna">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">
+              <label class="input-group-text degrade" for="inputGroupSelect01">
                 Toxicidad
               </label>
             </div>
@@ -472,6 +493,7 @@ const ContainerFormPlanta = () => {
               name="toxicity"
               onChange={changeValue}
               value={planta.toxicity}
+              style={{ cursor: "pointer" }}
             >
               <option selected>Toxicidad</option>
               <option value="True">True</option>
@@ -479,7 +501,7 @@ const ContainerFormPlanta = () => {
             </select>
           </div>
           <div className="directionColumna2">
-            <label for="exampleInputPassword1" className="form-label">
+            <label for="exampleInputPassword1" className="form-label ">
               Descripción
             </label>
             <textarea
@@ -492,41 +514,15 @@ const ContainerFormPlanta = () => {
             />
           </div>
         </div>
-        <div className="mb-3 containerFlex">
-          <div>
-            <label for="exampleInputEmail1" className="form-label">
-              Imagen en link
-            </label>
-            <input
-              style={{ width: "25rem" }}
-              type="text"
-              className="form-control anchoInput"
-              id="exampleInputEmail1"
-              name="imagePlant"
-              value={planta.imagePlant}
-              onChange={changeValue}
-            />
-          </div>
-        </div>
-        {/*                 <div className="mb-3 containerFlex">
-                    <div className='directionColumna2'>
-                        <input
-                            onChange={changeValue}
-                            style={{ cursor: 'pointer' }}
-                            className='form-control'
-                            type='file'
-                            name='imagePlant'
-                            value={planta.imagePlant}
-                        />
-                    </div>
-                    <div className='directionColumna2'>
-                    </div>
-                </div> */}
         <button
           type="submit"
           onClick={sendPlant}
-          className="btn btn-success btn-sm widthBtn"
+          className="btn btn-sm widthBtn buttonCrear"
         >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
           Crear
         </button>
       </form>

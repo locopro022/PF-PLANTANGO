@@ -5,6 +5,8 @@ import {
   CONSTRAIN_HUERTA,
   GET_ARRAY_NOTIFICACIONES,
   GET_ARRAY_CARRITO,
+  URL,
+  ACTIVAR,
   GET_SEARCH
 } from "../actions";
 
@@ -17,6 +19,8 @@ const initialState = {
   constrainHuerta: {},
   arrayNotificaciones: [],
   arrayCarrito: [],
+  url: '',
+  nombre: 'perfil'
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -38,10 +42,10 @@ const rootReducer = (state = initialState, action) => {
           action.payload === "clear"
             ? {}
             : {
-                ...state.constrainHuerta,
-                page: 0,
-                [action.payload.type]: action.payload.value,
-              },
+              ...state.constrainHuerta,
+              page: 0,
+              [action.payload.type]: action.payload.value,
+            },
       };
     case GET_ARRAY_HUERTA:
       return {
@@ -58,6 +62,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         arrayCarrito: [...action.payload],
       };
+    case URL:
+      return {
+        ...state,
+        url: action.payload
+      }
+    case ACTIVAR:
+      return {
+        ...state,
+        nombre: `${action.payload}`
+      }
       case GET_SEARCH: 
       return {
         ...state,

@@ -6,7 +6,7 @@ import { Badge } from "@mui/material";
 
 const MenuNotificaciones = () => {
   return (
-    <div className="dropstart">
+    <div className="btn-group dropleft">
       <button
         className="btn btn-light backgroundBtn"
         type="button"

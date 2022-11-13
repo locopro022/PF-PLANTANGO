@@ -1,11 +1,7 @@
 const { Router } = require("express");
 const { DailyUser, User, Plants, Favorites } = require("../db");
 
-
 const UserR = Router();
-
-
-
 
 UserR.get("/daily/:id", async (req, res) => {
   const { id } = req.params;
@@ -89,7 +85,9 @@ UserR.post("/favorites/:idU/:idP", async (req, res) => {
   try {
     const { idU, idP } = req.params;
     if (!idU || !idP) {
-      return res.status(400).send({ error: "No eviaste la id del usuario o planta" });
+      return res
+        .status(400)
+        .send({ error: "No eviaste la id del usuario o planta" });
     }
     const user = await User.findByPk(idU);
     const planta = await Plants.findByPk(idP);
@@ -105,53 +103,61 @@ UserR.post("/favorites/:idU/:idP", async (req, res) => {
 
 UserR.get("/favorites/:idU", async (req, res) => {
   try {
+    const { idU } = req.params;
+    if (!idU) {
+      return res.status(400).send({ error: "No eviaste el id del usuario" });
+    }
 
-  const {idU} = req.params;
-  if(!idU){
-    return res.status(400).send({ error: "No eviaste la id del usuario" });
-  }
+    const favId = await Favorites.findAll({ where: { UserIdUser: idU} });
 
-  const favId = await Favorites.findAll({where:{UserIdUser:idU}});
+    const plantasF = await Plants.findAll({
+      where: { codPlant: favId[0].dataValues.PlantCodPlant },
+    });
 
-  const plantasF = await Plants.findAll({where:{codPlant:favId[0].dataValues.PlantCodPlant}})
-
-  res.status(200).send(plantasF);
+    res.status(200).send(plantasF);
   } catch (error) {
     return res.status(400).json({ error });
   }
 });
 
-
-UserR.put("/:idUser", async (req,res)=>{
-
+UserR.put("/:idUser", async (req, res) => {
   try {
-    const {idUser} = req.params;
+    const { idUser } = req.params;
 
     console.log(idUser);
 
     let { username, email, pass, name, lastName, nPhone } = req.body;
 
     if (!idUser) {
-      return res.status(400).send({ error: "No se encontro la id" });}
+      return res.status(400).send({ error: "No se encontro la id" });
+    }
 
-if(idUser){
-  console.log("idUser: ",idUser);
-  console.log("UserName: ",username);
-  console.log("email: ",email);
-  console.log("name: ",name);
+    if (idUser) {
+      console.log("idUser: ", idUser);
+      console.log("UserName: ", username);
+      console.log("email: ", email);
+      console.log("name: ", name);
 
-await User.update({ username: username, email :email, pass : pass, name: name, lastName: lastName, nPhone:nPhone }, {
-  where: { idUser}
-})
-res.status(200).json("Se modifico exitosamente el ususario")
-} else {
-  throw new Error("ERROR /modify/:id")
-}
-
+      await User.update(
+        {
+          username: username,
+          email: email,
+          pass: pass,
+          name: name,
+          lastName: lastName,
+          nPhone: nPhone,
+        },
+        {
+          where: { idUser },
+        }
+      );
+      res.status(200).json("Se modifico exitosamente el ususario");
+    } else {
+      throw new Error("ERROR /modify/:id");
+    }
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json(error.message);
   }
-
-})
+});
 
 module.exports = UserR;

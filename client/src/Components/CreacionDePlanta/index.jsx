@@ -6,10 +6,9 @@ import "./CreacionDePlanta.css";
 const CreacionDePlanta = () => {
   return (
     <div className="containerCreacionPlanta">
-      <div className="card estilos text-center" style={{ width: "60rem" }}>
+      <div className="card shadowForm text-center" style={{ width: "60rem" }}>
         <h2
-          className="card-img-top"
-          style={{ background: "#28A745", color: "#fff" }}
+          className="card-img-top backgroundCrear"
         >
           Crea tu planta
         </h2>

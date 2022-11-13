@@ -33,7 +33,7 @@ const Carrousel = () => {
             <h1>Visita nuestro vivero</h1>
             <p>Encuentra los mejores productos para tus plantas.</p>
             <button
-              className="btn btn-success btn-lg"
+              className="btn btn-success btn-lg degrade"
               onClick={() => navigate("/vivero")}
             >
               Visitar vivero
@@ -46,7 +46,7 @@ const Carrousel = () => {
             <h1>Ven a investigar a nuestra huerta</h1>
             <p>Podes encontrar todo tipo de información en nuestra huerta.</p>
             <button
-              className="btn btn-success btn-lg"
+              className="btn btn-lg degrade"
               onClick={() => navigate("/huerta")}
             >
               Visitar huerta

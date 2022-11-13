@@ -1,3 +1,59 @@
+.containerPlanta {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerUpload {
+    height: 160px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerALl {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.imgSubir {
+    width: 150px;
+    border-radius: 5px;
+    height: 100px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.hiddenBtn {
+    width: 30px;
+    height: 30px;
+}
+
+.btnBorrar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    color: red;
+    border: 1px solid red;
+    cursor: pointer;
+    background-color: #000;
+    top: 1.8rem;
+    left: 7.8rem;
+    transition: 250ms all;
+}
+
+.sinBoton {
+    display: none;
+}
+
+.btnBorrar:hover {
+    background-color: red;
+    color: #000;
+    border: 1px solid red;
+}
+
 .directionColumna {
     width: 20rem;
     display: flex;
@@ -24,14 +80,104 @@
     width: 200px;
 }
 
+.buttonCrear {
+    background-image: linear-gradient(to right,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    transition: .5 all;
+    position: relative;
+    padding: 10px 5px;
+    transition: 800ms all;
+    border: 1px solid rgb(40, 189, 75);
+}
+
+.buttonCrear:hover {
+    background-image: linear-gradient(to left,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+}
+
+.buttonCrear span {
+    position: absolute;
+    background: #fff;
+}
+
+.buttonCrear span:nth-child(1) {
+    width: 25px;
+    height: 2px;
+    background-color: rgb(40, 189, 75);
+    bottom: -5px;
+    left: -5px;
+    transition: 800ms all;
+}
+
+.buttonCrear:hover span:nth-child(1) {
+    width: 105%;
+}
+
+.buttonCrear span:nth-child(2) {
+    width: 25px;
+    height: 2px;
+    background-color: rgb(40, 189, 75);
+    top: -5px;
+    right: -5px;
+    transition: 800ms all;
+}
+
+.buttonCrear:hover span:nth-child(2) {
+    width: 105%;
+}
+
+.buttonCrear span:nth-child(3) {
+    width: 2px;
+    height: 25px;
+    background-color: rgb(40, 189, 75);
+    top: -5px;
+    right: -5px;
+    transition: 800ms all
+}
+
+.buttonCrear:hover span:nth-child(3) {
+    height: 57px;
+}
+
+.buttonCrear span:nth-child(4) {
+    width: 2px;
+    height: 25px;
+    background-color: rgb(40, 189, 75);
+    bottom: -5px;
+    left: -5px;
+    transition: 800ms all;
+}
+
+.buttonCrear:hover span:nth-child(4) {
+    height: 57px;
+}
+
 .anchoDeInput {
     display: flex;
     flex-direction: row;
-    width: 300px
+    width: 300px;
 }
 
 .containerSelec {
-    height: 60px;
+    height: 80px;
     overflow: auto;
     display: flex;
     align-items: start;
@@ -44,20 +190,38 @@
 
 .containerElem {
     margin-top: 10px;
+    margin-left: 5px;
     display: flex;
-    height: 25px;
+    height: auto;
     justify-content: center;
-    width: 50%;
-    border-bottom: 1px solid rgb(40, 167, 69);
-    border-left: 1px solid rgb(40, 167, 69);
-    border-right: 1px solid rgb(40, 167, 69);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    position: relative;
+}
+
+.containerElem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80%;
+    height: 2px;
+    background-color: #07f362;
 }
 
 .btnElem {
     font-size: 14px;
     cursor: pointer;
+    border: none;
     line-height: 0rem;
     margin-left: 10px;
+    background-image: linear-gradient(to left,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+    height: 20px;
+    border-radius: 5px;
 }
