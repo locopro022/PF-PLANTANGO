@@ -47,13 +47,14 @@ const Vivero = () => {
             <div className="container-fluid">
               <h3 className="">Bienvenido la huerta!</h3>
               <div className="">
-          <div><SearchBarHuerta/></div>
+         
                 <div className="row">
                   <div className="col-2">
                     <Filtros filtros={filtros} apply={applyFilters} />
                   </div>
                   {/* El que tenga muchisimas ganas, le pone estilos. */}
                   <div className="col">
+                  <div className="container-fluid"><SearchBarHuerta/></div>
                     <Pagination
                       max={productos.page_count}
                       curr={productos.page}
