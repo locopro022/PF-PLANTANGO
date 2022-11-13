@@ -9,19 +9,22 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const MenuSesionIniciada = () => {
   const {logout} = useAuth0()
+  const { user } = useAuth0()
+  const { isAuthenticated } = useAuth0()
   const navigate = useNavigate();
   return (
     <div className="dropdown-center">
       <button
+        
         className="btn btn-light backgroundBtn"
         type="button"
         aria-expanded="false"
         id="dropdownMenu1"
         data-toggle="dropdown"
-      >
+      > { isAuthenticated? <img src={user.picture} alt={user.name} class="imgNav"/> :
         <Badge>
           <AccountCircle color="secondary" />
-        </Badge>
+        </Badge>}
       </button>
       <div className="dropdown-menu">
         <span
