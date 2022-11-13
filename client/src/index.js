@@ -13,10 +13,10 @@ root.render(
     <Auth0Provider
       domain="dev-6ld32uudixr7dy6n.us.auth0.com"
       clientId="TVgyfMIrUw3bQ9EAeEzbW6m3Pj1YE7xU"
-      redirectUri={window.location.origin}>
-    <Provider store={store}>
-      <App />
-    </Provider>
+      redirectUri={`${window.location.origin}/home`}>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </Auth0Provider>
   </React.StrictMode>
 );

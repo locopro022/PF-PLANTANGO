@@ -8,20 +8,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 //Menu desplegable que aparece cuando la sesion esta iniciada.
 
 const MenuSesionIniciada = () => {
-  const {logout} = useAuth0()
+  const { logout } = useAuth0()
   const { user } = useAuth0()
   const { isAuthenticated } = useAuth0()
   const navigate = useNavigate();
   return (
     <div className="dropdown-center">
       <button
-        
+
         className="btn btn-light backgroundBtn"
         type="button"
         aria-expanded="false"
         id="dropdownMenu1"
         data-toggle="dropdown"
-      > { isAuthenticated? <img src={user.picture} alt={user.name} class="imgNav"/> :
+      > {isAuthenticated ? <img src={user.picture} alt={user.name} class="imgNav" /> :
         <Badge>
           <AccountCircle color="secondary" />
         </Badge>}
@@ -31,7 +31,14 @@ const MenuSesionIniciada = () => {
           className="dropdown-item edit"
           onClick={() => navigate("/perfil")}
         >
-          Ajustes
+          Datos del usuario
+        </span>
+        <span
+          type="button"
+          className="dropdown-item edit"
+          onClick={() => navigate('/creacionPlanta')}
+        >
+          Crear planta
         </span>
         <span
           type="button"
