@@ -24,8 +24,7 @@ const dbBuild = [
     TIPO: ["arbol", "floral"],
     PREFERENCIA_CLIMATICA: ["calido", "humedo", "Poco resistente al viento"],
     TOXICIDAD: false,
-    IMAGEN:
-      "https://lh3.googleusercontent.com/-ygz7zwa1fsU/TWxir1zD9QI/AAAAAAAAAws/en8IaohyZ-A/s1600/ibir%25C3%25A1-pit%25C3%25A1.gif",
+    IMAGEN: "https://conexionanimal.com.ar/dev/wp-content/uploads/2021/03/ibira-pita-600x507.gif",
   },
   {
     NOMBRE: "Bauhinia forficata, Pezuña de vaca",
@@ -93,8 +92,7 @@ const dbBuild = [
     TIPO: ["arbol", "floral", "medicinal"],
     PREFERENCIA_CLIMATICA: ["calido", "humedo"],
     TOXICIDAD: false,
-    IMAGEN:
-      "https://www.viverotrevelin.com.ar/images/Planta-exterior-arbol-Lapacho37724Lapacho-vivero-Trevelin.png",
+    IMAGEN:"https://www.guiadejardineria.com/wp-content/uploads/2010/05/lapacho.jpg",
   },
   {
     NOMBRE: "Kiwi",
@@ -240,7 +238,7 @@ const dbBuild = [
     ],
     TOXICIDAD: false,
     IMAGEN:
-      "https://www.agromatica.es/wp-content/uploads/2013/08/arbol-Catalpa-bignonioide.jpg",
+    "https://todoarboles.com/wp-content/uploads/2021/05/catalpa-en-flor.jpg",
   },
   {
     NOMBRE: "Crespon, Lagerstroemia indica,arbolde Júpiter",
@@ -277,8 +275,7 @@ const dbBuild = [
       "Poco resistente al viento",
     ],
     TOXICIDAD: false,
-    IMAGEN:
-      "https://palermonline.com.ar/wordpress/wp-content/uploads/2021/05/arbol-de-judas-final.jpg",
+    IMAGEN: "https://www.vdberk.es/media/22000/cercis_canadensis.jpg",
   },
   {
     NOMBRE: "Betula alba, Betula pendula Abedul blanco",
@@ -548,7 +545,7 @@ const dbBuild = [
     PREFERENCIA_CLIMATICA: ["templado", "resistente al frio"],
     TOXICIDAD: false,
     IMAGEN:
-      "https://hablemosdeflores.com/wp-content/uploads/2019/02/Peral-4.jpg",
+      "https://mundoplantas.com/wp-content/uploads/2019/04/arbol-peral-fruto.jpg",
   },
   {
     NOMBRE: "Cyca revoluta",
