@@ -6,9 +6,9 @@
   height: auto;
 }
 
-@media(min-width:1440px) {
+@media(max-width:1440px) {
   .alto-row {
-    height: auto;
+    height: 2200px;
   }
 }
 
