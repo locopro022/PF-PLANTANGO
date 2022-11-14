@@ -35,6 +35,7 @@
     color: rgb(39, 72, 57);
     float: right;
     border-left: 0px;
+    outline: none;
     cursor: pointer;
 }
 
