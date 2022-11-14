@@ -1,5 +1,5 @@
 /* style={{display: 'grid', alignItems: 'center', justifyContent:'center'}} */
-.container{
+.container {
   display: grid;
   align-items: center;
   justify-content: center;
@@ -36,6 +36,7 @@ li {
 .btn:hover {
   background-color: #a2c11c;
 }
+
 .btn2:hover {
   background-color: #7f9618;
 }
@@ -43,6 +44,7 @@ li {
 .btn:active {
   background-color: #46520d;
 }
+
 .btn2:active {
   background-color: #46520d;
 }

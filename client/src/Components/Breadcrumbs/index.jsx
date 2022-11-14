@@ -1,5 +1,6 @@
 import { ConstructionOutlined } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
+import './Bread.css'
 
 const Breadcrumbs = (props) => {
   const { pathname } = useLocation();
@@ -18,15 +19,15 @@ const Breadcrumbs = (props) => {
     .slice(0, -1);
 
   return (
-    <div className="mb-4 container-fluid">
+    <div className="containerRela">
       {![...(props.exclude ? props.exclude : []), ""].some((item) => {
         console.log("Se esta haciendo esta comparacion: \n", item, pathname);
         return `/${item}` === pathname;
       }) && (
           <div style={{ display: "flex", flexDirection: "row" }}>
             {breadcrumbs.map((ruta, index) => (
-              <Link key={index} to={ruta.to} style={{ marginRight: "0.2rem" }}>
-                /{ruta.name}
+              <Link key={index} to={ruta.to} style={{ marginRight: "0.4rem" }} className='containerAbso'>
+                {ruta.name} |
               </Link>
             ))}
           </div>

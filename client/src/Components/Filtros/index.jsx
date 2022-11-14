@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './Filtros.css'
 
 const Filtros = (props) => {
   const [filters, setFilters] = useState([]);
@@ -33,19 +34,19 @@ const Filtros = (props) => {
     props.apply(objComparacion);
   }, [filters]);
   return (
-    <div className="card filtro">
+    <div>
       <div className="container">
         <div
-          className="container pt-4 mb-2"
+          className="mb-2"
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "center"
           }}
         >
-          <h3 className="text-center d-inline">Filtros</h3>
+          <h3 className="text-center d-inline filtroText">Filtros</h3>
         </div>
-        <form onChange={cambio} onSubmit={borrar} className="container-fluid">
+        <form onChange={cambio} onSubmit={borrar} className="container-fluid altoCard">
           <button
             type="submit"
             className="btn btn-outline-danger d-inline mb-3"

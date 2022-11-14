@@ -10,3 +10,34 @@
     -webkit-box-shadow: 3px 6px 15px 0px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.6);
 }
+
+.mediaCard {
+    width: 18rem;
+    font-size: 10px;
+    margin-top: 10px
+}
+
+@media(max-width:1500px) {
+    .mediaCard {
+        width: 20rem;
+    }
+}
+
+@media(min-width:1500px) {
+    .mediaCard {
+        width: 24rem;
+    }
+}
+
+@media(min-width:2000px) {
+    .mediaCard {
+        width: 30rem;
+    }
+}
+
+@media(min-width:2399px) {
+    .mediaCard {
+        width: 38rem;
+        margin: 10px 10px;
+    }
+}

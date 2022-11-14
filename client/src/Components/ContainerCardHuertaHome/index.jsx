@@ -6,7 +6,7 @@ const ContainerCardHuertaHome = (props) => {
     const { planta, key } = props
     let descripcion = planta.descripPlant?.split(' ').slice(0, 10).join(' ') + '...'
     return (
-        <div key={key} className="card text-bg-dark estilos" style={{ width: '20rem', marginTop: '15px', display: 'block', height: '12rem', overflow: 'hidden', cursor: 'pointer' }}>
+        <div key={key} className="card text-bg-dark estilos mediaCard">
             <img src={planta.imagePlant} className="card-img" alt="img" style={{ height: 'auto' }} />
             <div className="card-img-overlay">
                 <h6 className="card-title" style={{ color: 'white', textShadow: '2px 2px 2px black' }}>{planta.namePlant}</h6>
