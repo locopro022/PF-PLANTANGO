@@ -12,9 +12,9 @@ import MenuSesionIniciada from "../MenuSesionIniciada";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
-  const {isAuthenticated} = useAuth0()
+  const { isAuthenticated } = useAuth0()
   const navigate = useNavigate();
-  console.log("cuenta logueada?",isAuthenticated);
+  console.log("cuenta logueada?", isAuthenticated);
   return (
     <div className="containerNavBar">
       <div className="containerUl deshabilitadoUl">
@@ -25,7 +25,7 @@ const NavBar = () => {
             }
             to="/home"
           >
-            <span className="span">Home</span>
+            <span className="span">Inicio</span>
           </NavLink>
           <NavLink
             className={(isActive) =>
