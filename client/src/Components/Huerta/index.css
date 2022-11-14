@@ -1,3 +1,19 @@
-.filtro {
-  height: 100vh;
+.alto-row {
+  height: 2200px;
+}
+
+.container-fluid {
+  height: auto;
+}
+
+@media(max-width:1440px) {
+  .alto-row {
+    height: 2200px;
+  }
+}
+
+@media(max-width:800px) {
+  .alto-row {
+    height: auto;
+  }
 }

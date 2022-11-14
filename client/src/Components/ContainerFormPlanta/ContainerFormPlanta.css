@@ -81,15 +81,8 @@
 }
 
 .buttonCrear {
-    background-image: linear-gradient(to right,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5);
+    background: #bafd4e;
+    background: linear-gradient(to left, #bafd4e 0%, #79f952 15%, #53f65b 30%, #54f35c 45%, #54f090 60%, #56ed9a 80%, #56efb4 90%, #4ceec5 100%);
     border: none;
     color: #000;
     cursor: pointer;
@@ -98,7 +91,11 @@
     position: relative;
     padding: 10px 5px;
     transition: 800ms all;
-    border: 1px solid rgb(40, 189, 75);
+}
+
+.buttonCrear:hover {
+    background: #bafd4e;
+    background: linear-gradient(to right, #bafd4e 0%, #79f952 15%, #53f65b 30%, #54f35c 45%, #54f090 60%, #56ed9a 80%, #56efb4 90%, #4ceec5 100%);
 }
 
 .buttonCrear span {
@@ -178,16 +175,38 @@
 
 .containerElem {
     margin-top: 10px;
+    margin-left: 5px;
     display: flex;
     height: auto;
     justify-content: center;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    position: relative;
+}
+
+.containerElem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80%;
+    height: 2px;
+    background-color: #07f362;
 }
 
 .btnElem {
     font-size: 14px;
     cursor: pointer;
+    border: none;
     line-height: 0rem;
     margin-left: 10px;
+    background-image: linear-gradient(to left,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+    height: 20px;
+    border-radius: 5px;
 }

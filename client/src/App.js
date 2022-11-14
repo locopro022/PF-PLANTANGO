@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import { getHuerta, getHuertaDetail, getTiposHuerta } from "./redux/actions";
 import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
+import Profile from "./Components/Profile";
+import Ajustes from './Components/Ajustes'
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Chat />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/perfil" element={<Profile />} />
             <Route path="/bienvenida" element={<Chat />} />
             <Route path="/creacionPlanta" element={<CreacionDePlanta />} />
             <Route path="/huerta" element={<Huerta />} />
@@ -44,6 +47,7 @@ function App() {
               path="/huerta/:id"
               element={<Detalle from={getHuertaDetail} />}
             />
+            <Route path="/ajustes" element={<Ajustes />} />
           </Routes>
           <Footer />
         </div>

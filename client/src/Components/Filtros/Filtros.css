@@ -1,0 +1,24 @@
+.altoCard {
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filtroText {
+    background: linear-gradient(to right,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    text-align: center;
+}
+
+.filtroText::first-letter {
+    font-size: 40px;
+}

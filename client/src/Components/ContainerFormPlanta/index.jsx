@@ -38,16 +38,6 @@ const ContainerFormPlanta = () => {
     imagePlant: "",
   });
 
-  console.log(planta)
-
-  const uploadImage = async (e) => {
-    /*     let dataform = new FormData();
-        dataform.append("file", files[0]);
-        dataform.append("upload_preset", "imagen");
-        const res = await axios.post("https://api.cloudinary.com/v1_1/doycjj3gx/upload", dataform)
-        console.log("res", res) */
-  }
-
   const changeValue = (e) => {
     if (
       e.target.name === "namePlant" ||
@@ -55,6 +45,7 @@ const ContainerFormPlanta = () => {
       e.target.name === "toxicity" ||
       e.target.name === "imagePlant"
     ) {
+      if (e.target.value === "Toxicidad") e.target.value = "";
       setPlanta({
         ...planta,
         [e.target.name]: e.target.value,
@@ -103,16 +94,6 @@ const ContainerFormPlanta = () => {
       dispatch(crearPlanta(planta));
       navigate('/huerta')
     }
-    /*         cloudinary.createUploadWidget({
-                    cloudName: 'doycjj3gx',
-                    uploadPreset: 'preset_pabs',
-                }, (err, result) => {
-                    if (!err && result & result.event === 'success') {
-                        console.log('Imagen subida con exito', result.info)
-                    }
-                }) */
-    /*Enviamos el coso */
-    //   Imaginate usar lenguaje apropiado incluso por accidente. >:(
   };
   const eliminar = (e) => {
     e.preventDefault();
@@ -138,9 +119,8 @@ const ContainerFormPlanta = () => {
       imagePlant: ''
     })
   }
-
   useEffect(() => {
-    !tipos?.length && dispatch(getTiposHuerta())
+    if (!tipos) dispatch(getTiposHuerta())
     setPlanta({
       ...planta,
       imagePlant: url
@@ -218,7 +198,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className="btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="ubication"
@@ -270,7 +250,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="ligth"
@@ -325,7 +305,7 @@ const ContainerFormPlanta = () => {
                             <h6>{elem}</h6>
                             <button
                               type="button"
-                              className="btn-success btnElem"
+                              className=" btnElem"
                               onClick={(e) => eliminar(e)}
                               value={elem}
                               name="whater"
@@ -378,7 +358,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="size"
@@ -432,7 +412,7 @@ const ContainerFormPlanta = () => {
                           <h6>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="type"
@@ -484,7 +464,7 @@ const ContainerFormPlanta = () => {
                           <h6 style={{ margin: "0" }}>{elem}</h6>
                           <button
                             type="button"
-                            className="btn-success btnElem"
+                            className=" btnElem"
                             onClick={(e) => eliminar(e)}
                             value={elem}
                             name="climate"

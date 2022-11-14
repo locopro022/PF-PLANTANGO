@@ -1,0 +1,22 @@
+.containerRela {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.containerAbso {
+    background: linear-gradient(to right,
+            #bafd4e,
+            #79f952,
+            #53f65b,
+            #54f35c,
+            #54f090,
+            #56ed9a,
+            #56efb4,
+            #4ceec5);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.containerAbso::first-letter {
+    text-transform: uppercase;
+}
