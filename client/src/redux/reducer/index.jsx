@@ -2,7 +2,8 @@ import {
   GET_ARRAY_VIVERO,
   GET_ARRAY_HUERTA,
   GET_TIPOS_HUERTA,
-  CONSTRAIN_HUERTA,
+  SET_FILTROS_HUERTA,
+  SET_PAG_HUERTA,
   GET_ARRAY_NOTIFICACIONES,
   GET_ARRAY_CARRITO,
   URL,
@@ -17,8 +18,8 @@ import {
 const initialState = {
   arrayVivero: [],
   arrayHuerta: {},
-  tiposHuerta: {},
-  constrainHuerta: {},
+  filtrosHuerta: [],
+  pagHuerta: 0,
   arrayNotificaciones: [],
   arrayCarrito: [],
   url: "",
@@ -35,22 +36,54 @@ const rootReducer = (state = initialState, action) => {
         arrayVivero: [...action.payload],
       };
     case GET_TIPOS_HUERTA:
+      let filtrosHuerta = [];
+      for (let key in action.payload)
+        filtrosHuerta = [
+          ...filtrosHuerta,
+          {
+            filter: key,
+            options: action.payload[key].map((value) => ({
+              value,
+              checked: false,
+            })),
+          },
+        ];
+      console.log(filtrosHuerta);
       return {
         ...state,
         tiposHuerta: action.payload,
+        filtrosHuerta,
       };
-    case CONSTRAIN_HUERTA:
+
+    case SET_FILTROS_HUERTA:
       return {
         ...state,
-        constrainHuerta:
+        pagHuerta: 0,
+        filtrosHuerta:
           action.payload === "clear"
-            ? {}
-            : {
-                ...state.constrainHuerta,
-                page: 0,
-                [action.payload.type]: action.payload.value,
-              },
+            ? state.filtrosHuerta.map((item) => ({
+                ...item,
+                options: item.options.map((option) => ({
+                  ...option,
+                  checked: false,
+                })),
+              }))
+            : state.filtrosHuerta.map((item) =>
+                item.filter !== action.payload.type
+                  ? item
+                  : {
+                      ...item,
+                      options: item.options.map((option) =>
+                        option.value !== action.payload.value
+                          ? option
+                          : { ...option, checked: action.payload.checked }
+                      ),
+                    }
+              ),
       };
+
+    case SET_PAG_HUERTA:
+      return { ...state, pagHuerta: action.payload };
     case GET_ARRAY_HUERTA:
       return {
         ...state,
