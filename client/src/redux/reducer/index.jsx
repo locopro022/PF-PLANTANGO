@@ -7,10 +7,12 @@ import {
   GET_ARRAY_CARRITO,
   URL,
   ACTIVAR,
-  GET_SEARCH
+  GET_SEARCH,
+  GET_ALL_FAVORITES,
+  GET_USER,
 } from "../actions";
 
-import { plantaACarta } from "../utils";
+// import { plantaACarta } from "../utils";
 
 const initialState = {
   arrayVivero: [],
@@ -19,8 +21,10 @@ const initialState = {
   constrainHuerta: {},
   arrayNotificaciones: [],
   arrayCarrito: [],
-  url: '',
-  nombre: 'perfil'
+  url: "",
+  nombre: "perfil",
+  favoritos: [],
+  user: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -42,10 +46,10 @@ const rootReducer = (state = initialState, action) => {
           action.payload === "clear"
             ? {}
             : {
-              ...state.constrainHuerta,
-              page: 0,
-              [action.payload.type]: action.payload.value,
-            },
+                ...state.constrainHuerta,
+                page: 0,
+                [action.payload.type]: action.payload.value,
+              },
       };
     case GET_ARRAY_HUERTA:
       return {
@@ -65,18 +69,28 @@ const rootReducer = (state = initialState, action) => {
     case URL:
       return {
         ...state,
-        url: action.payload
-      }
+        url: action.payload,
+      };
     case ACTIVAR:
       return {
         ...state,
-        nombre: `${action.payload}`
-      }
-      case GET_SEARCH: 
+        nombre: `${action.payload}`,
+      };
+    case GET_SEARCH:
       return {
         ...state,
-        arrayHuerta: action.payload
-      }
+        arrayHuerta: action.payload,
+      };
+    case GET_ALL_FAVORITES:
+      return {
+        ...state,
+        favoritos: action.payload,
+      };
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }

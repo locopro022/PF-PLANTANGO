@@ -9,11 +9,18 @@ import CreacionDePlanta from "./Components/CreacionDePlanta";
 import Huerta from "./Components/Huerta";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getHuerta, getHuertaDetail, getTiposHuerta } from "./redux/actions";
+import {
+  getHuerta,
+  getHuertaDetail,
+  getTiposHuerta,
+  getUser,
+} from "./redux/actions";
 import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
 import Profile from "./Components/Profile";
-import Ajustes from './Components/Ajustes'
+import Ajustes from "./Components/Ajustes";
+import Favoritos from "./Components/Favoritos";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,11 +32,15 @@ function App() {
       },
     },
   });
+  const { user } = useAuth0();
 
   useEffect(() => {
     dispatch(getHuerta());
     dispatch(getTiposHuerta());
-  }, []);
+    if (user) {
+      dispatch(getUser(user.email));
+    }
+  }, [user]);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -48,6 +59,7 @@ function App() {
               element={<Detalle from={getHuertaDetail} />}
             />
             <Route path="/ajustes" element={<Ajustes />} />
+            <Route path="/favoritos" element={<Favoritos />} />
           </Routes>
           <Footer />
         </div>

@@ -8,10 +8,13 @@ export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
 export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
-export const ACTIVAR = 'ACTIVAR'
+export const ACTIVAR = "ACTIVAR";
 
-export const URL = "URL"
+export const URL = "URL";
 export const GET_SEARCH = "GET_SEARCH";
+
+export const GET_ALL_FAVORITES = "GET_ALL_FAVORITES";
+export const GET_USER = "GET_USER";
 
 const API_URL = "http://localhost:3001";
 
@@ -56,35 +59,50 @@ export const getHuertaDetail = async (id) => {
 
 export const getHuerta =
   (e = null) =>
-    (dispatch) => {
-      return get(`plants`, { params: e }).then((data) => {
-        console.log("las Plantas llegaron asi:", data);
-        dispatch({
-          type: GET_ARRAY_HUERTA,
-          payload: data,
-        });
+  (dispatch) => {
+    return get(`plants`, { params: e }).then((data) => {
+      console.log("las Plantas llegaron asi:", data);
+      dispatch({
+        type: GET_ARRAY_HUERTA,
+        payload: data,
       });
-    };
+    });
+  };
 
 export const crearPlanta = (planta) => async () => {
-  await axios.post(`${API_URL}/plants/creacion`, planta)
+  await axios.post(`${API_URL}/plants/creacion`, planta);
 };
 
 export const urlPlantaCreada = (url) => (dispatch) => {
-  return dispatch({ type: URL, payload: url })
+  return dispatch({ type: URL, payload: url });
+};
+
+export const activaciones = (nombre) => (dispatch) => {
+  return dispatch({ type: ACTIVAR, payload: nombre });
+};
+export const getSearch = (search) => {
+  return (dispatch) => {
+    try {
+      fetch(`http://localhost:3001/plants?search=${search}`)
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: GET_SEARCH, payload: data }));
+    } catch (error) {
+      throw new Error("Error en actions  -> getSearch");
+    }
+  };
+};
+
+
+export function getFav(idU) {
+  return (dispatch) =>
+    axios(`http://localhost:3001/user/favorites/${idU}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: GET_ALL_FAVORITES, payload }));
 }
 
-export const activaciones = (nombre) => dispatch => {
-  return dispatch({ type: ACTIVAR, payload: nombre })
-}
-export const getSearch = (search)=> {
-  try {
-    return(dispatch)=>{
-      fetch(`http://localhost:3001/plants?search=${search}`)
-      .then ((response)=> response.json())
-      .then((data)=> dispatch({ type: GET_SEARCH, payload: data}))
-    }
-  } catch (error) {
-    throw new Error("Error en actions  -> getSearch")
-  }
+export function getUser(user) {
+  return (dispatch) =>
+    axios(`http://localhost:3001/user/${user}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: GET_USER, payload }));
 }

@@ -31,7 +31,7 @@ const { conn } = require("./src/db.js");
 
 // Syncing all the models at once.
 conn
-  .sync({ force: true })
+  .sync({ force: false })
   .then(llenarDB)
   .then(llenarDBProd)
   .then(() => {
