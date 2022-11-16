@@ -1,12 +1,12 @@
 const plantTypes = {
-  ubication: ["interior", "exterior"],
-  ligth: [
+  localizacion: ["interior", "exterior"],
+  luz: [
     "pleno sol",
     "media sombra",
     "luz filtrada",
     "intensa sin exposición solar directa",
   ],
-  whater: [
+  riego: [
     "poco frecuente",
     "espaciado",
     "abundante",
@@ -14,8 +14,8 @@ const plantTypes = {
     "moderado",
     "abundante en verano y moderado en invierno",
   ],
-  size: ["grande", "mediano", "pequeño"],
-  type: [
+  dimension: ["grande", "mediano", "pequeño"],
+  tipo: [
     "floral",
     "sin flores",
     "apta maceta",
@@ -29,7 +29,7 @@ const plantTypes = {
     "cactus",
     "trepadora",
   ],
-  climate: [
+  clima: [
     "calido",
     "humedo",
     "templado",
