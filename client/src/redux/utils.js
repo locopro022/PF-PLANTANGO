@@ -2,28 +2,27 @@ const plantaACarta = ({
   codPlant,
   namePlant,
   descripPlant,
-  type,
+  tipo,
   imagePlant,
 }) => ({
   id: codPlant,
   nombre: namePlant,
   subnombre: namePlant.split(",").slice(1),
-  caracteristica: type,
+  caracteristica: tipo,
   img: imagePlant,
   descripcion: descripPlant,
 });
 
 const plantaADetalle = ({
-  codPlant,
   namePlant,
   descripPlant,
-  ubication,
-  ligth,
-  whater,
-  size,
-  type,
-  climate,
-  toxicity,
+  localizacion,
+  luz,
+  riego,
+  dimension,
+  tipo,
+  clima,
+  toxicidad,
   statePlant,
   imagePlant,
 }) => ({
@@ -32,15 +31,15 @@ const plantaADetalle = ({
   img: imagePlant,
   description: descripPlant,
   caracteristics: [
-    { type: "type", value: type.join(", ") },
-    { type: "ubication", value: ubication.join(", ") },
-    { type: "ligth", value: ligth.join(", ") },
-    { type: "whater", value: whater.join(", ") },
-    { type: "size", value: size.join(", ") },
-    { type: "climate", value: climate.join(", ") },
+    { type: "localizacion", value: localizacion.join(", ") },
+    { type: "luz", value: luz.join(", ") },
+    { type: "riego", value: riego.join(", ") },
+    { type: "dimension", value: dimension.join(", ") },
+    { type: "tipo", value: tipo.join(", ") },
+    { type: "clima", value: clima.join(", ") },
     {
-      type: "toxicity",
-      value: toxicity
+      type: "toxicidad",
+      value: toxicidad
         ? "Si, y bastante. Tenga cuidado!"
         : "No tiene toxicidad",
     },

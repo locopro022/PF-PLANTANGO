@@ -15,6 +15,8 @@ export const URL = "URL";
 export const GET_SEARCH = "GET_SEARCH";
 
 export const GET_ALL_FAVORITES = "GET_ALL_FAVORITES";
+export const DELETE_FAVORITES = "DELETE_FAVORITES"
+export const ADD_FAVORITES = "ADD_FAVORITES"
 export const GET_USER = "GET_USER";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
@@ -108,6 +110,18 @@ export function getFav(idU) {
       .then((payload) => dispatch({ type: GET_ALL_FAVORITES, payload }));
 }
 
+export function deleteFav(idU,idP) {
+  return (dispatch) =>
+    axios.delete(`http://localhost:3001/user/favorites/delete/${idU}/${idP}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: DELETE_FAVORITES, payload }));
+}
+export function addFav(idU,idP) {
+  return (dispatch) =>
+    axios.post(`http://localhost:3001/user/favorites/${idU}/${idP}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: ADD_FAVORITES, payload }));
+}
 export function getUser(user) {
   return (dispatch) =>
     axios(`http://localhost:3001/user/${user}`)

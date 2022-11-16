@@ -13,6 +13,8 @@ import {
   GET_SEARCH,
   GET_ALL_USERS,
   CREATE_ADMIN,
+  DELETE_FAVORITES,
+  ADD_FAVORITES,
   DELETE_USER,
 } from "../actions";
 
@@ -137,6 +139,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case DELETE_FAVORITES:
+      return {
+        ...state,
+        favoritos: action.payload,
+      };
+    case ADD_FAVORITES:
+      return{
+        ...state,
+        favoritos: action.payload
+      }
       case DELETE_USER: 
       return {
         ...state

@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, UUIDV4 } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -7,9 +7,10 @@ module.exports = (sequelize) => {
     "Product",
     {
       codProd: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
         primaryKey: true,
+        defaultValue: UUIDV4,
+        unique: true,
       },
       nameProd: {
         type: DataTypes.STRING,
@@ -20,28 +21,28 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         defaultVale: "Un producto.",
       },
-      codCategory: {
+      codCategoria: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      stars: {
+      estrellas: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
       },
-      price: {
+      precio: {
         type: DataTypes.DECIMAL,
         allowNull: false,
       },
-      currentStock: {
+      stockActual: {
         type: DataTypes.INTEGER,
         defaultVale: 0,
       },
-      minStock: {
+      stockMinimo: {
         type: DataTypes.INTEGER,
         defaultVale: 0,
       },
-      maxStock: {
+      stockMaximo: {
         type: DataTypes.INTEGER,
         defaultVale: 9999,
       },

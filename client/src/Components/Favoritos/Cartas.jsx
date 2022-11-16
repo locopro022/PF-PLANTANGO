@@ -1,30 +1,29 @@
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { deleteFav, getFav } from "../../redux/actions";
+import "./Favoritos.css";
 
-import "./index.css";
-import { addFav } from "../../redux/actions";
-const Cartas = (props) => {
+const CartasFavoritos = ({items}) => {
   const user = useSelector((e) => e.user);
   const dispatch = useDispatch();
-  function addfav(e, item) {
+  function eliminarFav(e, items) {
     e.preventDefault();
-    dispatch(addFav(user.id, item.id));
+    dispatch(deleteFav(user.id, items.codPlant));
+    dispatch(getFav(user.id))
   }
   return (
     <div className="contenedorCartasFavoritos">
       <div className="cartas">
         {/* <!-- producto... --> */}
-        {props.items?.map &&
-          props.items.map((item, i) => (
             <div className="card carta">
-              {item.img && (
+              {items.imagePlant && (
                 <Link
-                  key={i}
-                  to={`/huerta/${item.id}`}
+                  key={items.codPlant}
+                  to={`/huerta/${items.codPlant}`}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <img
-                    src={item.img}
+                    src={items.imagePlant}
                     alt="Un producto"
                     loading="lazy"
                     className="imagen cabeza"
@@ -33,15 +32,15 @@ const Cartas = (props) => {
               )}
               <div className="cuerpo">
                 <div>
-                  {item.nombre && (
-                    <h3 className="cuerpo-titulo">{item.nombre}</h3>
+                  {items.namePlant && (
+                    <h3 className="cuerpo-titulo">{items.namePlant}</h3>
                   )}
-                  {item.subnombre && (
-                    <h4 className="cuerpo-subtitulo">{item.subnombre}</h4>
+                  {items.namePlant?.split(",").slice(1) && (
+                    <h4 className="cuerpo-subtitulo">{items.namePlant?.split(",").slice(1)}</h4>
                   )}
-                  {item.caracteristica && (
+                  {items.tipo && (
                     <p className="cuerpo-caracteristica">
-                      {item.caracteristica.map((caracteristica, i) => (
+                      {items.tipo.map((caracteristica, i) => (
                         <span
                           className="cuerpo-caracteristica-caracteristica"
                           key={i}
@@ -52,21 +51,19 @@ const Cartas = (props) => {
                     </p>
                   )}
                 </div>
-                {item.precio && (
-                  <p className="cuerpo-precio">${item.precio / 100}</p>
+                {items.precio && (
+                  <p className="cuerpo-precio">${items.precio / 100}</p>
                 )}
                 <button
                   className="favOFF"
-                  onClick={(e) => addfav(e, item)}
+                  onClick={(e) => eliminarFav(e, items)}
                 />
               </div>
             </div>
-          ))}
-
         {/* <!-- More products... --> */}
       </div>
     </div>
   );
 };
 
-export default Cartas;
+export default CartasFavoritos;

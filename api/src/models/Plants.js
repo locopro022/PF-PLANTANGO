@@ -21,31 +21,31 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      ubication: {
+      localizacion: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
-      ligth: {
+      luz: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
-      whater: {
+      riego: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
-      size: {
+      dimension: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
-      type: {
+      tipo: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
-      climate: {
+      clima: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
-      toxicity: {
+      toxicidad: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
@@ -57,7 +57,7 @@ module.exports = (sequelize) => {
       imagePlant: {
         type: DataTypes.TEXT,
         defaultValue:
-          "https://th.bing.com/th/id/R.30a41d29ac9adfdb0c32e12b70e08596?rik=3uvzuV4vwixyeA&pid=ImgRaw&r=0",
+          "https://th.bing.com/th/id/OIP.dONsu4J4qcyupy4ncv97OgHaMo?pid=ImgDet&rs=1",
       },
     },
     {
