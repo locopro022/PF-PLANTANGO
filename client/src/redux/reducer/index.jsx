@@ -7,7 +7,9 @@ import {
   GET_ARRAY_CARRITO,
   URL,
   ACTIVAR,
-  GET_SEARCH
+  GET_SEARCH,
+  GET_ALL_USERS,
+  CREATE_ADMIN
 } from "../actions";
 
 import { plantaACarta } from "../utils";
@@ -20,7 +22,8 @@ const initialState = {
   arrayNotificaciones: [],
   arrayCarrito: [],
   url: '',
-  nombre: 'perfil'
+  nombre: 'perfil',
+  usuarios: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -77,6 +80,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         arrayHuerta: action.payload
       }
+      case GET_ALL_USERS: 
+      return {
+        ...state,
+        usuarios: action.payload
+      }
+      case CREATE_ADMIN:
+        return{
+          ...state
+        }
     default:
       return state;
   }

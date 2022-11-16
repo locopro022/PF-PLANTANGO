@@ -14,6 +14,7 @@ import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
 import Profile from "./Components/Profile";
 import Ajustes from './Components/Ajustes'
+import UsuariosInfo from "./Components/UsuariosInfo/UsuarioInfo";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function App() {
               element={<Detalle from={getHuertaDetail} />}
             />
             <Route path="/ajustes" element={<Ajustes />} />
+            <Route path="/ajustes/administrar" element={<UsuariosInfo/>}/>
           </Routes>
           <Footer />
         </div>
