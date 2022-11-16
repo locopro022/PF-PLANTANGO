@@ -1,5 +1,5 @@
 const { Plants } = require("../db");
-const dbBuild = require("../dbBuild");
+const dbBuild = require("../dbPlants.js");
 
 //BUSCAR POR ID EN LA DB
 const getDbId = async (id) => {
@@ -15,22 +15,6 @@ const getDbId = async (id) => {
         "Error en controller -> getDbId -> ID no se encuentra en la DB "
       );
     }
-
-    const response = planta.dataValues;
-
-    let plantaId = {
-      namePlant: response.namePlant,
-      descripPlant: response.descripPlant,
-      ubication: response.ubication,
-      ligth: response.luminosidad,
-      wather: response.riego,
-      size: response.tamano,
-      type: response.tipo,
-      climate: response.clima,
-      toxicity: response.toxicidad,
-      imagePlant: response.imagePlant,
-    };
-
     return planta.dataValues;
   } catch (error) {
     console.log(error.message);
@@ -38,68 +22,11 @@ const getDbId = async (id) => {
 };
 
 //LLENAR DB
-const llenarDB = async () => {
+const llenarDBPlants = async () => {
   const tabla = await Plants.findAll();
   if (!tabla.length) {
-    const db = dbBuild.map((planta) => {
-      return {
-        namePlant: planta.NOMBRE,
-        descripPlant: planta.DESCRIPCION,
-        ubication: planta.UBICACION,
-        ligth: planta.LUMINOSIDAD,
-        whater: planta.RIEGO,
-        size: planta.TAMANIO,
-        type: planta.TIPO,
-        climate: planta.PREFERENCIA_CLIMATICA,
-        toxicity: planta.TOXICIDAD,
-        statePlant: true,
-        imagePlant: planta.IMAGEN,
-      };
-    });
-    await Plants.bulkCreate(db);
+    await Plants.bulkCreate(dbBuild);
   }
-
-  // for (let i = 0; i < dbBuild.length; i++) {
-  //   let nObj = {
-  //     namePlant: dbBuild[i].NOMBRE,
-  //     descripPlant: dbBuild[i].DESCRIPCION,
-  //     ubication: dbBuild[i].UBICACION,
-  //     ligth: dbBuild[i].LUMINOSIDAD,
-  //     whater: dbBuild[i].RIEGO,
-  //     size: dbBuild[i].TAMANIO,
-  //     type: dbBuild[i].TIPO,
-  //     climate: dbBuild[i].PREFERENCIA_CLIMATICA,
-  //     toxicity: dbBuild[i].TOXICIDAD,
-  //     statePlant: true,
-  //     imagePlant: dbBuild[i].IMAGEN,
-  //   };
-  //   await Plants.create(nObj);
-  // }
-  // const tabla2 = await Plants.findAll();
-  // return tabla2;""
-
-  // for ( i in dbBuild )
-  //     {
-  //       console.log("TAMAÑO: ",dbBuild[i].TAMANIO);
-  //     Plants.create({
-  //    namePlant: dbBuild[i].NOMBRE,
-  //     descripPlant: dbBuild[i].DESCRIPCION,
-  //     ubication: dbBuild[i].UBICACION,
-  //     ligth: dbBuild[i].LUMINOSIDAD,
-  //     whater: dbBuild[i].RIEGO,
-  //     size: dbBuild[i].TAMANIO,
-  //     type: dbBuild[i].TIPO,
-  //     climate: dbBuild[i].PREFERENCIA_CLIMATICA,
-  //     toxicity: dbBuild[i].TOXICIDAD,
-  //     statePlant: true,
-  //     imagePlant: dbBuild[i].IMAGEN,
-
-  //     });
-
-  // }
-
-  // const db = await Plants.findAll();
-  // return db;
 };
 
 //FILTRAR POR NOMBRE
@@ -165,7 +92,7 @@ const filterType = async (type) => {
 };
 module.exports = {
   getDbId,
-  llenarDB,
+  llenarDBPlants,
   filter,
   serchByName,
   filterType,
