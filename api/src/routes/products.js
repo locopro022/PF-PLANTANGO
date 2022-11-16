@@ -39,6 +39,7 @@ router.get("/", async (req, res) => {
 });
 
 // RUTA GET TIPOS
+// TODO: Algoritmo de tipos
 
 // router.get("/types", async (req, res) => {
 //   try {
@@ -66,11 +67,11 @@ router.get("/:codProd", async (req, res) => {
 
 // RUTA POST
 
-router.post("/creacion", (req, res) => {
+router.post("/creacion", async (req, res) => {
   try {
     const { body } = req;
     console.log(body);
-    let newProd = Product.create({
+    let newProd = await Product.create({
       ...body,
       imageProd: body.imageProd === "" ? undefined : body.imageProd,
     });

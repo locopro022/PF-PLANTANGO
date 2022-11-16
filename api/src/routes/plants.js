@@ -67,11 +67,11 @@ router.get("/:codProd", async (req, res) => {
 
 // RUTA POST
 
-router.post("/creacion", (req, res) => {
+router.post("/creacion", async (req, res) => {
   try {
     const { body } = req;
     console.log(body);
-    let newPlant = Plants.create({
+    let newPlant = await Plants.create({
       ...body,
       imagePlant: body.imagePlant === "" ? undefined : body.imagePlant,
       toxicity: typeof body.toxicity === "boolean" ? req.body.toxicity : false,
