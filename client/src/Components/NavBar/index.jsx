@@ -49,7 +49,7 @@ const NavBar = () => {
             }
             to="/recordatorio"
           >
-            <span className="span">Recordatorio</span>
+            <span className="span">Diario</span>
           </NavLink>
           <NavLink
             className={(isActive) =>

@@ -38,48 +38,65 @@ UserR.put("/daily/:id", async (req, res) => {
   }
 });
 
-UserR.post("/", async (req, res) => {
-  try {
-    let { username, email, pass, name, lastName, nPhone } = req.body;
+// UserR.post("/", async (req, res) => {
+//   try {
+//     let { username, email, pass, name, lastName, nPhone } = req.body;
 
-    if (!username || !email) {
-      return res.status(400).json({ error: "falta usuario o mail" });
-    }
-    if (pass === "") pass = null;
-    if (name === "") name = null;
-    if (lastName === "") lastName = null;
-    if (nPhone === "") nPhone = null;
+//     if (!username || !email) {
+//       return res.status(400).json({ error: "falta usuario o mail" });
+//     }
+//     if (pass === "") pass = null;
+//     if (name === "") name = null;
+//     if (lastName === "") lastName = null;
+//     if (nPhone === "") nPhone = null;
 
-    await User.create({
-      username,
-      email,
-      pass,
-      name,
-      lastName,
-      nPhone,
-    });
-    const tUser = await User.findAll({ where: { email } });
-    await DailyUser.create({
-      UserIdUser: tUser[0].dataValues.idUser,
-    });
+//     await User.create({
+//       username,
+//       email,
+//       pass,
+//       name,
+//       lastName,
+//       nPhone,
+//     });
+//     const tUser = await User.findAll({ where: { email } });
+//     await DailyUser.create({
+//       UserIdUser: tUser[0].dataValues.idUser,
+//     });
 
+//     return res
+//       .status(201)
+//       .send({ message: `${username}, tu usuario fue creado con exito!` });
+//   } catch (error) {
+//     return res.status(400).json({ error });
+//   }
+// });
+
+UserR.get("/:email", async (req, res) => {
+  const { email } = req.params;
+  if (!email) {
     return res
-      .status(201)
-      .send({ message: `${username}, tu usuario fue creado con exito!` });
-  } catch (error) {
-    return res.status(400).json({ error });
+      .status(400)
+      .json({ error: "falta ingresar un usuario por email" });
   }
-});
-
-UserR.get("/", async (req, res) => {
-  const { username } = req.body;
-
-
-  if (!username) {
-    return res.status(400).json({ error: "falta ingresar un usuario" });
+  const userTable = await User.findAll({ where: { email } });
+  if (!userTable.length) {
+    await User.create({ email: email, username: email });
+    const userTableF = await User.findAll({ where: { email } });
+    return res
+    .status(200)
+    .json({
+      username: userTableF[0].dataValues.username,
+      email: userTableF[0].dataValues.email,
+      id: userTableF[0].dataValues.idUser,
+    });
   }
-  const userTable = await User.findAll({ where: { username } });
-  return res.status(200).json(userTable);
+  return res
+    .status(200)
+    .json({
+      username: userTable[0].dataValues.username,
+      email: userTable[0].dataValues.email,
+      id: userTable[0].dataValues.idUser,
+    });
 });
 
 //Traer todos los usuarios 
@@ -124,12 +141,12 @@ UserR.get("/favorites/:idU", async (req, res) => {
       return res.status(400).send({ error: "No eviaste el id del usuario" });
     }
 
-    const favId = await Favorites.findAll({ where: { UserIdUser: idU} });
+    const favId = await Favorites.findAll({ where: { UserIdUser: idU } });
 
     const plantasF = await Plants.findAll({
       where: { codPlant: favId[0].dataValues.PlantCodPlant },
     });
-
+    console.log(plantasF);
     res.status(200).send(plantasF);
   } catch (error) {
     return res.status(400).json({ error });
