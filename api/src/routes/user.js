@@ -95,6 +95,21 @@ UserR.get("/:email", async (req, res) => {
   });
 });
 
+//Traer todos los usuarios 
+UserR.get("/all", async (req,res)=>{
+  
+  
+try {
+  const allUsers = await User.findAll();
+  if(!allUsers){
+    return res.status(400).json({error: "Error en ruta get /user/all"})
+  }
+  
+  return res.status(200).json(allUsers)
+} catch (error) {
+  res.status(400).send(error.message)
+}
+})
 UserR.post("/favorites/:idU/:idP", async (req, res) => {
   try {
     const { idU, idP } = req.params;
@@ -149,6 +164,7 @@ UserR.delete("/favorites/delete/:idU/:idP", async (req, res) => {
   }
 });
 
+//Modificar datos de un usuario
 UserR.put("/:idUser", async (req, res) => {
   try {
     const { idUser } = req.params;
@@ -157,8 +173,12 @@ UserR.put("/:idUser", async (req, res) => {
 
     let { username, email, pass, name, lastName, nPhone } = req.body;
 
+
+    if(!username || !email || !pass || !name || !lastName || !nPhone){
+      return res.status(400).json({error: "Faltan datos"})
+    }
     if (!idUser) {
-      return res.status(400).send({ error: "No se encontro la id" });
+      return res.status(400).json({ error: "No se encontro el id" });
     }
 
     if (idUser) {
@@ -180,7 +200,7 @@ UserR.put("/:idUser", async (req, res) => {
           where: { idUser },
         }
       );
-      res.status(200).json("Se modifico exitosamente el ususario");
+      res.status(200).json("Se modifico exitosamente el usuario");
     } else {
       throw new Error("ERROR /modify/:id");
     }
@@ -189,4 +209,54 @@ UserR.put("/:idUser", async (req, res) => {
   }
 });
 
+//Borrado logico de user
+UserR.delete("/:idUser", async (req, res)=> {
+try {
+  
+  const {idUser} = req.params;
+  const eliminarUser = await User.findByPk(idUser);
+  if (!eliminarUser){
+    return res.status(400).json({error: "No se encontro el id en la DB"})
+  }
+
+await User.update(
+  {
+    hidden: true
+  },
+  {
+    where: {idUser}
+  }
+)
+res.status(200).json("Usuario con borrado lógico");
+
+} catch (error) {
+  res.status(400).json(error.message)
+}
+
+})
+
+//Crear user admin
+UserR.post("/admin", async (req,res)=>{
+try {
+  
+  console.log("entre a la ruta");
+  const { username, email, pass, name, lastName, nPhone } = req.body;
+
+  console.log(username, email, pass, name, lastName, nPhone);
+
+  if (!username || !email || !pass || !name || !lastName || !nPhone) {
+   return res.send(400).json("mal perri")
+  }
+
+  const newAdmin = await User.create({
+    username, email, pass, name, lastName, nPhone,
+    admin: true
+  })
+console.log(newAdmin);
+  res.status(200).send(newAdmin)
+
+} catch (error) {
+  res.status(404).json("Error en /user/admin",error.message)
+}
+})
 module.exports = UserR;

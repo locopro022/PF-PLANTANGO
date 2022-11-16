@@ -4,6 +4,8 @@ import { activaciones } from '../../redux/actions'
 import Profile from '../Profile'
 import CreacionPlanta from '../CreacionDePlanta'
 
+import { NavLink } from 'react-router-dom'
+
 const Ajustes = () => {
     const dispatch = useDispatch()
     const nombre = useSelector(state => state.nombre)
@@ -35,7 +37,16 @@ const Ajustes = () => {
                         <CreacionPlanta />
                     </div>
             }
+            <div>
+
+                <NavLink to="/ajustes/administrar">
+                        <button >
+                            Administrar usuarios
+                        </button>
+                </NavLink>
+            </div>
         </div>
+       
     )
 }
 

@@ -19,6 +19,9 @@ export const DELETE_FAVORITES = "DELETE_FAVORITES"
 export const ADD_FAVORITES = "ADD_FAVORITES"
 export const GET_USER = "GET_USER";
 
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const CREATE_ADMIN ="CREATE_ADMIN"
+
 const API_URL = "http://localhost:3001";
 
 const get = async (url, parameter = {}) => {
@@ -86,6 +89,7 @@ export const urlPlantaCreada = (url) => (dispatch) => {
 export const activaciones = (nombre) => (dispatch) => {
   return dispatch({ type: ACTIVAR, payload: nombre });
 };
+
 export const getSearch = (search) => {
   return (dispatch) => {
     try {
@@ -123,3 +127,22 @@ export function getUser(user) {
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_USER, payload }));
 }
+
+export const getAllUsers = ()=> {
+  console.log("LLEGUE A LA ACTION");
+  return(dispatch)=> {
+    fetch(`http://localhost:3001/user/all`)
+    .then((response)=>  response.json())
+    .then( (data)=> {
+      console.log("DATA: ",data);
+      dispatch ({ type: GET_ALL_USERS, payload: data})
+    })
+    
+  }}
+
+  export const addAdmin= (newAdmin)=> {
+return async(dispatch)=>{
+   await axios.post(`http://localhost:3001/user/`,newAdmin);
+   return dispatch({type: CREATE_ADMIN})}
+    
+  }

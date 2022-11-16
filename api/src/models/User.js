@@ -38,6 +38,14 @@ module.exports = (sequelize) => {
       nPhone: {
         type: DataTypes.STRING,
       },
+      admin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      hidden: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
     {
       freezeTableName: true,
