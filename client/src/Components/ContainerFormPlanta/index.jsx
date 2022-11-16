@@ -3,18 +3,17 @@ import "./ContainerFormPlanta.css";
 import { crearPlanta } from "../../redux/actions";
 import { Obligatorio } from "../Obligatorio";
 import { useDispatch, useSelector } from "react-redux";
-import { getTiposHuerta } from '../../redux/actions'
-import { useNavigate } from 'react-router-dom'
+import { getTiposHuerta } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
 import UploadWidget from "../UploadWidget";
-import imgDefault from '../../img/default.jpg'
-import axios from "axios";
+import imgDefault from "../../img/default.jpg";
 
 const ContainerFormPlanta = () => {
-  const navigate = useNavigate()
-  const tipos = useSelector(state => state.tiposHuerta)
-  const url = useSelector(state => state.url)
+  const navigate = useNavigate();
+  const tipos = useSelector((state) => state.tiposHuerta);
+  const url = useSelector((state) => state.url);
   const dispatch = useDispatch();
-  console.log("aca", typeof url)
+  console.log("aca", typeof url);
   const [ocultar, setOcultar] = useState({
     namePlant: false,
     descripPlant: false,
@@ -34,7 +33,7 @@ const ContainerFormPlanta = () => {
     size: [],
     type: [],
     climate: [],
-    toxicity: "",
+    toxicity: false,
     imagePlant: "",
   });
 
@@ -81,7 +80,7 @@ const ContainerFormPlanta = () => {
   };
 
   const sendPlant = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (
       planta.namePlant.length &&
       planta.ubication.length &&
@@ -92,7 +91,7 @@ const ContainerFormPlanta = () => {
       planta.climate.length
     ) {
       dispatch(crearPlanta(planta));
-      navigate('/huerta')
+      navigate("/huerta");
     }
   };
   const eliminar = (e) => {
@@ -116,23 +115,36 @@ const ContainerFormPlanta = () => {
   const deleteImg = () => {
     setPlanta({
       ...planta,
-      imagePlant: ''
-    })
-  }
+      imagePlant: "",
+    });
+  };
   useEffect(() => {
-    if (!tipos) dispatch(getTiposHuerta())
+    if (!tipos) dispatch(getTiposHuerta());
     setPlanta({
       ...planta,
-      imagePlant: url
-    })
-  }, [url])
+      imagePlant: url,
+    });
+  }, [url]);
 
   return (
     <div className="containerPlanta">
       <div className="containerUpload">
-        <div className="hiddenBtn" hidden={planta.imagePlant.length ? true : false}></div>
-        <button className="btnBorrar" hidden={planta.imagePlant.length ? false : true} onClick={deleteImg}>X</button>
-        <img src={planta.imagePlant?.length ? planta.imagePlant : imgDefault} className='imgSubir' alt='img' />
+        <div
+          className="hiddenBtn"
+          hidden={planta.imagePlant.length ? true : false}
+        ></div>
+        <button
+          className="btnBorrar"
+          hidden={planta.imagePlant.length ? false : true}
+          onClick={deleteImg}
+        >
+          X
+        </button>
+        <img
+          src={planta.imagePlant?.length ? planta.imagePlant : imgDefault}
+          className="imgSubir"
+          alt="img"
+        />
         <div>
           <UploadWidget />
         </div>
@@ -165,7 +177,10 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text degrade" for="inputGroupSelect01">
+                  <label
+                    class="input-group-text degrade"
+                    for="inputGroupSelect01"
+                  >
                     Ubicación
                   </label>
                 </div>
@@ -178,13 +193,9 @@ const ContainerFormPlanta = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <option selected>Ubicación</option>
-                  {
-                    tipos.ubication?.map(ele => {
-                      return (
-                        <option value={ele}>{ele}</option>
-                      )
-                    })
-                  }
+                  {tipos.ubication?.map((ele) => {
+                    return <option value={ele}>{ele}</option>;
+                  })}
                 </select>
               </div>
               <div>
@@ -217,7 +228,10 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text degrade" for="inputGroupSelect01">
+                  <label
+                    class="input-group-text degrade"
+                    for="inputGroupSelect01"
+                  >
                     Luminosidad
                   </label>
                 </div>
@@ -230,13 +244,9 @@ const ContainerFormPlanta = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <option selected>Luminosidad</option>
-                  {
-                    tipos.ligth?.map(ele => {
-                      return (
-                        <option value={ele}>{ele}</option>
-                      )
-                    })
-                  }
+                  {tipos.ligth?.map((ele) => {
+                    return <option value={ele}>{ele}</option>;
+                  })}
                 </select>
               </div>
               <div>
@@ -271,7 +281,10 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text degrade" for="inputGroupSelect01">
+                  <label
+                    class="input-group-text degrade"
+                    for="inputGroupSelect01"
+                  >
                     Riego
                   </label>
                 </div>
@@ -284,13 +297,9 @@ const ContainerFormPlanta = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <option selected>Riego</option>
-                  {
-                    tipos.whater?.map(ele => {
-                      return (
-                        <option value={ele}>{ele}</option>
-                      )
-                    })
-                  }
+                  {tipos.whater?.map((ele) => {
+                    return <option value={ele}>{ele}</option>;
+                  })}
                 </select>
               </div>
               <div>
@@ -325,7 +334,10 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text degrade" for="inputGroupSelect01">
+                  <label
+                    class="input-group-text degrade"
+                    for="inputGroupSelect01"
+                  >
                     Tamaño
                   </label>
                 </div>
@@ -338,13 +350,9 @@ const ContainerFormPlanta = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <option selected>Tamaño</option>
-                  {
-                    tipos.size?.map(ele => {
-                      return (
-                        <option value={ele}>{ele}</option>
-                      )
-                    })
-                  }
+                  {tipos.size?.map((ele) => {
+                    return <option value={ele}>{ele}</option>;
+                  })}
                 </select>
               </div>
               <div>
@@ -379,7 +387,10 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text degrade" for="inputGroupSelect01">
+                  <label
+                    class="input-group-text degrade"
+                    for="inputGroupSelect01"
+                  >
                     Tipo
                   </label>
                 </div>
@@ -392,13 +403,9 @@ const ContainerFormPlanta = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <option selected>Tipo</option>
-                  {
-                    tipos.type?.map(ele => {
-                      return (
-                        <option value={ele}>{ele}</option>
-                      )
-                    })
-                  }
+                  {tipos.type?.map((ele) => {
+                    return <option value={ele}>{ele}</option>;
+                  })}
                 </select>
               </div>
               <div>
@@ -431,7 +438,10 @@ const ContainerFormPlanta = () => {
             <div>
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
-                  <label class="input-group-text degrade" for="inputGroupSelect01">
+                  <label
+                    class="input-group-text degrade"
+                    for="inputGroupSelect01"
+                  >
                     Clima
                   </label>
                 </div>
@@ -444,13 +454,9 @@ const ContainerFormPlanta = () => {
                   style={{ cursor: "pointer" }}
                 >
                   <option selected>Preferencia climatica</option>
-                  {
-                    tipos.climate?.map(ele => {
-                      return (
-                        <option value={ele}>{ele}</option>
-                      )
-                    })
-                  }
+                  {tipos.climate?.map((ele) => {
+                    return <option value={ele}>{ele}</option>;
+                  })}
                 </select>
               </div>
               <div>

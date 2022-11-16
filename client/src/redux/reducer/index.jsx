@@ -8,9 +8,11 @@ import {
   GET_ARRAY_CARRITO,
   URL,
   ACTIVAR,
+  GET_ALL_FAVORITES,
+  GET_USER,
   GET_SEARCH,
   GET_ALL_USERS,
-  CREATE_ADMIN
+  CREATE_ADMIN,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -26,7 +28,7 @@ const initialState = {
   nombre: "perfil",
   favoritos: [],
   user: {},
-  usuarios: []
+  usuarios: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -125,15 +127,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
-      case GET_ALL_USERS: 
+    case GET_ALL_USERS:
       return {
         ...state,
-        usuarios: action.payload
-      }
-      case CREATE_ADMIN:
-        return{
-          ...state
-        }
+        usuarios: action.payload,
+      };
+    case CREATE_ADMIN:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
