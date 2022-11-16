@@ -11,6 +11,8 @@ import {
   GET_SEARCH,
   GET_ALL_FAVORITES,
   GET_USER,
+  DELETE_FAVORITES,
+  ADD_FAVORITES,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -124,6 +126,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
+    case DELETE_FAVORITES:
+      return {
+        ...state,
+        favoritos: action.payload,
+      };
+    case ADD_FAVORITES:
+      return{
+        ...state,
+        favoritos: action.payload
+      }
     default:
       return state;
   }

@@ -7,7 +7,7 @@ const plantaACarta = ({
 }) => ({
   id: codPlant,
   nombre: namePlant,
-  subnombre: namePlant.split(",").slice(1),
+  subnombre: namePlant?.split(",").slice(1),
   caracteristica: type,
   img: imagePlant,
   descripcion: descripPlant,
