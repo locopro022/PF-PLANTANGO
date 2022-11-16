@@ -8,6 +8,27 @@ const llenarDBProd = async () => {
   }
 };
 
+//Buscar por nombre 
+const searchName = async(name)=> {
+
+  try {
+    
+const db = await Product.findAll();
+console.log("Busqueda: ",name);
+
+const response = await db.filter((p)=> p.nameProd.toLowerCase().includes(name.toString().toLowerCase()));
+
+if(!response){
+  throw new Error("No hay coincidencia")
+
+}
+
+return response;
+  } catch (error) {
+    
+  }
+}
 module.exports = {
   llenarDBProd,
-};
+  searchName
+}
