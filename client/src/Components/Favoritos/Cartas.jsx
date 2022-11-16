@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { deleteFav } from "../../redux/actions";
+import "./Favoritos.css";
 
-import "./index.css";
-import { addFav } from "../../redux/actions";
-const Cartas = (props) => {
+const CartasFavoritos = (props) => {
   const user = useSelector((e) => e.user);
   const dispatch = useDispatch();
-  function addfav(e, item) {
+  function eliminarFav(e, item) {
     e.preventDefault();
-    dispatch(addFav(user.id, item.id));
+    dispatch(deleteFav(user.id, item.id));
   }
   return (
     <div className="contenedorCartasFavoritos">
@@ -57,7 +57,7 @@ const Cartas = (props) => {
                 )}
                 <button
                   className="favOFF"
-                  onClick={(e) => addfav(e, item)}
+                  onClick={(e) => eliminarFav(e, item)}
                 />
               </div>
             </div>
@@ -69,4 +69,4 @@ const Cartas = (props) => {
   );
 };
 
-export default Cartas;
+export default CartasFavoritos;

@@ -82,21 +82,17 @@ UserR.get("/:email", async (req, res) => {
   if (!userTable.length) {
     await User.create({ email: email, username: email });
     const userTableF = await User.findAll({ where: { email } });
-    return res
-    .status(200)
-    .json({
+    return res.status(200).json({
       username: userTableF[0].dataValues.username,
       email: userTableF[0].dataValues.email,
       id: userTableF[0].dataValues.idUser,
     });
   }
-  return res
-    .status(200)
-    .json({
-      username: userTable[0].dataValues.username,
-      email: userTable[0].dataValues.email,
-      id: userTable[0].dataValues.idUser,
-    });
+  return res.status(200).json({
+    username: userTable[0].dataValues.username,
+    email: userTable[0].dataValues.email,
+    id: userTable[0].dataValues.idUser,
+  });
 });
 
 //Traer todos los usuarios 
@@ -143,13 +139,28 @@ UserR.get("/favorites/:idU", async (req, res) => {
 
     const favId = await Favorites.findAll({ where: { UserIdUser: idU } });
 
-    const plantasF = await Plants.findAll({
-      where: { codPlant: favId[0].dataValues.PlantCodPlant },
-    });
-    console.log(plantasF);
-    res.status(200).send(plantasF);
+    let planstasFinal = []
+    for (let i = 0; i < favId.length; i++) {
+      let plantasF = await Plants.findAll({
+        where: { codPlant: favId[i].dataValues.PlantCodPlant },
+      });
+      planstasFinal.push(plantasF[0])
+    }
+    res.status(200).send(planstasFinal);
   } catch (error) {
     return res.status(400).json({ error });
+  }
+});
+UserR.delete("/favorites/delete/:idU/:idP", async (req, res) => {
+  const { idU, idP } = req.params;
+  try {
+  await Favorites.destroy({
+    where: { UserIdUser: idU , PlantCodPlant: idP },
+  });
+  const tabla = await Favorites.findAll({ where: { UserIdUser: idU } });
+  res.status(200).send(tabla);
+  } catch (error) {
+    res.status(400).json({ error: error });
   }
 });
 
