@@ -15,6 +15,7 @@ import {
   CREATE_ADMIN,
   DELETE_FAVORITES,
   ADD_FAVORITES,
+  DELETE_USER,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -147,6 +148,10 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         favoritos: action.payload
+      }
+      case DELETE_USER: 
+      return {
+        ...state
       }
     default:
       return state;

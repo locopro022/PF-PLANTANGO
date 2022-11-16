@@ -20,7 +20,8 @@ export const ADD_FAVORITES = "ADD_FAVORITES"
 export const GET_USER = "GET_USER";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
-export const CREATE_ADMIN ="CREATE_ADMIN"
+export const CREATE_ADMIN ="CREATE_ADMIN";
+export const DELETE_USER = "DELETE_USER"
 
 const API_URL = "http://localhost:3001";
 
@@ -129,12 +130,12 @@ export function getUser(user) {
 }
 
 export const getAllUsers = ()=> {
-  console.log("LLEGUE A LA ACTION");
+  
   return(dispatch)=> {
     fetch(`http://localhost:3001/user/all`)
     .then((response)=>  response.json())
     .then( (data)=> {
-      console.log("DATA: ",data);
+     
       dispatch ({ type: GET_ALL_USERS, payload: data})
     })
     
@@ -142,7 +143,21 @@ export const getAllUsers = ()=> {
 
   export const addAdmin= (newAdmin)=> {
 return async(dispatch)=>{
-   await axios.post(`http://localhost:3001/user/`,newAdmin);
+   await axios.post(`http://localhost:3001/user/admin`,newAdmin);
    return dispatch({type: CREATE_ADMIN})}
     
+  }
+
+  export const deleteUser= (idUser)=> {
+    console.log("llego a la action");
+
+    return async function (dispatch){
+      const user = await axios.delete(`http://localhost:3001/user/${idUser}`);
+    
+      return dispatch({
+        type: DELETE_USER,
+        payload: user.data
+      })
+    
+    }
   }

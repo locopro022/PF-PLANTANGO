@@ -2,6 +2,26 @@ const { Router } = require("express");
 const { DailyUser, User, Plants, Favorites } = require("../db");
 
 const UserR = Router();
+//Traer todos los usuarios 
+UserR.get("/all", async (req,res)=>{
+  
+  
+try {
+  console.log("ENTRE A LA RUTA ALL");
+          
+  const allUsers = await User.findAll();
+
+  console.log("allUsers: ",allUsers);
+
+  if(!allUsers){
+    return res.status(400).json({error: "Error en ruta get /user/all"})
+  }
+  
+  return res.status(200).json(allUsers)
+} catch (error) {
+  res.status(400).send(error.message)
+}
+})
 
 UserR.get("/daily/:id", async (req, res) => {
   const { id } = req.params;
@@ -38,38 +58,38 @@ UserR.put("/daily/:id", async (req, res) => {
   }
 });
 
-// UserR.post("/", async (req, res) => {
-//   try {
-//     let { username, email, pass, name, lastName, nPhone } = req.body;
+UserR.post("/", async (req, res) => {
+  try {
+    let { username, email, pass, name, lastName, nPhone } = req.body;
 
-//     if (!username || !email) {
-//       return res.status(400).json({ error: "falta usuario o mail" });
-//     }
-//     if (pass === "") pass = null;
-//     if (name === "") name = null;
-//     if (lastName === "") lastName = null;
-//     if (nPhone === "") nPhone = null;
+    if (!username || !email) {
+      return res.status(400).json({ error: "falta usuario o mail" });
+    }
+    if (pass === "") pass = null;
+    if (name === "") name = null;
+    if (lastName === "") lastName = null;
+    if (nPhone === "") nPhone = null;
 
-//     await User.create({
-//       username,
-//       email,
-//       pass,
-//       name,
-//       lastName,
-//       nPhone,
-//     });
-//     const tUser = await User.findAll({ where: { email } });
-//     await DailyUser.create({
-//       UserIdUser: tUser[0].dataValues.idUser,
-//     });
+    await User.create({
+      username,
+      email,
+      pass,
+      name,
+      lastName,
+      nPhone,
+    });
+    const tUser = await User.findAll({ where: { email } });
+    await DailyUser.create({
+      UserIdUser: tUser[0].dataValues.idUser,
+    });
 
-//     return res
-//       .status(201)
-//       .send({ message: `${username}, tu usuario fue creado con exito!` });
-//   } catch (error) {
-//     return res.status(400).json({ error });
-//   }
-// });
+    return res
+      .status(201)
+      .send({ message: `${username}, tu usuario fue creado con exito!` });
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
 
 UserR.get("/:email", async (req, res) => {
   const { email } = req.params;
@@ -95,21 +115,6 @@ UserR.get("/:email", async (req, res) => {
   });
 });
 
-//Traer todos los usuarios 
-UserR.get("/all", async (req,res)=>{
-  
-  
-try {
-  const allUsers = await User.findAll();
-  if(!allUsers){
-    return res.status(400).json({error: "Error en ruta get /user/all"})
-  }
-  
-  return res.status(200).json(allUsers)
-} catch (error) {
-  res.status(400).send(error.message)
-}
-})
 UserR.post("/favorites/:idU/:idP", async (req, res) => {
   try {
     const { idU, idP } = req.params;
@@ -213,6 +218,7 @@ UserR.put("/:idUser", async (req, res) => {
 UserR.delete("/:idUser", async (req, res)=> {
 try {
   
+  console.log("llego a delete user");
   const {idUser} = req.params;
   const eliminarUser = await User.findByPk(idUser);
   if (!eliminarUser){
@@ -227,6 +233,8 @@ await User.update(
     where: {idUser}
   }
 )
+
+console.log("usuario a eliminar",eliminarUser);
 res.status(200).json("Usuario con borrado lógico");
 
 } catch (error) {
@@ -244,9 +252,12 @@ try {
 
   console.log(username, email, pass, name, lastName, nPhone);
 
-  if (!username || !email || !pass || !name || !lastName || !nPhone) {
+  if (!username || !email || !pass || !name ) {
    return res.send(400).json("mal perri")
   }
+
+  !nPhone?null:nPhone;
+  !lastName?null:lastName;
 
   const newAdmin = await User.create({
     username, email, pass, name, lastName, nPhone,
