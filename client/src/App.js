@@ -21,6 +21,7 @@ import Profile from "./Components/Profile";
 import Ajustes from "./Components/Ajustes";
 import Favoritos from "./Components/Favoritos";
 import { useAuth0 } from "@auth0/auth0-react";
+import UsuariosInfo from "./Components/UsuariosInfo/UsuarioInfo";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
             />
             <Route path="/ajustes" element={<Ajustes />} />
             <Route path="/favoritos" element={<Favoritos />} />
+            <Route path="/ajustes/administrar" element={<UsuariosInfo/>}/>
           </Routes>
           <Footer />
         </div>

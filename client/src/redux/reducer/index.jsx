@@ -9,8 +9,8 @@ import {
   URL,
   ACTIVAR,
   GET_SEARCH,
-  GET_ALL_FAVORITES,
-  GET_USER,
+  GET_ALL_USERS,
+  CREATE_ADMIN
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -26,6 +26,7 @@ const initialState = {
   nombre: "perfil",
   favoritos: [],
   user: {},
+  usuarios: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -124,6 +125,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
+      case GET_ALL_USERS: 
+      return {
+        ...state,
+        usuarios: action.payload
+      }
+      case CREATE_ADMIN:
+        return{
+          ...state
+        }
     default:
       return state;
   }
