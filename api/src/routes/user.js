@@ -131,7 +131,6 @@ UserR.get("/favorites/:idU", async (req, res) => {
     const plantasF = await Plants.findAll({
       where: { codPlant: favId[0].dataValues.PlantCodPlant },
     });
-    console.log(plantasF);
     res.status(200).send(plantasF);
   } catch (error) {
     return res.status(400).json({ error });
