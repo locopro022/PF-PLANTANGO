@@ -1,17 +1,28 @@
 import React,{useState, useEffect} from "react";
 import { useDispatch, useSelector} from "react-redux"
-import { getAllUsers } from "../../redux/actions";
+import { getAllUsers, deleteUser } from "../../redux/actions";
 
 const Usuarios = ()=> {
 
 const dispatch = useDispatch();
 
-useEffect(()=>{
-    dispatch(getAllUsers())
-},[])
+
 
 const allUsers = useSelector(state=> state.usuarios)
 const users= allUsers.filter( u => u.hidden === false)
+
+useEffect(()=>{
+ dispatch(getAllUsers());
+ },[])
+
+const borrarUsuario = (user)=> {
+    
+const algo = user.idUser?.length? user.idUser : null;
+
+algo?.length&&dispatch(deleteUser(algo));
+window.location. reload();
+
+}
 
     return ( 
         <table>
@@ -31,9 +42,9 @@ const users= allUsers.filter( u => u.hidden === false)
                     <td>{user.username}</td>
                    <td>{user.email}</td>
                    <td>{user.idUser}</td>
-                   <button className="button muted-button">editar</button>
-                   <button className="button muted-button">borrar</button>
+                    <button onClick={()=>borrarUsuario(user)} >borrar</button>
                     </tr>
+                   
                     )) : (
                         <td>No hay usuarios</td>
                     )}

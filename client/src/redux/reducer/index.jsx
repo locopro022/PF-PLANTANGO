@@ -13,6 +13,7 @@ import {
   GET_SEARCH,
   GET_ALL_USERS,
   CREATE_ADMIN,
+  DELETE_USER,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -136,6 +137,10 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+      case DELETE_USER: 
+      return {
+        ...state
+      }
     default:
       return state;
   }

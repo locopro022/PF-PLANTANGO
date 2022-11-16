@@ -1,82 +1,74 @@
 import React, {useState}from "react";
 import {useForm} from "react-hook-form"
 import { useDispatch } from "react-redux";
+import { addAdmin, getAllUsers } from "../../redux/actions";
 
 const Formulario = ()=> {
 
     const dispatch = useDispatch();
-const [admin, setAdmin]= useState({
-    
-    username:"",
-    email:"",
-    name:"",
-    pass:"",
-    lastName:"",
-    nPhone:""
 
-})
 
-const addAdmin = (newAdmin)=> {
-dispatch(addAdmin(newAdmin))
-}
+     const {register, formState: {errors}, handleSubmit, watch}= useForm({mode:'onTouched'});
 
-    const {register, errors, handlesubmit}= useForm();
-
-    const onsubmit = (input, e)=>{
-        console.log(input);
-        e.target.reset()
+    const onSubmit = (data)=>{
+        dispatch(addAdmin(data))
+        window.location. reload();
     }
 
+
+    const pass= watch('pass')
     return (
-        <form onSubmit={handlesubmit(onsubmit)}>
+        
+<form onSubmit={handleSubmit(onSubmit)}>
 
+<div>
 <label>Nombre</label>
-<input type="text" autofocus name="name" ref={
-    register({
-        required: {value:true, message: "Campo requerido"}
-    })
-}/>
-<span>{errors?.name?.mesagge}</span>
+<input type="text" name="name"  {...register("name", {required: true, maxLength: 10})}/>
+{errors?.name?.type === 'required' && <span><small>El campo nombre es requerido</small></span>}
+{errors?.name?.type === 'maxLength' && <span><small>Debe tener máximo 10 caracteres</small></span>}
+</div>
 
+<div>
 <label>UserName</label>
-<input type="text" name="username" ref={
-    register({
-        required: {value:true, message: "Campo requerido"}
-    })
-}/>
-<span>{errors?.username?.mesagge}</span>
+<input type="text" name="username" 
+    {...register("username", {required: true, maxLength: 10})}/>
+    {errors?.username?.type === 'required' && <span><small>El campo UserName es requerido</small></span>}
+    {errors?.username?.type === 'maxLength' && <span><small>Debe tener máximo 10 caracteres</small></span>}
 
+</div>
+
+<div>
 <label>Email</label>
-<input type="email" name="email" ref={
-    register({
-        required: {value:true, message: "Campo requerido"}
-    })
-}/>
-<span>{errors?.email?.mesagge}</span>
+<input type="email" name="email" {...register("email", {required: true, pattern: /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/ })}/>
+{errors?.email?.type === 'required' && <span><small>El campo email es requerido</small></span>}
+{errors?.email?.type === 'pattern' && <span><small>El formato del email es incorrecto</small></span>}
+</div>
 
+<div>
 <label>Apellido</label>
-<input type="text" name="lastName"/>
-<span>{errors?.lastName?.mesagge}</span>
+<input type="text" name="lastName" {...register("lastName", {maxLength:10})}/>
+{errors?.lasName?.type === 'maxLength' && <span><small>Debe tener máximo 10 caracteres</small></span>}
+</div>
 
+<div>
 <label>Contraseña</label>
-<input type="password" name="pass" ref={
-    register({
-        required: {value:true, message: "Campo requerido"}
-    })
-}/>
-<span>{errors?.pass?.mesagge}</span>
+<input type="password" name="pass" {...register("pass", {required: true})}/>
+{errors?.pass?.type === 'required' && <span><small>El campo contraseña es requerido</small></span>}
+</div>
 
+<div>
 <label>Repetir contraseña</label>
-<input type="password" name="pass2" ref={
-    register({
-        required: {value:true, message: "Campo requerido"}
-    })
-}/>
-<span>{errors?.pass2?.mesagge}</span>
+<input type="password" name="pass2" {...register("pass2", {required: true, 
+validate: (value)=> 
+value===pass || "Las contraseñas no coinciden" })}/>
+{errors?.pass2?.type === 'required' && <span><small>El campo `Repetir contraseña` es requerido</small></span>}
+{errors.pass2 && <span><small>{errors.pass2.message}</small></span> }
+</div>
 
+<div>
 <label>Telefono</label>
 <input type="tel" name="nPhone"/>
-<span>{errors?.nPhone?.mesagge}</span>
+</div>
 
 <button>Agregar administrador</button>
         </form>

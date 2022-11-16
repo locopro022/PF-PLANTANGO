@@ -8,12 +8,13 @@ const UsuariosInfo = ()=> {
 
 
     return ( 
+      
         <div className="container">
         <h1>Administrar usuarios</h1>
         <div className="flex-row">
             <div className="flex-large">
                 <h2>Agregar usuario administrador</h2>
-                <Formulario />
+                 <Formulario /> 
             </div>
             <div className="flex-large">
                 <h2>Usuarios activos</h2>
