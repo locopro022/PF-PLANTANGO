@@ -2,16 +2,14 @@ const { Router } = require("express");
 const { Plants } = require("../db");
 const { plantTypes: types } = require("../controller/plantTypes.js");
 const { Op } = require("sequelize");
-const { getDbId } = require("../controller/plantas.js");
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
+
+// RUTA GET
 
 router.get("/", async (req, res) => {
   try {
     const { search, filter, sort, page } = req.query;
-    // Vendran estos cuatro parametros, busqueda por nombre, filtros, ordenamientos y pagina.
 
     let sequelizeFilter = {};
 
@@ -25,7 +23,6 @@ router.get("/", async (req, res) => {
           ? sequelizeFilter
           : { namePlant: { [Op.iLike]: `%${search}%` } }),
       },
-      // order: [["alguna propiedad", "sequelize.literal es una buena funcion aca"]],
       order: [sequelizeSort],
       limit: 12,
       offset: (page || 0) * 12,
@@ -37,32 +34,38 @@ router.get("/", async (req, res) => {
       page: page || 0,
     });
   } catch (e) {
-    console.log("Error en getPlants" + e);
-    res.status(400).send(e);
+    console.log(e);
+    res.status(500).json({ error: e });
   }
 });
+
+// RUTA GET TIPOS
 
 router.get("/types", async (req, res) => {
   try {
     res.status(200).json(types);
-  } catch (error) {
-    throw new Error("Error en routes -> get./types ", error.message);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
   }
 });
 
-router.get("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
+//RUTA GET ESPECIFICA
 
-    let plant = await getDbId(id);
+router.get("/:codPlant", async (req, res) => {
+  try {
+    const { codPlant } = req.params;
+
+    let plant = await Plants.findByPk(codPlant);
 
     return res.status(200).json(plant);
-  } catch (error) {
-    res.status(400).json("Error en Routes -> plants.js: ", error.message);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
   }
 });
 
-//CREACION DE PLANTA
+// RUTA POST
 
 router.post("/creacion", (req, res) => {
   try {
@@ -73,14 +76,14 @@ router.post("/creacion", (req, res) => {
       imagePlant: body.imagePlant === "" ? undefined : body.imagePlant,
       toxicity: typeof body.toxicity === "boolean" ? req.body.toxicity : false,
     });
-    res.status(201).json(`Planta ${newPlant.namePlant} creada con exito`);
-  } catch (error) {
-    console.log(error);
-    res.status(400).json(error.message);
+    res.status(201).json(newPlant);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
   }
 });
 
-//DEVUELVE OBJETO CON ARRAYS PARA EL FILTRADO
+// RUTA PUT
 
 router.put("/", async (req, res) => {
   const { body } = req;
@@ -92,8 +95,24 @@ router.put("/", async (req, res) => {
     await plant.save();
 
     res.status(201).json(plant);
-  } catch (error) {
-    res.status(400).send(error);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
+  }
+});
+
+// RUTA DELETE
+
+router.delete("/:codPlant", async (req, res) => {
+  const { codPlant } = req.params;
+  try {
+    await Plants.destroy({
+      where: { codPlant },
+    });
+    res.status(200).json({ deleted: codPlant });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
   }
 });
 
