@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { Plants } = require("../db");
 const dbBuild = require("../dbBuild");
-const { Op, BOOLEAN } = require("sequelize");
+const { Op } = require("sequelize");
 const {
   getDbId,
   llenarDB,
