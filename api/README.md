@@ -106,3 +106,27 @@ Al igual que la ruta getEspecifica, su unico parametro es la primaryKey. Al ser 
   deleted: codPlant;
 }
 ```
+
+## Rutas /products
+
+## objeto product
+
+ej:
+
+```javascript
+{
+  nameProd: "Un producto.",//string
+  descripProd: "Es un fertilizante, que fertiliza la tierra para que quede fertilizada",//string
+  codCategoria: "Tierras y fertilizantes",//string
+  estrellas: 2.3,//float
+  precio: 120000,//int (es en centavos, centavos/100 = 100.00$)
+  stockActual: 50,//int
+  stockMinimo: 5,//int
+  stockMaximo: 50,//int
+  imageProd: "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/186622/186622_1.jpeg?fit=crop&w=224&h=224&auto=format&q=100",//string (url a la imagen)
+}
+```
+
+## rutas
+
+son exactamente iguales a las de plants. Solo que con sus equivalencias, obviamente.

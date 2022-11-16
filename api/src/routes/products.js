@@ -1,81 +1,117 @@
 const { Router } = require("express");
-const { searchName } = require("../controller/productos");
 const { Product } = require("../db");
-const dbBuild = require("../dbProducts.js");
 const { Op } = require("sequelize");
-const Category = require("../models/Category");
+// const Category = require("../models/Category");
 
-const prod = Router();
+const router = Router();
 
-//TRAER TODOS LOS PRODUCTOS O BUSCAR POR NOMBRE
-prod.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    console.log("ENTRE AL GET");
+    const { search, filter, sort, page } = req.query;
 
-    const { search, sort, page } = req.query;
-    if (search) {
-      console.log("ENTRE AL IF SEARCH");
+    let sequelizeFilter = {};
 
-      //ESTO DE ABAJO NO FUNCIONA NO SE QUE ESTA MAL
-      const response = await Product.findAll({
-        where: {
-          namePlant: { [Op.iLike]: `%${search}%` },
-        },
-      });
+    let sequelizeSort = sort || ["nameProd", "ASC"];
 
-      console.log("rta", response);
-      return res.status(200).json(response);
-    }
+    for (let key in filter)
+      sequelizeFilter[key] = { [Op.contains]: filter[key] };
 
-    const allProducts = await Product.findAll();
+    const { count, rows } = await Product.findAndCountAll({
+      where: {
+        ...(!search
+          ? sequelizeFilter
+          : { nameProd: { [Op.iLike]: `%${search}%` } }),
+      },
+      order: [sequelizeSort],
+      limit: 12,
+      offset: (page || 0) * 12,
+    });
 
-    console.log("PRODUCTOS: ", allProducts);
-
-    if (!allProducts)
-      throw new Error("Error en traer los productos de la DV -> get /products");
-
-    console.log("PRODUCTOS: ", allProducts);
-    res.status(200).json(allProducts);
-  } catch (error) {
-    res.status(400).send("ERROR EN GET PRODUCTS");
+    return res.status(200).json({
+      page_count: Math.ceil(count / 12),
+      results: rows,
+      page: page || 0,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
   }
 });
 
-//PRODUCTO DETAIL
-prod.get("/:codProd", async (req, res) => {
+// RUTA GET TIPOS
+
+// router.get("/types", async (req, res) => {
+//   try {
+//     res.status(200).json(types);
+//   } catch (e) {
+//     console.log(e);
+//     res.status(500).json({ error: e });
+//   }
+// });
+
+//RUTA GET ESPECIFICA
+
+router.get("/:codProd", async (req, res) => {
   try {
     const { codProd } = req.params;
-    if (!codProd) {
-      throw new Error("Error el id es null");
-    }
-    console.log("codProducto", codProd);
-    const response = await Product.findByPk(codProd);
-    console.log("RESPONSE: ", response);
-    const producto = response.dataValues;
 
-    console.log("PRODUCTO: ", producto);
-    let productoId = {
-      nameProd: producto.nameProd,
-      descripProd: producto.descripProd,
-      codCategory: producto.codCategory,
-      starts: producto.starts,
-      price: producto.price,
-      actualStock: producto.actualStock,
-      minStock: producto.minStock,
-      maxStock: producto.maxStock,
-      imageProd: producto.imageProd,
-      stateProd: producto.stateProd,
-    };
-    return res.status(200).json(productoId);
-  } catch (error) {
-    res.status(400).json("Error en Routes -> products.js: ");
+    let product = await Product.findByPk(codProd);
+
+    return res.status(200).json(product);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
   }
 });
 
-//CREAR PRODUCTO
+// RUTA POST
 
-//MODIFICAR PRODUCTO
+router.post("/creacion", (req, res) => {
+  try {
+    const { body } = req;
+    console.log(body);
+    let newProd = Product.create({
+      ...body,
+      imageProd: body.imageProd === "" ? undefined : body.imageProd,
+    });
+    res.status(201).json(newProd);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
+  }
+});
 
-//ELIMINAR PRODUCTO
+// RUTA PUT
 
-module.exports = prod;
+router.put("/", async (req, res) => {
+  const { body } = req;
+  try {
+    const prod = await Product.findByPk(body.codProd);
+    await prod.set({
+      ...body,
+    });
+    await prod.save();
+
+    res.status(201).json(prod);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
+  }
+});
+
+// RUTA DELETE
+
+router.delete("/:codProd", async (req, res) => {
+  const { codProd } = req.params;
+  try {
+    await Product.destroy({
+      where: { codProd },
+    });
+    res.status(200).json({ deleted: codProd });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
+  }
+});
+
+module.exports = router;

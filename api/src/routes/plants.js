@@ -52,7 +52,7 @@ router.get("/types", async (req, res) => {
 
 //RUTA GET ESPECIFICA
 
-router.get("/:codPlant", async (req, res) => {
+router.get("/:codProd", async (req, res) => {
   try {
     const { codPlant } = req.params;
 
@@ -103,7 +103,7 @@ router.put("/", async (req, res) => {
 
 // RUTA DELETE
 
-router.delete("/:codPlant", async (req, res) => {
+router.delete("/:codProd", async (req, res) => {
   const { codPlant } = req.params;
   try {
     await Plants.destroy({
