@@ -3,7 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getFav } from "../../redux/actions";
-import { plantaACarta } from "../../redux/utils";
 import CartasFavoritos from "./Cartas";
 
 function Favoritos() {
@@ -19,7 +18,7 @@ function Favoritos() {
     }
   }, [userDB, favs, dispatch]);
   if (favs.length) {
-    result = (<CartasFavoritos items={favs?.map(plantaACarta)}/>)
+    result = favs.map(e=>(<CartasFavoritos items={e}/>))
   } 
 
   return (
