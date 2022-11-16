@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { Product } = require("../db");
 const { Op } = require("sequelize");
+const sequelize = require("sequelize");
 // const Category = require("../models/Category");
 
 const router = Router();
@@ -31,6 +32,22 @@ router.get("/", async (req, res) => {
       page_count: Math.ceil(count / 12),
       results: rows,
       page: page || 0,
+      types: {
+        codCategoria: [
+          "Semillas",
+          "Macetas",
+          "Accesorios",
+          "Tierras y fertilizantes",
+        ],
+        stars: {
+          min: rows.map((r) => r.estrellas).reduce((p, c) => (c < p ? c : p)),
+          max: rows.map((r) => r.estrellas).reduce((p, c) => (c > p ? c : p)),
+        },
+        precio: {
+          min: rows.map((r) => r.precio).reduce((p, c) => (c < p ? c : p)),
+          max: rows.map((r) => r.precio).reduce((p, c) => (c > p ? c : p)),
+        },
+      },
     });
   } catch (e) {
     console.log(e);
@@ -39,11 +56,23 @@ router.get("/", async (req, res) => {
 });
 
 // RUTA GET TIPOS
-// TODO: Algoritmo de tipos
+// Semillas, Macetas, Accesorios, Tierras y fertilizantes.
 
 // router.get("/types", async (req, res) => {
 //   try {
-//     res.status(200).json(types);
+//     const getVal = async (mag, col) =>
+//       (
+//         await Product.findAll({
+//           attributes: [[sequelize.fn(mag, sequelize.col(col)), col]],
+//         })
+//       )[0][col];
+//     const types = {
+//         minPrice: await getVal("min", "precio"),
+//         maxPrice: await getVal("max", "precio"),
+//         minStars:
+//     }
+
+//     res.status(200).json({ minPrice, maxPrice });
 //   } catch (e) {
 //     console.log(e);
 //     res.status(500).json({ error: e });

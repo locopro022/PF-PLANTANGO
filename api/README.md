@@ -129,4 +129,37 @@ ej:
 
 ## rutas
 
-son exactamente iguales a las de plants. Solo que con sus equivalencias, obviamente.
+son exactamente iguales a las de plants. Solo que con sus equivalencias, obviamente. ]
+
+1. codPlant => codProd,
+
+1. usar la ruta de tipos para filtros,
+
+1. los precios vienen en centavos (intenta sumar 0.1 + 0.2 y entenderas porque),
+
+1. No existe la ruta types, cuando pidas todos los productos recibiras una propiedad extra de tipo, por el cual podras filtrar.
+   NO SE IMPLEMENTO LA FUNCIONALIDAD DE FILTRAR ENTRE PRECIO MAX Y MIN (AUN), asi que no esperes que funcione, simplemente usar para adelantar.
+
+```javascript
+{
+  "page_count": 1,
+  "results": [...],
+  "page": 0,
+  "types": {
+    "codCategoria": [
+      "Semillas",
+      "Macetas",
+      "Accesorios",
+      "Tierras y fertilizantes"
+    ],
+    "stars": {
+      "min": 4,
+      "max": 5
+    },
+    "precio": {
+      "min": "107300",
+      "max": "452400"
+    }
+  }
+}
+```
