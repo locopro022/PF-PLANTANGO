@@ -2,7 +2,8 @@ import axios from "axios";
 import { plantaADetalle } from "../utils";
 
 export const GET_TIPOS_HUERTA = "GET_TIPOS_HUERTA";
-export const CONSTRAIN_HUERTA = "CONSTRAIN_HUERTA";
+export const SET_FILTROS_HUERTA = "SET_FILTROS_HUERTA";
+export const SET_PAG_HUERTA = "SET_PAG_HUERTA";
 export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
 
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
@@ -44,9 +45,12 @@ export const getTiposHuerta = () => (dispatch) => {
   });
 };
 
-export const constrainHuerta = (e) => (dispatch) => {
-  console.log("aplicando constrain a redux", e);
-  dispatch({ type: CONSTRAIN_HUERTA, payload: e });
+export const setFiltrosHuerta = (e) => (dispatch) => {
+  dispatch({ type: SET_FILTROS_HUERTA, payload: e });
+};
+
+export const setPagHuerta = (e) => (dispatch) => {
+  dispatch({ type: SET_PAG_HUERTA, payload: e });
 };
 
 export const getHuertaDetail = async (id) => {
@@ -91,7 +95,6 @@ export const getSearch = (search) => {
     }
   };
 };
-
 
 export function getFav(idU) {
   return (dispatch) =>
