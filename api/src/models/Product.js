@@ -5,9 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Product', {
     codProd: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      autoIncrement : true,
       primaryKey: true,
-      unique: true
     },
     nameProd:{
       type: DataTypes.STRING,
@@ -19,8 +19,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     codCategory:{
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.INTEGER,
     },
     starts:{
         type: DataTypes.INTEGER,
@@ -44,7 +43,7 @@ module.exports = (sequelize) => {
       }, 
     stateProd:{
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: true
     }
   },{
     freezeTableName: true,
