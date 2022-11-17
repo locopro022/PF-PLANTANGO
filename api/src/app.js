@@ -2,8 +2,11 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+
 const routes = require("./routes/plants.js");
 const UserR = require("./routes/user.js");
+
+const Prod = require("./routes/products.js");
 const prod = require("./routes/products.js");
 const pago = require("./routes/pagos.js");
 require("./db.js");
@@ -27,6 +30,7 @@ server.use((req, res, next) => {
   next();
 });
 
+server.use("/products",Prod);
 server.use("/plants", routes);
 server.use("/user",UserR)
 server.use("/products",prod)
