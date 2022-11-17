@@ -36,7 +36,6 @@ const {User, DailyUser, Plants, Category, Product, Billing, BillingDetail } = se
 // un producto tiene una categoria - una categoria tiene muchos productos
 Product.hasOne(Category)
 Category.hasMany(Product)
->>>>>>> develop
 
 //Relaciones
 // un usuario - tiene un diario
