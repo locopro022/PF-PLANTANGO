@@ -5,6 +5,7 @@ import Profile from '../Profile'
 import CreacionPlanta from '../CreacionDePlanta'
 
 import { NavLink } from 'react-router-dom'
+import { unstable_renderSubtreeIntoContainer } from 'react-dom'
 
 const Ajustes = () => {
     const dispatch = useDispatch()
@@ -38,15 +39,14 @@ const Ajustes = () => {
                     </div>
             }
             <div>
-
                 <NavLink to="/ajustes/administrar">
-                        <button >
-                            Administrar usuarios
-                        </button>
+                    <button >
+                        Administrar usuarios
+                    </button>
                 </NavLink>
             </div>
         </div>
-       
+
     )
 }
 
