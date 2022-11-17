@@ -37,7 +37,7 @@ const Carrito = () => {
 
   const eliminarProduct = (product) => {
     let nuevoCarrito = arrayCarrito?.filter(ele => ele.nameProd !== product)
-    if (nuevoCarrito.length) localStorage.setItem("carrito", JSON.stringify(nuevoCarrito))
+    localStorage.setItem("carrito", JSON.stringify(nuevoCarrito))
     dispatch(carritoStorage(nuevoCarrito))
     Notiflix.Notify.success('Producto eliminado con exito', {
       zindex: 999999999999999,
