@@ -22,9 +22,9 @@ const Home = () => {
                                 <Carrousel />
                             </div>
                             <HomeApartadoVivero />
-                            <div>
-                                <h1>Somos plantango</h1>
-                                <h4>Esto es plantango</h4>
+                            <div className='containerPlantango estilos'>
+                                <h2>Somos Plantango</h2>
+                                <h6>Somos una empresa que se dedica a vender los mejores productos para el mantenimiento de tus plantas, tambien brindamos un apartado en el cual podes investigar los tipos de plantas existentes en Argentina.</h6>
                             </div>
                             <HomeApartadoHuerta />
                         </div>

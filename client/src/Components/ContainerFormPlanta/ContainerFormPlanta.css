@@ -81,15 +81,8 @@
 }
 
 .buttonCrear {
-    background-image: linear-gradient(to right,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5);
+    background: #bafd4e;
+    background: linear-gradient(to left, #bafd4e 0%, #79f952 15%, #53f65b 30%, #54f35c 45%, #54f090 60%, #56ed9a 80%, #56efb4 90%, #4ceec5 100%);
     border: none;
     color: #000;
     cursor: pointer;
@@ -98,19 +91,11 @@
     position: relative;
     padding: 10px 5px;
     transition: 800ms all;
-    border: 1px solid rgb(40, 189, 75);
 }
 
 .buttonCrear:hover {
-    background-image: linear-gradient(to left,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5);
+    background: #bafd4e;
+    background: linear-gradient(to right, #bafd4e 0%, #79f952 15%, #53f65b 30%, #54f35c 45%, #54f090 60%, #56ed9a 80%, #56efb4 90%, #4ceec5 100%);
 }
 
 .buttonCrear span {

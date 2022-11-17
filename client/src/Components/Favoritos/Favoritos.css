@@ -1,0 +1,27 @@
+.contenedorCartasFavoritos {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  margin-left: 50px;
+}
+
+.favOFF {
+  background-image: url("../../img/estrellaoff.png");
+  min-width: 38px;
+  max-width: 38px;
+  min-height: 38px;
+  max-height: 38px;
+  background-size: contain;
+  border-style: none;
+  /* background-color: aqua; */
+}
+.favOFF:hover {
+  background-image: url("../../img/estrellaON.png");
+  min-width: 38px;
+  max-width: 38px;
+  min-height: 38px;
+  max-height: 38px;
+  background-size: contain;
+  border-style: none;
+  /* background-color: aqua; */
+}

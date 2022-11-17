@@ -1,11 +1,9 @@
-
-
 .container {
     max-width: 600px;
     height: 600px;
 }
 
-.col-md-4{
+.col-md-4 {
     height: 80%;
     width: 80%;
 }
@@ -69,4 +67,10 @@
 .profile-card-2:hover .profile-username {
     bottom: 60px;
     font-size: 18px;
+}
+
+@media(min-width:2000px) {
+    .container {
+        height: 1600px;
+    }
 }

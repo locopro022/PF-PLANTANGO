@@ -5,8 +5,10 @@ const morgan = require("morgan");
 
 const routes = require("./routes/plants.js");
 const UserR = require("./routes/user.js");
-const Prod = require("./routes/products.js");
 
+const Prod = require("./routes/products.js");
+const prod = require("./routes/products.js");
+const pago = require("./routes/pagos.js");
 require("./db.js");
 
 const server = express();
@@ -31,8 +33,8 @@ server.use((req, res, next) => {
 server.use("/products",Prod);
 server.use("/plants", routes);
 server.use("/user",UserR)
-
-
+server.use("/products",prod)
+server.use("/pagos", pago)
 // Error catching endware.
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars

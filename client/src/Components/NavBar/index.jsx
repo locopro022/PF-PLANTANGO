@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import platango from "../../img/plantangoIcono.png";
 import "./NavBar.css";
+import { useSelector } from 'react-redux'
 import { ShoppingCart } from "@mui/icons-material";
 import { IconButton, Badge } from "@mui/material";
 import MenuDesplegable from "../MenuDesplegable";
@@ -12,9 +13,10 @@ import MenuSesionIniciada from "../MenuSesionIniciada";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
-  const {isAuthenticated} = useAuth0()
+  const cantidad = useSelector(state => state.carrito)
+  const { isAuthenticated } = useAuth0()
   const navigate = useNavigate();
-  console.log("cuenta logueada?",isAuthenticated);
+  console.log("cuenta logueada?", isAuthenticated);
   return (
     <div className="containerNavBar">
       <div className="containerUl deshabilitadoUl">
@@ -25,7 +27,7 @@ const NavBar = () => {
             }
             to="/home"
           >
-            <span className="span">Home</span>
+            <span className="span">Inicio</span>
           </NavLink>
           <NavLink
             className={(isActive) =>
@@ -49,7 +51,7 @@ const NavBar = () => {
             }
             to="/recordatorio"
           >
-            <span className="span">Recordatorio</span>
+            <span className="span">Diario</span>
           </NavLink>
           <NavLink
             className={(isActive) =>
@@ -71,7 +73,7 @@ const NavBar = () => {
       <div className="containerBtns">
         <IconButton size="large" color="default">
           <Badge
-            badgeContent={1}
+            badgeContent={cantidad?.length}
             color="error"
             data-toggle="modal"
             data-target="#exampleModalCenter"

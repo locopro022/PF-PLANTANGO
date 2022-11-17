@@ -1,0 +1,123 @@
+.containerAtrasVivero {
+    position: relative;
+    height: 70vh;
+}
+
+.containerDetailVivero {
+    display: flex;
+    width: 80%;
+    position: absolute;
+    bottom: 15%;
+    left: 12%;
+    background-color: rgb(245, 245, 245);
+    box-shadow: 2px 1px 17px -3px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 1px 8px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 1px 8px -3px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.containerTituloImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerTituloImg h4 {
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    width: 20vw;
+}
+
+.containerTituloImg img {
+    width: 250px;
+    height: auto;
+}
+
+.containerDescripcion {
+    margin-left: 20px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerBotones {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+
+.containerBotones h5 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.btnClick {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 12%;
+}
+
+.containerAgregarCarro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.botonAgregar {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    background-color: green;
+    position: relative;
+}
+
+.botonAgregar::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    border-top: 10px solid rgb(245, 245, 245);
+    border-right: 10px solid transparent;
+    top: 0;
+    left: 0;
+}
+
+.botonAgregar::before {
+    content: "";
+    position: absolute;
+    width: 0%;
+    border-bottom: 10px solid rgb(245, 245, 245);
+    border-left: 10px solid transparent;
+    bottom: 0;
+    right: 0;
+}
+
+.botonAgregar:hover::after {
+    border-top: 10px solid green;
+}
+
+.botonAgregar:hover::before {
+    border-bottom: 10px solid green;
+}
+
+.botonAgregar:focus {
+    outline: none;
+}
