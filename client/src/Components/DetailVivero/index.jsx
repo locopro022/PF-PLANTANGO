@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { traerProducto } from '../../redux/actions'
 import { carritoStorage } from '../../redux/actions'
 import './DetailVivero.css'
+import Notiflix from 'notiflix';
 
 const DetailVivero = () => {
     const { id } = useParams()
@@ -35,6 +36,11 @@ const DetailVivero = () => {
             ))
         dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))))
         setAgregado(!agregado)
+        Notiflix.Notify.success('Producto agregado con exito.', {
+            zindex: 999999999999999,
+            position: "left-top",
+            timeout: 1500
+        })
     }
     useEffect(() => {
         dispatch(traerProducto(id))

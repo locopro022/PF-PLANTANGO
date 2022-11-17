@@ -2,13 +2,33 @@ import React, { useEffect } from "react";
 import "./Modal.css";
 import { useSelector, useDispatch } from "react-redux";
 import { carritoStorage } from "../../redux/actions";
+import Notiflix from 'notiflix';
 
 const Carrito = () => {
   const dispatch = useDispatch();
   const arrayCarrito = useSelector(state => state.carrito) // array para mapear y mostrar en el carrito
   const borrarCarrito = () => {
-    localStorage.removeItem("carrito")
-    dispatch(carritoStorage([]))
+
+    Notiflix.Confirm.show(
+      'Notiflix Confirm',
+      'Do you agree with me?',
+      'Yes',
+      'No',
+      () => {
+        localStorage.removeItem("carrito")
+        dispatch(carritoStorage([]))
+        Notiflix.Notify.success('Carrito vaciado con exito', {
+          zindex: 999999999999999,
+          position: "left-top",
+          timeout: 1500
+        });
+      },
+      () => {
+      },
+      {
+        zindex: 99999999
+      }
+    );
   }
 
   const pararProp = (e) => {
@@ -20,6 +40,11 @@ const Carrito = () => {
     let nuevoCarrito = arrayCarrito?.filter(ele => ele.nameProd !== product)
     if (nuevoCarrito.length) localStorage.setItem("carrito", nuevoCarrito)
     dispatch(carritoStorage(nuevoCarrito))
+    Notiflix.Notify.success('Producto eliminado con exito', {
+      zindex: 999999999999999,
+      position: "left-top",
+      timeout: 1500
+    });
   }
 
   const changeValue = (e, ele) => {
@@ -58,9 +83,8 @@ const Carrito = () => {
       <div
         className="modal-dialog modal-dialog-centered modal-lg"
         role="document"
-        style={{ zIndex: '999999999' }}
       >
-        <div className="modal-content" style={{ zIndex: '999999999' }}>
+        <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLongTitle">
               Carrito de compras
