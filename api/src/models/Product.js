@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       unique:true,
     },
     descripProd:{
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     codCategory:{
@@ -32,15 +32,15 @@ module.exports = (sequelize) => {
       },
       stockActual: {
         type: DataTypes.INTEGER,
-        defaultVale: 0,
+        defaultValue: 0,
       },
       stockMinimo: {
         type: DataTypes.INTEGER,
-        defaultVale: 0,
+        defaultValue: 0,
       },
       stockMaximo: {
         type: DataTypes.INTEGER,
-        defaultVale: 9999,
+        defaultValue: 9999,
       },
       imageProd: {
         type: DataTypes.TEXT,
@@ -49,8 +49,8 @@ module.exports = (sequelize) => {
       },
       stateProd: {
         type: DataTypes.BOOLEAN,
-        allowNull: true
-        defaultVale: true,
+        allowNull: true,
+        defaultValue: true,
       },
     },
     {

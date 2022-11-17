@@ -1,6 +1,6 @@
 const { Category, Product, User, Billing, BillingDetail  } = require("../db");
 const dbCategory = require("../dbCategory");
-const dbProduct = require("../dbProduct");
+/* const dbProduct = require("../dbProducts"); */
 const dbUser = require("../dbUser");
 const dbBilling = require("../dbBilling");
 const dbBillingDetail = require("../dbBillingDetail");
@@ -18,7 +18,7 @@ const llenarCategory = async () => {
     }
   };
 
- const llenarProduct = async () => {
+ /* const llenarProduct = async () => {
     const tabla = await Product.findAll();
     if (!tabla.length) {
       const dbP = dbProduct.map((dato) => {
@@ -36,7 +36,7 @@ const llenarCategory = async () => {
       await Product.bulkCreate(dbP);
     }
   };
-
+ */
 const llenarUser = async () => {
   const tabla = await User.findAll();
   if (!tabla.length) {
@@ -82,4 +82,4 @@ const llenarBilling = async () => {
     }
   };
 
-module.exports = { llenarCategory, llenarProduct, llenarUser, llenarBilling, llenarBillingDetail };
+module.exports = { llenarCategory, llenarUser, llenarBilling, llenarBillingDetail };
