@@ -8,11 +8,10 @@ const Carrito = () => {
   const dispatch = useDispatch();
   const arrayCarrito = useSelector(state => state.carrito) // array para mapear y mostrar en el carrito
   const borrarCarrito = () => {
-
     Notiflix.Confirm.show(
-      'Notiflix Confirm',
-      'Do you agree with me?',
-      'Yes',
+      'Vaciar carrito',
+      'Quieres vaciar el carrito?',
+      'Si',
       'No',
       () => {
         localStorage.removeItem("carrito")
@@ -45,6 +44,12 @@ const Carrito = () => {
       position: "left-top",
       timeout: 1500
     });
+  }
+
+  const hacerCompra = () => {
+    let arrayStorage = JSON.parse(localStorage.getItem("carrito"))
+    let valorTotal = arrayStorage.reduce((ant, sig) => ant + parseInt(sig.precio) / 100, 0)
+    console.log([...arrayStorage, { precioTotal: valorTotal }])
   }
 
   const changeValue = (e, ele) => {
@@ -104,7 +109,7 @@ const Carrito = () => {
                       <p className="precioMap">{ele.cantidad}</p>
                       <button name='mas' className="btnRestaSuma" onClick={(e) => changeValue(e, ele)}>+</button>
                     </div>
-                    <h5 className="precioApartado">{`$${ele.cantidad * parseInt(ele.precio / 100)}`}</h5>
+                    <h5 className="precioApartado">{`$${ele.cantidad * ele.precio}`}</h5>
                     <button className="btnMapeo" onClick={() => eliminarProduct(ele.nameProd)}>X</button>
                   </div>
                 )
@@ -112,9 +117,9 @@ const Carrito = () => {
             }
           </div>
           <div className="modal-footer" style={{ position: 'relative' }}>
-            <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio / 100) * des.cantidad, 0)}`}</p>
+            <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + des.precio * des.cantidad, 0)}`}</p>
             <button className="btn btn-danger" onClick={borrarCarrito}>Vaciar carrito</button>
-            <button className="btn btn-success">Hacer compra</button>
+            <button className="btn btn-success" onClick={hacerCompra}>Hacer compra</button>
           </div>
         </div>
       </div>
