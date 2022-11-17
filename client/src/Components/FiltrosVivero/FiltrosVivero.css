@@ -1,0 +1,82 @@
+.containerBarra {
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 14rem;
+    height: 250px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.spanFiltros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 80px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid #000;
+    background-color: #000;
+    color: #fff;
+}
+
+.spanFiltros::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 0px;
+    top: 19px;
+    border-right: 7px solid transparent;
+    border-top: 9px solid #000;
+    z-index: -1;
+}
+
+.containerFiltrosVivero {
+    width: 12rem;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.optionSelec {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.optionSelec::after {
+    content: "";
+    width: 40%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    background-image: linear-gradient(to right, #bafd4e, #79f952, #53f65b, #54f35c, #54f090, #56ed9a, #56efb4, #4ceec5);
+    transition: .5s ease-in-out all;
+}
+
+.optionSelec:hover::after {
+    left: 0;
+}
+
+.elegi {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.elegi::after {
+    content: "";
+    width: 40%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    background-image: linear-gradient(to right, #bafd4e, #79f952, #53f65b, #54f35c, #54f090, #56ed9a, #56efb4, #4ceec5);
+    transition: .5s ease-in-out all;
+}

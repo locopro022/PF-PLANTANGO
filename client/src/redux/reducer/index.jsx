@@ -16,6 +16,8 @@ import {
   DELETE_FAVORITES,
   ADD_FAVORITES,
   DELETE_USER,
+  GET_ARRAY_PRODUCTS,
+  GET_PRODUCT
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -32,10 +34,26 @@ const initialState = {
   favoritos: [],
   user: {},
   usuarios: [],
+  producto: {}
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ARRAY_CARRITO:
+      return {
+        ...state,
+        carrito: [...action.payload]
+      }
+    case GET_ARRAY_PRODUCTS:
+      return {
+        ...state,
+        arrayVivero: [...action.payload]
+      }
+    case GET_PRODUCT:
+      return {
+        ...state,
+        producto: { ...action.payload }
+      }
     case GET_ARRAY_VIVERO:
       return {
         ...state,
@@ -68,24 +86,24 @@ const rootReducer = (state = initialState, action) => {
         filtrosHuerta:
           action.payload === "clear"
             ? state.filtrosHuerta.map((item) => ({
-                ...item,
-                options: item.options.map((option) => ({
-                  ...option,
-                  checked: false,
-                })),
-              }))
+              ...item,
+              options: item.options.map((option) => ({
+                ...option,
+                checked: false,
+              })),
+            }))
             : state.filtrosHuerta.map((item) =>
-                item.filter !== action.payload.type
-                  ? item
-                  : {
-                      ...item,
-                      options: item.options.map((option) =>
-                        option.value !== action.payload.value
-                          ? option
-                          : { ...option, checked: action.payload.checked }
-                      ),
-                    }
-              ),
+              item.filter !== action.payload.type
+                ? item
+                : {
+                  ...item,
+                  options: item.options.map((option) =>
+                    option.value !== action.payload.value
+                      ? option
+                      : { ...option, checked: action.payload.checked }
+                  ),
+                }
+            ),
       };
 
     case SET_PAG_HUERTA:
@@ -100,20 +118,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         arrayNotificaciones: [...action.payload],
       };
-    case GET_ARRAY_CARRITO:
-      return {
-        ...state,
-        arrayCarrito: [...action.payload],
-      };
     case URL:
       return {
         ...state,
         url: action.payload,
-      };
-    case ACTIVAR:
-      return {
-        ...state,
-        nombre: `${action.payload}`,
       };
     case GET_SEARCH:
       return {
@@ -130,6 +138,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
+    case ACTIVAR:
+      return {
+        ...state,
+        nombre: `${action.payload}`
+      }
     case GET_ALL_USERS:
       return {
         ...state,
@@ -145,11 +158,11 @@ const rootReducer = (state = initialState, action) => {
         favoritos: action.payload,
       };
     case ADD_FAVORITES:
-      return{
+      return {
         ...state,
         favoritos: action.payload
       }
-      case DELETE_USER: 
+    case DELETE_USER:
       return {
         ...state
       }

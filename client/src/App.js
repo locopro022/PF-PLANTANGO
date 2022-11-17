@@ -14,6 +14,7 @@ import {
   getHuertaDetail,
   getTiposHuerta,
   getUser,
+  carritoStorage
 } from "./redux/actions";
 import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
@@ -23,6 +24,8 @@ import Favoritos from "./Components/Favoritos";
 import { useAuth0 } from "@auth0/auth0-react";
 import UsuariosInfo from "./Components/UsuariosInfo/UsuarioInfo";
 import PagoStripe from "./Components/PasarelaPago/Stripe";
+import DetailVivero from './Components/DetailVivero'
+import Vivero from './Components/Vivero'
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +45,7 @@ function App() {
     if (user) {
       dispatch(getUser(user.email));
     }
+    dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))))
   }, [user]);
   return (
     <ThemeProvider theme={theme}>
@@ -56,14 +60,16 @@ function App() {
             <Route path="/bienvenida" element={<Chat />} />
             <Route path="/creacionPlanta" element={<CreacionDePlanta />} />
             <Route path="/huerta" element={<Huerta />} />
+            <Route path="/vivero" element={<Vivero />} />
+            <Route path="/vivero/:id" element={<DetailVivero />} />
             <Route
               path="/huerta/:id"
               element={<Detalle from={getHuertaDetail} />}
             />
             <Route path="/ajustes" element={<Ajustes />} />
             <Route path="/favoritos" element={<Favoritos />} />
-            <Route path="/ajustes/administrar" element={<UsuariosInfo/>}/>
-            <Route path="/pago" element={<PagoStripe/>}/>
+            <Route path="/ajustes/administrar" element={<UsuariosInfo />} />
+            <Route path="/pago" element={<PagoStripe />} />
           </Routes>
           <Footer />
         </div>
