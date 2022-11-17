@@ -52,7 +52,7 @@ router.get("/types", async (req, res) => {
 
 //RUTA GET ESPECIFICA
 
-router.get("/:codProd", async (req, res) => {
+router.get("/:codPlant", async (req, res) => {
   try {
     const { codPlant } = req.params;
 
