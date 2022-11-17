@@ -199,7 +199,6 @@ module.exports = Prod;
 
 
  
-=======
 const { Product } = require("../db");
 const { Op } = require("sequelize");
 const sequelize = require("sequelize");
