@@ -1,7 +1,5 @@
 import React from "react";
 import Usuarios from "./Usuarios";
-import { useDispatch, useEffect } from "react-redux";
-import { useState } from "react";
 import Formulario from "./Formulario";
 
 const UsuariosInfo = () => {

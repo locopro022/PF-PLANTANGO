@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useEffect} from "react";
 import { useDispatch, useSelector} from "react-redux"
 import { getAllUsers, deleteUser } from "../../redux/actions";
 
@@ -13,7 +13,7 @@ const users= allUsers.filter( u => u.hidden === false)
 
 useEffect(()=>{
  dispatch(getAllUsers());
- },[])
+ },[dispatch])
 
 const borrarUsuario = (user)=> {
     

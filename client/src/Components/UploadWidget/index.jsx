@@ -17,7 +17,7 @@ const UploadWidget = () => {
             /* console.log(url) */
             url?.length && dispatch(urlPlantaCreada(url))
         })
-    }, [])
+    }, [dispatch])
     return (
         <div>
             <button onClick={() => widgetRef.current.open()} className='buttonUp'>

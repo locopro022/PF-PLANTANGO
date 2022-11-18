@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addAdmin, getAllUsers } from "../../redux/actions";
+import { addAdmin } from "../../redux/actions";
 import s from './formulario.module.css';
 
 const Formulario = () => {

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import Carrousel from '../Carrousel';
 import './Home.css'
 import HomeApartadoVivero from '../HomeApartadoVivero';
