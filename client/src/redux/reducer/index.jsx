@@ -17,7 +17,9 @@ import {
   ADD_FAVORITES,
   DELETE_USER,
   GET_ARRAY_PRODUCTS,
-  GET_PRODUCT
+  GET_PRODUCT,
+  GET_DAILY_USER,
+  EDIT_DAILY_USER,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -32,9 +34,10 @@ const initialState = {
   url: "",
   nombre: "perfil",
   favoritos: [],
+  diario: [],
   user: {},
   usuarios: [],
-  producto: {}
+  producto: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -42,18 +45,18 @@ const rootReducer = (state = initialState, action) => {
     case GET_ARRAY_CARRITO:
       return {
         ...state,
-        carrito: [...action.payload]
-      }
+        carrito: [...action.payload],
+      };
     case GET_ARRAY_PRODUCTS:
       return {
         ...state,
-        arrayVivero: [...action.payload]
-      }
+        arrayVivero: [...action.payload],
+      };
     case GET_PRODUCT:
       return {
         ...state,
-        producto: { ...action.payload }
-      }
+        producto: { ...action.payload },
+      };
     case GET_ARRAY_VIVERO:
       return {
         ...state,
@@ -86,24 +89,24 @@ const rootReducer = (state = initialState, action) => {
         filtrosHuerta:
           action.payload === "clear"
             ? state.filtrosHuerta.map((item) => ({
-              ...item,
-              options: item.options.map((option) => ({
-                ...option,
-                checked: false,
-              })),
-            }))
+                ...item,
+                options: item.options.map((option) => ({
+                  ...option,
+                  checked: false,
+                })),
+              }))
             : state.filtrosHuerta.map((item) =>
-              item.filter !== action.payload.type
-                ? item
-                : {
-                  ...item,
-                  options: item.options.map((option) =>
-                    option.value !== action.payload.value
-                      ? option
-                      : { ...option, checked: action.payload.checked }
-                  ),
-                }
-            ),
+                item.filter !== action.payload.type
+                  ? item
+                  : {
+                      ...item,
+                      options: item.options.map((option) =>
+                        option.value !== action.payload.value
+                          ? option
+                          : { ...option, checked: action.payload.checked }
+                      ),
+                    }
+              ),
       };
 
     case SET_PAG_HUERTA:
@@ -141,8 +144,8 @@ const rootReducer = (state = initialState, action) => {
     case ACTIVAR:
       return {
         ...state,
-        nombre: `${action.payload}`
-      }
+        nombre: `${action.payload}`,
+      };
     case GET_ALL_USERS:
       return {
         ...state,
@@ -160,12 +163,22 @@ const rootReducer = (state = initialState, action) => {
     case ADD_FAVORITES:
       return {
         ...state,
-        favoritos: action.payload
-      }
+        favoritos: action.payload,
+      };
     case DELETE_USER:
       return {
-        ...state
-      }
+        ...state,
+      };
+    case GET_DAILY_USER:
+      return {
+        ...state,
+        diario: action.payload,
+      };
+    case EDIT_DAILY_USER:
+      return {
+        ...state,
+        diario: action.payload,
+      };
     default:
       return state;
   }

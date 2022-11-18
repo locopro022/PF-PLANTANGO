@@ -2,39 +2,42 @@ const { Router } = require("express");
 const { DailyUser, User, Plants, Favorites } = require("../db");
 
 const UserR = Router();
-//Traer todos los usuarios 
-UserR.get("/all", async (req,res)=>{
-  
-  
-try {
-  console.log("ENTRE A LA RUTA ALL");
-          
-  const allUsers = await User.findAll();
+//Traer todos los usuarios
+UserR.get("/all", async (req, res) => {
+  try {
+    console.log("ENTRE A LA RUTA ALL");
 
-  console.log("allUsers: ",allUsers);
+    const allUsers = await User.findAll();
 
-  if(!allUsers){
-    return res.status(400).json({error: "Error en ruta get /user/all"})
+    console.log("allUsers: ", allUsers);
+
+    if (!allUsers) {
+      return res.status(400).json({ error: "Error en ruta get /user/all" });
+    }
+
+    return res.status(200).json(allUsers);
+  } catch (error) {
+    res.status(400).send(error.message);
   }
-  
-  return res.status(200).json(allUsers)
-} catch (error) {
-  res.status(400).send(error.message)
-}
-})
+});
 
 UserR.get("/daily/:id", async (req, res) => {
   const { id } = req.params;
-  try {
-    if (id) {
+  // try {
+    if (id || id!== undefined) {
       let diario = await DailyUser.findAll({ where: { UserIdUser: id } });
-      return res.status(200).json(diario[0]);
+      if (!diario.length) {
+        await DailyUser.create({UserIdUser:id});
+        let diario = await DailyUser.findAll({ where: { UserIdUser: id } });
+        return res.status(200).send(diario);
+      }
+      return res.status(200).send(diario);
     } else {
       return res.status(400).send({ error: "No se encontro la id" });
     }
-  } catch (error) {
-    res.status(400).send({ error: error });
-  }
+  // } catch (error) {
+  //   res.status(400).send({ error: error });
+  // }
 });
 
 UserR.put("/daily/:id", async (req, res) => {
@@ -49,9 +52,10 @@ UserR.put("/daily/:id", async (req, res) => {
         { title: title, cont: body },
         { where: { UserIdUser: id } }
       );
+      let tabla = await DailyUser.findAll({where:{UserIdUser:id}})
       return res
         .status(201)
-        .send({ message: "Los datos se cambiaron exitosamente" });
+        .send(tabla);
     }
   } catch (error) {
     return res.status(400).json({ error });
@@ -144,12 +148,12 @@ UserR.get("/favorites/:idU", async (req, res) => {
 
     const favId = await Favorites.findAll({ where: { UserIdUser: idU } });
 
-    let planstasFinal = []
+    let planstasFinal = [];
     for (let i = 0; i < favId.length; i++) {
       let plantasF = await Plants.findAll({
         where: { codPlant: favId[i].dataValues.PlantCodPlant },
       });
-      planstasFinal.push(plantasF[0])
+      planstasFinal.push(plantasF[0]);
     }
     res.status(200).send(planstasFinal);
   } catch (error) {
@@ -159,11 +163,11 @@ UserR.get("/favorites/:idU", async (req, res) => {
 UserR.delete("/favorites/delete/:idU/:idP", async (req, res) => {
   const { idU, idP } = req.params;
   try {
-  await Favorites.destroy({
-    where: { UserIdUser: idU , PlantCodPlant: idP },
-  });
-  const tabla = await Favorites.findAll({ where: { UserIdUser: idU } });
-  res.status(200).send(tabla);
+    await Favorites.destroy({
+      where: { UserIdUser: idU, PlantCodPlant: idP },
+    });
+    const tabla = await Favorites.findAll({ where: { UserIdUser: idU } });
+    res.status(200).send(tabla);
   } catch (error) {
     res.status(400).json({ error: error });
   }
@@ -178,9 +182,8 @@ UserR.put("/:idUser", async (req, res) => {
 
     let { username, email, pass, name, lastName, nPhone } = req.body;
 
-
-    if(!username || !email || !pass || !name || !lastName || !nPhone){
-      return res.status(400).json({error: "Faltan datos"})
+    if (!username || !email || !pass || !name || !lastName || !nPhone) {
+      return res.status(400).json({ error: "Faltan datos" });
     }
     if (!idUser) {
       return res.status(400).json({ error: "No se encontro el id" });
@@ -215,59 +218,59 @@ UserR.put("/:idUser", async (req, res) => {
 });
 
 //Borrado logico de user
-UserR.delete("/:idUser", async (req, res)=> {
-try {
-  
-  console.log("llego a delete user");
-  const {idUser} = req.params;
-  const eliminarUser = await User.findByPk(idUser);
-  if (!eliminarUser){
-    return res.status(400).json({error: "No se encontro el id en la DB"})
+UserR.delete("/:idUser", async (req, res) => {
+  try {
+    console.log("llego a delete user");
+    const { idUser } = req.params;
+    const eliminarUser = await User.findByPk(idUser);
+    if (!eliminarUser) {
+      return res.status(400).json({ error: "No se encontro el id en la DB" });
+    }
+
+    await User.update(
+      {
+        hidden: true,
+      },
+      {
+        where: { idUser },
+      }
+    );
+
+    console.log("usuario a eliminar", eliminarUser);
+    res.status(200).json("Usuario con borrado lógico");
+  } catch (error) {
+    res.status(400).json(error.message);
   }
-
-await User.update(
-  {
-    hidden: true
-  },
-  {
-    where: {idUser}
-  }
-)
-
-console.log("usuario a eliminar",eliminarUser);
-res.status(200).json("Usuario con borrado lógico");
-
-} catch (error) {
-  res.status(400).json(error.message)
-}
-
-})
+});
 
 //Crear user admin
-UserR.post("/admin", async (req,res)=>{
-try {
-  
-  console.log("entre a la ruta");
-  const { username, email, pass, name, lastName, nPhone } = req.body;
+UserR.post("/admin", async (req, res) => {
+  try {
+    console.log("entre a la ruta");
+    const { username, email, pass, name, lastName, nPhone } = req.body;
 
-  console.log(username, email, pass, name, lastName, nPhone);
+    console.log(username, email, pass, name, lastName, nPhone);
 
-  if (!username || !email || !pass || !name ) {
-   return res.send(400).json("mal perri")
+    if (!username || !email || !pass || !name) {
+      return res.send(400).json("mal perri");
+    }
+
+    !nPhone ? null : nPhone;
+    !lastName ? null : lastName;
+
+    const newAdmin = await User.create({
+      username,
+      email,
+      pass,
+      name,
+      lastName,
+      nPhone,
+      admin: true,
+    });
+    console.log(newAdmin);
+    res.status(200).send(newAdmin);
+  } catch (error) {
+    res.status(404).json("Error en /user/admin", error.message);
   }
-
-  !nPhone?null:nPhone;
-  !lastName?null:lastName;
-
-  const newAdmin = await User.create({
-    username, email, pass, name, lastName, nPhone,
-    admin: true
-  })
-console.log(newAdmin);
-  res.status(200).send(newAdmin)
-
-} catch (error) {
-  res.status(404).json("Error en /user/admin",error.message)
-}
-})
+});
 module.exports = UserR;

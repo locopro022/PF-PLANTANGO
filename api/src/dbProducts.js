@@ -51,7 +51,6 @@ const dbProducts = [
     imageProd:
       "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/101673/101673_1.jpg?fit=crop&w=224&h=224&auto=format&q=100",
   },
-  // comentario
   {
     nameProd: "Abono Orgánico Frutales BioFlower 2kg",
     descripProd:
@@ -104,7 +103,7 @@ const dbProducts = [
     stockMinimo: 5,
     stockMaximo: 50,
     imageProd:
-      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/70/70_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/531/531_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
   },
 
   {
@@ -118,8 +117,169 @@ const dbProducts = [
     stockMinimo: 5,
     stockMaximo: 50,
     imageProd:
-      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/70/70_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/543/543_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
   },
+
+  {
+    nameProd: "Semillas de Cebolla Dulce de fuentes",
+    descripProd:
+      "Bulbos de forma globosa con túnicas blancas y exteriormente de color amarillento. Precocidad media, muy voluminosa, dulce y conservación aceptable",
+    codCategory: 1,
+    starts: 5,
+    precio: 18,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/3043/3043_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Semillas ecológicas de Guisante 1/2 enrame rondo",
+    descripProd:
+      "Variedad de alta producción muy popular para el mercado en fresco. Planta vigorosa y productiva de unos 70 cm de altura. Produce vainas de 10-12 cm de longitud con 8-10 granos/vaina de calibre grueso y color verde oscuro. Semilla rugosa. Ciclo de maduración alrededor de 75 días. Apto para mercado fresco principalmente",
+    codCategory: 1,
+    starts: 5,
+    precio: 28,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/71/71_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Semillas ecológicas de tomate marmande raf Vergea",
+    descripProd:
+      "El tomate MARMANDE RAF es un tomate multilobular, acostillado, cuello verde y forma ligeramente achatada. Su peso es de 180-200 grs. El porte de la planta es semi-determinado alto y es resistente al Fusarium. Tiene un excelente sabor y un tradicional olor a tomate.",
+    codCategory: 1,
+    starts: 5,
+    precio: 19,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/68121/68121_1.png?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Semillas de Fresones 4 estaciones",
+    descripProd:
+      "Fruto sabroso y de gusto dulcísimo.Siembra: En semillero protegido del frío en Abril-Mayo, si bien puede sembrarse también en Julio-Agosto al aire libre. Cuando las plantas alcanzan unos 8 cms. trasplantarlas a lugar definitivo, procurando sombrearlas los primeros días del trasplante. Recolección: normalmente en Junio-Julio del año siguiente.",
+    codCategory: 1,
+    starts: 5,
+    precio: 26,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/526/526_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Semillas de Capuchina trepadora variada",
+    descripProd: "Anual. Empleo: Para cubrir glorietas, vallas, muros, verjas y jardineras. Siembra. Primavera y Otoño, en sitio definitivo agolpes de 4 o 5 semillas a 40 cms. de separación. Floración. Verano y Otoño (siembra de Primavera), Primavera y Verano (siembra de Otoño).",
+    codCategory: 1,
+    starts: 4,
+    precio: 24,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/577/577_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Tijera de hogar universal Wolfcraft 4164000",
+    descripProd: "con ojos ergonómicos, geometría especial de los filos, con funciones de destornillador y abrebotellas adicionales",
+    codCategory: 4,
+    starts: 5,
+    precio: 47,
+    stockActual: 15,
+    stockMinimo: 5,
+    stockMaximo: 20,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/9339/9339_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Hoz Hierbera Wolfpack Mango Vuelto 22 mm. Derecha (Diestros)",
+    descripProd: "Hoz hierbera / Corvilla Wolfpack mango vuelto. Medida: 22 mm. derecha. Mango vuelto. Uso para diestros.Realizado en acero.",
+    codCategory: 4,
+    starts: 5,
+    precio: 68,
+    stockActual: 15,
+    stockMinimo: 5,
+    stockMaximo: 20,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/219485/219485_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Sistema de riego por goteo Iriso 3+1",
+    descripProd: "El sistema de riego goteo Iriso es ideal para regar huertos o plantas en macetas o jardineras.Este sistema para el riego por goteo es sostenible: no utiliza electricidad, tampoco pilas, ni programador. Además es económico, ya que utiliza 8 veces menos de agua que un riego normal, ofreciendo un mejor resultado.",
+    codCategory: 4,
+    starts: 5,
+    precio: 76,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/98651/98651_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Kit de micro irrigación macetas",
+    descripProd: "ERiegue sus macetas, cestos colgantes, arriates, huertos y plantas de invernadero",
+    codCategory: 4,
+    starts: 5,
+    precio: 33,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/169327/169327_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+ {
+    nameProd: "Set 15 Macetas Polipropileno Marrón",
+    descripProd: "Set Macetas de Polipropileno Marrón. Medida: 9 x 6,8 cm. Unidades: 15",
+    codCategory: 2,
+    starts: 5,
+    precio: 27,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/11301/11301_1.png?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+ {
+    nameProd: "Maceta Yute Natural",
+    descripProd: "Descripción: Maceta redonda de FIBRA Yute Natural. Material: Fibra Yute + Protector interior plástico. Color: Natural.",
+    codCategory: 2,
+    starts: 5,
+    precio: 36,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/198568/198568_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+ {
+    nameProd: "Soporte Maceta Loft Urban",
+    descripProd: "Soporte para plantas para combinarlo con tu planta favorita. Dispone de un revestimiento impermeable y se puede colocar en cualquier lugar.",
+    codCategory: 2,
+    starts: 5,
+    precio: 49,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/119819/119819_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
 ];
 
 module.exports = dbProducts;
