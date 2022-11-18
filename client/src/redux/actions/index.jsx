@@ -20,6 +20,8 @@ export const GET_ALL_FAVORITES = "GET_ALL_FAVORITES";
 export const DELETE_FAVORITES = "DELETE_FAVORITES"
 export const ADD_FAVORITES = "ADD_FAVORITES"
 export const GET_USER = "GET_USER";
+export const GET_DAILY_USER = "GET_DAILY_USER"
+export const EDIT_DAILY_USER = "EDIT_DAILY_USER"
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const CREATE_ADMIN = "CREATE_ADMIN";
@@ -128,6 +130,16 @@ export function addFav(idU, idP) {
     axios.post(`http://localhost:3001/user/favorites/${idU}/${idP}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: ADD_FAVORITES, payload }));
+}
+export function getDaily(idU){
+  return dispatch=> axios(`http://localhost:3001/user/daily/${idU}`)
+  .then(res=>res.data)
+  .then(payload=> dispatch({type: GET_DAILY_USER, payload}))
+}
+export function editDaily(idU,obj){
+  return dispatch => axios.put(`http://localhost:3001/user/daily/${idU}`,obj)
+  .then(res=>res.data)
+  .then(payload=> dispatch({type: EDIT_DAILY_USER, payload}))
 }
 export function getUser(user) {
   return (dispatch) =>
