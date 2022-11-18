@@ -20,9 +20,6 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      codCategory: {
-        type: DataTypes.INTEGER,
-      },
       estrellas: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
