@@ -72,12 +72,7 @@ router.get("/types", async (req, res) => {
         })
       )[0][col];
     const types = {
-      codCategoria: [
-        "Semillas",
-        "Macetas",
-        "Accesorios",
-        "Tierras y fertilizantes",
-      ],
+      codCategoria: await Category.findAll(),
       precio: {
         min: await getVal("min", "precio"),
         max: await getVal("max", "precio"),
