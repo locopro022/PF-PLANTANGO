@@ -3,25 +3,24 @@ const { DataTypes, UUIDV4 } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Product', {
-    codProd: {
-      type: DataTypes.INTEGER,
-      autoIncrement : true,
-      primaryKey: true,
-    },
-    nameProd:{
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique:true,
-    },
-    descripProd:{
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    codCategory:{
-      type: DataTypes.INTEGER,
-    },
-    starts:{
+  sequelize.define(
+    "Product",
+    {
+      codProd: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      nameProd: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      descripProd: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      estrellas: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
