@@ -12,7 +12,6 @@ const dbProducts = [
     imageProd:
       "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/3340/3340_2.jpg?fit=crop&w=224&h=224&auto=format&q=100",
   },
-
   {
     nameProd: "Sustrato Universal",
     descripProd:
@@ -175,6 +174,110 @@ const dbProducts = [
     stockMaximo: 50,
     imageProd:
       "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/526/526_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Semillas de Capuchina trepadora variada",
+    descripProd: "Anual. Empleo: Para cubrir glorietas, vallas, muros, verjas y jardineras. Siembra. Primavera y Otoño, en sitio definitivo agolpes de 4 o 5 semillas a 40 cms. de separación. Floración. Verano y Otoño (siembra de Primavera), Primavera y Verano (siembra de Otoño).",
+    codCategory: 1,
+    starts: 4,
+    precio: 24,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/577/577_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Tijera de hogar universal Wolfcraft 4164000",
+    descripProd: "con ojos ergonómicos, geometría especial de los filos, con funciones de destornillador y abrebotellas adicionales",
+    codCategory: 4,
+    starts: 5,
+    precio: 47,
+    stockActual: 15,
+    stockMinimo: 5,
+    stockMaximo: 20,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/9339/9339_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Hoz Hierbera Wolfpack Mango Vuelto 22 mm. Derecha (Diestros)",
+    descripProd: "Hoz hierbera / Corvilla Wolfpack mango vuelto. Medida: 22 mm. derecha. Mango vuelto. Uso para diestros.Realizado en acero.",
+    codCategory: 4,
+    starts: 5,
+    precio: 68,
+    stockActual: 15,
+    stockMinimo: 5,
+    stockMaximo: 20,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/219485/219485_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Sistema de riego por goteo Iriso 3+1",
+    descripProd: "El sistema de riego goteo Iriso es ideal para regar huertos o plantas en macetas o jardineras.Este sistema para el riego por goteo es sostenible: no utiliza electricidad, tampoco pilas, ni programador. Además es económico, ya que utiliza 8 veces menos de agua que un riego normal, ofreciendo un mejor resultado.",
+    codCategory: 4,
+    starts: 5,
+    precio: 76,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/98651/98651_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Kit de micro irrigación macetas",
+    descripProd: "ERiegue sus macetas, cestos colgantes, arriates, huertos y plantas de invernadero",
+    codCategory: 4,
+    starts: 5,
+    precio: 33,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/169327/169327_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+ {
+    nameProd: "Set 15 Macetas Polipropileno Marrón",
+    descripProd: "Set Macetas de Polipropileno Marrón. Medida: 9 x 6,8 cm. Unidades: 15",
+    codCategory: 2,
+    starts: 5,
+    precio: 27,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/11301/11301_1.png?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+ {
+    nameProd: "Maceta Yute Natural",
+    descripProd: "Descripción: Maceta redonda de FIBRA Yute Natural. Material: Fibra Yute + Protector interior plástico. Color: Natural.",
+    codCategory: 2,
+    starts: 5,
+    precio: 36,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/198568/198568_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+ {
+    nameProd: "Soporte Maceta Loft Urban",
+    descripProd: "Soporte para plantas para combinarlo con tu planta favorita. Dispone de un revestimiento impermeable y se puede colocar en cualquier lugar.",
+    codCategory: 2,
+    starts: 5,
+    precio: 49,
+    stockActual: 25,
+    stockMinimo: 5,
+    stockMaximo: 40,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/119819/119819_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
   },
 
 ];
