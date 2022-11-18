@@ -48,6 +48,7 @@ function App() {
     }
     dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))))
   }, [user]);
+  console.log(user)
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
