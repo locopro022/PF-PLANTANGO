@@ -51,6 +51,7 @@ const dbProducts = [
     imageProd:
       "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/101673/101673_1.jpg?fit=crop&w=224&h=224&auto=format&q=100",
   },
+  // comentario
   {
     nameProd: "Abono Orgánico Frutales BioFlower 2kg",
     descripProd:
