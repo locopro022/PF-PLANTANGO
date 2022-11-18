@@ -5,9 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Category', {
     codCategory: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      autoIncrement : true,
       primaryKey: true,
-      unique: true
     },
     descripCategory:{
       type: DataTypes.STRING,

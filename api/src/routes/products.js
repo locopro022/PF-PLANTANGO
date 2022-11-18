@@ -1,7 +1,7 @@
-const { Router } = require("express");
 const { Product } = require("../db");
 const { Op } = require("sequelize");
 const sequelize = require("sequelize");
+const { Router } = require("express");
 // const Category = require("../models/Category");
 
 const router = Router();
@@ -145,3 +145,4 @@ router.delete("/:codProd", async (req, res) => {
 });
 
 module.exports = router;
+

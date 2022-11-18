@@ -25,14 +25,14 @@ const DetailVivero = () => {
     const addStorage = (producto) => {
         carritoSto?.find(ele => ele.nameProd === producto.nameProd)
             ?
-            localStorage.setItem("carrito", JSON.stringify(carritoSto?.map(ele => ele.nameProd === producto.nameProd ? { ...ele, cantidad: numero, precio: parseInt(parseInt(ele.precio) / 100) * ele.cantidad } : ele)))
+            localStorage.setItem("carrito", JSON.stringify(carritoSto?.map(ele => ele.nameProd === producto.nameProd ? { ...ele, cantidad: numero } : ele)))
             :
             localStorage.setItem("carrito", JSON.stringify(
                 carritoSto?.length
                     ?
-                    [...carritoSto, { ...producto, cantidad: numero, precio: parseInt(parseInt(producto.precio) / 100) }]
+                    [...carritoSto, { ...producto, cantidad: numero }]
                     :
-                    [{ ...producto, cantidad: numero, precio: parseInt(parseInt(producto.precio) / 100) }]
+                    [{ ...producto, cantidad: numero }]
             ))
         dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))))
         setAgregado(!agregado)
