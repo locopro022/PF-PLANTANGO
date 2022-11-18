@@ -18,6 +18,7 @@ import {
   DELETE_USER,
   GET_ARRAY_PRODUCTS,
   GET_PRODUCT,
+  GET_BILL,
   GET_DAILY_USER,
   EDIT_DAILY_USER,
 } from "../actions";
@@ -38,6 +39,7 @@ const initialState = {
   user: {},
   usuarios: [],
   producto: {},
+  bill: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -167,9 +169,14 @@ const rootReducer = (state = initialState, action) => {
       };
     case DELETE_USER:
       return {
-        ...state,
-      };
-    case GET_DAILY_USER:
+        ...state
+      }
+      case GET_BILL:
+        return {
+         ...state,
+          bill: action.payload,
+        };
+case GET_DAILY_USER:
       return {
         ...state,
         diario: action.payload,
@@ -178,10 +185,10 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         diario: action.payload,
-      };
+      };   
+
     default:
       return state;
-  }
-};
+  } };
 
 export default rootReducer;
