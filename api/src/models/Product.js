@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      estrellas: {
+      starts: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
