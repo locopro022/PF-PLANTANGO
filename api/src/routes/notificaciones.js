@@ -1,18 +1,12 @@
 const cron = require("node-cron");
 const { Router } = require("express")
+const webpush = require('../webpush.js');
+
 const router = Router()
 
-router.get('/', (req, res) => {
-    console.log(new Date())
-    try {
-        cron.schedule('19 21 * * *', () => {
-            console.log("holitas")
-        })
-        res.status(200).json({ cosa: "cada1segundoXD" })
-    } catch (error) {
-        console.log("hola")
-        res.status(404).json(error.message)
-    }
-});
+router.post('/suscripcion', (req, res) => {
+    console.log(req.body)
+    res.status(200).json();
+})
 
 module.exports = router;

@@ -35,7 +35,7 @@ const { conn } = require("./src/db.js");
 // Por motivos de desarrollo, podrian dejar la syncronizacion forzada?
 // Gracias -La Administracion (osea yo).
 conn
-  .sync({ force: false })
+  .sync({ force: true })
   .then(llenarDB)
   .then(llenarCategory)
   .then(llenarDBProd)
