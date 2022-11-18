@@ -8,10 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
-  Filter,
-  scales,
+  Filler
 } from 'chart.js';
-import { Line } from "chartjs-react"
+import { Line } from "react-chartjs-2"
 
 
 ChartJS.register(CategoryScale,
@@ -21,7 +20,7 @@ ChartJS.register(CategoryScale,
     Title,
     Tooltip,
     Legend,
-    Filter)
+    Filler)
 
 const scores = [6, 5, 5, 5, 3, 4, 6, 7];
 const labels = [100, 200, 300, 400, 500, 600, 700, 800];
@@ -38,6 +37,7 @@ const options = {
             display: true
         }
 }
+};
 
 export default function LineChart() {
     const data = useMemo(() => {
