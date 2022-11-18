@@ -34,8 +34,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { User, DailyUser, Plants, Category, Product, Billing, BillingDetail, Notification } = sequelize.models;
 
 // un producto tiene una categoria - una categoria tiene muchos productos
-Product.hasOne(Category)
-Category.hasMany(Product)
+//Product.hasOne(Category)
+//Category.hasMany(Product)
 
 //Relaciones
 // un usuario - tiene un diario
