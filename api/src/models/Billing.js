@@ -5,19 +5,17 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Billing', {
     codBilling: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      autoIncrement : true,
       primaryKey: true,
-      unique: true
     },    
     idUser: {
-      type: DataTypes.STRING,
-      primaryKey: true,
-      unique: true
+      type: DataTypes.UUID,
+      allowNull: false,
     },
     dateBilling:{
       type: DataTypes.DATE,
-      allowNull: false,
-      unique:true,
+      allowNull: false
     },
     amountBilling:{
       type: DataTypes.DECIMAL,
@@ -29,7 +27,7 @@ module.exports = (sequelize) => {
     },
     stateBilling:{
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: true
       },      
     codDelivery:{
         type: DataTypes.STRING,
@@ -37,11 +35,11 @@ module.exports = (sequelize) => {
       },      
     codPay:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
     datePay:{
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     }      
     },{
     freezeTableName: true,

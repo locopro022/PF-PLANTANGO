@@ -83,7 +83,7 @@
     position: absolute;
     bottom: -100%;
     transition: .5s;
-    z-index: 99999;
+    z-index: 9;
 }
 
 .btnAgregarCarrito:hover p {

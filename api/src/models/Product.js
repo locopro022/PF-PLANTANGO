@@ -3,29 +3,25 @@ const { DataTypes, UUIDV4 } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define(
-    "Product",
-    {
-      codProd: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: UUIDV4,
-        unique: true,
-      },
-      nameProd: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      descripProd: {
-        type: DataTypes.TEXT,
-        defaultVale: "Un producto.",
-      },
-      codCategoria: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      estrellas: {
+  sequelize.define('Product', {
+    codProd: {
+      type: DataTypes.INTEGER,
+      autoIncrement : true,
+      primaryKey: true,
+    },
+    nameProd:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique:true,
+    },
+    descripProd:{
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    codCategory:{
+      type: DataTypes.INTEGER,
+    },
+    starts:{
         type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
@@ -36,15 +32,15 @@ module.exports = (sequelize) => {
       },
       stockActual: {
         type: DataTypes.INTEGER,
-        defaultVale: 0,
+        defaultValue: 0,
       },
       stockMinimo: {
         type: DataTypes.INTEGER,
-        defaultVale: 0,
+        defaultValue: 0,
       },
       stockMaximo: {
         type: DataTypes.INTEGER,
-        defaultVale: 9999,
+        defaultValue: 9999,
       },
       imageProd: {
         type: DataTypes.TEXT,
@@ -53,7 +49,8 @@ module.exports = (sequelize) => {
       },
       stateProd: {
         type: DataTypes.BOOLEAN,
-        defaultVale: true,
+        allowNull: true,
+        defaultValue: true,
       },
     },
     {
