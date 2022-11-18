@@ -17,24 +17,24 @@ export function DashboardAdmin() {
               <div class="card-header ">
                 <div class="row">
           <div class="col-lg-4">
-            <div class="card ">
-              <div class="card-header">
+           <div class="cardArriba ">
+              <div class="card-header2">
                 <h5 class="card-category">Total Ventas</h5>
                 <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> $118,763</h3>
               </div>
-            </div>
+            </div> 
           </div>
           <div class="col-lg-4">
-            <div class="card ">
-              <div class="card-header">
+            <div class="cardArriba ">
+              <div class="card-header2">
                 <h5 class="card-category">Venta del Dia</h5>
                 <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i> $3,500</h3>
               </div>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="card">
-              <div class="card-header">
+            <div class="cardArriba">
+              <div class="card-header2">
                 <h5 class="card-category">Promedio de Carrito</h5>
                 <h3 class="card-title"><i class="tim-icons icon-send text-success"></i> $1,450</h3>
               </div>
