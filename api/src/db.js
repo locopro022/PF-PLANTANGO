@@ -31,7 +31,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const {User, DailyUser, Plants, Category, Product, Billing, BillingDetail } = sequelize.models;
+const { User, DailyUser, Plants, Category, Product, Billing, BillingDetail, Notification } = sequelize.models;
 
 // un producto tiene una categoria - una categoria tiene muchos productos
 Product.hasOne(Category)
@@ -43,27 +43,26 @@ User.hasOne(DailyUser);
 DailyUser.belongsTo(User);
 
 //una Categoria - tiene muchos productos
-Product.belongsTo(Category, { foreignKey: 'codCategory'})
-Category.hasMany(Product, { foreignKey: 'codCategory'});
+Product.belongsTo(Category, { foreignKey: 'codCategory' })
+Category.hasMany(Product, { foreignKey: 'codCategory' });
 
 //un usuario - tiene muchas facturas
-Billing.belongsTo(User, { foreignKey: 'idUser'})
-User.hasMany(Billing, { foreignKey: 'idUser'});
+Billing.belongsTo(User, { foreignKey: 'idUser' })
+User.hasMany(Billing, { foreignKey: 'idUser' });
 
 //una factura - tiene muchos detalle-factura (Productos)
-BillingDetail.belongsTo(Billing, { foreignKey: 'codBilling'})
-Billing.hasMany(BillingDetail, { foreignKey: 'codBilling'});
+BillingDetail.belongsTo(Billing, { foreignKey: 'codBilling' })
+Billing.hasMany(BillingDetail, { foreignKey: 'codBilling' });
 
 //un producto - tiene muchos detalles-factura
-BillingDetail.belongsTo(Product, { foreignKey: 'codProd'});
-Product.hasMany(BillingDetail, { foreignKey: 'codProd'})
+BillingDetail.belongsTo(Product, { foreignKey: 'codProd' });
+Product.hasMany(BillingDetail, { foreignKey: 'codProd' })
 
 
 //muchos usuarios - muchos favoritos
 
-
-User.belongsToMany(Plants, { through: "Favorites" ,timestamps:false,});
-Plants.belongsToMany(User, { through: "Favorites" ,timestamps:false,});
+User.belongsToMany(Plants, { through: "Favorites", timestamps: false, });
+Plants.belongsToMany(User, { through: "Favorites", timestamps: false, });
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);

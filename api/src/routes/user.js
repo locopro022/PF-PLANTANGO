@@ -1,26 +1,68 @@
 const { Router } = require("express");
-const { DailyUser, User, Plants, Favorites } = require("../db");
+const { where } = require("sequelize");
+const { DailyUser, User, Plants, Favorites, Notification } = require("../db");
+const cron = require("node-cron");
+const axios = require('axios')
+
 
 const UserR = Router();
 //Traer todos los usuarios 
-UserR.get("/all", async (req,res)=>{
-  
-  
-try {
-  console.log("ENTRE A LA RUTA ALL");
-          
-  const allUsers = await User.findAll();
 
-  console.log("allUsers: ",allUsers);
-
-  if(!allUsers){
-    return res.status(400).json({error: "Error en ruta get /user/all"})
+UserR.post("/recordatorio", async (req, res) => {
+  const { usuario, horario } = req.query;
+  try {
+    const creacion = await Notification.create({
+      usuario,
+      horario
+    })
+    res.status(200).json("notificacionCreadaConExito")
+  } catch (error) {
+    res.status(404).json(error.message)
   }
-  
-  return res.status(200).json(allUsers)
-} catch (error) {
-  res.status(400).send(error.message)
+})
+const cosita = async () => {
+  await axios.get('http://localhost:3001/user/noti/notifi')
 }
+/* cosita() */
+UserR.get("/noti/notifi", async (req, res) => {
+  try {
+    console.log("HOLAAAAAAAAAAAAAAA")
+    let horarios = await Notification.findAll({ where: { usuario: "Leandro" } })
+    let array = horarios.map(ele => ele.dataValues.horario)
+    let devuelve = array.map(ele => {
+      let hora = parseInt(ele.split("").slice(0, 2).join(""));
+      let minutos = parseInt(ele.split("").slice(2, 4).join(""));
+      return cron.schedule(`${minutos} ${hora} * * *`, () => {
+        console.log(`no olvide su recordatorio a las ${hora} ${minutos}`)
+      })
+    })
+    devuelve.forEach(ele => {
+      ele
+    })
+    res.status(200).json("creado con exito")
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
+})
+
+UserR.get("/all", async (req, res) => {
+
+
+  try {
+    console.log("ENTRE A LA RUTA ALL");
+
+    const allUsers = await User.findAll();
+
+    console.log("allUsers: ", allUsers);
+
+    if (!allUsers) {
+      return res.status(400).json({ error: "Error en ruta get /user/all" })
+    }
+
+    return res.status(200).json(allUsers)
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
 })
 
 UserR.get("/daily/:id", async (req, res) => {
@@ -159,11 +201,11 @@ UserR.get("/favorites/:idU", async (req, res) => {
 UserR.delete("/favorites/delete/:idU/:idP", async (req, res) => {
   const { idU, idP } = req.params;
   try {
-  await Favorites.destroy({
-    where: { UserIdUser: idU , PlantCodPlant: idP },
-  });
-  const tabla = await Favorites.findAll({ where: { UserIdUser: idU } });
-  res.status(200).send(tabla);
+    await Favorites.destroy({
+      where: { UserIdUser: idU, PlantCodPlant: idP },
+    });
+    const tabla = await Favorites.findAll({ where: { UserIdUser: idU } });
+    res.status(200).send(tabla);
   } catch (error) {
     res.status(400).json({ error: error });
   }
@@ -179,8 +221,8 @@ UserR.put("/:idUser", async (req, res) => {
     let { username, email, pass, name, lastName, nPhone } = req.body;
 
 
-    if(!username || !email || !pass || !name || !lastName || !nPhone){
-      return res.status(400).json({error: "Faltan datos"})
+    if (!username || !email || !pass || !name || !lastName || !nPhone) {
+      return res.status(400).json({ error: "Faltan datos" })
     }
     if (!idUser) {
       return res.status(400).json({ error: "No se encontro el id" });
@@ -215,59 +257,60 @@ UserR.put("/:idUser", async (req, res) => {
 });
 
 //Borrado logico de user
-UserR.delete("/:idUser", async (req, res)=> {
-try {
-  
-  console.log("llego a delete user");
-  const {idUser} = req.params;
-  const eliminarUser = await User.findByPk(idUser);
-  if (!eliminarUser){
-    return res.status(400).json({error: "No se encontro el id en la DB"})
+UserR.delete("/:idUser", async (req, res) => {
+  try {
+
+    console.log("llego a delete user");
+    const { idUser } = req.params;
+    const eliminarUser = await User.findByPk(idUser);
+    if (!eliminarUser) {
+      return res.status(400).json({ error: "No se encontro el id en la DB" })
+    }
+
+    await User.update(
+      {
+        hidden: true
+      },
+      {
+        where: { idUser }
+      }
+    )
+
+    console.log("usuario a eliminar", eliminarUser);
+    res.status(200).json("Usuario con borrado lógico");
+
+  } catch (error) {
+    res.status(400).json(error.message)
   }
-
-await User.update(
-  {
-    hidden: true
-  },
-  {
-    where: {idUser}
-  }
-)
-
-console.log("usuario a eliminar",eliminarUser);
-res.status(200).json("Usuario con borrado lógico");
-
-} catch (error) {
-  res.status(400).json(error.message)
-}
 
 })
 
 //Crear user admin
-UserR.post("/admin", async (req,res)=>{
-try {
-  
-  console.log("entre a la ruta");
-  const { username, email, pass, name, lastName, nPhone } = req.body;
+UserR.post("/admin", async (req, res) => {
+  try {
 
-  console.log(username, email, pass, name, lastName, nPhone);
+    console.log("entre a la ruta");
+    const { username, email, pass, name, lastName, nPhone } = req.body;
 
-  if (!username || !email || !pass || !name ) {
-   return res.send(400).json("mal perri")
+    console.log(username, email, pass, name, lastName, nPhone);
+
+    if (!username || !email || !pass || !name) {
+      return res.send(400).json("mal perri")
+    }
+
+    !nPhone ? null : nPhone;
+    !lastName ? null : lastName;
+
+    const newAdmin = await User.create({
+      username, email, pass, name, lastName, nPhone,
+      admin: true
+    })
+    console.log(newAdmin);
+    res.status(200).send(newAdmin)
+
+  } catch (error) {
+    res.status(404).json("Error en /user/admin", error.message)
   }
-
-  !nPhone?null:nPhone;
-  !lastName?null:lastName;
-
-  const newAdmin = await User.create({
-    username, email, pass, name, lastName, nPhone,
-    admin: true
-  })
-console.log(newAdmin);
-  res.status(200).send(newAdmin)
-
-} catch (error) {
-  res.status(404).json("Error en /user/admin",error.message)
-}
 })
+
 module.exports = UserR;
