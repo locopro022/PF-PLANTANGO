@@ -25,6 +25,8 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const DELETE_USER = "DELETE_USER"
 
+export const SET_NUM_PAGE = "SET_NUM_PAGE";
+
 const API_URL = "http://localhost:3001";
 
 export const carritoStorage = (arr) => (dispatch) => {
@@ -66,6 +68,10 @@ export const setPagHuerta = (e) => (dispatch) => {
   dispatch({ type: SET_PAG_HUERTA, payload: e });
 };
 
+export const setNumPage = (num)=> (dispatch)=>{
+dispatch({type: SET_NUM_PAGE, payload: num})
+}
+
 export const getHuertaDetail = async (id) => {
   const planta = await get(`plants/${id}`).then((planta) => {
     console.log("Recibiste la planta:", planta);
@@ -74,8 +80,7 @@ export const getHuertaDetail = async (id) => {
   return planta;
 };
 
-export const getHuerta =
-  (e = null) =>
+export const getHuerta = (e = null) =>
     (dispatch) => {
       return get(`plants`, { params: e }).then((data) => {
         console.log("las Plantas llegaron asi:", data);
@@ -173,8 +178,13 @@ export const deleteUser = (idUser) => {
 
 export const traerProductos = () => async (dispatch) => {
   return await axios.get("http://localhost:3001/products")
-    .then(productos => dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data.results }))
-}
+    .then(productos => {
+      console.log(" productos en la action:",productos);
+      dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data })})
+
+
+  }
+
 
 export const traerProducto = (id) => async (dispatch) => {
   return await axios.get(`http://localhost:3001/products/${id}`)

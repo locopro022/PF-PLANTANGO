@@ -17,7 +17,8 @@ import {
   ADD_FAVORITES,
   DELETE_USER,
   GET_ARRAY_PRODUCTS,
-  GET_PRODUCT
+  GET_PRODUCT,
+  SET_NUM_PAGE
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -27,6 +28,7 @@ const initialState = {
   arrayHuerta: {},
   filtrosHuerta: [],
   pagHuerta: 0,
+  pagVivero:0,
   arrayNotificaciones: [],
   arrayCarrito: [],
   url: "",
@@ -47,7 +49,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_ARRAY_PRODUCTS:
       return {
         ...state,
-        arrayVivero: [...action.payload]
+        arrayVivero: action.payload
       }
     case GET_PRODUCT:
       return {
@@ -109,10 +111,16 @@ const rootReducer = (state = initialState, action) => {
     case SET_PAG_HUERTA:
       return { ...state, pagHuerta: action.payload };
     case GET_ARRAY_HUERTA:
+
       return {
         ...state,
         arrayHuerta: { ...action.payload },
       };
+      
+      case SET_NUM_PAGE:
+        return{
+          ...state, pagVivero: action.payload
+        }
     case GET_ARRAY_NOTIFICACIONES:
       return {
         ...state,

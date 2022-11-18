@@ -7,9 +7,11 @@ const FiltrosVivero = (props) => {
     const [value, setValue] = useState([0, 18000]);
 
     const handleChange = (event, newValue) => {
-        console.log(newValue)
+        console.log("ACA NEW VALUE",newValue)
         setValue(newValue);
     };
+
+    console.log("VALOR: ",value);
     return (
         <>
             <div className='containerBarra'>
