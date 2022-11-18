@@ -12,6 +12,7 @@ const dbProducts = [
     imageProd:
       "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/3340/3340_2.jpg?fit=crop&w=224&h=224&auto=format&q=100",
   },
+
   {
     nameProd: "Sustrato Universal",
     descripProd:
@@ -51,7 +52,6 @@ const dbProducts = [
     imageProd:
       "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/101673/101673_1.jpg?fit=crop&w=224&h=224&auto=format&q=100",
   },
-  // comentario
   {
     nameProd: "Abono Orgánico Frutales BioFlower 2kg",
     descripProd:
@@ -104,7 +104,7 @@ const dbProducts = [
     stockMinimo: 5,
     stockMaximo: 50,
     imageProd:
-      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/70/70_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/531/531_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
   },
 
   {
@@ -118,8 +118,65 @@ const dbProducts = [
     stockMinimo: 5,
     stockMaximo: 50,
     imageProd:
-      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/70/70_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/543/543_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
   },
+
+  {
+    nameProd: "Semillas de Cebolla Dulce de fuentes",
+    descripProd:
+      "Bulbos de forma globosa con túnicas blancas y exteriormente de color amarillento. Precocidad media, muy voluminosa, dulce y conservación aceptable",
+    codCategory: 1,
+    starts: 5,
+    precio: 18,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/3043/3043_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Semillas ecológicas de Guisante 1/2 enrame rondo",
+    descripProd:
+      "Variedad de alta producción muy popular para el mercado en fresco. Planta vigorosa y productiva de unos 70 cm de altura. Produce vainas de 10-12 cm de longitud con 8-10 granos/vaina de calibre grueso y color verde oscuro. Semilla rugosa. Ciclo de maduración alrededor de 75 días. Apto para mercado fresco principalmente",
+    codCategory: 1,
+    starts: 5,
+    precio: 28,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/71/71_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Semillas ecológicas de tomate marmande raf Vergea",
+    descripProd:
+      "El tomate MARMANDE RAF es un tomate multilobular, acostillado, cuello verde y forma ligeramente achatada. Su peso es de 180-200 grs. El porte de la planta es semi-determinado alto y es resistente al Fusarium. Tiene un excelente sabor y un tradicional olor a tomate.",
+    codCategory: 1,
+    starts: 5,
+    precio: 19,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/68121/68121_1.png?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
+  {
+    nameProd: "Semillas de Fresones 4 estaciones",
+    descripProd:
+      "Fruto sabroso y de gusto dulcísimo.Siembra: En semillero protegido del frío en Abril-Mayo, si bien puede sembrarse también en Julio-Agosto al aire libre. Cuando las plantas alcanzan unos 8 cms. trasplantarlas a lugar definitivo, procurando sombrearlas los primeros días del trasplante. Recolección: normalmente en Junio-Julio del año siguiente.",
+    codCategory: 1,
+    starts: 5,
+    precio: 26,
+    stockActual: 50,
+    stockMinimo: 5,
+    stockMaximo: 50,
+    imageProd:
+      "https://cdn2.planetahuerto.es/estaticos/imagenes/ficha/526/526_1.jpg?fit=crop&w=384&h=384&auto=format&q=100",
+  },
+
 ];
 
 module.exports = dbProducts;
