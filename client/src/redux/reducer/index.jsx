@@ -17,7 +17,8 @@ import {
   ADD_FAVORITES,
   DELETE_USER,
   GET_ARRAY_PRODUCTS,
-  GET_PRODUCT
+  GET_PRODUCT,
+  GET_BILL
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -34,7 +35,8 @@ const initialState = {
   favoritos: [],
   user: {},
   usuarios: [],
-  producto: {}
+  producto: {},
+  bill: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -166,6 +168,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state
       }
+      case GET_BILL:
+        return {
+         ...state,
+          bill: action.payload,
+        };
+
     default:
       return state;
   }

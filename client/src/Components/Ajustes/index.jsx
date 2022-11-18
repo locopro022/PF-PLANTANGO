@@ -10,13 +10,13 @@ import UsuariosInfo from '../UsuariosInfo/UsuarioInfo'
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 const Ajustes = () => {
-    const [selectedTab, setSelectedTab] = React.useState(0);
+    const [selectedTab, setSelectedTab] = React.useState("Profile");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
   };
     return (
-        <TabContext value={selectedTab}>
+        <TabContext value={selectedTab} defaultValue={Profile}>
         <TabList onChange={handleChange} aria-label="icon label tabs example">
       <Tab icon={<BadgeIcon />} label="Perfil" value="Profile"/>
       <Tab icon={<ManageAccountsIcon />} label="Admin Usuarios" value="AdminUser" />
