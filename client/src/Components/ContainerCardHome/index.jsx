@@ -16,7 +16,7 @@ const ContainerCardHome = (props) => {
     return (
         <>
             {
-                arrayVivero?.map(produc => {
+                arrayVivero?.results?.slice(0, 6).map(produc => {
                     return (
                         <div className="card text-center estilos mediaCard">
                             <div className="card-body" style={{ cursor: 'pointer' }}>

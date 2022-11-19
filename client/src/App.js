@@ -14,7 +14,8 @@ import {
   getHuertaDetail,
   getTiposHuerta,
   getUser,
-  carritoStorage
+  carritoStorage,
+  traerNotificaciones
 } from "./redux/actions";
 import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
@@ -47,6 +48,7 @@ function App() {
       dispatch(getUser(user.email));
     }
     dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))))
+    dispatch(traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones"))))
   }, [user]);
   console.log(user)
   return (

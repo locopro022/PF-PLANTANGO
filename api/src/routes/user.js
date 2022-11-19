@@ -25,7 +25,6 @@ UserR.get('/noti/notifi', async (req, res) => {
   try {
     let horarios = await Notification.findAll({ where: { usuario: usuario } })
     let array = horarios.map(ele => ele.dataValues.horario)
-    console.log(array)
     let devuelve = array.map(ele => {
       let hora = parseInt(ele.split("").slice(0, 2).join(""));
       let minutos = parseInt(ele.split("").slice(2, 4).join(""));
