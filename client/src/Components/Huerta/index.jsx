@@ -50,7 +50,7 @@ const Vivero = () => {
   const applyPage = (e) => {
     dispatch(setPagHuerta(e));
   };
-console.log("current: ", productos.page);
+
   return (
     <>
       {!iniciarPagina ? (

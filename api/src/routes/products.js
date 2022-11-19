@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
     for (let key in filter) {
       if (Array.isArray(filter[key])) {
-        sequelizeFilter[key] = { [Op.contains]: filter[key] };
+        sequelizeFilter[key] = { [Op.or]: filter[key] };
       } else if (filter[key].max || filter[key].min) {
         sequelizeFilter[key] =
           filter[key].max && filter[key].min
@@ -91,7 +91,7 @@ router.get("/:codProd", async (req, res) => {
   try {
     const { codProd } = req.params;
 
-    let product = await Product.findByPk(codProd);
+    let product = await Product.findByPk(codProd, {include: Category});
 
     return res.status(200).json(product);
   } catch (e) {

@@ -1,5 +1,5 @@
-const PaginadoVivero = ({enviarPagina, page})=> {
-const max = 11;
+const PaginadoVivero = ({enviarPagina, page, max})=> {
+
 
     
 const movimientos = {
@@ -13,8 +13,17 @@ const pasarPagina =(index)=>{
 }
 
 
+// obj : {
+//     search: null,
+//     filter: {codCategory:[ 1, 2], price: {min: Num, max: num}},
+//     page: num
+//     }
 
-
+// obj : {
+//     search: null,
+//     filter: {codCategory:[ 1, 2], price: null},
+//     page: 2
+//     }
 return (
 
     <div> 

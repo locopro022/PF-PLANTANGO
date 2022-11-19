@@ -27,7 +27,9 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const DELETE_USER = "DELETE_USER"
 
-export const SET_NUM_PAGE = "SET_NUM_PAGE";
+export const SET_PAGE_VIVERO = "SET_PAGE_VIVERO";
+export const SET_FILTROS_VIVERO = "SET_FILTROS_VIVERO";
+export const GET_CATEGORIAS_VIVERO = "GET_CATEGORIAS_VIVERO"
 
 const API_URL = "http://localhost:3001";
 
@@ -54,7 +56,7 @@ const get = async (url, parameter = {}) => {
 // };
 export const getTiposHuerta = () => (dispatch) => {
   return get(`plants/types`).then((data) => {
-    console.log("Los tipos llegaron asi:", data);
+    
     dispatch({
       type: GET_TIPOS_HUERTA,
       payload: data,
@@ -71,12 +73,12 @@ export const setPagHuerta = (e) => (dispatch) => {
 };
 
 export const setNumPage = (num)=> (dispatch)=>{
-dispatch({type: SET_NUM_PAGE, payload: num})
+dispatch({type: SET_PAGE_VIVERO, payload: num})
 }
 
 export const getHuertaDetail = async (id) => {
   const planta = await get(`plants/${id}`).then((planta) => {
-    console.log("Recibiste la planta:", planta);
+    
     return plantaADetalle(planta);
   });
   return planta;
@@ -85,7 +87,7 @@ export const getHuertaDetail = async (id) => {
 export const getHuerta = (e = null) =>
     (dispatch) => {
       return get(`plants`, { params: e }).then((data) => {
-        console.log("las Plantas llegaron asi:", data);
+        
         dispatch({
           type: GET_ARRAY_HUERTA,
           payload: data,
@@ -175,7 +177,7 @@ export const addAdmin = (newAdmin) => {
 }
 
 export const deleteUser = (idUser) => {
-  console.log("llego a la action");
+ 
 
   return async function (dispatch) {
     const user = await axios.delete(`http://localhost:3001/user/${idUser}`);
@@ -188,17 +190,36 @@ export const deleteUser = (idUser) => {
   }
 }
 
-export const traerProductos = () => async (dispatch) => {
-  return await axios.get("http://localhost:3001/products")
+export const traerProductos = (e=null) => async (dispatch) => {
+  console.log("action traer productos",e);
+  return await axios.get("http://localhost:3001/products", {params:e})
     .then(productos => {
-      console.log(" productos en la action:",productos);
+     
       dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data })})
+ }
 
-
-  }
-
+  export const setFiltrosProductos = (e) =>  (dispatch => {
+    console.log("asi llega el filtro a la action",e);
+    dispatch( 
+      {type: SET_FILTROS_VIVERO, payload: e})
+  })
 
 export const traerProducto = (id) => async (dispatch) => {
   return await axios.get(`http://localhost:3001/products/${id}`)
     .then(producto => dispatch({ type: GET_PRODUCT, payload: producto.data }))
 }
+
+export const getCategoriasVivero = ()=> {
+  return (dispatch) => {
+    fetch(`http://localhost:3001/products/types`)
+      .then((response) => response.json())
+      .then((data) => {
+
+        dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data })
+      })
+
+  }
+}
+// export const setFiltrosHuerta = (e) => (dispatch) => {
+//   dispatch({ type: SET_FILTROS_HUERTA, payload: e });
+// };
