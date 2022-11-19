@@ -33,6 +33,7 @@ export const GET_BILL = "GET_BILL"
 export const SET_PAGE_VIVERO = "SET_PAGE_VIVERO";
 export const SET_FILTROS_VIVERO = "SET_FILTROS_VIVERO";
 export const GET_CATEGORIAS_VIVERO = "GET_CATEGORIAS_VIVERO"
+export const GET_SEARCH_VIVERO = "GET_SEARCH_VIVERO";
 
 const API_URL = "http://localhost:3001";
 
@@ -116,6 +117,18 @@ export const getSearch = (search) => {
       fetch(`http://localhost:3001/plants?search=${search}`)
         .then((response) => response.json())
         .then((data) => dispatch({ type: GET_SEARCH, payload: data }));
+    } catch (error) {
+      throw new Error("Error en actions  -> getSearch");
+    }
+  };
+};
+
+export const getSearchVivero = (search) => {
+  return (dispatch) => {
+    try {
+      fetch(`http://localhost:3001/products?search=${search}`)
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data }));
     } catch (error) {
       throw new Error("Error en actions  -> getSearch");
     }

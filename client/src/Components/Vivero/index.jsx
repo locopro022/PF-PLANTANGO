@@ -1,6 +1,7 @@
 import AlPrincipio from "../AlPrincipio";
 import FiltrosVivero from '../FiltrosVivero';
-import CartasVivero from '../CartasVivero'
+import CartasVivero from '../CartasVivero';
+import SearchBarVivero from './SearchBarVivero'
 import './Vivero.css'
 import { useDispatch, useSelector } from "react-redux";
 import PaginadoVivero from "./PaginadoVivero";
@@ -50,9 +51,12 @@ const Vivero = () => {
   return (
     <>
       <AlPrincipio />
-      <div><PaginadoVivero enviarPagina={enviarPagina} page={productos.page} max={productos.page_count}/></div>
+      <div><PaginadoVivero enviarPagina={enviarPagina} page={productos.page} max={productos.page_count}/>
+      </div>
+      <div><SearchBarVivero/></div>
       <div className="containerGlobalVivero">
         <FiltrosVivero options={categorias} enviarFiltros={enviarFiltros}/>
+        
         <div className='containerCartasSearch'>
           <CartasVivero />
         </div>

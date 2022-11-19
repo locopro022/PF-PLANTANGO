@@ -11,6 +11,7 @@ import {
   GET_ALL_FAVORITES,
   GET_USER,
   GET_SEARCH,
+  GET_SEARCH_VIVERO,
   GET_ALL_USERS,
   CREATE_ADMIN,
   DELETE_FAVORITES,
@@ -160,6 +161,11 @@ return {
         ...state,
         arrayHuerta: action.payload,
       };
+      case GET_SEARCH_VIVERO:
+        return {
+          ...state,
+          arrayVivero: action.payload,
+        };
     case GET_ALL_FAVORITES:
       return {
         ...state,
