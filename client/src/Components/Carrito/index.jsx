@@ -104,7 +104,7 @@ const Carrito = () => {
                       <p className="precioMap">{ele.cantidad}</p>
                       <button name='mas' className="btnRestaSuma" onClick={(e) => changeValue(e, ele)}>+</button>
                     </div>
-                    <h5 className="precioApartado">{`$${ele.cantidad * parseInt(ele.precio / 100)}`}</h5>
+                    <h5 className="precioApartado">{`$${ele.cantidad * parseInt(ele.precio)}`}</h5>
                     <button className="btnMapeo" onClick={() => eliminarProduct(ele.nameProd)}>X</button>
                   </div>
                 )
@@ -112,7 +112,7 @@ const Carrito = () => {
             }
           </div>
           <div className="modal-footer" style={{ position: 'relative' }}>
-            <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio / 100) * des.cantidad, 0)}`}</p>
+            <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio) * des.cantidad, 0)}`}</p>
             <button className="btn btn-danger" onClick={borrarCarrito}>Vaciar carrito</button>
             <button className="btn btn-success">Hacer compra</button>
           </div>
