@@ -32,6 +32,16 @@ export const GET_BILL = "GET_BILL"
 
 const API_URL = "http://localhost:3001";
 
+export const recordatorio = (hora) => async (dispatch) => {
+  const { usuario, horario } = hora;
+  await axios.post(`${API_URL}/user/recordatorio?usuario=${usuario}&&horario=${horario}`)
+    .then(async (res) => {
+      const respuesta = await axios.get(`${API_URL}/user/noti/notifi?usuario=${usuario}`)
+      const NotiStora = JSON.parse(localStorage.getItem("Notificaciones")) === null ? [] : JSON.parse(localStorage.getItem("Notificaciones"))
+      localStorage.setItem("Notificaciones", JSON.stringify([...NotiStora, respuesta.data]))
+    })
+}
+
 export const carritoStorage = (arr) => (dispatch) => {
   if (arr === null) arr = [];
   return dispatch({ type: GET_ARRAY_CARRITO, payload: arr })
