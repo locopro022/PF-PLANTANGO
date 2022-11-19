@@ -22,7 +22,7 @@ import {
   SET_PAGE_VIVERO,
   GET_DAILY_USER,
   EDIT_DAILY_USER,
-  CLEAR_CARRITO
+  CLEAR_CARRITO,
   SET_FILTROS_VIVERO,
   GET_CATEGORIAS_VIVERO
 } from "../actions";
@@ -45,7 +45,7 @@ const initialState = {
   user: {},
   usuarios: [],
   producto: {},
-  tiposCategoria: []
+  tiposCategoria: [],
   bill: []
 };
 
