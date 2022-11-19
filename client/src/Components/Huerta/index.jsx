@@ -17,8 +17,13 @@ const Vivero = () => {
   const productos = useSelector((state) => state.arrayHuerta);
   const dispatch = useDispatch();
 
+
+  
   useEffect(() => {
     let filter = {};
+
+    
+    
     for (let item of filtros) {
       let slice = item.options.some(({ checked }) => checked)
         ? {
@@ -29,6 +34,9 @@ const Vivero = () => {
         : {};
       filter = { ...filter, ...slice };
     }
+
+
+    
     dispatch(getHuerta({ page, filter }));
   }, [filtros, page, dispatch]);
 
