@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./Filtros.css";
 
 const Filtros = (props) => {

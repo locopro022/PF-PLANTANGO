@@ -26,6 +26,9 @@ export const EDIT_DAILY_USER = "EDIT_DAILY_USER"
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const DELETE_USER = "DELETE_USER"
+export const CLEAR_CARRITO = 'CLEAR_CARRITO';
+
+export const GET_BILL = "GET_BILL"
 
 export const SET_PAGE_VIVERO = "SET_PAGE_VIVERO";
 export const SET_FILTROS_VIVERO = "SET_FILTROS_VIVERO";
@@ -138,15 +141,15 @@ export function addFav(idU, idP) {
       .then((res) => res.data)
       .then((payload) => dispatch({ type: ADD_FAVORITES, payload }));
 }
-export function getDaily(idU){
-  return dispatch=> axios(`http://localhost:3001/user/daily/${idU}`)
-  .then(res=>res.data)
-  .then(payload=> dispatch({type: GET_DAILY_USER, payload}))
+export function getDaily(idU) {
+  return dispatch => axios(`http://localhost:3001/user/daily/${idU}`)
+    .then(res => res.data)
+    .then(payload => dispatch({ type: GET_DAILY_USER, payload }))
 }
-export function editDaily(idU,obj){
-  return dispatch => axios.put(`http://localhost:3001/user/daily/${idU}`,obj)
-  .then(res=>res.data)
-  .then(payload=> dispatch({type: EDIT_DAILY_USER, payload}))
+export function editDaily(idU, obj) {
+  return dispatch => axios.put(`http://localhost:3001/user/daily/${idU}`, obj)
+    .then(res => res.data)
+    .then(payload => dispatch({ type: EDIT_DAILY_USER, payload }))
 }
 export function getUser(user) {
   return (dispatch) =>
@@ -207,6 +210,28 @@ export const traerProductos = (e=null) => async (dispatch) => {
 export const traerProducto = (id) => async (dispatch) => {
   return await axios.get(`http://localhost:3001/products/${id}`)
     .then(producto => dispatch({ type: GET_PRODUCT, payload: producto.data }))
+}
+
+export const clearProducto = () => (dispatch) => {
+  return dispatch({ type: CLEAR_CARRITO, payload: {} })
+}
+
+export const getBill = () => async (dispatch) => {
+  const kpi1 = await axios(`http://localhost:3001/bill/getKPI1`)
+  const kpi2 = await axios(`http://localhost:3001/bill/getKPI2`)
+  const kpi3 = await axios(`http://localhost:3001/bill/getKPI3`)
+  const kpi4 = await axios(`http://localhost:3001/bill/getKPI4`)
+  const kpi5 = await axios(`http://localhost:3001/bill/getKPI5`)
+
+  const kpiTotal = [
+    kpi1.data.datos[0],
+    kpi2.data.datos[0],
+    kpi3.data.datos[0],
+    kpi4.data.datos,
+    kpi5.data.datos]
+  console.log(kpiTotal, "kpiTotal")
+  return (
+    dispatch({ type: GET_BILL, payload: kpiTotal }))
 }
 
 export const getCategoriasVivero = ()=> {

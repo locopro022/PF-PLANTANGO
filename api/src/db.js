@@ -51,16 +51,17 @@ Category.hasMany(Product, { foreignKey: "codCategory" });
 Product.belongsTo(Category, { foreignKey: "codCategory" });
 
 //un usuario - tiene muchas facturas
-Billing.belongsTo(User, { foreignKey: "idUser" });
-User.hasMany(Billing, { foreignKey: "idUser" });
+Billing.belongsTo(User, { foreignKey: 'idUser' })
+User.hasMany(Billing, { foreignKey: 'idUser' });
 
 //una factura - tiene muchos detalle-factura (Productos)
-BillingDetail.belongsTo(Billing, { foreignKey: "codBilling" });
-Billing.hasMany(BillingDetail, { foreignKey: "codBilling" });
+BillingDetail.belongsTo(Billing, { foreignKey: 'codBilling' })
+Billing.hasMany(BillingDetail, { foreignKey: 'codBilling' });
 
 //un producto - tiene muchos detalles-factura
-BillingDetail.belongsTo(Product, { foreignKey: "codProd" });
-Product.hasMany(BillingDetail, { foreignKey: "codProd" });
+BillingDetail.belongsTo(Product, { foreignKey: 'codProd' });
+Product.hasMany(BillingDetail, { foreignKey: 'codProd' })
+
 
 //muchos usuarios - muchos favoritos
 

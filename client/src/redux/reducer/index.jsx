@@ -18,9 +18,11 @@ import {
   DELETE_USER,
   GET_ARRAY_PRODUCTS,
   GET_PRODUCT,
+  GET_BILL,
   SET_PAGE_VIVERO,
   GET_DAILY_USER,
   EDIT_DAILY_USER,
+  CLEAR_CARRITO
   SET_FILTROS_VIVERO,
   GET_CATEGORIAS_VIVERO
 } from "../actions";
@@ -44,10 +46,16 @@ const initialState = {
   usuarios: [],
   producto: {},
   tiposCategoria: []
+  bill: []
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_CARRITO:
+      return {
+        ...state,
+        producto: { ...action.payload }
+      }
     case GET_ARRAY_CARRITO:
       return {
         ...state,
@@ -99,25 +107,24 @@ const rootReducer = (state = initialState, action) => {
         filtrosHuerta:
           action.payload === "clear"
             ? state.filtrosHuerta.map((item) => ({
-                ...item,
-                options: item.options.map((option) => ({
-                  ...option,
-                  checked: false,
-                })),
-              }))
+              ...item,
+              options: item.options.map((option) => ({
+                ...option,
+                checked: false,
+              })),
+            }))
             : state.filtrosHuerta.map((item) =>
-                item.filter !== action.payload.type
-                  ? item
-                  : {
-                      ...item,
-                      options: item.options.map((option) =>
-                        option.value !== action.payload.value
-                          ? option
-                          : { ...option, checked: action.payload.checked }
-                  
-                          ),
-                    }
-              ),
+              item.filter !== action.payload.type
+                ? item
+                : {
+                  ...item,
+                  options: item.options.map((option) =>
+                    option.value !== action.payload.value
+                      ? option
+                      : { ...option, checked: action.payload.checked }
+                  ),
+                }
+            ),
       };
 case SET_FILTROS_VIVERO: 
 console.log("FILTRO LLEGANDO AL REDUCE", action.payload);
@@ -189,9 +196,14 @@ return {
       };
     case DELETE_USER:
       return {
-        ...state,
-      };
-    case GET_DAILY_USER:
+        ...state
+      }
+      case GET_BILL:
+        return {
+         ...state,
+          bill: action.payload,
+        };
+case GET_DAILY_USER:
       return {
         ...state,
         diario: action.payload,
@@ -200,10 +212,10 @@ return {
       return {
         ...state,
         diario: action.payload,
-      };
+      };   
+
     default:
       return state;
-  }
-};
+  } };
 
 export default rootReducer;
