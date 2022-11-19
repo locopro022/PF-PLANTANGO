@@ -197,4 +197,57 @@ bill.get('/getbills', async (req, res) => {
     })
 })
 
+
+//localhost:3001/bill/getkpis -- KPI6
+bill.get('/getkpis', async (req, res) => {
+    try {
+        // Ventas Totales
+        const Kpi1 = await await Billing.findAll({
+            attributes: [ [fn('SUM', col('amountBilling')), 'VentasTotales'] ]
+        })
+
+        const Kpi2 = await Billing.findAll({
+            attributes: [ [fn('COUNT', col('codBilling')), 'Facturas'] ]
+        })
+
+        const Kpi3 = await Billing.findAll({
+            attributes: [ [fn('AVG', col('amountBilling')), 'TicketPromedio'] ]
+        })
+
+        const Kpi4 =  await Billing.findAll({
+            attributes: [
+                [literal(`DATE("dateBilling")`), 'Fecha'],
+                [literal(`COUNT(*)`), 'Facturas'],
+                [literal(`SUM("amountBilling")`), 'VentasDia']
+            ],
+            group: ['Fecha'],
+            raw: true,
+            order: [ ['Fecha', 'ASC'],],
+        })
+
+        const Kpi5 = await BillingDetail.findAll({
+            attributes: ['Product.codCategory', [fn('SUM', col('BillingDetail.subtotal')), 'VentasCategoria'] ],
+            include   : [ 
+                { 
+                    model  :  Product,
+                    attributes: [],
+                    include:[]
+                }
+           ],
+            group     : ['Product.codCategory'],
+            raw       : true,
+            order     : [ ['VentasCategoria', 'DESC'],],
+        })
+
+        Promise.all( [Kpi1, Kpi2, Kpi3, Kpi4, Kpi5] ).then((res2) => {     
+            res.status(201).json(res2);
+        });            
+
+    }
+    catch(error) {
+        res.json( {error: error.message})
+    }
+})
+
+
 module.exports = bill;
