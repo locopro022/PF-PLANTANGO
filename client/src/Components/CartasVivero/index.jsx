@@ -18,9 +18,9 @@ const CartasVivero = (props) => {
                 arrayVivero?.map((produc, index) => {
                     return (
                         <div key={index} className='cardContainerVivero estilos' onClick={() => navigate(`/vivero/${produc.codProd}`)}>
+                            <p style={{ textAlign: 'center' }}>{produc.nameProd}</p>
                             <img src={produc.imageProd} alt='img' className='imgVivero' />
-                            <h4 className='price'>{`$${parseInt(produc.precio / 100)}`}</h4>
-                            <p className='nameProduc' style={{ textAlign: 'center' }}>{produc.nameProd}</p>
+                            <h4 className='price'>{`$${parseInt(produc.precio)}`}</h4>
                         </div>
                     )
                 })

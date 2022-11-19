@@ -6,6 +6,40 @@ const cron = require("node-cron");
 const UserR = Router();
 //Traer todos los usuarios 
 
+UserR.post('/recordatorio', async (req, res) => {
+  const { usuario, horario } = req.query;
+  try {
+    await Notification.create({
+      usuario,
+      horario
+    })
+    res.status(200).json("creado con exito")
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+UserR.get('/noti/notifi', async (req, res) => {
+  try {
+    let horarios = await Notification.findAll({ where: { usuario: "Leandro" } })
+    let array = horarios.map(ele => ele.dataValues.horario)
+    console.log(array)
+    let devuelve = array.map(ele => {
+      let hora = parseInt(ele.split("").slice(0, 2).join(""));
+      let minutos = parseInt(ele.split("").slice(2, 4).join(""));
+      return cron.schedule(`${minutos} ${hora} * * *`, () => {
+        console.log(`No olvide su recordatorio a las ${hora} ${minutos}`)
+      })
+    })
+    devuelve.forEach(ele => {
+      ele
+    })
+    res.status(200).json("Esperando notificacion")
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
+})
+
 UserR.get("/all", async (req, res) => {
 
 
