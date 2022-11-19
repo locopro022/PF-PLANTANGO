@@ -1,0 +1,182 @@
+
+
+.card-header {
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0;
+  background-color: #6af6ae37;
+  border-bottom: 0.0625rem solid rgba(34, 42, 66, 0.05);
+
+}
+
+.cardsSup {
+  border: 10px solid rgba(34, 42, 66, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 300px;
+}
+
+.rowSup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.rowMid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.rowInf {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+
+.graficoLinea {
+  width: 45%;
+  height: 45%;
+  display: flex;
+}
+
+.contenedorInferior{
+  display:flex;;
+}
+
+.cardTableTasks{
+  width: 40%;
+  margin: 3%;
+}
+
+.cardFacturas{
+  width: 40%;
+  margin: 3%;
+}
+
+
+.category,
+.card-category {
+  text-transform: capitalize;
+  font-weight: 400;
+  color: rgba(15, 9, 9, 0.6);
+  font-size: 22px;
+  
+}
+
+.card-title{
+  color:#00940fbb
+}
+
+.card-chart .chart-area {
+  height: 220px;
+  width: 100%;
+}
+
+.card-tasks .card-header .title {
+  margin-right: 20px;
+  font-weight: 400;
+}
+
+.card-tasks .card-header .dropdown {
+  float: right;
+  color: #cccccc;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f6f9fc;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #e14eca;
+}
+
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.dropdown-menu[x-placement^="top"],
+.dropdown-menu[x-placement^="right"],
+.dropdown-menu[x-placement^="bottom"],
+.dropdown-menu[x-placement^="left"] {
+  right: auto;
+  bottom: auto;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card .card-body.table-full-width {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+.form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+}
+
+.form-check-input {
+  position: absolute;
+  margin-top: 0.3rem;
+  margin-left: -1.25rem;
+}
+
+.form-check-input:disabled~.form-check-label {
+  color: #6c757d;
+}
+
+.form-check-label {
+  margin-bottom: 0;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.table .td-actions .btn {
+  margin: 0px;
+}
+
+.text-primary {
+  color: #e14eca !important;
+}
+
+.text-center {
+  text-align: center !important;
+}

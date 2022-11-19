@@ -1,63 +1,68 @@
-const { DataTypes, UUIDV4 } = require('sequelize');
+const { DataTypes, UUIDV4 } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Plants', {
-    codPlant: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: UUIDV4,
-      unique: true
-    },
-    namePlant:{
-      type:DataTypes.STRING,
-      allowNull: false,
-      unique:true,
-    },
-    descripPlant:{
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    ubication:{
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true
-    },
-    ligth:{
+  sequelize.define(
+    "Plants",
+    {
+      codPlant: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: UUIDV4,
+        unique: true,
+      },
+      namePlant: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      descripPlant: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      localizacion: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true
-    },
-    whater:{
+        allowNull: true,
+      },
+      luz: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true
-    },
-    size:{
+        allowNull: true,
+      },
+      riego: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true
-    },
-    type:{
+        allowNull: true,
+      },
+      dimension: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true
-    },  
-    climate:{
+        allowNull: true,
+      },
+      tipo: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true
-      }, 
-      toxicity:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
-    statePlant:{
+        allowNull: true,
+      },
+      clima: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true,
+      },
+      toxicidad: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true
+      },
+      statePlant: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      imagePlant: {
+        type: DataTypes.TEXT,
+        defaultValue:
+          "https://th.bing.com/th/id/OIP.dONsu4J4qcyupy4ncv97OgHaMo?pid=ImgDet&rs=1",
+      },
     },
-    imagePlant:{
-      type: DataTypes.TEXT,
-      allowNull: true
+    {
+      freezeTableName: true,
+      timestamps: false,
     }
-  },{
-    freezeTableName: true,
-    timestamps: false
-  });
+  );
 };

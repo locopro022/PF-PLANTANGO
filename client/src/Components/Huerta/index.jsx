@@ -2,74 +2,87 @@ import Cartas from "../Cartas";
 import Filtros from "../Filtros";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../Pagination";
-import { constrainHuerta, getHuerta } from "../../redux/actions";
+import { getHuerta, setFiltrosHuerta, setPagHuerta } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { plantaACarta } from "../../redux/utils";
-import AlPrincipio from '../AlPrincipio'
+import AlPrincipio from "../AlPrincipio";
 import Loading from "../Loading";
 import SearchBarHuerta from "../SearchBarHuerta/SearchBarHuerta.jsx";
-import './index.css'
+import "./index.css";
 
 const Vivero = () => {
-  const [iniciarPagina, setIniciarPagina] = useState(true)
-  const filtros = useSelector((state) => state.tiposHuerta);
+  const [iniciarPagina, setIniciarPagina] = useState(true);
+  const filtros = useSelector((state) => state.filtrosHuerta);
+  const page = useSelector((state) => state.pagHuerta);
   const productos = useSelector((state) => state.arrayHuerta);
-  const filtrosAplicados = useSelector((state) => state.constrainHuerta);
   const dispatch = useDispatch();
 
+
+  
   useEffect(() => {
-    dispatch(getHuerta(filtrosAplicados));
-  }, [filtrosAplicados]);
+    let filter = {};
+
+    
+    
+    for (let item of filtros) {
+      let slice = item.options.some(({ checked }) => checked)
+        ? {
+            [item.filter]: item.options
+              .filter(({ checked }) => checked)
+              .map(({ value }) => value),
+          }
+        : {};
+      filter = { ...filter, ...slice };
+    }
+
+
+    
+    dispatch(getHuerta({ page, filter }));
+  }, [filtros, page, dispatch]);
 
   useEffect(() => {
-    console.log("En la huerta los filtros son", filtros);
-    setIniciarPagina(false)
+    setIniciarPagina(false);
   }, []);
 
   const applyFilters = (e) => {
-    //nos llega un array de objetos
-    console.log(e);
-    dispatch(constrainHuerta({ type: "filter", value: e }));
-  }
+    dispatch(setFiltrosHuerta(e));
+  };
+  const applyPage = (e) => {
+    dispatch(setPagHuerta(e));
+  };
 
   return (
     <>
-      {
-        !iniciarPagina
-          ?
-          <>
-            {
-              iniciarPagina || productos.results?.length <= 6
-                ?
-                <AlPrincipio />
-                :
-                null
-            }
-            <div className="container-fluid">
-              <div className="alto-row">
-                <div className="row alto-row">
-                  <div className="col-2">
-                    <Filtros filtros={filtros} apply={applyFilters} />
+      {!iniciarPagina ? (
+        <>
+          {iniciarPagina || productos.results?.length <= 6 ? (
+            <AlPrincipio />
+          ) : null}
+          <div className="container-fluid">
+            <div className="alto-row">
+              <div className="row alto-row">
+                <div className="col-2">
+                  <Filtros filtros={filtros} apply={applyFilters} />
+                </div>
+                {/* El que tenga muchisimas ganas, le pone estilos. */}
+                <div className="col">
+                  <div className="container-fluid">
+                    <SearchBarHuerta />
                   </div>
-                  {/* El que tenga muchisimas ganas, le pone estilos. */}
-                  <div className="col">
-                    <div className="container-fluid"><SearchBarHuerta /></div>
-                    <Pagination
-                      max={productos.page_count}
-                      curr={productos.page}
-                      apply={(e) =>
-                        dispatch(constrainHuerta({ type: "page", value: e }))
-                      }
-                    />
-                    <Cartas items={productos.results?.map(plantaACarta)} />
-                  </div>
+                  <Pagination
+                    max={productos.page_count}
+                    curr={productos.page}
+                    apply={applyPage}
+                  />
+                  <Cartas items={productos.results?.map(plantaACarta)} />
                 </div>
               </div>
             </div>
-          </>
-          :
-          <Loading />
-      }
+          </div>
+        </>
+      ) : (
+        <Loading />
+      )}
     </>
   );
 };

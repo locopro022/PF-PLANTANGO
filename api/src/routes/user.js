@@ -1,7 +1,72 @@
 const { Router } = require("express");
-const { DailyUser, User, Plants, Favorites } = require("../db");
-
+const { where } = require("sequelize");
+const { DailyUser, User, Plants, Favorites, Notification } = require("../db");
+const cron = require("node-cron");
+const notifier = require('node-notifier')
 const UserR = Router();
+//Traer todos los usuarios 
+
+UserR.post('/recordatorio', async (req, res) => {
+  const { usuario, horario } = req.query;
+  try {
+    await Notification.create({
+      usuario,
+      horario
+    })
+    res.status(200).json("creado con exito")
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+UserR.get('/noti/notifi', async (req, res) => {
+  const { usuario } = req.query;
+  console.log(usuario)
+  try {
+    let horarios = await Notification.findAll({ where: { usuario: usuario } })
+    let array = horarios.map(ele => ele.dataValues.horario)
+    let devuelve = array.map(ele => {
+      let hora = parseInt(ele.split("").slice(0, 2).join(""));
+      let minutos = parseInt(ele.split("").slice(2, 4).join(""));
+      return cron.schedule(`${minutos} ${hora} * * *`, () => {
+        notifier.notify({
+          title: "Recordatorio de riego",
+          message: `No olvide su recordatorio a las ${hora}:${minutos}`
+        }, function (err, response, metadata) {
+          console.log(err)
+          console.log(response)
+          console.log(metadata)
+        })
+        res.status(200).json({ "hora": hora, "minutos": minutos })
+      })
+    })
+    devuelve.forEach(ele => {
+      ele
+    })
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
+})
+
+UserR.get("/all", async (req, res) => {
+
+
+  try {
+    console.log("ENTRE A LA RUTA ALL");
+
+    const allUsers = await User.findAll();
+
+    console.log("allUsers: ", allUsers);
+
+    if (!allUsers) {
+      return res.status(400).json({ error: "Error en ruta get /user/all" })
+    }
+
+    return res.status(200).json(allUsers)
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
+})
 
 UserR.get("/daily/:id", async (req, res) => {
   const { id } = req.params;
@@ -71,14 +136,28 @@ UserR.post("/", async (req, res) => {
   }
 });
 
-UserR.get("/", async (req, res) => {
-  const { username } = req.body;
-
-  if (!username) {
-    return res.status(400).json({ error: "falta ingresar un usuario" });
+UserR.get("/:email", async (req, res) => {
+  const { email } = req.params;
+  if (!email) {
+    return res
+      .status(400)
+      .json({ error: "falta ingresar un usuario por email" });
   }
-  const userTable = await User.findAll({ where: { username } });
-  return res.status(200).json(userTable);
+  const userTable = await User.findAll({ where: { email } });
+  if (!userTable.length) {
+    await User.create({ email: email, username: email });
+    const userTableF = await User.findAll({ where: { email } });
+    return res.status(200).json({
+      username: userTableF[0].dataValues.username,
+      email: userTableF[0].dataValues.email,
+      id: userTableF[0].dataValues.idUser,
+    });
+  }
+  return res.status(200).json({
+    username: userTable[0].dataValues.username,
+    email: userTable[0].dataValues.email,
+    id: userTable[0].dataValues.idUser,
+  });
 });
 
 UserR.post("/favorites/:idU/:idP", async (req, res) => {
@@ -108,18 +187,34 @@ UserR.get("/favorites/:idU", async (req, res) => {
       return res.status(400).send({ error: "No eviaste el id del usuario" });
     }
 
-    const favId = await Favorites.findAll({ where: { UserIdUser: idU} });
+    const favId = await Favorites.findAll({ where: { UserIdUser: idU } });
 
-    const plantasF = await Plants.findAll({
-      where: { codPlant: favId[0].dataValues.PlantCodPlant },
-    });
-
-    res.status(200).send(plantasF);
+    let planstasFinal = []
+    for (let i = 0; i < favId.length; i++) {
+      let plantasF = await Plants.findAll({
+        where: { codPlant: favId[i].dataValues.PlantCodPlant },
+      });
+      planstasFinal.push(plantasF[0])
+    }
+    res.status(200).send(planstasFinal);
   } catch (error) {
     return res.status(400).json({ error });
   }
 });
+UserR.delete("/favorites/delete/:idU/:idP", async (req, res) => {
+  const { idU, idP } = req.params;
+  try {
+    await Favorites.destroy({
+      where: { UserIdUser: idU, PlantCodPlant: idP },
+    });
+    const tabla = await Favorites.findAll({ where: { UserIdUser: idU } });
+    res.status(200).send(tabla);
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+});
 
+//Modificar datos de un usuario
 UserR.put("/:idUser", async (req, res) => {
   try {
     const { idUser } = req.params;
@@ -128,8 +223,12 @@ UserR.put("/:idUser", async (req, res) => {
 
     let { username, email, pass, name, lastName, nPhone } = req.body;
 
+
+    if (!username || !email || !pass || !name || !lastName || !nPhone) {
+      return res.status(400).json({ error: "Faltan datos" })
+    }
     if (!idUser) {
-      return res.status(400).send({ error: "No se encontro la id" });
+      return res.status(400).json({ error: "No se encontro el id" });
     }
 
     if (idUser) {
@@ -151,7 +250,7 @@ UserR.put("/:idUser", async (req, res) => {
           where: { idUser },
         }
       );
-      res.status(200).json("Se modifico exitosamente el ususario");
+      res.status(200).json("Se modifico exitosamente el usuario");
     } else {
       throw new Error("ERROR /modify/:id");
     }
@@ -159,5 +258,62 @@ UserR.put("/:idUser", async (req, res) => {
     res.status(400).json(error.message);
   }
 });
+
+//Borrado logico de user
+UserR.delete("/:idUser", async (req, res) => {
+  try {
+
+    console.log("llego a delete user");
+    const { idUser } = req.params;
+    const eliminarUser = await User.findByPk(idUser);
+    if (!eliminarUser) {
+      return res.status(400).json({ error: "No se encontro el id en la DB" })
+    }
+
+    await User.update(
+      {
+        hidden: true
+      },
+      {
+        where: { idUser }
+      }
+    )
+
+    console.log("usuario a eliminar", eliminarUser);
+    res.status(200).json("Usuario con borrado lógico");
+
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+
+})
+
+//Crear user admin
+UserR.post("/admin", async (req, res) => {
+  try {
+
+    console.log("entre a la ruta");
+    const { username, email, pass, name, lastName, nPhone } = req.body;
+
+    console.log(username, email, pass, name, lastName, nPhone);
+
+    if (!username || !email || !pass || !name) {
+      return res.send(400).json("mal perri")
+    }
+
+    !nPhone ? null : nPhone;
+    !lastName ? null : lastName;
+
+    const newAdmin = await User.create({
+      username, email, pass, name, lastName, nPhone,
+      admin: true
+    })
+    console.log(newAdmin);
+    res.status(200).send(newAdmin)
+
+  } catch (error) {
+    res.status(404).json("Error en /user/admin", error.message)
+  }
+})
 
 module.exports = UserR;

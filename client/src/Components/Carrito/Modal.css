@@ -1,13 +1,97 @@
 .ejeZ {
     background-color: transparent;
+    z-index: 999999999999999999999999999;
 }
 
 .containerTextModal {
     height: 300px;
     overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .containerTextModal::-webkit-scrollbar {
     width: 0px;
     background: transparent;
+}
+
+.cartitasCarrito {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    width: 25%;
+    margin: 0px 20px;
+    height: 70px;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cartitasCarrito img {
+    width: 60px;
+    height: 60px;
+}
+
+.tituloMapeo {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    color: #000;
+}
+
+.btnMapeo {
+    position: absolute;
+    font-size: 10px;
+    top: 0;
+    right: 0;
+    border: none;
+    color: #fff;
+    background-color: green;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.containerBotonsitos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+}
+
+.precioApartado {
+    padding: 0;
+    color: #000;
+    margin-bottom: 0;
+}
+
+.btnRestaSuma {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 10%;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    background-color: #000;
+    border-radius: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.btnRestaSuma:focus {
+    outline: none;
+    border: none;
+}
+
+.precioMap {
+    font-size: 15px;
+    color: #000;
+    margin: 0 5px;
+    padding: 0;
 }

@@ -1,41 +1,31 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { activaciones } from '../../redux/actions'
-import Profile from '../Profile'
-import CreacionPlanta from '../CreacionDePlanta'
+import * as React from 'react';
+import Tab from '@mui/material/Tab';
+
+import BadgeIcon from '@mui/icons-material/Badge';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import Profile from '../Profile/index';
+import DashboardAdmin from '../DashboardAdmin/index';
+import UsuariosInfo from '../UsuariosInfo/UsuarioInfo'
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 const Ajustes = () => {
-    const dispatch = useDispatch()
-    const nombre = useSelector(state => state.nombre)
-    console.log(nombre)
-    const activar = (e) => {
-        dispatch(activaciones(e.target.name))
-    }
+    const [selectedTab, setSelectedTab] = React.useState("Profile");
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setSelectedTab(newValue);
+  };
     return (
-        <div className="card text-center">
-            <div className="card-header">
-                <div>
-                    <ul className="nav nav-tabs card-header-tabs">
-                        <li style={{ width: '150px', cursor: 'pointer' }} className="nav-item">
-                            <a className={nombre === "perfil" ? 'nav-link active' : 'nav-link'} name="perfil" onClick={activar}>Perfil</a>
-                        </li>
-                        <li style={{ width: '150px', cursor: 'pointer' }} className='nav-item'>
-                            <a className={nombre === "creacion" ? 'nav-link active' : 'nav-link'} name='creacion' onClick={activar}>Crear planta</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            {
-                nombre === "perfil" ?
-                    <div style={{ marginTop: '10px' }}>
-                        <Profile />
-                    </div>
-                    :
-                    <div style={{ marginTop: '10px' }}>
-                        <CreacionPlanta />
-                    </div>
-            }
-        </div>
+        <TabContext value={selectedTab} defaultValue={Profile}>
+        <TabList onChange={handleChange} aria-label="icon label tabs example">
+      <Tab icon={<BadgeIcon />} label="Perfil" value="Profile"/>
+      <Tab icon={<ManageAccountsIcon />} label="Admin Usuarios" value="AdminUser" />
+      <Tab icon={<AttachMoneyIcon />} label="DashBoard" value="DashBoard"/>
+    </TabList>
+      <TabPanel value="Profile"><Profile/></TabPanel>
+      <TabPanel value="AdminUser"><UsuariosInfo/></TabPanel>
+      <TabPanel value="DashBoard"><DashboardAdmin/></TabPanel>
+     </TabContext>  
     )
 }
 

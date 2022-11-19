@@ -1,25 +1,35 @@
 import { Link } from "react-router-dom";
-import "./index.css";
+import { useDispatch, useSelector } from "react-redux";
 
+import "./index.css";
+import { addFav } from "../../redux/actions";
 const Cartas = (props) => {
+  const user = useSelector((e) => e.user);
+  const dispatch = useDispatch();
+  function addfav(e, item) {
+    e.preventDefault();
+    dispatch(addFav(user.id, item.id));
+  }
   return (
-    <div className="cartas">
-      {/* <!-- producto... --> */}
-      {props.items?.map &&
-        props.items.map((item, i) => (
-          <Link
-            key={i}
-            to={`${window.location.pathname}/${item.id}`}
-            style={{ textDecoration: "none", color: "black" }}
-          >
+    <div className="contenedorCartasFavoritos">
+      <div className="cartas">
+        {/* <!-- producto... --> */}
+        {props.items?.map &&
+          props.items.map((item, i) => (
             <div className="card carta">
               {item.img && (
-                <img
-                  src={item.img}
-                  alt="Un producto"
-                  loading="lazy"
-                  className="imagen cabeza"
-                />
+                <Link
+                  key={i}
+                  to={`/huerta/${item.id}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <img
+                    src={item.img}
+                    alt="Un producto"
+                    loading="lazy"
+                    className="imagen cabeza"
+                  />
+                </Link>
               )}
               <div className="cuerpo">
                 <div>
@@ -45,12 +55,16 @@ const Cartas = (props) => {
                 {item.precio && (
                   <p className="cuerpo-precio">${item.precio / 100}</p>
                 )}
+                <button
+                  className="favOFF"
+                  onClick={(e) => addfav(e, item)}
+                />
               </div>
             </div>
-          </Link>
-        ))}
+          ))}
 
-      {/* <!-- More products... --> */}
+        {/* <!-- More products... --> */}
+      </div>
     </div>
   );
 };
