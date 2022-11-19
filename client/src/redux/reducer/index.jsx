@@ -24,7 +24,8 @@ import {
   EDIT_DAILY_USER,
   CLEAR_CARRITO,
   SET_FILTROS_VIVERO,
-  GET_CATEGORIAS_VIVERO
+  GET_CATEGORIAS_VIVERO,
+  GET_NOTIFICACIONES
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -35,7 +36,7 @@ const initialState = {
   filtrosHuerta: [],
   filtrosVivero: {},
   pagHuerta: 0,
-  pagVivero:0,
+  pagVivero: 0,
   arrayNotificaciones: [],
   arrayCarrito: [],
   url: "",
@@ -46,11 +47,17 @@ const initialState = {
   usuarios: [],
   producto: {},
   tiposCategoria: [],
-  bill: []
+  bill: [],
+  notificaciones: []
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_NOTIFICACIONES:
+      return {
+        ...state,
+        notificaciones: [...action.payload]
+      }
     case CLEAR_CARRITO:
       return {
         ...state,
@@ -95,11 +102,11 @@ const rootReducer = (state = initialState, action) => {
         tiposHuerta: action.payload,
         filtrosHuerta,
       };
-    case GET_CATEGORIAS_VIVERO: 
-    return {
-      ...state, 
-      tiposCategoria: action.payload
-    }
+    case GET_CATEGORIAS_VIVERO:
+      return {
+        ...state,
+        tiposCategoria: action.payload
+      }
     case SET_FILTROS_HUERTA:
       return {
         ...state,
@@ -126,12 +133,12 @@ const rootReducer = (state = initialState, action) => {
                 }
             ),
       };
-case SET_FILTROS_VIVERO: 
-console.log("FILTRO LLEGANDO AL REDUCE", action.payload);
-return {
-  ...state,
-  filtrosVivero: action.payload
-}
+    case SET_FILTROS_VIVERO:
+      console.log("FILTRO LLEGANDO AL REDUCE", action.payload);
+      return {
+        ...state,
+        filtrosVivero: action.payload
+      }
     case SET_PAG_HUERTA:
       return { ...state, pagHuerta: action.payload };
     case GET_ARRAY_HUERTA:
@@ -140,11 +147,11 @@ return {
         ...state,
         arrayHuerta: { ...action.payload },
       };
-      
-      case SET_PAGE_VIVERO:
-        return{
-          ...state, pagVivero: action.payload
-        }
+
+    case SET_PAGE_VIVERO:
+      return {
+        ...state, pagVivero: action.payload
+      }
     case GET_ARRAY_NOTIFICACIONES:
       return {
         ...state,
@@ -198,12 +205,12 @@ return {
       return {
         ...state
       }
-      case GET_BILL:
-        return {
-         ...state,
-          bill: action.payload,
-        };
-case GET_DAILY_USER:
+    case GET_BILL:
+      return {
+        ...state,
+        bill: action.payload,
+      };
+    case GET_DAILY_USER:
       return {
         ...state,
         diario: action.payload,
@@ -212,10 +219,11 @@ case GET_DAILY_USER:
       return {
         ...state,
         diario: action.payload,
-      };   
+      };
 
     default:
       return state;
-  } };
+  }
+};
 
 export default rootReducer;

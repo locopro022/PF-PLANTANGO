@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { where } = require("sequelize");
 const { DailyUser, User, Plants, Favorites, Notification } = require("../db");
 const cron = require("node-cron");
-
+const notifier = require('node-notifier')
 const UserR = Router();
 //Traer todos los usuarios 
 
@@ -20,21 +20,29 @@ UserR.post('/recordatorio', async (req, res) => {
 })
 
 UserR.get('/noti/notifi', async (req, res) => {
+  const { usuario } = req.query;
+  console.log(usuario)
   try {
-    let horarios = await Notification.findAll({ where: { usuario: "Leandro" } })
+    let horarios = await Notification.findAll({ where: { usuario: usuario } })
     let array = horarios.map(ele => ele.dataValues.horario)
-    console.log(array)
     let devuelve = array.map(ele => {
       let hora = parseInt(ele.split("").slice(0, 2).join(""));
       let minutos = parseInt(ele.split("").slice(2, 4).join(""));
       return cron.schedule(`${minutos} ${hora} * * *`, () => {
-        console.log(`No olvide su recordatorio a las ${hora} ${minutos}`)
+        notifier.notify({
+          title: "Recordatorio de riego",
+          message: `No olvide su recordatorio a las ${hora}:${minutos}`
+        }, function (err, response, metadata) {
+          console.log(err)
+          console.log(response)
+          console.log(metadata)
+        })
+        res.status(200).json({ "hora": hora, "minutos": minutos })
       })
     })
     devuelve.forEach(ele => {
       ele
     })
-    res.status(200).json("Esperando notificacion")
   } catch (error) {
     res.status(404).json(error.message)
   }

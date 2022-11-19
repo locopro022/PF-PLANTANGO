@@ -10,7 +10,7 @@ const HomeApartadoVivero = () => {
           Mira nuestros productos en el vivero
         </h1>
         <div className="containerCardHomeApartado">
-          <ContainerCardHome />;
+          <ContainerCardHome />
         </div>
       </div>
     </>
