@@ -1,4 +1,4 @@
-const { Product } = require("../db");
+const { Product, Category } = require("../db");
 const { Op } = require("sequelize");
 const sequelize = require("sequelize");
 const { Router } = require("express");
@@ -8,21 +8,42 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const { search, filter, sort, page } = req.query;
+    const { search, filter, page } = req.query;
 
     let sequelizeFilter = {};
 
-    let sequelizeSort = sort || ["nameProd", "ASC"];
+    let sequelizeSort = ["nameProd", "ASC"];
 
-    for (let key in filter)
-      sequelizeFilter[key] = { [Op.contains]: filter[key] };
+    for (let key in filter) {
+      if (Array.isArray(filter[key])) {
+        sequelizeFilter[key] = { [Op.or]: filter[key] };
+      } else if (filter[key].max || filter[key].min) {
+        sequelizeFilter[key] =
+          filter[key].max && filter[key].min
+            ? {
+                [Op.lte]: filter[key].max,
+                [Op.gte]: filter[key].min,
+              }
+            : filter[key].max
+            ? {
+                [Op.lte]: filter[key].max,
+              }
+            : {
+                [Op.gte]: filter[key].min,
+              };
+      } else {
+        sequelizeFilter[key] = { [Op.eq]: filter[key] };
+      }
+    }
 
     const { count, rows } = await Product.findAndCountAll({
+      attributes: { exclude: ["codCategory"] },
       where: {
         ...(!search
           ? sequelizeFilter
           : { nameProd: { [Op.iLike]: `%${search}%` } }),
       },
+      include: Category,
       order: [sequelizeSort],
       limit: 12,
       offset: (page || 0) * 12,
@@ -30,24 +51,8 @@ router.get("/", async (req, res) => {
 
     return res.status(200).json({
       page_count: Math.ceil(count / 12),
-      results: rows,
       page: page || 0,
-      types: {
-        codCategoria: [
-          "Semillas",
-          "Macetas",
-          "Accesorios",
-          "Tierras y fertilizantes",
-        ],
-        stars: {
-          min: rows.map((r) => r.estrellas).reduce((p, c) => (c < p ? c : p)),
-          max: rows.map((r) => r.estrellas).reduce((p, c) => (c > p ? c : p)),
-        },
-        precio: {
-          min: rows.map((r) => r.precio).reduce((p, c) => (c < p ? c : p)),
-          max: rows.map((r) => r.precio).reduce((p, c) => (c > p ? c : p)),
-        },
-      },
+      results: rows,
     });
   } catch (e) {
     console.log(e);
@@ -58,26 +63,27 @@ router.get("/", async (req, res) => {
 // RUTA GET TIPOS
 // Semillas, Macetas, Accesorios, Tierras y fertilizantes.
 
-// router.get("/types", async (req, res) => {
-//   try {
-//     const getVal = async (mag, col) =>
-//       (
-//         await Product.findAll({
-//           attributes: [[sequelize.fn(mag, sequelize.col(col)), col]],
-//         })
-//       )[0][col];
-//     const types = {
-//         minPrice: await getVal("min", "precio"),
-//         maxPrice: await getVal("max", "precio"),
-//         minStars:
-//     }
-
-//     res.status(200).json({ minPrice, maxPrice });
-//   } catch (e) {
-//     console.log(e);
-//     res.status(500).json({ error: e });
-//   }
-// });
+router.get("/types", async (req, res) => {
+  try {
+    const getVal = async (mag, col) =>
+      (
+        await Product.findAll({
+          attributes: [[sequelize.fn(mag, sequelize.col(col)), col]],
+        })
+      )[0][col];
+    const types = {
+      codCategoria: await Category.findAll(),
+      precio: {
+        min: await getVal("min", "precio"),
+        max: await getVal("max", "precio"),
+      },
+    };
+    res.status(200).json(types);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: e });
+  }
+});
 
 //RUTA GET ESPECIFICA
 
@@ -85,7 +91,7 @@ router.get("/:codProd", async (req, res) => {
   try {
     const { codProd } = req.params;
 
-    let product = await Product.findByPk(codProd);
+    let product = await Product.findByPk(codProd, {include: Category});
 
     return res.status(200).json(product);
   } catch (e) {
@@ -145,4 +151,3 @@ router.delete("/:codProd", async (req, res) => {
 });
 
 module.exports = router;
-
