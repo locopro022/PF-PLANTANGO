@@ -19,9 +19,12 @@ import {
   GET_ARRAY_PRODUCTS,
   GET_PRODUCT,
   GET_BILL,
+  SET_PAGE_VIVERO,
   GET_DAILY_USER,
   EDIT_DAILY_USER,
   CLEAR_CARRITO
+  SET_FILTROS_VIVERO,
+  GET_CATEGORIAS_VIVERO
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -30,7 +33,9 @@ const initialState = {
   arrayVivero: [],
   arrayHuerta: {},
   filtrosHuerta: [],
+  filtrosVivero: {},
   pagHuerta: 0,
+  pagVivero:0,
   arrayNotificaciones: [],
   arrayCarrito: [],
   url: "",
@@ -40,6 +45,7 @@ const initialState = {
   user: {},
   usuarios: [],
   producto: {},
+  tiposCategoria: []
   bill: []
 };
 
@@ -58,8 +64,8 @@ const rootReducer = (state = initialState, action) => {
     case GET_ARRAY_PRODUCTS:
       return {
         ...state,
-        arrayVivero: [...action.payload],
-      };
+        arrayVivero: action.payload
+      }
     case GET_PRODUCT:
       return {
         ...state,
@@ -89,7 +95,11 @@ const rootReducer = (state = initialState, action) => {
         tiposHuerta: action.payload,
         filtrosHuerta,
       };
-
+    case GET_CATEGORIAS_VIVERO: 
+    return {
+      ...state, 
+      tiposCategoria: action.payload
+    }
     case SET_FILTROS_HUERTA:
       return {
         ...state,
@@ -116,14 +126,25 @@ const rootReducer = (state = initialState, action) => {
                 }
             ),
       };
-
+case SET_FILTROS_VIVERO: 
+console.log("FILTRO LLEGANDO AL REDUCE", action.payload);
+return {
+  ...state,
+  filtrosVivero: action.payload
+}
     case SET_PAG_HUERTA:
       return { ...state, pagHuerta: action.payload };
     case GET_ARRAY_HUERTA:
+
       return {
         ...state,
         arrayHuerta: { ...action.payload },
       };
+      
+      case SET_PAGE_VIVERO:
+        return{
+          ...state, pagVivero: action.payload
+        }
     case GET_ARRAY_NOTIFICACIONES:
       return {
         ...state,

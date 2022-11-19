@@ -8,27 +8,9 @@ const llenarDBProd = async () => {
   }
 };
 
-//Buscar por nombre 
-const searchName = async(name)=> {
+// Los baneo del server si vuelven a NO usar sequelize para hacer las cosas que hace sequelize.
 
-  try {
-    
-const db = await Product.findAll();
-console.log("Busqueda: ",name);
-
-const response = await db.filter((p)=> p.nameProd.toLowerCase().includes(name.toString().toLowerCase()));
-
-if(!response){
-  throw new Error("No hay coincidencia")
-
-}
-
-return response;
-  } catch (error) {
-    
-  }
-}
+//Buscar por nombre
 module.exports = {
   llenarDBProd,
-  searchName
-}
+};

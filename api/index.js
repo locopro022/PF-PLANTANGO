@@ -26,7 +26,12 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { llenarDB } = require("./src/controller/plantas.js");
-const { llenarCategory, llenarUser, llenarBilling, llenarBillingDetail } = require("./src/controller/Billing.js");
+const {
+  llenarCategory,
+  llenarUser,
+  llenarBilling,
+  llenarBillingDetail,
+} = require("./src/controller/Billing.js");
 const { llenarDBPlants } = require("./src/controller/plantas.js");
 const { llenarDBProd } = require("./src/controller/productos.js");
 const { conn } = require("./src/db.js");

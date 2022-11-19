@@ -1,12 +1,14 @@
 import "./Filtros.css";
 
 const Filtros = (props) => {
+  
   const cambio = (e) => {
     const selected = {
       type: e.target.name,
       value: e.target.id,
       checked: e.target.checked,
     };
+
     props.apply(selected);
   };
   const borrar = (e) => {
