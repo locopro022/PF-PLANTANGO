@@ -86,7 +86,7 @@ router.get("/:codProd", async (req, res) => {
     const { codProd } = req.params;
 
     let product = await Product.findByPk(codProd);
-
+    console.log("LLEGUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
     return res.status(200).json(product);
   } catch (e) {
     console.log(e);

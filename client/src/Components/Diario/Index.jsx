@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editDaily, getDaily } from "../../redux/actions";
+import Recordatorio from '../Recordatorio'
+
 function Diario() {
   const dispatch = useDispatch();
   const diario = useSelector((e) => e.diario);
@@ -42,20 +44,23 @@ function Diario() {
             type="title"
             name="title"
             value={input.title}
-            onChange={(e)=>handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
             autoComplete="off"
           />
           <input
             type="text"
             name="body"
             value={input.body}
-            onChange={(e)=>handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
             autoComplete="off"
           />
           <input type="submit" value="editar" />
         </form>
       </div>
       <div className="seccionRecordatorio_rutDiario"></div>
+      <div>
+        <Recordatorio />
+      </div>
     </div>
   );
 }

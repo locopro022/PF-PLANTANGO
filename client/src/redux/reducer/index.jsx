@@ -21,6 +21,7 @@ import {
   GET_BILL,
   GET_DAILY_USER,
   EDIT_DAILY_USER,
+  CLEAR_CARRITO
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -44,6 +45,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_CARRITO:
+      return {
+        ...state,
+        producto: { ...action.payload }
+      }
     case GET_ARRAY_CARRITO:
       return {
         ...state,
@@ -91,24 +97,24 @@ const rootReducer = (state = initialState, action) => {
         filtrosHuerta:
           action.payload === "clear"
             ? state.filtrosHuerta.map((item) => ({
-                ...item,
-                options: item.options.map((option) => ({
-                  ...option,
-                  checked: false,
-                })),
-              }))
+              ...item,
+              options: item.options.map((option) => ({
+                ...option,
+                checked: false,
+              })),
+            }))
             : state.filtrosHuerta.map((item) =>
-                item.filter !== action.payload.type
-                  ? item
-                  : {
-                      ...item,
-                      options: item.options.map((option) =>
-                        option.value !== action.payload.value
-                          ? option
-                          : { ...option, checked: action.payload.checked }
-                      ),
-                    }
-              ),
+              item.filter !== action.payload.type
+                ? item
+                : {
+                  ...item,
+                  options: item.options.map((option) =>
+                    option.value !== action.payload.value
+                      ? option
+                      : { ...option, checked: action.payload.checked }
+                  ),
+                }
+            ),
       };
 
     case SET_PAG_HUERTA:

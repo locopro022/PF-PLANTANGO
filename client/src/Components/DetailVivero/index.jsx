@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { traerProducto } from '../../redux/actions'
+import { traerProducto, clearProducto } from '../../redux/actions'
 import { carritoStorage } from '../../redux/actions'
 import './DetailVivero.css'
 import Notiflix from 'notiflix';
@@ -44,17 +44,17 @@ const DetailVivero = () => {
     }
     useEffect(() => {
         dispatch(traerProducto(id))
+        return () => dispatch(clearProducto())
     }, [agregado])
     return (
         <div className='containerAtrasVivero'>
             <div className='containerDetailVivero'>
                 <div className='containerTituloImg'>
-                    <h4>{producto.nameProd}</h4>
-                    <img src={producto.imageProd} />
-                    <p>{producto.codCategory}</p>
+                    <h4>{producto?.nameProd}</h4>
+                    <img src={producto?.imageProd} />
                 </div>
                 <div className='containerDescripcion'>
-                    <p>{producto.descripProd}</p>
+                    <p>{producto?.descripProd}</p>
                     <div className='containerAgregarCarro'>
                         <div className='containerBotones'>
                             <button className='btnClick' name='resta' onClick={changeValue}>-</button>
