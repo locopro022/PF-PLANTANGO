@@ -9,7 +9,7 @@
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
-    margin: 30px 0px;
+    margin: 20px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,11 +18,12 @@
     border-top-right-radius: 10px;
     cursor: pointer;
     position: relative;
-    width: 200px;
-    height: 220px;
+    width: 280px;
+    height: 300px;
     z-index: 9;
 }
 
+/*
 .cardContainerVivero:hover .nameProduc {
     display: block;
     bottom: -68px;
@@ -53,7 +54,7 @@
     bottom: 10px;
     left: 30%;
 }
-
+*/
 .imgVivero {
     margin-top: 20px;
     width: 200px;
@@ -165,4 +166,28 @@
 
 .cantidadVariada {
     margin: 0px 15px
+}
+
+
+.cardcomprar {
+    color : white;
+    /*background-color: hsla(172, 94%, 25%, 0.581);*/
+    background-color: #5f7264; 
+    border-top: 1px solid rgb(61, 186, 11);
+    border-left: 1px solid rgb(9, 176, 62);
+    border-right: 1px solid rgb(9, 182, 32);
+    margin: 1px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    width: 230px;
+    height: 30px;
+    z-index: 9;
 }
