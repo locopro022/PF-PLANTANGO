@@ -4,7 +4,7 @@ const { Category, Product, Billing, User, BillingDetail } = require("../db");
 
 const bill = Router();
 
-//localhost:3001/products/createcategory
+//localhost:3001/bill/createcategory
 bill.post('/createcategory', async (req, res) => {
     try {
     await Category.findOrCreate({
@@ -27,7 +27,7 @@ bill.post('/createcategory', async (req, res) => {
     }
 });
 
-//localhost:3001/products/createproduct
+//localhost:3001/bill/createproduct
 bill.post('/createproduct', async (req, res) => {
     await Product.create(req.body)
     .then( (data) => {
@@ -38,7 +38,7 @@ bill.post('/createproduct', async (req, res) => {
     })
 })
 
-//localhost:3001/products/getproduct
+//localhost:3001/bill/getproduct
 bill.get('/getproduct', async (req, res) => {
     await Product.findAll({
         include: {
@@ -54,7 +54,7 @@ bill.get('/getproduct', async (req, res) => {
     })
 })
 
-//localhost:3001/products/createbill
+//localhost:3001/bill/createbill
 bill.post('/createBill', async (req, res) => {
     await Billing.create(req.body)
     .then( (data) => {
@@ -92,7 +92,7 @@ bill.get('/getKPI1', async (req, res) => {
     })
 })
 
-//localhost:3001/products/getKPI2
+//localhost:3001/bill/getKPI2
 // Facturas emitidas
 bill.get('/getKPI2', async (req, res) => {
     await Billing.findAll({
@@ -106,7 +106,7 @@ bill.get('/getKPI2', async (req, res) => {
     })
 })
 
-//localhost:3001/products/getKPI3
+//localhost:3001/bill/getKPI3
 //Ticket promedio
 bill.get('/getKPI3', async (req, res) => {
     await Billing.findAll({
@@ -120,7 +120,7 @@ bill.get('/getKPI3', async (req, res) => {
     })
 })
 
-//localhost:3001/products/getKPI4
+//localhost:3001/bill/getKPI4
 //Ventas por dia ordenado por dia 
 bill.get('/getKPI4', async (req, res) => {
     await Billing.findAll({
@@ -141,7 +141,7 @@ bill.get('/getKPI4', async (req, res) => {
     })
 })
 
-//localhost:3001/products/getKPI5
+//localhost:3001/bill/getKPI5
 // Ventas por Categoria ordenado de mayor a menor
 bill.get('/getKPI5', async (req, res) => {
   console.log( )
@@ -169,7 +169,7 @@ bill.get('/getKPI5', async (req, res) => {
 
 
 
-//localhost:3001/products/getbills -- KPI6
+//localhost:3001/bill/getbills -- KPI6
 bill.get('/getbills', async (req, res) => {
     await Billing.findAll({
         include:[ 

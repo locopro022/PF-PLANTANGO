@@ -28,6 +28,8 @@ export const CREATE_ADMIN = "CREATE_ADMIN";
 export const DELETE_USER = "DELETE_USER"
 export const CLEAR_CARRITO = 'CLEAR_CARRITO';
 
+export const GET_BILL = "GET_BILL"
+
 const API_URL = "http://localhost:3001";
 
 export const carritoStorage = (arr) => (dispatch) => {
@@ -196,4 +198,22 @@ export const traerProducto = (id) => async (dispatch) => {
 
 export const clearProducto = () => (dispatch) => {
   return dispatch({ type: CLEAR_CARRITO, payload: {} })
+}
+
+export const getBill = () => async (dispatch) => {
+  const kpi1 = await axios(`http://localhost:3001/bill/getKPI1`)
+  const kpi2 = await axios(`http://localhost:3001/bill/getKPI2`)
+  const kpi3 = await axios(`http://localhost:3001/bill/getKPI3`)
+  const kpi4 = await axios(`http://localhost:3001/bill/getKPI4`)
+  const kpi5 = await axios(`http://localhost:3001/bill/getKPI5`)
+
+  const kpiTotal = [
+    kpi1.data.datos[0],
+    kpi2.data.datos[0],
+    kpi3.data.datos[0],
+    kpi4.data.datos,
+    kpi5.data.datos]
+  console.log(kpiTotal, "kpiTotal")
+  return (
+    dispatch({ type: GET_BILL, payload: kpiTotal }))
 }

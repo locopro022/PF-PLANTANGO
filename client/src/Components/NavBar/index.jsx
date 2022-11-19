@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import platango from "../../img/plantangoIcono.png";
 import "./NavBar.css";
 import { useSelector } from 'react-redux'
