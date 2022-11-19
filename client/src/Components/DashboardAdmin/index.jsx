@@ -25,19 +25,19 @@ console.log(allBill, "allBill");
              <div class="cardsSup">
                <div>
                  <h5 class="card-category">Total Ventas</h5>
-                 <h3 class="card-title"> ${/* {Math.round(allBill[0].VentasTotales)} */}</h3>
+                 <h3 class="card-title"> ${Math.round(allBill[0].VentasTotales) }</h3>
                </div>
            </div>
              <div class="cardsSup">
                <div>
                  <h5 class="card-category">Ventas del Dia</h5>
-                 <h3 class="card-title">{/* {allBill[1].Facturas} */}</h3>
+                 <h3 class="card-title">{allBill[1].Facturas}</h3>
                </div>
            </div>
              <div class="cardsSup">
                <div>
                  <h5 class="card-category">Promedio de Carrito</h5>
-                 <h3 class="card-title">${/* {Math.round(allBill[2].TicketPromedio)} */}</h3>
+                 <h3 class="card-title">${Math.round(allBill[2].TicketPromedio)}</h3>
                </div>
            </div>
             </div>
