@@ -7,6 +7,7 @@ import PaginadoVivero from "./PaginadoVivero";
 import { getCategoriasVivero, setNumPage, traerProductos, setFiltrosProductos } from "../../redux/actions";
 import { useEffect } from "react";
 import { useState } from "react";
+import SearchBarVivero from "./SearchBaVivero";
 
 const Vivero = () => {
 
@@ -50,6 +51,7 @@ const Vivero = () => {
   return (
     <>
       <AlPrincipio />
+      <div><SearchBarVivero/></div>
       <div><PaginadoVivero enviarPagina={enviarPagina} page={productos.page} max={productos.page_count}/></div>
       <div className="containerGlobalVivero">
         <FiltrosVivero options={categorias} enviarFiltros={enviarFiltros}/>
