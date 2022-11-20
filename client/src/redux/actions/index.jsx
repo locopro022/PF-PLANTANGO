@@ -38,6 +38,7 @@ export const GET_CATEGORIAS_VIVERO = "GET_CATEGORIAS_VIVERO"
 const API_URL = "http://localhost:3001";
 
 export const traerNotificaciones = (arr) => (dispatch) => {
+  if(arr===null) arr=[];
   return dispatch({ type: GET_NOTIFICACIONES, payload: arr })
 }
 

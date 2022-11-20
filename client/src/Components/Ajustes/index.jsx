@@ -8,6 +8,8 @@ import Profile from '../Profile/index';
 import DashboardAdmin from '../DashboardAdmin/index';
 import UsuariosInfo from '../UsuariosInfo/UsuarioInfo'
 import { TabContext, TabList, TabPanel } from '@mui/lab';
+import CreacionDePlanta from '../CreacionDePlanta';
+import LocalFlorist from '@mui/icons-material/LocalFloristSharp';
 
 const Ajustes = () => {
   const [selectedTab, setSelectedTab] = React.useState("Profile");
@@ -28,6 +30,12 @@ const Ajustes = () => {
             outline: "none"
           }
         }} label="Admin Usuarios" value="AdminUser" />
+        <Tab icon={<LocalFlorist />} sx={{
+          "&:focus": {
+            outline: "none"
+          }
+        }} label="Creacion De Planta" value="CreacionDePlanta" />
+
         <Tab icon={<AttachMoneyIcon />} sx={{
           "&:focus": {
             outline: "none"
@@ -36,7 +44,9 @@ const Ajustes = () => {
       </TabList>
       <TabPanel value="Profile"><Profile /></TabPanel>
       <TabPanel value="AdminUser"><UsuariosInfo /></TabPanel>
+      <TabPanel value="CreacionDePlanta"><CreacionDePlanta /></TabPanel>
       <TabPanel value="DashBoard"><DashboardAdmin /></TabPanel>
+      
     </TabContext>
   )
 }
