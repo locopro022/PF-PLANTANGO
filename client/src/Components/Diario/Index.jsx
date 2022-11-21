@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editDaily, getDaily } from "../../redux/actions";
+import "./diario.css";
 function Diario() {
   const dispatch = useDispatch();
   const diario = useSelector((e) => e.diario);
@@ -25,37 +26,39 @@ function Diario() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    dispatch(editDaily(user.id, input))
+    dispatch(editDaily(user.id, input));
   }
   function handleInputChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input)
+    console.log(input);
   }
   return (
     <div className="contenedorRutDiarioGnrl">
       <div className="seccionDiario_rutDiario">
         <form onSubmit={(e) => onSubmit(e)}>
           <input
+            id="inputTitleDaily"
             type="title"
             name="title"
             value={input.title}
-            onChange={(e)=>handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
             autoComplete="off"
           />
-          <input
-            type="text"
+          <input type="submit" value="Guardar" id="buttomGuardarDaily" />
+          <br />
+          <textarea
             name="body"
+            id="inputContDaily"
+            onChange={(e) => handleInputChange(e)}
             value={input.body}
-            onChange={(e)=>handleInputChange(e)}
-            autoComplete="off"
-          />
-          <input type="submit" value="editar" />
+            autoFocus="on"
+          ></textarea>
         </form>
       </div>
-      <div className="seccionRecordatorio_rutDiario"></div>
+      {/* <div className="seccionRecordatorio_rutDiario"></div> */}
     </div>
   );
 }

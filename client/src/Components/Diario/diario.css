@@ -1,0 +1,26 @@
+.contenedorRutDiarioGnrl{
+    margin-top: 35px;
+    height: 800px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.seccionDiario_rutDiario{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 35px;
+}
+#inputTitleDaily{
+    width: 50%;
+    margin-bottom: 25px;
+
+}
+#inputContDaily{
+    width: 55%;
+    height: 700px;
+}
+#buttomGuardarDaily{
+    width: 5%;
+}
