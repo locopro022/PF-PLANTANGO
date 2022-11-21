@@ -10,7 +10,7 @@ const path = require('path')
 
 UserR.delete('/delete', async (req, res) => {
   const { horario, usuario } = req.query;
-  const eliminado = await Notification.destroy({ where: { horario: horario } });
+  await Notification.destroy({ where: { horario: horario } });
   const nuevo = await Notification.findAll({ where: { usuario: usuario } })
   res.status(200).json(nuevo)
 })
