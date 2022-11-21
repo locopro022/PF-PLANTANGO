@@ -9,7 +9,6 @@ const UserR = require("./routes/user.js");
 
 const bill = require("./routes/billings.js");
 const prod = require("./routes/products.js");
-const pago = require("./routes/pagos.js");
 const noti = require("./routes/notificaciones.js")
 require("./db.js");
 
@@ -37,7 +36,6 @@ server.use("/bill", bill);
 server.use("/plants", routes);
 server.use("/user", UserR)
 server.use("/products", prod)
-server.use("/pagos", pago)
 server.use("/noti", noti)
 
 // Error catching endware.

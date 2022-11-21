@@ -114,7 +114,8 @@ const Carrito = () => {
           <div className="modal-footer" style={{ position: 'relative' }}>
             <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio) * des.cantidad, 0)}`}</p>
             <button className="btn btn-danger" onClick={borrarCarrito}>Vaciar carrito</button>
-            <button className="btn btn-success">Hacer compra</button>
+            {/* <button className="btn btn-success">Hacer compra</button> */}
+            <a href="http://localhost:3000/payment"><button className="btn btn-success">Hacer compra</button></a>
           </div>
         </div>
       </div>
