@@ -27,7 +27,6 @@ import {
   SET_FILTROS_VIVERO,
   GET_CATEGORIAS_VIVERO,
   GET_NOTIFICACIONES,
-  GET_SEARCH_VIVERO,
   TRAER_RECOR,
 } from "../actions";
 
@@ -67,11 +66,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         notificaciones: [...action.payload],
       };
-    case GET_SEARCH_VIVERO:
-      return {
-        ...state,
-        arrayVivero: action.payload,
-      };
+    // case GET_SEARCH_VIVERO:
+    //   return {
+    //     ...state,
+    //     arrayVivero: action.payload,
+    //   };
     case CLEAR_CARRITO:
       return {
         ...state,
