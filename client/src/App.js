@@ -24,6 +24,7 @@ import Ajustes from "./Components/Ajustes";
 import Favoritos from "./Components/Favoritos";
 import { useAuth0 } from "@auth0/auth0-react";
 import UsuariosInfo from "./Components/UsuariosInfo/UsuarioInfo";
+//import PagoStripe from "./Components/PasarelaPago/Stripe";
 import DetailVivero from './Components/DetailVivero'
 import Vivero from './Components/Vivero'
 import Diario from "./Components/Diario/Index.jsx"
@@ -48,7 +49,7 @@ function App() {
       dispatch(getUser(user.email));
     }
     dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))))
-    // dispatch(traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones"))))
+    dispatch(traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones"))))
   }, [user]);
   console.log(user)
   return (

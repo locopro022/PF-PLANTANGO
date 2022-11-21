@@ -52,7 +52,7 @@ const Vivero = () => {
     <>
       <AlPrincipio />
       <div><SearchBarVivero/></div>
-      <div><PaginadoVivero enviarPagina={enviarPagina} page={productos.page} max={productos.page_count}/></div>
+      <div className="container-fluid"><PaginadoVivero enviarPagina={enviarPagina} page={productos.page} max={productos.page_count}/></div>
       <div className="containerGlobalVivero">
         <FiltrosVivero options={categorias} enviarFiltros={enviarFiltros}/>
         <div className='containerCartasSearch'>
