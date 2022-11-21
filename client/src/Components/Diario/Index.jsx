@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editDaily, getDaily } from "../../redux/actions";
 import Recordatorio from '../Recordatorio'
+import AlPrincipio from '../AlPrincipio'
 import './Diario.css'
 
 function Diario() {
@@ -35,33 +36,35 @@ function Diario() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input)
   }
   return (
-    <div className="contenedorRutDiarioGnrl">
-      <div className="seccionDiario_rutDiario">
-        <form onSubmit={(e) => onSubmit(e)}>
-          <input
-            type="title"
-            name="title"
-            value={input.title}
-            onChange={(e) => handleInputChange(e)}
-            autoComplete="off"
-          />
-          <input
-            type="text"
-            name="body"
-            value={input.body}
-            onChange={(e) => handleInputChange(e)}
-            autoComplete="off"
-          />
-          <input type="submit" value="editar" />
-        </form>
+    <>
+      <AlPrincipio />
+      <div className="contenedorRutDiarioGnrl">
+        <div className="seccionDiario_rutDiario">
+          <form onSubmit={(e) => onSubmit(e)}>
+            <input
+              type="title"
+              name="title"
+              value={input.title}
+              onChange={(e) => handleInputChange(e)}
+              autoComplete="off"
+            />
+            <input
+              type="text"
+              name="body"
+              value={input.body}
+              onChange={(e) => handleInputChange(e)}
+              autoComplete="off"
+            />
+            <input type="submit" value="editar" />
+          </form>
+        </div>
+        <div className="seccionRecordatorio_rutDiario">
+          <Recordatorio />
+        </div>
       </div>
-      <div className="seccionRecordatorio_rutDiario">
-        <Recordatorio />
-      </div>
-    </div>
+    </>
   );
 }
 

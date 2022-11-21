@@ -35,7 +35,7 @@ const Recordatorio = () => {
                 zindex: 9999999
             })
         }
-        else Notiflix.Notify.failure('Fecha incompleta.', {
+        else Notiflix.Notify.failure('Error al crear recordatorio.', {
             zindex: 9999999
         })
     }
@@ -58,22 +58,31 @@ const Recordatorio = () => {
                 </div>
             </div>
             <div>
-                {
-                    arrayRecor?.map((ele, index) => {
-                        const hora = ele.horario?.slice(0, 2)
-                        const minutos = ele.horario?.slice(2, 4)
-                        console.log(minutos)
-                        return (
-                            <div key={index} className='containerRecor'>
-                                <p>{ele.usuario}</p>
-                                <p>{`${hora}:${minutos}`}</p>
-                                <button onClick={() => recorDelete(ele.horario, ele.usuario)}>x</button>
-                            </div>
-                        )
-                    })
-                }
+                <>
+                    {
+                        arrayRecor?.length ?
+                            <>
+                                {
+                                    arrayRecor?.map((ele, index) => {
+                                        const hora = ele.horario?.slice(0, 2)
+                                        const minutos = ele.horario?.slice(2, 4)
+                                        console.log(minutos)
+                                        return (
+                                            <div key={index} className='containerRecor'>
+                                                <p>{ele.usuario}</p>
+                                                <p>{`${hora}:${minutos}`}</p>
+                                                <button onClick={() => recorDelete(ele.horario, ele.usuario)}>x</button>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </>
+                            :
+                            <div className='sinRecordatorios'>No tenes recordatorios programados</div>
+                    }
+                </>
             </div>
-        </div>
+        </div >
     )
 }
 
