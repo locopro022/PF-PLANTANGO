@@ -191,6 +191,18 @@ export const getSearch = (search) => {
   };
 };
 
+export const getSearchVivero = (search) => {
+  return (dispatch) => {
+    try {
+      fetch(`http://localhost:3001/products?search=${search}`)
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data }));
+    } catch (error) {
+      throw new Error("Error en actions  -> getSearch");
+    }
+  };
+};
+
 export function getFav(idU) {
   return (dispatch) =>
     axios(`http://localhost:3001/user/favorites/${idU}`)
