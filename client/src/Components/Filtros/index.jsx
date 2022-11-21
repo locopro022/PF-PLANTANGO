@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./Filtros.css";
 
 const Filtros = (props) => {
@@ -8,26 +7,13 @@ const Filtros = (props) => {
       value: e.target.id,
       checked: e.target.checked,
     };
+
     props.apply(selected);
   };
   const borrar = (e) => {
     e.preventDefault();
     props.apply("clear");
   };
-  // useEffect(() => {
-  //   let objComparacion = {};
-  //   for (let filtro of filters) {
-  //     objComparacion[filtro.type] = [
-  //       ...(objComparacion[filtro.type] ? objComparacion[filtro.type] : []),
-  //       filtro.value,
-  //     ];
-  //   }
-  //   console.log(
-  //     "este es el objeto de comparacion para filtros",
-  //     objComparacion
-  //   );
-  //   props.apply(objComparacion);
-  // }, [filters]);
 
   return (
     <div>

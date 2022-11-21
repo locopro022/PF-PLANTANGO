@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import Carrousel from '../Carrousel';
 import './Home.css'
 import HomeApartadoVivero from '../HomeApartadoVivero';
@@ -23,8 +22,8 @@ const Home = () => {
                             </div>
                             <HomeApartadoVivero />
                             <div className='containerPlantango estilos'>
-                                <h2>Somos Plantango</h2>
-                                <h6>Somos una empresa que se dedica a vender los mejores productos para el mantenimiento de tus plantas, tambien brindamos un apartado en el cual podes investigar los tipos de plantas existentes en Argentina.</h6>
+                                <h2>Plantango</h2>
+                                <h6>Somos una empresa Argentina que se dedica a vender los mejores productos para el mantenimiento de tus plantas, tambien brindamos informacion sobre plantas que encontras en cualquier vivero, para que te conviertas en un experto.</h6>
                             </div>
                             <HomeApartadoHuerta />
                         </div>

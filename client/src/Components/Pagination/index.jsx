@@ -1,6 +1,8 @@
 import React from "react";
 
 const Pagination = (props) => {
+
+  
   const max = props.max;
   const curr = props.curr;
   const apply = props.apply;
@@ -8,9 +10,11 @@ const Pagination = (props) => {
   // const dispatch = useDispatch();
 
   const movements = {
-    prev: () => (curr > 0 ? parseInt(curr) - 1 : parseInt(curr)),
+    prev: () => curr > 0 ? parseInt(curr) - 1 : parseInt(curr),
     next: () => (curr < max - 1 ? parseInt(curr) + 1 : parseInt(curr)),
   };
+
+ 
 
   console.log(max, curr);
 
@@ -44,9 +48,8 @@ const Pagination = (props) => {
           >
             {"<"}
           </button>
-          {Array(max)
-            .fill("exequiel")
-            .map((exequiel, index) => (
+          {
+            [...Array(max).keys()].map((index) => (
               <button
                 onClick={() => move(index)}
                 style={

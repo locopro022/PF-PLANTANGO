@@ -1,32 +1,11 @@
-//                         .
-//                        .:.
-//                        :|:
-//                       .:|:.
-//                       ::|::
-//        :.             ::|::             .:
-//        :|:.          .::|::.          .:|:
-//        ::|:.         :::|:::         .:|:;
-//        `::|:.        :::|:::        .:|::'
-//         ::|::.       :::|:::       .::|:;
-//         `::|::.      :::|:::      .::|::'
-//          :::|::.     :::|:::     .::|::;
-//          `:::|::.    :::|:::    .::|::;'
-// `::.      `:::|::.   :::|:::   .::|::;'      .:;'
-//  `:::..     ¹::|::.  :::|:::  .::|::¹    ..::;'
-//    `:::::.    ':|::. :::|::: .::|:'   ,::::;'
-//      `:::::.    ':|:::::|:::::|:'   :::::;'
-//        `:::::.:::::|::::|::::|::::.,:::;'
-//           ':::::::::|:::|:::|:::::::;:'
-//              ':::::::|::|::|:::::::''
-//                   `::::::::::;'
-//                  .:;'' ::: ``::.
-//                       :':':
-//                         ;
-// [plantango.app]
-//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { llenarDB } = require("./src/controller/plantas.js");
-const { llenarCategory, llenarUser, llenarBilling, llenarBillingDetail } = require("./src/controller/Billing.js");
+const {
+  llenarCategory,
+  llenarUser,
+  llenarBilling,
+  llenarBillingDetail,
+} = require("./src/controller/Billing.js");
 const { llenarDBPlants } = require("./src/controller/plantas.js");
 const { llenarDBProd } = require("./src/controller/productos.js");
 const { conn } = require("./src/db.js");
@@ -43,7 +22,7 @@ conn
   .then(llenarBilling)
   .then(llenarBillingDetail)
   .then(llenarDBPlants)
-  
+
   .then(() => {
     server.listen(3001, () => {
       console.log("%s listening at 3001"); // eslint-disable-line no-console
