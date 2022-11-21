@@ -26,7 +26,8 @@ import {
   SET_FILTROS_VIVERO,
   GET_CATEGORIAS_VIVERO,
   GET_NOTIFICACIONES,
-  GET_SEARCH_VIVERO
+  GET_SEARCH_VIVERO,
+  TRAER_RECOR
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -49,21 +50,27 @@ const initialState = {
   producto: {},
   tiposCategoria: [],
   bill: [],
-  notificaciones: []
+  notificaciones: [],
+  arrayRecor: []
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case TRAER_RECOR:
+      return {
+        ...state,
+        arrayRecor: [...action.payload]
+      }
     case GET_NOTIFICACIONES:
       return {
         ...state,
         notificaciones: [...action.payload]
       }
-      case GET_SEARCH_VIVERO:
-        return {
-          ...state,
-          arrayVivero: action.payload,
-        };
+    case GET_SEARCH_VIVERO:
+      return {
+        ...state,
+        arrayVivero: action.payload,
+      };
     case CLEAR_CARRITO:
       return {
         ...state,

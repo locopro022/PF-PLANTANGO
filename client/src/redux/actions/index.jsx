@@ -1,4 +1,5 @@
 import axios from "axios";
+/* import { response } from "../../../../api/src/app"; */
 import { plantaADetalle } from "../utils";
 
 export const GET_TIPOS_HUERTA = "GET_TIPOS_HUERTA";
@@ -28,6 +29,7 @@ export const CREATE_ADMIN = "CREATE_ADMIN";
 export const DELETE_USER = "DELETE_USER"
 export const CLEAR_CARRITO = 'CLEAR_CARRITO';
 export const GET_NOTIFICACIONES = 'GET_NOTIFICACIONES';
+export const TRAER_RECOR = 'TRAER_RECOR'
 
 export const GET_BILL = "GET_BILL"
 
@@ -38,6 +40,16 @@ export const GET_SEARCH_VIVERO = "GET_SEARCH_VIVERO";
 
 const API_URL = "http://localhost:3001";
 
+export const eliminandoRecor = (horario, usuario) => async (dispatch) => {
+  const respuesta = await axios.delete(`${API_URL}/user/delete?horario=${horario}&&usuario=${usuario}`)
+  return dispatch({ type: TRAER_RECOR, payload: respuesta.data })
+}
+
+
+export const traerRecordatorios = (usuario) => async (dispatch) => {
+  const response = await axios.get(`${API_URL}/user/traer/notifi/noti?usuario=${usuario}`)
+  return dispatch({ type: TRAER_RECOR, payload: response.data })
+}
 
 export const getSearchVivero = (search) => {
   return (dispatch) => {
@@ -52,7 +64,7 @@ export const getSearchVivero = (search) => {
 };
 
 export const traerNotificaciones = (arr) => (dispatch) => {
-  if(arr===null) arr=[];
+  if (arr === null) arr = [];
   return dispatch({ type: GET_NOTIFICACIONES, payload: arr })
 }
 
@@ -73,6 +85,8 @@ export const recordatorio = (hora) => async (dispatch) => {
         :
         traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones")))
       )
+      const response2 = await axios.get(`${API_URL}/user/traer/notifi/noti?usuario=${usuario}`)
+      return dispatch({ type: TRAER_RECOR, payload: response2.data })
     })
 }
 

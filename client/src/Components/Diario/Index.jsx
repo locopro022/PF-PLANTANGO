@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editDaily, getDaily } from "../../redux/actions";
 import Recordatorio from '../Recordatorio'
+import './Diario.css'
 
 function Diario() {
   const dispatch = useDispatch();
@@ -57,8 +58,7 @@ function Diario() {
           <input type="submit" value="editar" />
         </form>
       </div>
-      <div className="seccionRecordatorio_rutDiario"></div>
-      <div>
+      <div className="seccionRecordatorio_rutDiario">
         <Recordatorio />
       </div>
     </div>
