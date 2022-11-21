@@ -265,10 +265,6 @@ UserR.put("/:idUser", async (req, res) => {
     }
 
     if (idUser) {
-      console.log("idUser: ", idUser);
-      console.log("UserName: ", username);
-      console.log("email: ", email);
-      console.log("name: ", name);
 
       await User.update(
         {

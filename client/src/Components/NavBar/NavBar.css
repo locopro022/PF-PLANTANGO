@@ -41,7 +41,7 @@
   content: "";
   display: block;
   width: 0%;
-  height: 2px;
+  height: 1px;
   /* background-image: linear-gradient(to right,
       #bafd4e,
       #79f952,
@@ -54,7 +54,7 @@
       background-color: #90b89b;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 10px;
   transition: all 250ms;
 }
 
@@ -110,7 +110,7 @@
   content: "";
   display: block;
   width: 0%;
-  height: 2px;
+  height: 1px;
   /* background-image: linear-gradient(to right,
       #bafd4e,
       #79f952,
@@ -123,7 +123,7 @@
       background-color: #90b89b;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 10px;
   transition: all 250ms;
 }
 
