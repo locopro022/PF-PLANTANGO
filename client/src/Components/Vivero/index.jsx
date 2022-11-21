@@ -49,7 +49,7 @@ const Vivero = () => {
       <div>
         <SearchBarVivero />
       </div>
-      <div>
+      <div className="container-fluid">
         <PaginadoVivero
           enviarPagina={enviarPagina}
           page={productos.page}
