@@ -2,11 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editDaily, getDaily } from "../../redux/actions";
-import Recordatorio from '../Recordatorio'
-import AlPrincipio from '../AlPrincipio'
-import './Diario.css'
+import Recordatorio from "../Recordatorio";
+import AlPrincipio from "../AlPrincipio";
+import "./Diario.css";
 
-import "./diario.css";
 function Diario() {
   const dispatch = useDispatch();
   const diario = useSelector((e) => e.diario);
@@ -39,7 +38,7 @@ function Diario() {
     });
   }
   return (
-    <>
+    <div className="globalDailyContainer">
       <AlPrincipio />
       <div className="contenedorRutDiarioGnrl">
         <div className="seccionDiario_rutDiario">
@@ -47,46 +46,26 @@ function Diario() {
             <input
               type="title"
               name="title"
+              id="inputTitleDaily"
               value={input.title}
               onChange={(e) => handleInputChange(e)}
               autoComplete="off"
             />
-            <input
-              type="text"
+              <input type="submit" value="editar" id="buttomGuardarDaily"/>
+            <textarea
               name="body"
+              id="inputContDaily"
               value={input.body}
               onChange={(e) => handleInputChange(e)}
               autoComplete="off"
             />
-            <input type="submit" value="editar" />
           </form>
         </div>
         <div className="seccionRecordatorio_rutDiario">
           <Recordatorio />
         </div>
-    <div className="contenedorRutDiarioGnrl">
-      <div className="seccionDiario_rutDiario">
-        <form onSubmit={(e) => onSubmit(e)}>
-          <input
-            id="inputTitleDaily"
-            type="title"
-            name="title"
-            value={input.title}
-            onChange={(e) => handleInputChange(e)}
-            autoComplete="off"
-          />
-          <input type="submit" value="Guardar" id="buttomGuardarDaily" />
-          <br />
-          <textarea
-            name="body"
-            id="inputContDaily"
-            onChange={(e) => handleInputChange(e)}
-            value={input.body}
-            autoFocus="on"
-          ></textarea>
-        </form>
       </div>
-    </>
+    </div>
   );
 }
 
