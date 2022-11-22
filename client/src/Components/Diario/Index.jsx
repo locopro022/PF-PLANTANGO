@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createDaily,
+  deleteDailyUser,
   editDaily,
   getDaily,
   selectDetailDaily,
@@ -34,19 +35,33 @@ function Diario() {
 
   function createADaily() {
     dispatch(createDaily(user.id));
-    dispatch(getDaily(user.id));
   }
-  function hidenONDetail(e, el) {
+  async function hidenONDetail(e, el) {
     el.preventDefault();
-    dispatch(selectDetailDaily({ title: e.title, cont: e.cont,codDaily:e.codDaily, updatedAt:e.updatedAt, hiden: true }));
+    dispatch(
+      selectDetailDaily({
+        title: e.title,
+        cont: e.cont,
+        codDaily: e.codDaily,
+        updatedAt: e.updatedAt,
+        hiden: true,
+      })
+    );
   }
+  async function deleteListDaily(e, el) {
+    el.preventDefault();
+    dispatch(deleteDailyUser(user.id, e.codDaily));
+  }
+  let mostrarBTN = diario.length && diarioDetail.hiden === false? (
+    <button onClick={createADaily}>+</button>
+  ):null;
   let mostrarDiario =
     diario.length && diarioDetail.hiden === false ? (
       diario.map((e) => (
         <>
           <span>{e.title}</span>
-          <button onClick={(el) => hidenONDetail(e, el)}>editar</button>
-          <button>delete</button>
+          <button onClick={(el) => hidenONDetail(e, el)}>Editar/Leer</button>
+          <button onClick={(el) => deleteListDaily(e, el)}>Eliminar</button>
           <span>{e.updatedAt}</span>
         </>
       ))
@@ -79,8 +94,16 @@ function Diario() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    await dispatch(editDaily(user.id,diarioDetail.codDaily, input));
-    await dispatch(selectDetailDaily({ title: "", cont: "",codDaily:"", updatedAt:"", hiden: false }));
+    await dispatch(editDaily(user.id, diarioDetail.codDaily, input));
+    await dispatch(
+      selectDetailDaily({
+        title: "",
+        cont: "",
+        codDaily: "",
+        updatedAt: "",
+        hiden: false,
+      })
+    );
     await dispatch(getDaily(user.id));
   }
   function handleInputChange(e) {
@@ -93,8 +116,11 @@ function Diario() {
     <div className="globalDailyContainer">
       <AlPrincipio />
       <div className="contenedorRutDiarioGnrl">
-        {console.log(diarioDetail)}
-        <div className="seccionDiario_rutDiario">{mostrarDiario}</div>
+        <div className="seccionDiario_rutDiario">
+          {mostrarDiario}
+          <br />
+          {mostrarBTN}
+          </div>
         <div className="seccionRecordatorio_rutDiario">
           <Recordatorio />
         </div>
