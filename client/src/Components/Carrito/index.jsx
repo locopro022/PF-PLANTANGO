@@ -3,6 +3,7 @@ import "./Modal.css";
 import { useSelector, useDispatch } from "react-redux";
 import { carritoStorage } from "../../redux/actions";
 import Notiflix from 'notiflix';
+import axios from "axios";
 
 const Carrito = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,21 @@ const Carrito = () => {
     }
   }
 
+  const handleCheckout = () => {
+    // console.log(arrayCarrito);
+      const items = arrayCarrito.map((i) => ({
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: i.nameProd,
+            },
+            unit_amount: i.precio * 100,
+          },
+          quantity: i.cantidad,
+      }));
+    axios.post("http://localhost:3001/create-checkout-session",{items})
+  }
+
   return (
     <div
       onClick={pararProp}
@@ -124,8 +140,8 @@ const Carrito = () => {
           <div className="modal-footer" style={{ position: 'relative' }}>
             <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio) * des.cantidad, 0)}`}</p>
             <button className="btn btn-danger" onClick={borrarCarrito}>Vaciar carrito</button>
-            {/* <button className="btn btn-success">Hacer compra</button> */}
-            <a href="http://localhost:3000/payment"><button className="btn btn-success">Hacer compra</button></a>
+            <button onClick={handleCheckout} className="btn btn-success">Hacer compra</button>
+            {/* <a href="http://localhost:3000/payment"><button className="btn btn-success">Hacer compra</button></a> */}
           </div>
         </div>
       </div>

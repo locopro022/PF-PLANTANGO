@@ -29,6 +29,7 @@ import DetailVivero from './Components/DetailVivero'
 import Vivero from './Components/Vivero'
 import Diario from "./Components/Diario/Index.jsx"
 import CreditCardForm from "./Components/PasarelaPago";
+import Pagos from "./Components/PasarelaPago/Pagos";
 
 function App() {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ function App() {
             <Route path="/recordatorio" element={<Diario />} />
             <Route path="/ajustes/administrar" element={<UsuariosInfo />} />
             <Route path="/payment" element={<CreditCardForm />} />
+            <Route path="/pagos" element={<Pagos />} />
           </Routes>
           <Footer />
         </div>
