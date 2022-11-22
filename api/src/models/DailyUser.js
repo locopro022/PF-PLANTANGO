@@ -14,16 +14,15 @@ module.exports = (sequelize) => {
       },
       title: {
         type: DataTypes.STRING,
-        defaultValue: "Vacio",
+        defaultValue: "",
       },
       cont: {
         type: DataTypes.TEXT,
-        defaultValue: "Vacio",
+        defaultValue: "",
       },
     },
     {
       freezeTableName: true,
-      timestamps: false,
     }
   );
 };

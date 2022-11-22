@@ -42,9 +42,9 @@ const { User, DailyUser, Plants, Category, Product, Billing, BillingDetail } =
   sequelize.models;
 
 //Relaciones
-// un usuario - tiene un diario
-User.hasOne(DailyUser);
-DailyUser.belongsTo(User);
+// un usuario - tiene muchos diario
+User.hasMany(DailyUser, { foreignKey: "idUD" });
+DailyUser.belongsTo(User, { foreignKey: "idUD" });
 
 //una Categoria - tiene muchos productos
 Category.hasMany(Product, { foreignKey: "codCategory" });
