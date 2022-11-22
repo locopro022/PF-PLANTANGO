@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getFav } from "../../redux/actions";
 import CartasFavoritos from "./Cartas";
+import "./Favoritos.css";
 
 function Favoritos() {
   const { isAuthenticated } = useAuth0();
@@ -13,17 +14,15 @@ function Favoritos() {
 
   let result = "cargando";
   useEffect(() => {
-    if (userDB && !favs.length) {
       dispatch(getFav(userDB.id));
-    }
-  }, [userDB, favs, dispatch]);
+  }, []);
   if (favs.length) {
-    result = favs.map(e=>(<CartasFavoritos items={e}/>))
-  } 
+    result = favs.map((e) => (<CartasFavoritos items={e} />));
+  }
 
   return (
-    <div>
-      {isAuthenticated ? <h1>{result}</h1> : <h1>Debes iniciar sesion</h1>}
+    <div className="contGeneralFavoritosIndex">
+      {isAuthenticated ? <>{result}</>: <h1>Debes iniciar sesion</h1>}
     </div>
   );
 }
