@@ -38,18 +38,16 @@ export const SET_FILTROS_VIVERO = "SET_FILTROS_VIVERO";
 export const GET_CATEGORIAS_VIVERO = "GET_CATEGORIAS_VIVERO";
 export const GET_SEARCH_VIVERO = "GET_SEARCH_VIVERO";
 
-const API_URL = "http://localhost:3001";
-
 export const eliminandoRecor = (horario, usuario) => async (dispatch) => {
   const respuesta = await axios.delete(
-    `${API_URL}/user/delete?horario=${horario}&&usuario=${usuario}`
+    `/user/delete?horario=${horario}&&usuario=${usuario}`
   );
   return dispatch({ type: TRAER_RECOR, payload: respuesta.data });
 };
 
 export const traerRecordatorios = (usuario) => async (dispatch) => {
   const response = await axios.get(
-    `${API_URL}/user/traer/notifi/noti?usuario=${usuario}`
+    `/user/traer/notifi/noti?usuario=${usuario}`
   );
   return dispatch({ type: TRAER_RECOR, payload: response.data });
 };
@@ -57,7 +55,7 @@ export const traerRecordatorios = (usuario) => async (dispatch) => {
 export const getSearchVivero = (search) => {
   return (dispatch) => {
     try {
-      fetch(`http://localhost:3001/products?search=${search}`)
+      fetch(`/products?search=${search}`)
         .then((response) => response.json())
         .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data }));
     } catch (error) {
@@ -78,10 +76,10 @@ export const actualizarNotificaciones = (arr) => (dispatch) => {
 export const recordatorio = (hora) => async (dispatch) => {
   const { usuario, horario } = hora;
   await axios
-    .post(`${API_URL}/user/recordatorio?usuario=${usuario}&&horario=${horario}`)
+    .post(`/user/recordatorio?usuario=${usuario}&&horario=${horario}`)
     .then(async (res) => {
       const respuesta = await axios.get(
-        `${API_URL}/user/noti/notifi?usuario=${usuario}`
+        `/user/noti/notifi?usuario=${usuario}`
       );
       const NotiStora =
         JSON.parse(localStorage.getItem("Notificaciones")) === null
@@ -101,7 +99,7 @@ export const recordatorio = (hora) => async (dispatch) => {
             )
       );
       const response2 = await axios.get(
-        `${API_URL}/user/traer/notifi/noti?usuario=${usuario}`
+        `/user/traer/notifi/noti?usuario=${usuario}`
       );
       return dispatch({ type: TRAER_RECOR, payload: response2.data });
     });
@@ -113,21 +111,10 @@ export const carritoStorage = (arr) => (dispatch) => {
 };
 
 const get = async (url, parameter = {}) => {
-  const response = await axios.get(`${API_URL}/${url}`, parameter);
+  const response = await axios.get(`/${url}`, parameter);
   return response.data;
 };
 
-// const postApi = async (url, content, parameter = {}) => {
-//   const response = await fetch(`${API_URL}/${url}`, {
-//     ...parameter,
-//     method: "POST",
-//     body: JSON.stringify(content),
-//     headers: {
-//       "Content-type": "application/json; charset=UTF-8",
-//     },
-//   });
-//   return response.json();
-// };
 export const getTiposHuerta = () => (dispatch) => {
   return get(`plants/types`).then((data) => {
     dispatch({
@@ -168,7 +155,7 @@ export const getHuerta =
   };
 
 export const crearPlanta = (planta) => async () => {
-  await axios.post(`${API_URL}/plants/creacion`, planta);
+  await axios.post(`/plants/creacion`, planta);
 };
 
 export const urlPlantaCreada = (url) => (dispatch) => {
@@ -182,7 +169,7 @@ export const activaciones = (nombre) => (dispatch) => {
 export const getSearch = (search) => {
   return (dispatch) => {
     try {
-      fetch(`http://localhost:3001/plants?search=${search}`)
+      fetch(`/plants?search=${search}`)
         .then((response) => response.json())
         .then((data) => dispatch({ type: GET_SEARCH, payload: data }));
     } catch (error) {
@@ -191,21 +178,9 @@ export const getSearch = (search) => {
   };
 };
 
-// export const getSearchVivero = (search) => {
-//   return (dispatch) => {
-//     try {
-//       fetch(`http://localhost:3001/products?search=${search}`)
-//         .then((response) => response.json())
-//         .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data }));
-//     } catch (error) {
-//       throw new Error("Error en actions  -> getSearch");
-//     }
-//   };
-// };
-
 export function getFav(idU) {
   return (dispatch) =>
-    axios(`http://localhost:3001/user/favorites/${idU}`)
+    axios(`/user/favorites/${idU}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_ALL_FAVORITES, payload }));
 }
@@ -213,40 +188,40 @@ export function getFav(idU) {
 export function deleteFav(idU, idP) {
   return (dispatch) =>
     axios
-      .delete(`http://localhost:3001/user/favorites/delete/${idU}/${idP}`)
+      .delete(`/user/favorites/delete/${idU}/${idP}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: DELETE_FAVORITES, payload }));
 }
 export function addFav(idU, idP) {
   return (dispatch) =>
     axios
-      .post(`http://localhost:3001/user/favorites/${idU}/${idP}`)
+      .post(`/user/favorites/${idU}/${idP}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: ADD_FAVORITES, payload }));
 }
 export function getDaily(idU) {
   return (dispatch) =>
-    axios(`http://localhost:3001/user/daily/${idU}`)
+    axios(`/user/daily/${idU}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_DAILY_USER, payload }));
 }
 export function editDaily(idU, obj) {
   return (dispatch) =>
     axios
-      .put(`http://localhost:3001/user/daily/${idU}`, obj)
+      .put(`/user/daily/${idU}`, obj)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: EDIT_DAILY_USER, payload }));
 }
 export function getUser(user) {
   return (dispatch) =>
-    axios(`http://localhost:3001/user/${user}`)
+    axios(`/user/${user}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_USER, payload }));
 }
 
 export const getAllUsers = () => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/user/all`)
+    fetch(`/user/all`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_ALL_USERS, payload: data });
@@ -256,14 +231,14 @@ export const getAllUsers = () => {
 
 export const addAdmin = (newAdmin) => {
   return async (dispatch) => {
-    await axios.post(`http://localhost:3001/user/admin`, newAdmin);
+    await axios.post(`/user/admin`, newAdmin);
     return dispatch({ type: CREATE_ADMIN });
   };
 };
 
 export const deleteUser = (idUser) => {
   return async function (dispatch) {
-    const user = await axios.delete(`http://localhost:3001/user/${idUser}`);
+    const user = await axios.delete(`/user/${idUser}`);
 
     return dispatch({
       type: DELETE_USER,
@@ -275,22 +250,22 @@ export const deleteUser = (idUser) => {
 export const traerProductos =
   (e = null) =>
   async (dispatch) => {
-    console.log("action traer productos", e);
+    /* console.log("action traer productos", e); */
     return await axios
-      .get("http://localhost:3001/products", { params: e })
+      .get("/products", { params: e })
       .then((productos) => {
         dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
       });
   };
 
 export const setFiltrosProductos = (e) => (dispatch) => {
-  console.log("asi llega el filtro a la action", e);
+  /* console.log("asi llega el filtro a la action", e); */
   dispatch({ type: SET_FILTROS_VIVERO, payload: e });
 };
 
 export const traerProducto = (id) => async (dispatch) => {
   return await axios
-    .get(`http://localhost:3001/products/${id}`)
+    .get(`/products/${id}`)
     .then((producto) =>
       dispatch({ type: GET_PRODUCT, payload: producto.data })
     );
@@ -301,11 +276,11 @@ export const clearProducto = () => (dispatch) => {
 };
 
 export const getBill = () => async (dispatch) => {
-  const kpi1 = await axios(`http://localhost:3001/bill/getKPI1`);
-  const kpi2 = await axios(`http://localhost:3001/bill/getKPI2`);
-  const kpi3 = await axios(`http://localhost:3001/bill/getKPI3`);
-  const kpi4 = await axios(`http://localhost:3001/bill/getKPI4`);
-  const kpi5 = await axios(`http://localhost:3001/bill/getKPI5`);
+  const kpi1 = await axios(`/bill/getKPI1`);
+  const kpi2 = await axios(`/bill/getKPI2`);
+  const kpi3 = await axios(`/bill/getKPI3`);
+  const kpi4 = await axios(`/bill/getKPI4`);
+  const kpi5 = await axios(`/bill/getKPI5`);
 
   const kpiTotal = [
     kpi1.data.datos[0],
@@ -314,13 +289,13 @@ export const getBill = () => async (dispatch) => {
     kpi4.data.datos,
     kpi5.data.datos,
   ];
-  console.log(kpiTotal, "kpiTotal");
+  /* console.log(kpiTotal, "kpiTotal"); */
   return dispatch({ type: GET_BILL, payload: kpiTotal });
 };
 
 export const getCategoriasVivero = () => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/products/types`)
+    fetch(`/products/types`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data });

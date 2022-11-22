@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editDaily, getDaily } from "../../redux/actions";
 import Recordatorio from "../Recordatorio";
 import AlPrincipio from "../AlPrincipio";
-import "./Diario.css";
+import "./diario.css";
 
 function Diario() {
   const dispatch = useDispatch();
