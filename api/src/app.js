@@ -18,13 +18,14 @@ const server = express();
 
 server.name = "API";
 
-// server.use(cors())
+server.use(cors())
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "https://checkout.stripe.com");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
@@ -39,7 +40,7 @@ server.use("/plants", routes);
 server.use("/user", UserR)
 server.use("/products", prod)
 server.use("/noti", noti)
-server.use("/", pagos)
+server.use("/pagos", pagos)
 
 // Error catching endware.
 server.use((err, req, res, next) => {

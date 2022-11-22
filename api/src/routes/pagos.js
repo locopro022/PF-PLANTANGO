@@ -1,22 +1,22 @@
 const express = require('express');
 const pagos = express();
-const cors = require("cors");
-const axios = require('axios')
-const stripe = require('stripe')('sk_test_51M4r6KE0RaxicoaffBhIbFPuHCOEvqzNzmxo4RgTseEytjGAOckS3kAl1j3OZDDMIhhQNNxLqXPiUuUj16XLtQzS00sYj5nGq1')
+// const stripe = require('stripe')('sk_test_51M4r6KE0RaxicoaffBhIbFPuHCOEvqzNzmxo4RgTseEytjGAOckS3kAl1j3OZDDMIhhQNNxLqXPiUuUj16XLtQzS00sYj5nGq1')
 
-// pagos.use(cors())
+const Stripe = require("stripe")
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-pagos.post('/create-checkout-session', cors(), async (req, res) => {
+
+pagos.post('/create-checkout-session', async (req, res) => {
   const {items} = req.body;
-  console.log(items);
+  // console.log(items);
   const session = await stripe.checkout.sessions.create({
     line_items: items,
     mode: 'payment',
-    success_url: 'http://localhost:3000/',
-    cancel_url: 'http://localhost:3000/',
+    success_url: 'http://localhost:3000/vivero',
+    cancel_url: 'http://localhost:3000/vivero',
   });
 
-  res.redirect(303, session.url);
+  res.json(session.url);
 });
 
 module.exports = pagos
