@@ -1,97 +1,92 @@
-import React, { useState } from 'react'
-import './FiltrosVivero.css'
-import { Slider, Box } from '@mui/material'
-import { useEffect } from 'react';
+import React, { useState } from "react";
+import "./FiltrosVivero.css";
+import { Slider, Box } from "@mui/material";
 
-const FiltrosVivero = ({options, enviarFiltros}) => {
-    
-const [value, setValue] = useState( [0,18000]);
-const [cod, setCod] =useState([])
-const [filter, setFilter] = useState({codCategory:[], precio: {min: 0 , max: 18000 }})
+const FiltrosVivero = ({ options, apply }) => {
+  const [filter, setFilter] = useState({
+    codCategory: [],
+    precio: { min: options.price?.min, max: options.price?.max },
+  });
+  const [value, setValue] = useState([0, 399]);
+  const slider = (event, value) => {
+    setValue(value);
+  };
+  const precio = (event, value) => {
+    setFilter({ ...filter, precio: { min: value[0], max: value[1] } });
+    apply({ ...filter, precio: { min: value[0], max: value[1] } });
+  };
 
-
-    const handleChange = (event, newValue) => {
-        console.log("ACA NEW VALUE",newValue)
-        setValue(newValue);
-        setFilter({...filter, precio: {min:value[0] , max: value[1]}})
-
-    };
-console.log("VALUE:",value);
-
-    const seleccionFiltro = (e)=>{
-        if(cod.includes(e.target.value)){
-             setCod(cod.filter(ele=> ele !== e.target.value))
-        }else{
-         setCod([...cod, e.target.value])
-
-        console.log("valor de seleccion filtro", e.target.value);}
-        const codd = cod
-       setFilter({...filter, codCategory: codd})
+  const category = ({ target }) => {
+    if (!target.checked) {
+      setFilter({
+        ...filter,
+        codCategory: filter.codCategory.filter((i) => i !== target.value),
+      });
+      apply({
+        ...filter,
+        codCategory: filter.codCategory.filter((i) => i !== target.value),
+      });
+    } else {
+      setFilter({
+        ...filter,
+        codCategory: [target.value, ...filter.codCategory],
+      });
+      apply({
+        ...filter,
+        codCategory: [target.value, ...filter.codCategory],
+      });
     }
+  };
 
-       useEffect(()=>{
-        console.log("ENTRE AL USEEFECT Y ENVIO:", filter);
-        return ()=>enviarFiltros(filter)
-    
-       },[filter])
-
-//    if(filter.codCategory.length!== 0 || filter.precio.min>0 || filter.precio.max<18000){
-//         enviarFiltros(filter)
-//     }
-console.log("COD:",cod);
-console.log("filtro:", filter);
-
-console.log("isEmpty? :",filter.precio.min>0)
-    return (
-        <>
-            <div className='containerBarra'>
-                <span className='spanFiltros'>Filtros</span>
-                <div className='containerFiltrosVivero'>
-                    {
-                        options.codCategoria?.map((option, index) => {
-                            return (
-                                <div className="form-group form-check optionSelec"
-                                    key={index}
-                                    style={{ marginLeft: '10px' }}
-                                    name={option.descripCategory}
-                                >
-                                    <label
-                                        className="form-check-label"
-                                        htmlFor={option.descripCategory}
-                                        style={{ cursor: 'pointer' }}
-                                    >
-                                        
-                                    
-                                    <input
-                                    selected={option.descripCategory}
-                                        type="checkbox"
-                                        className="form-check-input"
-                                        name={option.descripCategory}
-                                        value={option.codCategory}
-                                        onClick={seleccionFiltro}
-                                        id={option.codCategory}
-                                        style={{ cursor: 'pointer' }}
-                                    />{option.descripCategory}
-                                    </label>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-                <Box sx={{ width: 180, marginLeft: '18px' }}>
-                    <Slider
-                        getAriaLabel={() => 'Temperature range'}
-                        value={value}
-                        min={0}
-                        max={18000}
-                        onChangeCommitted={handleChange}
-                        valueLabelDisplay="auto"
-                        color='secondary'
-                    />
-                </Box>
+  return (
+    <>
+      <div className="containerBarra">
+        <span className="spanFiltros">Filtros</span>
+        <div className="containerFiltrosVivero">
+          <p>Categoria</p>
+          {options.codCategoria?.map((option, index) => (
+            <div
+              className="form-group form-check optionSelec"
+              key={index}
+              style={{ marginLeft: "10px" }}
+              name={option.descripCategory}
+            >
+              <label
+                className="form-check-label"
+                name={option.descripCategory}
+                style={{ cursor: "pointer" }}
+              >
+                <input
+                  selected={option.descripCategory}
+                  type="checkbox"
+                  className="form-check-input"
+                  name={option.descripCategory}
+                  value={option.codCategory}
+                  onClick={category}
+                  id={option.codCategory}
+                  style={{ cursor: "pointer" }}
+                />
+                {option.descripCategory}
+              </label>
             </div>
-        </>
-    )
-}
+          ))}
+        </div>
+        <Box sx={{ width: 180, marginLeft: "18px" }}>
+          <label>Precio</label>
+          <Slider
+            getAriaLabel={() => "Temperature range"}
+            value={value}
+            min={0}
+            max={400}
+            onChange={slider}
+            onChangeCommitted={precio}
+            valueLabelDisplay="auto"
+            color="secondary"
+          />
+        </Box>
+      </div>
+    </>
+  );
+};
 
 export default FiltrosVivero;

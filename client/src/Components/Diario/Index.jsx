@@ -2,7 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editDaily, getDaily } from "../../redux/actions";
-import Recordatorio from '../Recordatorio'
+import Recordatorio from "../Recordatorio";
+import AlPrincipio from "../AlPrincipio";
+import "./diario.css";
 
 function Diario() {
   const dispatch = useDispatch();
@@ -27,39 +29,41 @@ function Diario() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    dispatch(editDaily(user.id, input))
+    dispatch(editDaily(user.id, input));
   }
   function handleInputChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input)
   }
   return (
-    <div className="contenedorRutDiarioGnrl">
-      <div className="seccionDiario_rutDiario">
-        <form onSubmit={(e) => onSubmit(e)}>
-          <input
-            type="title"
-            name="title"
-            value={input.title}
-            onChange={(e) => handleInputChange(e)}
-            autoComplete="off"
-          />
-          <input
-            type="text"
-            name="body"
-            value={input.body}
-            onChange={(e) => handleInputChange(e)}
-            autoComplete="off"
-          />
-          <input type="submit" value="editar" />
-        </form>
-      </div>
-      <div className="seccionRecordatorio_rutDiario"></div>
-      <div>
-        <Recordatorio />
+    <div className="globalDailyContainer">
+      <AlPrincipio />
+      <div className="contenedorRutDiarioGnrl">
+        <div className="seccionDiario_rutDiario">
+          <form onSubmit={(e) => onSubmit(e)}>
+            <input
+              type="title"
+              name="title"
+              id="inputTitleDaily"
+              value={input.title}
+              onChange={(e) => handleInputChange(e)}
+              autoComplete="off"
+            />
+              <input type="submit" value="editar" id="buttomGuardarDaily"/>
+            <textarea
+              name="body"
+              id="inputContDaily"
+              value={input.body}
+              onChange={(e) => handleInputChange(e)}
+              autoComplete="off"
+            />
+          </form>
+        </div>
+        <div className="seccionRecordatorio_rutDiario">
+          <Recordatorio />
+        </div>
       </div>
     </div>
   );

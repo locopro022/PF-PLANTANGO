@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
   try {
     const { search, filter, page } = req.query;
 
+    console.log("search: ",search);
     let sequelizeFilter = {};
 
     let sequelizeSort = ["nameProd", "ASC"];

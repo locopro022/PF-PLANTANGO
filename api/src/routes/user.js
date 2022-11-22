@@ -4,7 +4,26 @@ const { DailyUser, User, Plants, Favorites, Notification } = require("../db");
 const cron = require("node-cron");
 const notifier = require('node-notifier')
 const UserR = Router();
+const nodemailer = require("nodemailer")
+const path = require('path')
 //Traer todos los usuarios 
+
+UserR.delete('/delete', async (req, res) => {
+  const { horario, usuario } = req.query;
+  await Notification.destroy({ where: { horario: horario } });
+  const nuevo = await Notification.findAll({ where: { usuario: usuario } })
+  res.status(200).json(nuevo)
+})
+
+UserR.get('/traer/notifi/noti', async (req, res) => {
+  const { usuario } = req.query;
+  try {
+    const respuesta = await Notification.findAll({ where: { usuario: usuario } })
+    res.status(200).json(respuesta)
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
+})
 
 UserR.post('/recordatorio', async (req, res) => {
   const { usuario, horario } = req.query;
@@ -21,7 +40,6 @@ UserR.post('/recordatorio', async (req, res) => {
 
 UserR.get('/noti/notifi', async (req, res) => {
   const { usuario } = req.query;
-  console.log(usuario)
   try {
     let horarios = await Notification.findAll({ where: { usuario: usuario } })
     let array = horarios.map(ele => ele.dataValues.horario)
@@ -31,18 +49,33 @@ UserR.get('/noti/notifi', async (req, res) => {
       return cron.schedule(`${minutos} ${hora} * * *`, () => {
         notifier.notify({
           title: "Recordatorio de riego",
-          message: `No olvide su recordatorio a las ${hora}:${minutos}`
-        }, function (err, response, metadata) {
-          console.log(err)
-          console.log(response)
-          console.log(metadata)
+          message: `No olvide su recordatorio a las ${hora}:${minutos}`,
+          icon: path.join('https://res.cloudinary.com/doycjj3gx/image/upload/v1668973270/imagen/lv1ucxo4pqdp7jwlsbdn.png')
+        }, async function (err, response, metadata) {
+          let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+              user: 'lean.damianflorentin@gmail.com',
+              pass: 'cllqcuhrqrwypvoz',
+            },
+          });
+          await transporter.sendMail({
+            from: '"Plantango" <Platango@gmail.com>',
+            to: `${usuario}`,
+            subject: `Recordatorio de riego`,
+            html: `
+            <b>No olvides tu recordatorio a las ${hora}:${minutos}</b><br>
+            <a href='http://localhost:3000/vivero'>Visita nuestro vivero</a><br>
+            <a href='http://localhost:3000/huerta'>Investiga en nuestra huerta</a>
+            `,
+          });
         })
         res.status(200).json({ "hora": hora, "minutos": minutos })
       })
     })
-    devuelve.forEach(ele => {
-      ele
-    })
+    devuelve.forEach(ele => ele)
   } catch (error) {
     res.status(404).json(error.message)
   }
@@ -232,10 +265,6 @@ UserR.put("/:idUser", async (req, res) => {
     }
 
     if (idUser) {
-      console.log("idUser: ", idUser);
-      console.log("UserName: ", username);
-      console.log("email: ", email);
-      console.log("name: ", name);
 
       await User.update(
         {

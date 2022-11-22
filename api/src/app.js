@@ -9,7 +9,6 @@ const UserR = require("./routes/user.js");
 
 const bill = require("./routes/billings.js");
 const prod = require("./routes/products.js");
-const pago = require("./routes/pagos.js");
 const noti = require("./routes/notificaciones.js")
 require("./db.js");
 
@@ -23,7 +22,7 @@ server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
@@ -37,7 +36,6 @@ server.use("/bill", bill);
 server.use("/plants", routes);
 server.use("/user", UserR)
 server.use("/products", prod)
-server.use("/pagos", pago)
 server.use("/noti", noti)
 
 // Error catching endware.

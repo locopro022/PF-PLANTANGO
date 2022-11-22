@@ -1,3 +1,5 @@
+
+import "./paginado.css"
 const PaginadoVivero = ({enviarPagina, page, max})=> {
 
 
@@ -26,22 +28,22 @@ const pasarPagina =(index)=>{
 //     }
 return (
 
-    <div> 
+    <div className="pag"> 
             {/* Boton anterior */}
-            <button onClick={()=> pasarPagina("prev")}>
+            <button onClick={()=> pasarPagina("prev")} className="items">
             {"<"}
             </button>
 {
     //Aca creo un array con el num de max y hago un mapeo para crear la cantidad de paginas  BOTONES DE NUMEROS DE PAGINAS
     [...Array(max).keys()].map((index)=> (
-      <button onClick={() => pasarPagina(index)} >
+      <button onClick={() => pasarPagina(index)} className="items">
         {index+1}
       </button>  
     ))
 }
 
           {/* Boton siguiente */}
-        <button onClick={()=> pasarPagina("next")}>
+        <button onClick={()=> pasarPagina("next")} className="items">
                 {">"}
         </button>
     </div>
