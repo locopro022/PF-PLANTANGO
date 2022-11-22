@@ -1,0 +1,54 @@
+.seccionRecordatorio_rutDiario {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 70vh;
+}
+
+.containerLabelInput {
+    background-color: rgb(240, 240, 240);
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerLabelInput input {
+    margin-right: 40px;
+}
+.contenedorRutDiarioGnrl{
+    margin-top: 35px;
+    height: 800px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+.seccionDiario_rutDiario{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-right: 15px;
+}
+#inputTitleDaily{
+    width: 50%;
+    margin-bottom: 25px;
+
+}
+#inputContDaily{
+    width: 55%;
+    height: 300px;
+    max-height: 600px;
+}
+#buttomGuardarDaily{
+    width: 5%;
+}
+
+.globalDailyContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
