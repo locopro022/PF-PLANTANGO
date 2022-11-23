@@ -1,34 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Modal.css";
 import { useSelector, useDispatch } from "react-redux";
 import { carritoStorage } from "../../redux/actions";
-import Notiflix from 'notiflix';
+import Notiflix from "notiflix";
+import axios from "axios";
 
 const Carrito = () => {
+  const [aux, setAux] = useState("");
   const dispatch = useDispatch();
-  const arrayCarrito = useSelector(state => state.carrito) // array para mapear y mostrar en el carrito
+  const arrayCarrito = useSelector((state) => state.carrito); // array para mapear y mostrar en el carrito
   const borrarCarrito = () => {
     Notiflix.Confirm.show(
-      'Vaciar carrito',
-      'Quieres vaciar el carrito?',
-      'Si',
-      'No',
+      "Vaciar carrito",
+      "Quieres vaciar el carrito?",
+      "Si",
+      "No",
       () => {
-        localStorage.removeItem("carrito")
-        dispatch(carritoStorage([]))
-        Notiflix.Notify.success('Carrito vaciado con exito', {
+        localStorage.removeItem("carrito");
+        dispatch(carritoStorage([]));
+        Notiflix.Notify.success("Carrito vaciado con exito", {
           zindex: 999999999999999,
           position: "left-top",
-          timeout: 1500
+          timeout: 1500,
         });
       },
-      () => {
-      },
+      () => {},
       {
-        zindex: 99999999
+        zindex: 99999999,
       }
     );
-  }
+  };
 
   const pararProp = (e) => {
     // funcion para para la propagación para el cerrado del carrito al tocar en partes del carrito.
@@ -36,38 +37,63 @@ const Carrito = () => {
   };
 
   const eliminarProduct = (product) => {
-    let nuevoCarrito = arrayCarrito?.filter(ele => ele.nameProd !== product)
-    localStorage.setItem("carrito", JSON.stringify(nuevoCarrito))
-    dispatch(carritoStorage(nuevoCarrito))
-    Notiflix.Notify.success('Producto eliminado con exito', {
+    let nuevoCarrito = arrayCarrito?.filter((ele) => ele.nameProd !== product);
+    localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
+    dispatch(carritoStorage(nuevoCarrito));
+    Notiflix.Notify.success("Producto eliminado con exito", {
       zindex: 999999999999999,
       position: "left-top",
-      timeout: 1500
+      timeout: 1500,
     });
-  }
+  };
 
   const changeValue = (e, ele) => {
-    if (e.target.name === 'mas') {
-      let carritoNuevoValor = arrayCarrito?.map(el => el.nameProd === ele.nameProd
-        ?
-        { ...el, cantidad: ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1 }
-        :
-        el
-      )
-      localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor))
-      dispatch(carritoStorage(carritoNuevoValor))
+    if (e.target.name === "mas") {
+      let carritoNuevoValor = arrayCarrito?.map((el) =>
+        el.nameProd === ele.nameProd
+          ? {
+              ...el,
+              cantidad:
+                ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
+            }
+          : el
+      );
+      localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
+      dispatch(carritoStorage(carritoNuevoValor));
+    } else {
+      let carritoNuevoValor = arrayCarrito?.map((el) =>
+        el.nameProd === ele.nameProd
+          ? {
+              ...el,
+              cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
+            }
+          : el
+      );
+      localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
+      dispatch(carritoStorage(carritoNuevoValor));
     }
-    else {
-      let carritoNuevoValor = arrayCarrito?.map(el => el.nameProd === ele.nameProd
-        ?
-        { ...el, cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad }
-        :
-        el
-      )
-      localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor))
-      dispatch(carritoStorage(carritoNuevoValor))
-    }
-  }
+  };
+
+  const handleCheckout = () => {
+    const items = arrayCarrito.map((i) => ({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: i.nameProd,
+        },
+        unit_amount: i.precio * 100,
+      },
+      quantity: i.cantidad,
+    }));
+    const response = axios.post(
+      "http://localhost:3001/pagos/create-checkout-session",
+      { items }
+    ).then((res)=>{
+      if(res.data){
+        window.location.href = res.data // force de URL
+      }
+    }).catch((err)=>console.log(err));
+  };
 
   return (
     <div
@@ -82,9 +108,9 @@ const Carrito = () => {
       <div
         className="modal-dialog modal-dialog-centered modal-lg"
         role="document"
-        style={{ zIndex: '999999999' }}
+        style={{ zIndex: "999999999" }}
       >
-        <div className="modal-content" style={{ zIndex: '999999999' }}>
+        <div className="modal-content" style={{ zIndex: "999999999" }}>
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLongTitle">
               Carrito de compras
@@ -95,37 +121,81 @@ const Carrito = () => {
           </div>
           <div className="modal-body containerTextModal">
             <>
-              {
-                arrayCarrito?.length
-                  ?
-                  <>
-                    {
-                      arrayCarrito?.map((ele, index) => {
-                        return (
-                          <div key={index} className='cartitasCarrito'>
-                            <img src={ele.imageProd} alt='img' />
-                            <div className="containerBotonsitos">
-                              <button name='menos' className="btnRestaSuma" onClick={(e) => changeValue(e, ele)}>-</button>
-                              <p className="precioMap">{ele.cantidad}</p>
-                              <button name='mas' className="btnRestaSuma" onClick={(e) => changeValue(e, ele)}>+</button>
-                            </div>
-                            <h5 className="precioApartado">{`$${ele.cantidad * parseInt(ele.precio)}`}</h5>
-                            <button className="btnMapeo" onClick={() => eliminarProduct(ele.nameProd)}>X</button>
-                          </div>
-                        )
-                      })
-                    }
-                  </>
-                  :
-                  <div>Sin productos en el carrito</div>
-              }
+              {arrayCarrito?.length ? (
+                <>
+                  {arrayCarrito?.map((ele, index) => {
+                    return (
+                      <div key={index} className="cartitasCarrito">
+                        <img src={ele.imageProd} alt="img" />
+                        <div className="containerBotonsitos">
+                          <button
+                            name="menos"
+                            className="btnRestaSuma"
+                            onClick={(e) => changeValue(e, ele)}
+                          >
+                            -
+                          </button>
+                          <p className="precioMap">{ele.cantidad}</p>
+                          <button
+                            name="mas"
+                            className="btnRestaSuma"
+                            onClick={(e) => changeValue(e, ele)}
+                          >
+                            +
+                          </button>
+                        </div>
+                        <h5 className="precioApartado">{`$${
+                          ele.cantidad * parseInt(ele.precio)
+                        }`}</h5>
+                        <button
+                          className="btnMapeo"
+                          onClick={() => eliminarProduct(ele.nameProd)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    );
+                  })}
+                </>
+              ) : (
+                <div>Sin productos en el carrito</div>
+              )}
             </>
           </div>
-          <div className="modal-footer" style={{ position: 'relative' }}>
-            <p style={{ position: 'absolute', left: '20px', bottom: '0%', color: '#000' }}>{`$${arrayCarrito?.reduce((ant, des) => ant + parseInt(des.precio) * des.cantidad, 0)}`}</p>
-            <button className="btn btn-danger" onClick={borrarCarrito}>Vaciar carrito</button>
-            {/* <button className="btn btn-success">Hacer compra</button> */}
-            <a href="http://localhost:3000/payment"><button className="btn btn-success">Hacer compra</button></a>
+          <div className="modal-footer" style={{ position: "relative" }}>
+            <p
+              style={{
+                position: "absolute",
+                left: "20px",
+                bottom: "0%",
+                color: "#000",
+              }}
+            >{`$${arrayCarrito?.reduce(
+              (ant, des) => ant + parseInt(des.precio) * des.cantidad,
+              0
+            )}`}</p>
+            <button className="btn btn-danger" onClick={borrarCarrito}>
+              Vaciar carrito
+            </button>
+
+            {/* <Link to={`${aux}`}> */}
+              {/* <a onClick={()=>handleCheckout()} href={`${aux}`} className="btn btn-success">
+                Hacer compra
+              </a> */}
+            {/* </Link> */}
+
+
+              <button className="btn btn-success" onClick={()=>handleCheckout()}>
+                
+                  Comprar
+                
+              </button>
+            {/* <a href={aux}>
+              <button>Comprar</button>
+            </a> */}
+
+            {/* <ExternalLink href={aux} >
+            </ExternalLink> */}
           </div>
         </div>
       </div>
