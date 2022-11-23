@@ -29,6 +29,8 @@ import {
   GET_NOTIFICACIONES,
   TRAER_RECOR,
   SELECT_DETAIL_DAILY,
+  DELETE_DAILY_USER,
+  CREATE_DAILY_USER,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -239,11 +241,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         diarioDetail: action.payload,
       };
+    case DELETE_DAILY_USER:
+      return{
+        ...state,
+        diario: action.payload
+      }
     case EDIT_DAILY_USER:
       return {
         ...state,
         diario: action.payload,
       };
+    case CREATE_DAILY_USER:
+      return{
+        ...state,
+        diario: action.payload
+      }
 
     default:
       return state;

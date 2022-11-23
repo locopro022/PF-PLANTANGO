@@ -127,8 +127,9 @@ UserR.post("/daily/:idU", async (req, res) => {
     if (!idU) {
       return res.status(400).send({ error: "No se encontro la id" });
     }
-    let nuevoDiario = await DailyUser.create({ idUD: idU });
-    return res.status(201).send(nuevoDiario);
+    await DailyUser.create({ idUD: idU });
+    let resp = await DailyUser.findAll({where:{idUD:idU}});
+    return res.status(201).send(resp)
   } catch (error) {
     res.status(400).send({ error: error });
   }
@@ -149,6 +150,22 @@ UserR.put("/daily/:idU/:idD", async (req, res) => {
       return res
         .status(201)
         .send({ message: "Los datos se cambiaron exitosamente" });
+    }
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
+UserR.delete("/daily/:idU/:idD", async (req, res) => {
+  try {
+    const { idU, idD } = req.params;
+
+    if (!idU || !idD) {
+      return res.status(400).send({ error: "No se encontro la id" });
+    }else {
+      await DailyUser.destroy({where:{idUD:idU,codDaily:idD}})
+      let resp = await DailyUser.findAll({where:{idUD:idU}});
+      return res.status(200).send(resp)
     }
   } catch (error) {
     return res.status(400).json({ error });
