@@ -10,7 +10,7 @@ import {
 } from "../../redux/actions";
 import Recordatorio from "../Recordatorio";
 import AlPrincipio from "../AlPrincipio";
-import "./Diario.css";
+import "./diario.css";
 
 function Diario() {
   const dispatch = useDispatch();
