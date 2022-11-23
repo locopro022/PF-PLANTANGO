@@ -111,7 +111,7 @@ UserR.get("/daily/:id", async (req, res) => {
   try {
     if (id) {
       let diario = await DailyUser.findAll({
-        where: { idUD: id }
+        where: { idUD: id },
       });
       return res.status(200).send(diario);
     } else {
@@ -206,27 +206,27 @@ UserR.post("/", async (req, res) => {
 });
 
 UserR.get("/:email", async (req, res) => {
-  const { email } = req.params;
-  if (!email) {
-    return res
-      .status(400)
-      .json({ error: "falta ingresar un usuario por email" });
-  }
-  const userTable = await User.findAll({ where: { email } });
-  if (!userTable.length) {
-    await User.create({ email: email, username: email });
-    const userTableF = await User.findAll({ where: { email } });
-    return res.status(200).json({
-      username: userTableF[0].dataValues.username,
-      email: userTableF[0].dataValues.email,
-      id: userTableF[0].dataValues.idUser,
+  try {
+    const { email } = req.params;
+    const [found, created] = await User.findOrCreate({
+      where: { email },
+      defaults: { email, username: email },
     });
+    res.status(201).json(created || found);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error });
   }
-  return res.status(200).json({
-    username: userTable[0].dataValues.username,
-    email: userTable[0].dataValues.email,
-    id: userTable[0].dataValues.idUser,
-  });
+  // const userTable = await User.findAll({ where: { email } });
+  // if (!userTable.length) {
+  //   await User.create({ email: email, username: email });
+  //   const userTableF = await User.findAll({ where: { email } });
+  //   return res.status(200).json({
+  //     username: userTableF[0].dataValues.username,
+  //     email: userTableF[0].dataValues.email,
+  //     id: userTableF[0].dataValues.idUser,
+  //   });
+  // }
 });
 
 UserR.post("/favorites/:idU/:idP", async (req, res) => {
