@@ -38,14 +38,7 @@ const llenarCategory = async () => {
 const llenarUser = async () => {
   const tabla = await User.findAll();
   if (!tabla.length) {
-    const dbU = dbUser.map((usuario) => {
-      return {
-        idUser: usuario.idUser,
-        username: usuario.username,
-        email: usuario.email,
-      };
-    });
-    await User.bulkCreate(dbU);
+    await User.bulkCreate(dbUser);
   }
 };
 
