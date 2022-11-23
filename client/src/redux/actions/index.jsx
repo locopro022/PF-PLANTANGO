@@ -23,6 +23,9 @@ export const ADD_FAVORITES = "ADD_FAVORITES";
 export const GET_USER = "GET_USER";
 export const GET_DAILY_USER = "GET_DAILY_USER";
 export const EDIT_DAILY_USER = "EDIT_DAILY_USER";
+export const DELETE_DAILY_USER = "DELETE_DAILY_USER";
+export const CREATE_DAILY_USER = "CREATE_DAILY_USER";
+export const SELECT_DETAIL_DAILY = "SELECT_DETAIL_DAILY";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const CREATE_ADMIN = "CREATE_ADMIN";
@@ -205,12 +208,30 @@ export function getDaily(idU) {
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_DAILY_USER, payload }));
 }
-export function editDaily(idU, obj) {
+export function createDaily(idU) {
+  return dispatch => axios.post(`http://localhost:3001/user/daily/${idU}`).then((res) => res.data)
+  .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
+}
+export function selectDetailDaily(obj) {
+  return (dispatch) => dispatch({ type: SELECT_DETAIL_DAILY, payload: obj });
+}
+export function editDaily(idU, idD, obj) {
   return (dispatch) =>
     axios
+<<<<<<< HEAD
       .put(`/user/daily/${idU}`, obj)
+=======
+      .put(`http://localhost:3001/user/daily/${idU}/${idD}`, obj)
+>>>>>>> 85c226ee63bc4006d7d3b4a9ec7cef84dafb4513
       .then((res) => res.data)
       .then((payload) => dispatch({ type: EDIT_DAILY_USER, payload }));
+}
+export function deleteDailyUser(idU, idD) {
+  return (dispatch) =>
+    axios
+      .delete(`http://localhost:3001/user/daily/${idU}/${idD}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: DELETE_DAILY_USER, payload }));
 }
 export function getUser(user) {
   return (dispatch) =>

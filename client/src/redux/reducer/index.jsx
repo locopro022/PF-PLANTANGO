@@ -28,6 +28,9 @@ import {
   GET_CATEGORIAS_VIVERO,
   GET_NOTIFICACIONES,
   TRAER_RECOR,
+  SELECT_DETAIL_DAILY,
+  DELETE_DAILY_USER,
+  CREATE_DAILY_USER,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -45,6 +48,7 @@ const initialState = {
   nombre: "perfil",
   favoritos: [],
   diario: [],
+  diarioDetail:{title:"",cont:"",codDaily:"",updatedAt:"",hiden:false},
   user: {},
   usuarios: [],
   producto: {},
@@ -232,11 +236,26 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         diario: action.payload,
       };
+    case SELECT_DETAIL_DAILY:
+      return{
+        ...state,
+        diarioDetail: action.payload,
+      };
+    case DELETE_DAILY_USER:
+      return{
+        ...state,
+        diario: action.payload
+      }
     case EDIT_DAILY_USER:
       return {
         ...state,
         diario: action.payload,
       };
+    case CREATE_DAILY_USER:
+      return{
+        ...state,
+        diario: action.payload
+      }
 
     default:
       return state;
