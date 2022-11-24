@@ -8,6 +8,7 @@ const Cartas = (props) => {
   const user = useSelector((e) => e.user);
   const favorites = useSelector((e) => e.favoritos);
   const dispatch = useDispatch();
+  console.log("USUARIOS", user)
 
   function addfav(e, item, user) {
     e.preventDefault();

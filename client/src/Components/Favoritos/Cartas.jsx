@@ -20,51 +20,50 @@ const CartasFavoritos = ({ items }) => {
     dispatch(getFav(user.idUser));
   }
   return (
-
-      <div className="cardCartaFav">
-        {items.imagePlant && (
-          <Link
-            key={items.codPlant}
-            to={`/huerta/${items.codPlant}`}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <img
-              src={items.imagePlant}
-              alt="Un producto"
-              loading="lazy"
-              className="imagen cabeza"
-            />
-          </Link>
-        )}
-        <div className="cuerpo">
-          <div>
-            {items.namePlant && (
-              <h3 className="cuerpo-titulo">{items.namePlant}</h3>
-            )}
-            {items.namePlant?.split(",").slice(1) && (
-              <h4 className="cuerpo-subtitulo">
-                {items.namePlant?.split(",").slice(1)}
-              </h4>
-            )}
-            {items.tipo && (
-              <p className="cuerpo-caracteristica">
-                {items.tipo.map((caracteristica, i) => (
-                  <span
-                    className="cuerpo-caracteristica-caracteristica"
-                    key={i}
-                  >
-                    {caracteristica}
-                  </span>
-                ))}
-              </p>
-            )}
-          </div>
-          {items.precio && (
-            <p className="cuerpo-precio">${items.precio / 100}</p>
+    <div className="cardCartaFav">
+      {items.imagePlant && (
+        <Link
+          key={items.codPlant}
+          to={`/huerta/${items.codPlant}`}
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <img
+            src={items.imagePlant}
+            alt="Un producto"
+            loading="lazy"
+            className="imagen cabeza"
+          />
+        </Link>
+      )}
+      <div className="cuerpo">
+        <div>
+          {items.namePlant && (
+            <h3 className="cuerpo-titulo">{items.namePlant}</h3>
           )}
-          <button className="favON" onClick={(e) => eliminarFav(e, items)} />
+          {items.namePlant?.split(",").slice(1) && (
+            <h4 className="cuerpo-subtitulo">
+              {items.namePlant?.split(",").slice(1)}
+            </h4>
+          )}
+          {items.tipo && (
+            <p className="cuerpo-caracteristica">
+              {items.tipo.map((caracteristica, i) => (
+                <span
+                  className="cuerpo-caracteristica-caracteristica"
+                  key={i}
+                >
+                  {caracteristica}
+                </span>
+              ))}
+            </p>
+          )}
         </div>
+        {items.precio && (
+          <p className="cuerpo-precio">${items.precio / 100}</p>
+        )}
+        <button className="favON" onClick={(e) => eliminarFav(e, items)} />
       </div>
+    </div>
   );
 };
 

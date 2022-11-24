@@ -54,6 +54,13 @@
   cursor: pointer;
 }
 
+.favON {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  cursor: pointer;
+}
+
 .numeroP {
   position: absolute;
   bottom: 5px;
