@@ -2,7 +2,12 @@ import Cartas from "../Cartas";
 import Filtros from "../Filtros";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../Pagination";
-import { getHuerta, setFiltrosHuerta, setPagHuerta } from "../../redux/actions";
+import {
+  getFav,
+  getHuerta,
+  setFiltrosHuerta,
+  setPagHuerta,
+} from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { plantaACarta } from "../../redux/utils";
 import AlPrincipio from "../AlPrincipio";
@@ -16,14 +21,12 @@ const Vivero = () => {
   const page = useSelector((state) => state.pagHuerta);
   const productos = useSelector((state) => state.arrayHuerta);
   const dispatch = useDispatch();
+  const user = useSelector((e) => e.user);
+  const [cambioProducto, setCP] = useState("");
 
-
-  
   useEffect(() => {
     let filter = {};
 
-    
-    
     for (let item of filtros) {
       let slice = item.options.some(({ checked }) => checked)
         ? {
@@ -35,10 +38,15 @@ const Vivero = () => {
       filter = { ...filter, ...slice };
     }
 
-
-    
+    if (cambioProducto === "like") {
+      setCP("");
+    }
+    if (user) {
+      dispatch(getFav(user.idUser));
+      console.log({m:"UHuerta" ,s:user.idUser})
+    }
     dispatch(getHuerta({ page, filter }));
-  }, [filtros, page, dispatch]);
+  }, [filtros, cambioProducto,user, page, dispatch]);
 
   useEffect(() => {
     setIniciarPagina(false);
@@ -74,7 +82,11 @@ const Vivero = () => {
                     curr={productos.page}
                     apply={applyPage}
                   />
-                  <Cartas items={productos.results?.map(plantaACarta)} />
+                  <Cartas
+                    items={productos.results?.map(plantaACarta)}
+                    aux={setCP}
+                    auxd={cambioProducto}
+                  />
                 </div>
               </div>
             </div>
