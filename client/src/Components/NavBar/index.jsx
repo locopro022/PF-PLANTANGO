@@ -1,7 +1,7 @@
 import React from "react";
 import platango from "../../img/plantangoIcono.png";
 import "./NavBar.css";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import { ShoppingCart } from "@mui/icons-material";
 import { IconButton, Badge } from "@mui/material";
 import MenuDesplegable from "../MenuDesplegable";
@@ -13,8 +13,8 @@ import MenuSesionIniciada from "../MenuSesionIniciada";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
-  const cantidad = useSelector(state => state.carrito)
-  const { isAuthenticated } = useAuth0()
+  const cantidad = useSelector((state) => state.carrito);
+  const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   console.log("cuenta logueada?", isAuthenticated);
   return (
@@ -60,6 +60,14 @@ const NavBar = () => {
             to="/favoritos"
           >
             <span className="span">Favoritos</span>
+          </NavLink>
+          <NavLink
+            className={(isActive) =>
+              isActive.isActive ? "itemActivo" : "item uno"
+            }
+            to="/nosotros"
+          >
+            <span className="span">Nosotros</span>
           </NavLink>
         </ul>
       </div>

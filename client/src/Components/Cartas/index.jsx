@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./index.css";
-import { addFav, editPlantforLike } from "../../redux/actions";
+import { addFav, deleteFav, editPlantforLike } from "../../redux/actions";
 
 const Cartas = (props) => {
   const user = useSelector((e) => e.user);
@@ -15,29 +15,42 @@ const Cartas = (props) => {
       alert("Debes Iniciar sesion para usar Favoritos :)");
     }
     if (user) {
-      dispatch(addFav(user.idUser, item.id));
-      dispatch(
-        editPlantforLike({
-          codPlant: item.id,
-          namePlant: item.nombre,
-          descripPlant: item.descripcion,
-          tipo: item.caracteristica,
-          imagePlant: item.img,
-          likes: item.likes + 1,
-        })
-      ).then(props.aux("like"));
-    }
-  }
-  function onOf(id){
-    if(favorites.legth){
-      console.log("transicion", favorites)
-      if(favorites.includes(e=>e.codPlant === id)){
-        return true
-      }else{
-        return false
+      if (e.target.className === "favOFF") {
+        dispatch(addFav(user.idUser, item.id));
+        dispatch(
+          editPlantforLike({
+            codPlant: item.id,
+            namePlant: item.nombre,
+            descripPlant: item.descripcion,
+            tipo: item.caracteristica,
+            imagePlant: item.img,
+            likes: item.likes + 1,
+          })
+        ).then(props.aux("like"));
+      } else if (e.target.className === "favON") {
+        dispatch(deleteFav(user.idUser, item.id));
+        dispatch(
+          editPlantforLike({
+            codPlant: item.id,
+            namePlant: item.nombre,
+            descripPlant: item.descripcion,
+            tipo: item.caracteristica,
+            imagePlant: item.img,
+            likes: item.likes - 1,
+          })
+        ).then(props.aux("like"))
       }
     }
-    console.log("transicionFail", favorites)
+  }
+
+  function onOf(item, favorites) {
+    if (favorites) {
+      if (favorites.find((e) => e.codPlant === item.id)) {
+        return "favON";
+      } else {
+        return "favOFF";
+      }
+    }
   }
   return (
     <div className="contenedorCartasFavoritos">
@@ -86,7 +99,9 @@ const Cartas = (props) => {
                 )}
                 <p>{item.likes}</p>
                 <button
-                  className={onOf(item.id)?"favON":"favOFF"}
+                  className={
+                    favorites.length ? onOf(item, favorites) : "favOFF"
+                  }
                   onClick={(e) => addfav(e, item, user)}
                 />
               </div>
