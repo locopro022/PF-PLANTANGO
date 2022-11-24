@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Cards from "react-credit-cards";
 import Notiflix from "notiflix";
 import "react-credit-cards/lib/styles-compiled.css";
-import s from "./CreditCardForm.module.css";
+import s from "./ReactCreditCard.module.css";
 
 const CreditCardForm = () => {
   const [number, setNumber] = useState("");

@@ -74,25 +74,35 @@ const Carrito = () => {
     }
   };
 
-  const handleCheckout = () => {
-    const items = arrayCarrito.map((i) => ({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: i.nameProd,
+  const handleCheckout = async () => {
+    if(arrayCarrito.length){
+      const items = arrayCarrito.map((i) => ({
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: i.nameProd,
+          },
+          unit_amount: i.precio * 100,
         },
-        unit_amount: i.precio * 100,
-      },
-      quantity: i.cantidad,
-    }));
-    const response = axios.post(
-      "http://localhost:3001/pagos/create-checkout-session",
-      { items }
-    ).then((res)=>{
-      if(res.data){
-        window.location.href = res.data // force de URL
-      }
-    }).catch((err)=>console.log(err));
+        quantity: i.cantidad,
+      }));
+      const response = axios.post(
+        "http://localhost:3001/pagos/create-checkout-session",
+        { items }
+      ).then((res)=>{
+        if(res.data){
+          window.location.href = res.data // force de URL
+        }
+      }).catch((err)=>console.log(err));
+    }else{
+      const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
+      // console.log(response.data.info);
+      Notiflix.Notify.success(response.data.info, {
+        zindex: 999999999999999,
+        position: "left-top",
+        timeout: 2000,
+      });
+    }
   };
 
   return (
@@ -178,24 +188,10 @@ const Carrito = () => {
               Vaciar carrito
             </button>
 
-            {/* <Link to={`${aux}`}> */}
-              {/* <a onClick={()=>handleCheckout()} href={`${aux}`} className="btn btn-success">
-                Hacer compra
-              </a> */}
-            {/* </Link> */}
+            <button className="btn btn-success" onClick={()=>handleCheckout()}>
+              Comprar
+            </button>
 
-
-              <button className="btn btn-success" onClick={()=>handleCheckout()}>
-                
-                  Comprar
-                
-              </button>
-            {/* <a href={aux}>
-              <button>Comprar</button>
-            </a> */}
-
-            {/* <ExternalLink href={aux} >
-            </ExternalLink> */}
           </div>
         </div>
       </div>
