@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './chat.css'
-import groot from '../../img/groot.png'
+import groot from '../../img/plantago.png'
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Chat = () => {
@@ -60,9 +60,9 @@ const Chat = () => {
                         ?
                         <div className='containerOpcion'>
                             <div className='containerGrootH'>
-                                <img src={groot} alt='groot' className='imgGroot' />
                                 <div className='containerText'>
-                                    <h6>Hola 👋🏻, te interesaria responder las siguientes preguntas?</h6>
+                                    <img src={groot} alt='groot' className='imgGroot' />
+                                    <h6>¡Bienvenido a plantango!, te interesaria responder algunas preguntas?</h6>
                                 </div>
                             </div>
                             <div className='containerButtons'>
@@ -73,15 +73,14 @@ const Chat = () => {
                                         value='color1'
                                         type='button'
                                         className='btn btn-outline-success button-tam'
-                                    >Si 😁</button>
+                                    >Si</button>
                                     <button
                                         onClick={() => navigate("/home")}
                                         type='button'
                                         className='btn btn-outline-danger button-tam'
-                                    >No 😞</button>
+                                    >No</button>
                                 </div>
                                 <div className='ocultarOpciones' hidden={elegido.segundo ? false : true}>
-                                    <h4>Opcion ya seleccionada</h4>
                                 </div>
                             </div>
                         </div>
@@ -113,17 +112,16 @@ const Chat = () => {
                                             value='color1'
                                             type='button'
                                             className='btn btn-outline-success button-tam'
-                                        >Si 👍🏻</button>
+                                        >Si</button>
                                         <button
                                             onClick={opcionElegida}
                                             name='tercero'
                                             value='color3'
                                             type='button'
                                             className='btn btn-outline-danger button-tam'
-                                        >No 👎🏻</button>
+                                        >No</button>
                                     </div>
                                     <div className='ocultarOpciones' hidden={elegido.tercero ? false : true}>
-                                        <h4>Opcion ya seleccionada</h4>
                                     </div>
                                 </div>
                             </div>
