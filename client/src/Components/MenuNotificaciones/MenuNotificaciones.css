@@ -1,0 +1,20 @@
+.containerMenuRiego {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 5px 0px;
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+}
+
+.containerMenuRiego button {
+    border: none;
+    cursor: pointer;
+    background-color: green;
+    opacity: .8;
+    border-radius: 5px;
+}
+
+.containerMenuRiego p {
+    margin: 0;
+}

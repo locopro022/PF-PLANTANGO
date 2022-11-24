@@ -8,10 +8,9 @@ const CartasVivero = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const arrayVivero = useSelector((state) => state.arrayVivero);
-
+  console.log("ARRRAY", arrayVivero)
   useEffect(() => {
     dispatch(traerProductos());
-    console.log("VIVERO PRODUCTOS:", arrayVivero);
   }, []);
 
   return (
@@ -20,16 +19,17 @@ const CartasVivero = (props) => {
         return (
           <div
             key={index}
-            className="cardContainerVivero estilos"
+            className="cardContainerVivero"
             onClick={() => navigate(`/vivero/${produc.codProd}`)}
           >
-            <p style={{ textAlign: "center" }}>{produc.nameProd}</p>
             <img src={produc.imageProd} alt="img" className="imgVivero" />
+            <h5 className="price">{`$${parseInt(produc.precio)}`}</h5>
             <p className="nameProduc" style={{ textAlign: "center" }}>
               {produc.nameProd}
             </p>
-            <h5 className="price">{`$${parseInt(produc.precio)}`}</h5>
-            <h5 className="cardcomprar">Ver mas</h5>
+            <h5 className="cardcomprar"></h5>
+            <h6 className="vermas">Ver mas</h6>
+            <h6 className="stock">{`Stock actual / ${produc.stockActual}`}</h6>
           </div>
         );
       })}
