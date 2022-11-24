@@ -2,13 +2,42 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./index.css";
-import { addFav } from "../../redux/actions";
+import { addFav, editPlantforLike } from "../../redux/actions";
+
 const Cartas = (props) => {
   const user = useSelector((e) => e.user);
+  const favorites = useSelector((e) => e.favoritos);
   const dispatch = useDispatch();
-  function addfav(e, item) {
+
+  function addfav(e, item, user) {
     e.preventDefault();
-    dispatch(addFav(user.id, item.id));
+    if (!user) {
+      alert("Debes Iniciar sesion para usar Favoritos :)");
+    }
+    if (user) {
+      dispatch(addFav(user.idUser, item.id));
+      dispatch(
+        editPlantforLike({
+          codPlant: item.id,
+          namePlant: item.nombre,
+          descripPlant: item.descripcion,
+          tipo: item.caracteristica,
+          imagePlant: item.img,
+          likes: item.likes + 1,
+        })
+      ).then(props.aux("like"));
+    }
+  }
+  function onOf(id){
+    if(favorites.legth){
+      console.log("transicion", favorites)
+      if(favorites.includes(e=>e.codPlant === id)){
+        return true
+      }else{
+        return false
+      }
+    }
+    console.log("transicionFail", favorites)
   }
   return (
     <div className="contenedorCartasFavoritos">
@@ -55,9 +84,10 @@ const Cartas = (props) => {
                 {item.precio && (
                   <p className="cuerpo-precio">${item.precio / 100}</p>
                 )}
+                <p>{item.likes}</p>
                 <button
-                  className="favOFF"
-                  onClick={(e) => addfav(e, item)}
+                  className={onOf(item.id)?"favON":"favOFF"}
+                  onClick={(e) => addfav(e, item, user)}
                 />
               </div>
             </div>
@@ -70,3 +100,6 @@ const Cartas = (props) => {
 };
 
 export default Cartas;
+// user && favorites.includes((e) => e.codPlant === item.id)
+//                       ? "favON"
+//                       :

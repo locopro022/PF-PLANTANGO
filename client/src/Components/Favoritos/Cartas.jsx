@@ -8,8 +8,8 @@ const CartasFavoritos = ({ items }) => {
   const dispatch = useDispatch();
   async function eliminarFav(e, items) {
     e.preventDefault();
-    await dispatch(deleteFav(user.id, items.codPlant));
-    await dispatch(getFav(user.id));
+    await dispatch(deleteFav(user.idUser, items.codPlant));
+    await dispatch(getFav(user.idUser));
   }
   return (
 

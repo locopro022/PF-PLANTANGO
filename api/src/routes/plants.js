@@ -87,13 +87,18 @@ router.post("/creacion", async (req, res) => {
 
 router.put("/", async (req, res) => {
   const { body } = req;
+  const {r} = req.query;
   try {
     const plant = await Plants.findByPk(body.codPlant);
     await plant.set({
       ...body,
     });
     await plant.save();
-
+    if(r === "all"){
+      const resAlt = await Plants.findAll();
+      return res.status(201).json(resAlt);
+    }
+    
     res.status(201).json(plant);
   } catch (e) {
     console.log(e);

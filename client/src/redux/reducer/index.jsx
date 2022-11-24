@@ -31,6 +31,7 @@ import {
   SELECT_DETAIL_DAILY,
   DELETE_DAILY_USER,
   CREATE_DAILY_USER,
+  EDIT_LIKE_PLANT,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -48,7 +49,13 @@ const initialState = {
   nombre: "perfil",
   favoritos: [],
   diario: [],
-  diarioDetail:{title:"",cont:"",codDaily:"",updatedAt:"",hiden:false},
+  diarioDetail: {
+    title: "",
+    cont: "",
+    codDaily: "",
+    updatedAt: "",
+    hiden: false,
+  },
   user: {},
   usuarios: [],
   producto: {},
@@ -183,11 +190,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         arrayHuerta: action.payload,
       };
-      case GET_SEARCH_VIVERO:
-        return {
-          ...state,
-          arrayVivero: action.payload,
-        };
+    case GET_SEARCH_VIVERO:
+      return {
+        ...state,
+        arrayVivero: action.payload,
+      };
     case GET_ALL_FAVORITES:
       return {
         ...state,
@@ -237,25 +244,30 @@ const rootReducer = (state = initialState, action) => {
         diario: action.payload,
       };
     case SELECT_DETAIL_DAILY:
-      return{
+      return {
         ...state,
         diarioDetail: action.payload,
       };
     case DELETE_DAILY_USER:
-      return{
+      return {
         ...state,
-        diario: action.payload
-      }
+        diario: action.payload,
+      };
     case EDIT_DAILY_USER:
       return {
         ...state,
         diario: action.payload,
       };
-    case CREATE_DAILY_USER:
-      return{
+    case EDIT_LIKE_PLANT:
+      return {
         ...state,
-        diario: action.payload
-      }
+        arrayVivero: action.payload,
+      };
+    case CREATE_DAILY_USER:
+      return {
+        ...state,
+        diario: action.payload,
+      };
 
     default:
       return state;

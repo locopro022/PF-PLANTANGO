@@ -4,6 +4,7 @@ const plantaACarta = ({
   descripPlant,
   tipo,
   imagePlant,
+  likes
 }) => ({
   id: codPlant,
   nombre: namePlant,
@@ -11,6 +12,7 @@ const plantaACarta = ({
   caracteristica: tipo,
   img: imagePlant,
   descripcion: descripPlant,
+  likes
 });
 
 const plantaADetalle = ({
@@ -24,12 +26,14 @@ const plantaADetalle = ({
   clima,
   toxicidad,
   statePlant,
+  likes,
   imagePlant,
 }) => ({
   title: namePlant.split(",")[0],
   subtitle: namePlant.split(",").slice(1),
   img: imagePlant,
   description: descripPlant,
+  likes,
   caracteristics: [
     { type: "localizacion", value: localizacion.join(", ") },
     { type: "luz", value: luz.join(", ") },
