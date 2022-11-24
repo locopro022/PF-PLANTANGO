@@ -25,6 +25,24 @@
   background-size: contain;
   border-style: none;
 }
+.favON {
+  background-image: url("../../img/estrellaON.png");
+  min-width: 38px;
+  max-width: 38px;
+  min-height: 38px;
+  max-height: 38px;
+  background-size: contain;
+  border-style: none;
+}
+.favON:hover {
+  background-image: url("../../img/estrellaoff.png");
+  min-width: 38px;
+  max-width: 38px;
+  min-height: 38px;
+  max-height: 38px;
+  background-size: contain;
+  border-style: none;
+}
 
 .cardCartaFav {
   max-width: 500px;
