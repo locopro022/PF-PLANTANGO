@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './chat.css'
 import groot from '../../img/plantago.png'
+import carrito from '../../img/carrito-de-compras.png'
+import lavanda from '../../img/lavanda.png'
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Chat = () => {
@@ -53,7 +55,7 @@ const Chat = () => {
 
     return (
         <div className='containerChat'>
-            <h1 className='tituloChat'>Encontra los mejores productos para tus plantas en plantango</h1>
+            <h1 className='tituloChat'>La mejor información de plantas en toda la Argentina</h1>
             <div className='containerPreguntas'>
                 {
                     pregunta.primer
@@ -72,12 +74,12 @@ const Chat = () => {
                                         name='segundo'
                                         value='color1'
                                         type='button'
-                                        className='btn btn-outline-success button-tam'
+                                        className='button-tam'
                                     >Si</button>
                                     <button
                                         onClick={() => navigate("/home")}
                                         type='button'
-                                        className='btn btn-outline-danger button-tam'
+                                        className='button-tam'
                                     >No</button>
                                 </div>
                                 <div className='ocultarOpciones' hidden={elegido.segundo ? false : true}>
@@ -99,8 +101,8 @@ const Chat = () => {
                             ?
                             <div className='containerOpcion'>
                                 <div className='containerGrootH'>
-                                    <img src={groot} alt='groot' className='imgGroot' />
                                     <div className='containerText'>
+                                        <img src={groot} alt='groot' className='imgGroot' />
                                         <h6>Quieres registrate en nuestra pagina?</h6>
                                     </div>
                                 </div>
@@ -111,14 +113,14 @@ const Chat = () => {
                                             name='tercero'
                                             value='color1'
                                             type='button'
-                                            className='btn btn-outline-success button-tam'
+                                            className='button-tam'
                                         >Si</button>
                                         <button
                                             onClick={opcionElegida}
                                             name='tercero'
                                             value='color3'
                                             type='button'
-                                            className='btn btn-outline-danger button-tam'
+                                            className='button-tam'
                                         >No</button>
                                     </div>
                                     <div className='ocultarOpciones' hidden={elegido.tercero ? false : true}>
@@ -142,8 +144,8 @@ const Chat = () => {
                             ?
                             <div className='containerOpcion'>
                                 <div className='containerGrootH'>
-                                    <img src={groot} alt='groot' className='imgGroot' />
                                     <div className='containerText'>
+                                        <img src={groot} alt='groot' className='imgGroot' />
                                         <h6>Que apartado te gustaria visitar primero?</h6>
                                     </div>
                                 </div>
@@ -154,15 +156,19 @@ const Chat = () => {
                                             name='tercero'
                                             value='color1'
                                             type='button'
-                                            className='btn btn-outline-success button-tam'
-                                        >Comprar en el vivero 🛒</button>
+                                            className='button-tam'
+                                        >Vivero
+                                            <img src={carrito} alt='carrito' className='carritoLa' />
+                                        </button>
                                         <button
                                             onClick={() => navigate('/huerta')}
                                             name='tercero'
                                             value='color2'
                                             type='button'
-                                            className='btn btn-outline-success button-tam'
-                                        >Investigar en la huerta 🌱</button>
+                                            className='button-tam'
+                                        >Huerta
+                                            <img src={lavanda} alt='lavanda' className='carritoLa' />
+                                        </button>
                                     </div>
                                 </div>
                             </div>
