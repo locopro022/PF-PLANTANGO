@@ -40,10 +40,10 @@ const Vivero = () => {
 
     if (cambioProducto === "like") {
       setCP("");
+      dispatch(getFav(user.idUser));
     }
     if (user) {
       dispatch(getFav(user.idUser));
-      console.log({m:"UHuerta" ,s:user.idUser})
     }
     dispatch(getHuerta({ page, filter }));
   }, [filtros, cambioProducto,user, page, dispatch]);

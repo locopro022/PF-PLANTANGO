@@ -1,15 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteFav, getFav } from "../../redux/actions";
+import { deleteFav, editPlantforLike, getFav } from "../../redux/actions";
 import "./Favoritos.css";
 
 const CartasFavoritos = ({ items }) => {
   const user = useSelector((e) => e.user);
   const dispatch = useDispatch();
-  async function eliminarFav(e, items) {
+  function eliminarFav(e, items) {
     e.preventDefault();
-    await dispatch(deleteFav(user.idUser, items.codPlant));
-    await dispatch(getFav(user.idUser));
+    dispatch(deleteFav(user.idUser, items.codPlant));
+    dispatch(editPlantforLike({
+      codPlant: items.codPlant,
+      namePlant: items.namePlant,
+      descripPlant: items.descripPlant,
+      tipo: items.tipo,
+      imagePlant: items.imagePlant,
+      likes: items.likes - 1,
+    }))
+    dispatch(getFav(user.idUser));
   }
   return (
 
