@@ -28,8 +28,8 @@ import UsuariosInfo from "./Components/UsuariosInfo/UsuarioInfo";
 import DetailVivero from './Components/DetailVivero'
 import Vivero from './Components/Vivero'
 import Diario from "./Components/Diario/Index.jsx"
-import CreditCardForm from "./Components/PasarelaPago";
-import Pagos from "./Components/PasarelaPago/Pagos";
+import SuccessPago from "./Components/PasarelaPago/SuccessPago";
+import CancelPago from "./Components/PasarelaPago/CancelPago";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,9 +75,9 @@ function App() {
             <Route path="/ajustes" element={<Ajustes />} />
             <Route path="/favoritos" element={<Favoritos />} />
             <Route path="/recordatorio" element={<Diario />} />
-            <Route path="/ajustes/administrar" element={<UsuariosInfo />} />
-            <Route path="/payment" element={<CreditCardForm />} />
-            <Route path="/pagos" element={<Pagos />} />
+            <Route path="/recordatorio" element={<Diario />} />
+            <Route path="/success" element={<SuccessPago />} />
+            <Route path="/cancel" element={<CancelPago />} />
           </Routes>
           <Footer />
         </div>
