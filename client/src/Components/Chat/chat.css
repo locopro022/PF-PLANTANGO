@@ -7,25 +7,6 @@
     position: relative;
 }
 
-.containerChat h1 {
-    font-weight: 500;
-    position: absolute;
-    bottom: 80%;
-    animation: abajoArriba 3s ease-in-out;
-}
-
-@keyframes abajoArriba {
-    0% {
-        filter: opacity(0%);
-        bottom: 60%;
-    }
-
-    100% {
-        filter: opacity(100%);
-        bottom: 80%;
-    }
-}
-
 .imgGroot {
     width: 80px;
     height: 80px;
@@ -80,7 +61,24 @@
 }
 
 .tituloChat {
+    font-weight: 500;
+    position: absolute;
+    bottom: 70%;
+    animation: abajoArriba 3s ease-in-out;
     text-align: center;
+}
+
+
+@keyframes abajoArriba {
+    0% {
+        filter: opacity(0%);
+        bottom: 60%;
+    }
+
+    100% {
+        filter: opacity(100%);
+        bottom: 70%;
+    }
 }
 
 .containerGrootH {
