@@ -62,7 +62,7 @@ const CartasFavoritos = ({ items }) => {
           {items.precio && (
             <p className="cuerpo-precio">${items.precio / 100}</p>
           )}
-          <button className="favOFF" onClick={(e) => eliminarFav(e, items)} />
+          <button className="favON" onClick={(e) => eliminarFav(e, items)} />
         </div>
       </div>
   );
