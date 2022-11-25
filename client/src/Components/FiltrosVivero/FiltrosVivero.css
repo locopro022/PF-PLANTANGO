@@ -1,12 +1,15 @@
 .containerBarra {
-  border: 1px solid #ddd;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  width: 14rem;
+  width: 95vw;
+  display: flex;
+  justify-content: space-around;
   height: fit-content;
-  margin-left: 10px;
   position: relative;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .spanFiltros {
@@ -37,10 +40,16 @@
 }
 
 .containerFiltrosVivero {
-  width: 12rem;
-  margin-top: 10px;
-  margin-left: 10px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: space-between;
+}
+
+.containerFiltrosVivero p {
+  margin: 0;
+  padding: 0;
 }
 
 .optionSelec {
@@ -49,54 +58,8 @@
   overflow: hidden;
 }
 
-.optionSelec::after {
-  content: "";
-  width: 40%;
-  height: 2px;
-  position: absolute;
-  bottom: 0;
-  left: -100%;
-  background-image: linear-gradient(
-    to right,
-    #bafd4e,
-    #79f952,
-    #53f65b,
-    #54f35c,
-    #54f090,
-    #56ed9a,
-    #56efb4,
-    #4ceec5
-  );
-  transition: 0.5s ease-in-out all;
-}
-
-.optionSelec:hover::after {
-  left: 0;
-}
-
 .elegi {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-}
-
-.elegi::after {
-  content: "";
-  width: 40%;
-  height: 2px;
-  position: absolute;
-  bottom: 0;
-  left: 0%;
-  background-image: linear-gradient(
-    to right,
-    #bafd4e,
-    #79f952,
-    #53f65b,
-    #54f35c,
-    #54f090,
-    #56ed9a,
-    #56efb4,
-    #4ceec5
-  );
-  transition: 0.5s ease-in-out all;
 }

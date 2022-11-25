@@ -1,11 +1,20 @@
 .containerGlobalVivero {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+}
+
+.backgroundGlobal {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 4%, rgba(209, 218, 188, 1) 80%);
 }
 
 .containerCartasSearch {
-    width: 80vw;
-    border: 1px solid #ddd;
+    width: 95vw;
     margin-right: 10px;
+}
+
+.containerSearch {
+    margin-bottom: 5px;
 }

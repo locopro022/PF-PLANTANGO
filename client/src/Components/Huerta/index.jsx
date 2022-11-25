@@ -2,7 +2,12 @@ import Cartas from "../Cartas";
 import Filtros from "../Filtros";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../Pagination";
-import { getHuerta, setFiltrosHuerta, setPagHuerta } from "../../redux/actions";
+import {
+  getFav,
+  getHuerta,
+  setFiltrosHuerta,
+  setPagHuerta,
+} from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { plantaACarta } from "../../redux/utils";
 import AlPrincipio from "../AlPrincipio";
@@ -16,29 +21,32 @@ const Vivero = () => {
   const page = useSelector((state) => state.pagHuerta);
   const productos = useSelector((state) => state.arrayHuerta);
   const dispatch = useDispatch();
+  const user = useSelector((e) => e.user);
+  const [cambioProducto, setCP] = useState("");
 
-
-  
   useEffect(() => {
     let filter = {};
 
-    
-    
     for (let item of filtros) {
       let slice = item.options.some(({ checked }) => checked)
         ? {
-            [item.filter]: item.options
-              .filter(({ checked }) => checked)
-              .map(({ value }) => value),
-          }
+          [item.filter]: item.options
+            .filter(({ checked }) => checked)
+            .map(({ value }) => value),
+        }
         : {};
       filter = { ...filter, ...slice };
     }
 
-
-    
+    if (cambioProducto === "like") {
+      setCP("");
+      dispatch(getFav(user.idUser));
+    }
+    if (user) {
+      dispatch(getFav(user.idUser));
+    }
     dispatch(getHuerta({ page, filter }));
-  }, [filtros, page, dispatch]);
+  }, [filtros, cambioProducto, user, page, dispatch]);
 
   useEffect(() => {
     setIniciarPagina(false);
@@ -55,26 +63,28 @@ const Vivero = () => {
     <>
       {!iniciarPagina ? (
         <>
-          {iniciarPagina || productos.results?.length <= 6 ? (
-            <AlPrincipio />
-          ) : null}
-          <div className="container-fluid">
-            <div className="alto-row">
-              <div className="row alto-row">
-                <div className="col-2">
+          <AlPrincipio />
+          <div className="">
+            <SearchBarHuerta />
+          </div>
+          <div className="containerHuerta">
+            <div className="">
+              <div className="">
+                <div className="">
                   <Filtros filtros={filtros} apply={applyFilters} />
                 </div>
                 {/* El que tenga muchisimas ganas, le pone estilos. */}
-                <div className="col">
-                  <div className="container-fluid">
-                    <SearchBarHuerta />
-                  </div>
+                <div className="">
+                  <Cartas
+                    items={productos.results?.map(plantaACarta)}
+                    aux={setCP}
+                    auxd={cambioProducto}
+                  />
                   <Pagination
                     max={productos.page_count}
                     curr={productos.page}
                     apply={applyPage}
                   />
-                  <Cartas items={productos.results?.map(plantaACarta)} />
                 </div>
               </div>
             </div>

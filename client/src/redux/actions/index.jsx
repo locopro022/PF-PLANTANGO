@@ -9,6 +9,7 @@ export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
 export const GET_ARRAY_PRODUCTS = "GET_ARRAY_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
+export const EDIT_LIKE_PLANT = "EDIT_LIKE_PLANT"
 
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
@@ -165,6 +166,9 @@ export const urlPlantaCreada = (url) => (dispatch) => {
   return dispatch({ type: URL, payload: url });
 };
 
+export function editPlantforLike(obj){
+  return dispatch => axios.put(`${API_URL}/plants`, obj).then(res=>res.data).then(payload=> dispatch({type:EDIT_LIKE_PLANT, payload}))
+}
 export const activaciones = (nombre) => (dispatch) => {
   return dispatch({ type: ACTIVAR, payload: nombre });
 };

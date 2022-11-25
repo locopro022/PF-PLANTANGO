@@ -16,8 +16,29 @@
   background-size: contain;
   border-style: none;
 }
+
 .favOFF:hover {
   background-image: url("../../img/estrellaON.png");
+  min-width: 38px;
+  max-width: 38px;
+  min-height: 38px;
+  max-height: 38px;
+  background-size: contain;
+  border-style: none;
+}
+
+.favON {
+  background-image: url("../../img/estrellaON.png");
+  min-width: 38px;
+  max-width: 38px;
+  min-height: 38px;
+  max-height: 38px;
+  background-size: contain;
+  border-style: none;
+}
+
+.favON:hover {
+  background-image: url("../../img/estrellaoff.png");
   min-width: 38px;
   max-width: 38px;
   min-height: 38px;
@@ -34,4 +55,5 @@
   margin: 30px;
   border-style: solid;
   border-width: 1px;
+  position: relative;
 }

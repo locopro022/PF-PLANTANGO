@@ -1,13 +1,14 @@
 import "./Filtros.css";
+import Loading from '../Loading'
 
 const Filtros = (props) => {
   const cambio = (e) => {
     const selected = {
       type: e.target.name,
-      value: e.target.id,
-      checked: e.target.checked,
+      value: e.target.value,
+      checked: true,
     };
-
+    console.log("SELECT", selected)
     props.apply(selected);
   };
   const borrar = (e) => {
@@ -16,48 +17,48 @@ const Filtros = (props) => {
   };
 
   return (
-    <div>
-      <div className="container">
-        <form
-          onSubmit={borrar}
-          className="container-fluid altoCard"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <h3 className=" text-left filtroText">Filtros</h3>
-          <button
-            type="submit"
-            className="btn btn-outline-danger d-inline mb-3"
-          >
-            Borrar Filtros
-          </button>
-          {props.filtros?.map &&
-            props.filtros.map(({ filter, options }, index) => (
-              <div className="container-fluid mb-2" key={index}>
-                <h5>{filter}</h5>
-                {options.map &&
-                  options.map(({ value, checked }, index) => (
-                    <div className="form-group form-check ml-4" key={index}>
-                      <input
-                        type="checkbox"
-                        className="form-check-input"
-                        onChange={cambio}
-                        checked={checked}
-                        name={filter}
-                        id={value}
-                      />
-                      <label className="form-check-label" htmlFor={value}>
-                        {value}
-                      </label>
+    <>
+      {
+        props?.filtros?.length
+          ?
+          <div>
+            <div className="containerFiltrosHuer">
+              <form
+                onSubmit={borrar}
+                className="altoCard"
+              >
+                {props.filtros?.map &&
+                  props.filtros.map(({ filter, options }, index) => (
+                    <div className="container-fluid mb-2" key={index}>
+                      <h5 className='tituloHuer'>{filter === "localizacion" ? "ubicacion" : filter}</h5>
+                      <select onChange={cambio} name={filter} className='selectHuer'>
+                        {options.map &&
+                          options.map(({ value, checked }, index) => (
+                            <option
+                              type="checkbox"
+                              className="form-check-input"
+                              checked={checked}
+                              value={value}
+                            >
+                              {value}
+                            </option>
+                          ))}
+                      </select>
                     </div>
                   ))}
-              </div>
-            ))}
-        </form>
-      </div>
-    </div>
+                <button
+                  type="submit"
+                  className="botonBorrarHuer"
+                >
+                  Borrar filtros
+                </button>
+              </form>
+            </div>
+          </div>
+          :
+          <Loading />
+      }
+    </>
   );
 };
 

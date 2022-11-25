@@ -23,8 +23,8 @@ function Diario() {
   });
   const diarioDetail = useSelector((e) => e.diarioDetail);
   useEffect(() => {
-    if (user.id && !diario.length && stdD === "") {
-      dispatch(getDaily(user.id));
+    if (user && !diario.length && stdD === "") {
+      dispatch(getDaily(user.idUser));
       setStdD("hay");
     }
     setInput({ title: diarioDetail.title, body: diarioDetail.cont });
@@ -34,7 +34,7 @@ function Diario() {
   }
 
   function createADaily() {
-    dispatch(createDaily(user.id));
+    dispatch(createDaily(user.idUser));
   }
   async function hidenONDetail(e, el) {
     el.preventDefault();
@@ -50,7 +50,7 @@ function Diario() {
   }
   async function deleteListDaily(e, el) {
     el.preventDefault();
-    dispatch(deleteDailyUser(user.id, e.codDaily));
+    dispatch(deleteDailyUser(user.idUser, e.codDaily));
   }
   let mostrarBTN = diario.length && diarioDetail.hiden === false? (
     <button onClick={createADaily}>+</button>
@@ -94,7 +94,7 @@ function Diario() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    await dispatch(editDaily(user.id, diarioDetail.codDaily, input));
+    await dispatch(editDaily(user.idUser, diarioDetail.codDaily, input));
     await dispatch(
       selectDetailDaily({
         title: "",
@@ -104,7 +104,7 @@ function Diario() {
         hiden: false,
       })
     );
-    await dispatch(getDaily(user.id));
+    await dispatch(getDaily(user.idUser));
   }
   function handleInputChange(e) {
     setInput({
