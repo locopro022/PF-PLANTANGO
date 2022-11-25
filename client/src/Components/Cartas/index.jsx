@@ -58,7 +58,7 @@ const Cartas = (props) => {
       <div className="cartas">
         {props.items?.map &&
           props.items.map((item, i) => (
-            <div className="carta">
+            <div className="cartaHuer">
               {item.img && (
                 <Link
                   key={i}
@@ -78,9 +78,6 @@ const Cartas = (props) => {
                   {item.nombre && (
                     <h3 className="cuerpoTitulo">{item.nombre}</h3>
                   )}
-                  {item.subnombre && (
-                    <h4 className="cuerpoSubtitulo">{item.subnombre}</h4>
-                  )}
                   {item.caracteristica && (
                     <p className="cuerpoCaracteristica">
                       {item.caracteristica.map((caracteristica, i) => (
@@ -97,7 +94,7 @@ const Cartas = (props) => {
                 {item.precio && (
                   <p className="cuerpo-precio">${item.precio / 100}</p>
                 )}
-                <p className="numeroP">{item.likes}</p>
+                <p className="numeroP">{`Likes ${item.likes}`}</p>
                 <button
                   className={
                     favorites.length ? onOf(item, favorites) : "favOFF"

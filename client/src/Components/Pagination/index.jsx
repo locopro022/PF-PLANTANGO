@@ -2,7 +2,7 @@ import React from "react";
 
 const Pagination = (props) => {
 
-  
+
   const max = props.max;
   const curr = props.curr;
   const apply = props.apply;
@@ -14,7 +14,7 @@ const Pagination = (props) => {
     next: () => (curr < max - 1 ? parseInt(curr) + 1 : parseInt(curr)),
   };
 
- 
+
 
   console.log(max, curr);
 
@@ -36,14 +36,12 @@ const Pagination = (props) => {
           <button
             onClick={() => move("prev")}
             style={{
-              background:
-                "linear-gradient(to right, #bafd4e, #79f952, #53f65b, #54f35c, #54f090, #56ed9a, #56efb4, #4ceec5)",
+              outline: "1px solid #90b89b",
               marginRight: "10px",
               border: "none",
               width: "35px",
               borderRadius: "5px",
               cursor: "pointer",
-              outline: "none",
             }}
           >
             {"<"}
@@ -55,23 +53,21 @@ const Pagination = (props) => {
                 style={
                   parseInt(curr) === index
                     ? {
-                        background:
-                          "linear-gradient(to right, #bafd4e, #79f952, #53f65b, #54f35c, #54f090, #56ed9a, #56efb4, #4ceec5)",
-                        margin: "0px 10px",
-                        border: "none",
-                        width: "35px",
-                        borderRadius: "5px",
-                        cursor: "pointer",
-                        outline: "none",
-                      }
+                      outline: "2px solid #90b89b",
+                      margin: "0px 10px",
+                      border: "none",
+                      width: "35px",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }
                     : {
-                        margin: "0px 10px",
-                        border: "none",
-                        width: "35px",
-                        borderRadius: "5px",
-                        cursor: "pointer",
-                        outline: "none",
-                      }
+                      margin: "0px 10px",
+                      border: "none",
+                      width: "35px",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                      outline: "none",
+                    }
                 }
               >
                 {index + 1}
@@ -80,14 +76,12 @@ const Pagination = (props) => {
           <button
             onClick={() => move("next")}
             style={{
-              background:
-                "linear-gradient(to right, #bafd4e, #79f952, #53f65b, #54f35c, #54f090, #56ed9a, #56efb4, #4ceec5)",
+              outline: "1px solid #90b89b",
               marginLeft: "10px",
               border: "none",
               width: "35px",
               borderRadius: "5px",
               cursor: "pointer",
-              outline: "none",
             }}
           >
             {">"}

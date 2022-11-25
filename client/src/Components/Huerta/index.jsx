@@ -63,29 +63,27 @@ const Vivero = () => {
     <>
       {!iniciarPagina ? (
         <>
-          {iniciarPagina || productos.results?.length <= 6 ? (
-            <AlPrincipio />
-          ) : null}
+          <AlPrincipio />
+          <div className="">
+            <SearchBarHuerta />
+          </div>
           <div className="containerHuerta">
             <div className="">
               <div className="">
-                <div className="">
-                  <SearchBarHuerta />
-                </div>
                 <div className="">
                   <Filtros filtros={filtros} apply={applyFilters} />
                 </div>
                 {/* El que tenga muchisimas ganas, le pone estilos. */}
                 <div className="">
-                  <Pagination
-                    max={productos.page_count}
-                    curr={productos.page}
-                    apply={applyPage}
-                  />
                   <Cartas
                     items={productos.results?.map(plantaACarta)}
                     aux={setCP}
                     auxd={cambioProducto}
+                  />
+                  <Pagination
+                    max={productos.page_count}
+                    curr={productos.page}
+                    apply={applyPage}
                   />
                 </div>
               </div>
