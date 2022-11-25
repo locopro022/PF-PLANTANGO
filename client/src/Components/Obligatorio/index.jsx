@@ -61,10 +61,18 @@ export const Obligatorio = (props) => {
                         </div>
                     </div>
                 )
+            case "8":
+                return (
+                    <div className='altoCase2'>
+                        <div className='warning'>
+                            Se quiere un clima.
+                        </div>
+                    </div>
+                )
             default:
                 return (
                     <div className='altoCase'>
-                        <div className='warning'>
+                        <div className='warning2'>
                             Se requiere un nombre.
                         </div>
                     </div>

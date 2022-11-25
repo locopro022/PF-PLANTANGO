@@ -1,8 +1,27 @@
 .warning {
-    border: 1px solid red;
     color: red;
+    position: absolute;
+    left: 25%;
+    animation: deCostado 3s ease-in-out;
+}
+
+@keyframes deCostado {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 25%;
+    }
 }
 
 .altoCase {
     height: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.warning2 {
+    border: 1px solid transparent;
+    color: transparent;
 }
