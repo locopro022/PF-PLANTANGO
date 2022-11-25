@@ -167,7 +167,9 @@ export const urlPlantaCreada = (url) => (dispatch) => {
 };
 
 export function editPlantforLike(obj){
-  return dispatch => axios.put(`${API_URL}/plants`, obj).then(res=>res.data).then(payload=> dispatch({type:EDIT_LIKE_PLANT, payload}))
+  return dispatch => axios.put(`/plants`, obj)
+  .then(res=>res.data)
+  .then(payload=> dispatch({type:EDIT_LIKE_PLANT, payload}))
 }
 export const activaciones = (nombre) => (dispatch) => {
   return dispatch({ type: ACTIVAR, payload: nombre });
@@ -213,7 +215,7 @@ export function getDaily(idU) {
       .then((payload) => dispatch({ type: GET_DAILY_USER, payload }));
 }
 export function createDaily(idU) {
-  return dispatch => axios.post(`http://localhost:3001/user/daily/${idU}`).then((res) => res.data)
+  return dispatch => axios.post(`/user/daily/${idU}`).then((res) => res.data)
   .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
 }
 export function selectDetailDaily(obj) {
@@ -222,18 +224,14 @@ export function selectDetailDaily(obj) {
 export function editDaily(idU, idD, obj) {
   return (dispatch) =>
     axios
-<<<<<<< HEAD
-      .put(`/user/daily/${idU}`, obj)
-=======
-      .put(`http://localhost:3001/user/daily/${idU}/${idD}`, obj)
->>>>>>> 85c226ee63bc4006d7d3b4a9ec7cef84dafb4513
+      .put(`/user/daily/${idU}/${idD}`, obj)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: EDIT_DAILY_USER, payload }));
 }
 export function deleteDailyUser(idU, idD) {
   return (dispatch) =>
     axios
-      .delete(`http://localhost:3001/user/daily/${idU}/${idD}`)
+      .delete(`/user/daily/${idU}/${idD}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: DELETE_DAILY_USER, payload }));
 }
@@ -327,6 +325,3 @@ export const getCategoriasVivero = () => {
       });
   };
 };
-// export const setFiltrosHuerta = (e) => (dispatch) => {
-//   dispatch({ type: SET_FILTROS_HUERTA, payload: e });
-// };

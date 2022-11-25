@@ -51,7 +51,7 @@ export function DashboardAdmin() {
           </div>
         </div>
         <div class="rowInf">
-          <div class="col-lg-6 col-md-12">
+          {/* <div class="col-lg-6 col-md-12">
             <div class="card card-tasks">
               <div class="card-header ">
                 <h6 class="title d-inline">Tareas(1)</h6>
@@ -82,7 +82,7 @@ export function DashboardAdmin() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div class="col-lg-6 col-md-12">
             <div class="card ">
               <div class="card-header">
@@ -119,7 +119,119 @@ export function DashboardAdmin() {
                            Oud-Turnhout
                          </td> */}
                         <td class="text-center">
-                          $3,738
+                          $580
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Agustin Millan
+                        </td>
+                        <td>
+                          0002
+                        </td>
+                        {/*  <td>
+                           Oud-Turnhout
+                         </td> */}
+                        <td class="text-center">
+                          $650
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Agustin Blanco
+                        </td>
+                        <td>
+                          0003
+                        </td>
+                        {/*  <td>
+                           Oud-Turnhout
+                         </td> */}
+                        <td class="text-center">
+                          $450
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Leandro Florentin
+                        </td>
+                        <td>
+                          0004
+                        </td>
+                        {/*  <td>
+                           Oud-Turnhout
+                         </td> */}
+                        <td class="text-center">
+                          $790
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Exequiel Martino
+                        </td>
+                        <td>
+                          0005
+                        </td>
+                        {/*  <td>
+                           Oud-Turnhout
+                         </td> */}
+                        <td class="text-center">
+                          $350
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Armando Paredes
+                        </td>
+                        <td>
+                          0006
+                        </td>
+                        {/*  <td>
+                           Oud-Turnhout
+                         </td> */}
+                        <td class="text-center">
+                          $400
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Akiles Bailo
+                        </td>
+                        <td>
+                          0007
+                        </td>
+                        {/*  <td>
+                           Oud-Turnhout
+                         </td> */}
+                        <td class="text-center">
+                          $200
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Mariano Zegarra
+                        </td>
+                        <td>
+                          0008
+                        </td>
+                        {/*  <td>
+                           Oud-Turnhout
+                         </td> */}
+                        <td class="text-center">
+                          $830
                         </td>
                       </tr>
                     </tbody>
