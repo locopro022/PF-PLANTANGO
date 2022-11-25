@@ -18,8 +18,10 @@ module.exports = (sequelize) => {
       cont: {
         type: DataTypes.TEXT,
       },
-      user: DataTypes.STRING,
-      allowNull: false,
+      user: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       freezeTableName: true,

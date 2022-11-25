@@ -1,8 +1,7 @@
 const { Router } = require("express");
-const { Plants } = require("../db");
+const { Plants , Comentarios} = require("../db");
 const { plantTypes: types } = require("../controller/plantTypes.js");
 const { Op } = require("sequelize");
-const Comentarios = require("../db");
 
 const router = Router();
 
@@ -135,8 +134,16 @@ router.get("/coment/:idP", async(req,res)=>{
     res.status(400).send({error})
   }
 })
-router.post("/coment/:idU", async(req,res)=>{
-  
+router.post("/coment", async(req,res)=>{
+  const {user, idP} = req.body;
+  // try {
+    if(!user || !idP)return res.status(400).send({message:"Debes enviar la id del Usuario"})
+    await Comentarios.create({...req.body,idC:idP});
+    const comentariosRes = await Comentarios.findAll({where:{idC:idP}}) 
+    return res.status(201).send(comentariosRes)
+  // } catch (error) {
+  //   res.status(400).send({error})
+  // }
 })
 
 module.exports = router;
