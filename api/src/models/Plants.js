@@ -58,6 +58,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      coment:{
+        type: DataTypes.ARRAY(DataTypes.STRING)
+      }
+      ,
       imagePlant: {
         type: DataTypes.TEXT,
         defaultValue:

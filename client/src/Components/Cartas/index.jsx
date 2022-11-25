@@ -11,10 +11,10 @@ const Cartas = (props) => {
 
   function addfav(e, item, user) {
     e.preventDefault();
-    if (!user) {
+    if (!user.idUser) {
       alert("Debes Iniciar sesion para usar Favoritos :)");
     }
-    if (user) {
+    if (user.idUser) {
       if (e.target.className === "favOFF") {
         dispatch(addFav(user.idUser, item.id));
         dispatch(
