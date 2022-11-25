@@ -1,15 +1,15 @@
-.pag{
+.pag {
     display: flex;
-    
-   justify-content: center;
-   padding: 2px;
-    
+
+    justify-content: center;
+    padding: 2px;
+
 
 }
 
-.items{
-    background-color:#90b89b ;
-    color:#5f7264 ;
+.items {
+    background-color: #90b89b;
+    color: #5f7264;
     outline: "none";
     padding-left: 15px;
     padding-right: 15px;
@@ -17,5 +17,9 @@
     margin: 10px 0px;
     border: 1px solid rgb(240, 240, 240);
     border-radius: 5px;
-    
+
+}
+
+.items:focus {
+    outline: none;
 }
