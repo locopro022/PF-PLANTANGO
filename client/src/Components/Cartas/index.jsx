@@ -8,6 +8,7 @@ const Cartas = (props) => {
   const user = useSelector((e) => e.user);
   const favorites = useSelector((e) => e.favoritos);
   const dispatch = useDispatch();
+  console.log("USUARIOS", user)
 
   function addfav(e, item, user) {
     e.preventDefault();
@@ -55,10 +56,9 @@ const Cartas = (props) => {
   return (
     <div className="contenedorCartasFavoritos">
       <div className="cartas">
-        {/* <!-- producto... --> */}
         {props.items?.map &&
           props.items.map((item, i) => (
-            <div className="card carta">
+            <div className="carta">
               {item.img && (
                 <Link
                   key={i}
@@ -76,16 +76,16 @@ const Cartas = (props) => {
               <div className="cuerpo">
                 <div>
                   {item.nombre && (
-                    <h3 className="cuerpo-titulo">{item.nombre}</h3>
+                    <h3 className="cuerpoTitulo">{item.nombre}</h3>
                   )}
                   {item.subnombre && (
-                    <h4 className="cuerpo-subtitulo">{item.subnombre}</h4>
+                    <h4 className="cuerpoSubtitulo">{item.subnombre}</h4>
                   )}
                   {item.caracteristica && (
-                    <p className="cuerpo-caracteristica">
+                    <p className="cuerpoCaracteristica">
                       {item.caracteristica.map((caracteristica, i) => (
                         <span
-                          className="cuerpo-caracteristica-caracteristica"
+                          className="cuerpoCaracteristicaCaracteristica"
                           key={i}
                         >
                           {caracteristica}
@@ -97,7 +97,7 @@ const Cartas = (props) => {
                 {item.precio && (
                   <p className="cuerpo-precio">${item.precio / 100}</p>
                 )}
-                <p>{item.likes}</p>
+                <p className="numeroP">{item.likes}</p>
                 <button
                   className={
                     favorites.length ? onOf(item, favorites) : "favOFF"

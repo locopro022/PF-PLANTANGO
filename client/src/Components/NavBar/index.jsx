@@ -16,7 +16,7 @@ const NavBar = () => {
   const cantidad = useSelector((state) => state.carrito);
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  console.log("cuenta logueada?", isAuthenticated);
+
   return (
     <div className="containerNavBar">
       <div className="containerUl deshabilitadoUl">

@@ -41,14 +41,13 @@ const FiltrosVivero = ({ options, apply }) => {
   return (
     <>
       <div className="containerBarra">
-        <span className="spanFiltros">Filtros</span>
         <div className="containerFiltrosVivero">
-          <p>Categoria</p>
+          <p style={{ fontWeight: '600' }}>Categorias</p>
           {options.codCategoria?.map((option, index) => (
             <div
-              className="form-group form-check optionSelec"
+              className="form-group form-check"
               key={index}
-              style={{ marginLeft: "10px" }}
+              style={{ margin: "0", padding: '0', height: 'auto', display: 'flex', alignItems: 'center' }}
               name={option.descripCategory}
             >
               <label
@@ -71,8 +70,8 @@ const FiltrosVivero = ({ options, apply }) => {
             </div>
           ))}
         </div>
-        <Box sx={{ width: 180, marginLeft: "18px" }}>
-          <label>Precio</label>
+        <Box sx={{ width: 180, marginRight: "80px", textAlign: 'center', display: 'flex' }}>
+          <label style={{ fontWeight: '600', position: 'absolute', left: '65%' }}>Precio</label>
           <Slider
             getAriaLabel={() => "Temperature range"}
             value={value}

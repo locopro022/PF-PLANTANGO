@@ -2,6 +2,11 @@
   height: 2200px;
 }
 
+.containerHuerta {
+  display: flex;
+  flex-direction: column;
+}
+
 .container-fluid {
   height: auto;
 }
