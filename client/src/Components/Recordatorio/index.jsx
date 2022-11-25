@@ -8,6 +8,7 @@ const Recordatorio = () => {
     const dispatch = useDispatch()
     const email = useSelector(state => state.user)
     const arrayRecor = useSelector(state => state.arrayRecor)
+    console.log(email)
 
     const [enviar, setEnviar] = useState({
         usuario: "",
@@ -16,7 +17,7 @@ const Recordatorio = () => {
     const changeValue = (e) => {
         let tiempo = e.target.value.split(":").join("")
         setEnviar({
-            usuario: email.username,
+            usuario: email.email,
             horario: tiempo
         })
     }
@@ -41,7 +42,7 @@ const Recordatorio = () => {
     }
 
     useEffect(() => {
-        dispatch(traerRecordatorios(email.username))
+        dispatch(traerRecordatorios(email.email))
     }, [])
 
     return (
@@ -66,12 +67,12 @@ const Recordatorio = () => {
                                     arrayRecor?.map((ele, index) => {
                                         const hora = ele.horario?.slice(0, 2)
                                         const minutos = ele.horario?.slice(2, 4)
-                                        console.log(minutos)
+                                        console.log("ACA", ele)
                                         return (
                                             <div key={index} className='containerRecor'>
                                                 <p>{ele.usuario}</p>
                                                 <p>{`${hora}:${minutos}`}</p>
-                                                <button onClick={() => recorDelete(ele.horario, ele.usuario)}>x</button>
+                                                <button onClick={() => recorDelete(ele.horario, ele.email)}>x</button>
                                             </div>
                                         )
                                     })

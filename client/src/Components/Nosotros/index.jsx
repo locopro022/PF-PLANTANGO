@@ -24,11 +24,11 @@ const nosotros = [
     github: "https://github.com/AgustinMillan", //aca va tu github
   },
   {
-    name: "Aca va el nombre",
+    name: "Florentín Leandro",
     description: "Esto es una descripcion",
-    picture: null, //url de la imagen
-    linkedin: "https://www.buenosaires.gob.ar/gobierno/ceamse-0", //aca va tu linkedin
-    github: "https://github.com/AgustinMillan", //aca va tu github
+    picture: 'https://avatars.githubusercontent.com/u/102199433?v=4', //url de la imagen
+    linkedin: "https://www.linkedin.com/in/leandro-florentin/", //aca va tu linkedin
+    github: "https://github.com/LeandroFlorentin", //aca va tu github
   },
   {
     name: "Aca va el nombre",
