@@ -2,8 +2,6 @@ import "./Filtros.css";
 
 const Filtros = (props) => {
   const cambio = (e) => {
-    console.log("CHECK", e.target.checked)
-    console.log("NAME", e.target.name)
     const selected = {
       type: e.target.name,
       value: e.target.value,
