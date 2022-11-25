@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { Plants } = require("../db");
 const { plantTypes: types } = require("../controller/plantTypes.js");
 const { Op } = require("sequelize");
+const Comentarios = require("../db");
 
 const router = Router();
 
@@ -120,5 +121,22 @@ router.delete("/:codProd", async (req, res) => {
     res.status(500).json({ error: e });
   }
 });
+
+//RUTA GET COMENTARIOS
+
+router.get("/coment/:idP", async(req,res)=>{
+  const {idP} = req.params;
+  try {
+   if(!idP) return res.status(400).send({message:"Debes enviar la id de la planta"})
+
+   const coments = await findAll({where:{idC:idP}});
+   return res.status(200).send(coments);
+  } catch (error) {
+    res.status(400).send({error})
+  }
+})
+router.post("/coment/:idU", async(req,res)=>{
+  
+})
 
 module.exports = router;

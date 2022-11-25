@@ -8,12 +8,13 @@ const Cartas = (props) => {
   const user = useSelector((e) => e.user);
   const favorites = useSelector((e) => e.favoritos);
   const dispatch = useDispatch();
-  console.log("USUARIOS", user)
+  console.log(user)
 
   function addfav(e, item, user) {
     e.preventDefault();
     if (!user.idUser) {
       alert("Debes Iniciar sesion para usar Favoritos :)");
+      console.log(user)
     }
     if (user.idUser) {
       if (e.target.className === "favOFF") {
@@ -115,6 +116,3 @@ const Cartas = (props) => {
 };
 
 export default Cartas;
-// user && favorites.includes((e) => e.codPlant === item.id)
-//                       ? "favON"
-//                       :

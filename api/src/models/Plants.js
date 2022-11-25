@@ -57,9 +57,6 @@ module.exports = (sequelize) => {
       likes: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
-      },
-      coment:{
-        type: DataTypes.ARRAY(DataTypes.STRING)
       }
       ,
       imagePlant: {
