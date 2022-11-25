@@ -1,9 +1,60 @@
-.altoCard {
-    height: 50px;
-    width: 90vw;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.cotainerFiltrosBtn {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
 }
+
+.altoCard {
+    height: 70px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 95vw;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.tituloHuer {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tituloHuer::first-letter {
+    text-transform: uppercase;
+}
+
+.selectHuer {
+    cursor: pointer;
+    border: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #d8d8ce;
+}
+
+.selectHuer:focus {
+    outline: none;
+}
+
+.botonBorrarHuer {
+    background-color: transparent;
+    width: 100%;
+    border: 1px solid rgb(180, 190, 159, 0.8);
+    box-shadow: 3px 6px 42px 0px rgba(180, 190, 159, 0.6);
+    -webkit-box-shadow: 3px 6px 15px 0px rgba(180, 190, 159, 0.6);
+    -moz-box-shadow: 3px 6px 42px 0px rgba(180, 190, 159, 0.6);
+    cursor: pointer;
+    border-radius: 20px;
+    transition: .5s all;
+}
+
+.botonBorrarHuer:hover {
+    box-shadow: 3px 6px 42px 0px rgba(180, 190, 159, 0.8);
+    -webkit-box-shadow: 3px 6px 15px 0px rgba(180, 190, 159, 0.8);
+    -moz-box-shadow: 3px 6px 42px 0px rgba(180, 190, 159, 0.8);
+}
+
 
 .containerFiltrosHuer {
     display: flex;

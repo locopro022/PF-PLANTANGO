@@ -5,6 +5,8 @@
 .containerHuerta {
   display: flex;
   flex-direction: column;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 4%, rgba(209, 218, 188, 1) 80%);
 }
 
 .container-fluid {

@@ -6,14 +6,15 @@
   cursor: pointer;
 }
 
-.carta {
+.cartaHuer {
   width: 24rem;
   height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   position: relative;
+  background-color: #fff;
   margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 20px;
@@ -22,13 +23,14 @@
 .imagen {
   width: 22rem;
   height: 250px;
+  border-radius: 20px;
   object-fit: cover;
 }
 
 .cuerpoTitulo {
-  margin-top: 15px;
   text-align: center;
   font-size: 20px;
+  margin-bottom: 40px;
 }
 
 .cuerpoSubtitulo {
@@ -38,33 +40,33 @@
 
 .cuerpoCaracteristica {
   position: absolute;
-  left: 0;
-  bottom: 10px;
+  left: 30%;
+  bottom: 0;
 }
 
 .cuerpoCaracteristicaCaracteristica {
   margin-left: 20px;
-  border-bottom: 1px solid blue;
 }
 
 .favOFF {
   position: absolute;
   right: 10px;
-  bottom: 20px;
+  bottom: 15px;
   cursor: pointer;
 }
 
 .favON {
   position: absolute;
   right: 10px;
-  bottom: 20px;
+  bottom: 15px;
   cursor: pointer;
 }
 
 .numeroP {
+  padding-top: 2px;
   position: absolute;
-  bottom: 5px;
-  right: 15%;
-  font-size: 30px;
-  font-weight: 900;
+  top: -2px;
+  right: 10%;
+  font-size: 16px;
+  font-weight: 400;
 }
