@@ -9,6 +9,7 @@ export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
 export const GET_ARRAY_PRODUCTS = "GET_ARRAY_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
+export const EDIT_LIKE_PLANT = "EDIT_LIKE_PLANT"
 
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
@@ -23,6 +24,9 @@ export const ADD_FAVORITES = "ADD_FAVORITES";
 export const GET_USER = "GET_USER";
 export const GET_DAILY_USER = "GET_DAILY_USER";
 export const EDIT_DAILY_USER = "EDIT_DAILY_USER";
+export const DELETE_DAILY_USER = "DELETE_DAILY_USER";
+export const CREATE_DAILY_USER = "CREATE_DAILY_USER";
+export const SELECT_DETAIL_DAILY = "SELECT_DETAIL_DAILY";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const CREATE_ADMIN = "CREATE_ADMIN";
@@ -162,6 +166,11 @@ export const urlPlantaCreada = (url) => (dispatch) => {
   return dispatch({ type: URL, payload: url });
 };
 
+export function editPlantforLike(obj){
+  return dispatch => axios.put(`/plants`, obj)
+  .then(res=>res.data)
+  .then(payload=> dispatch({type:EDIT_LIKE_PLANT, payload}))
+}
 export const activaciones = (nombre) => (dispatch) => {
   return dispatch({ type: ACTIVAR, payload: nombre });
 };
@@ -205,12 +214,26 @@ export function getDaily(idU) {
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_DAILY_USER, payload }));
 }
-export function editDaily(idU, obj) {
+export function createDaily(idU) {
+  return dispatch => axios.post(`/user/daily/${idU}`).then((res) => res.data)
+  .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
+}
+export function selectDetailDaily(obj) {
+  return (dispatch) => dispatch({ type: SELECT_DETAIL_DAILY, payload: obj });
+}
+export function editDaily(idU, idD, obj) {
   return (dispatch) =>
     axios
-      .put(`/user/daily/${idU}`, obj)
+      .put(`/user/daily/${idU}/${idD}`, obj)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: EDIT_DAILY_USER, payload }));
+}
+export function deleteDailyUser(idU, idD) {
+  return (dispatch) =>
+    axios
+      .delete(`/user/daily/${idU}/${idD}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: DELETE_DAILY_USER, payload }));
 }
 export function getUser(user) {
   return (dispatch) =>
@@ -302,6 +325,3 @@ export const getCategoriasVivero = () => {
       });
   };
 };
-// export const setFiltrosHuerta = (e) => (dispatch) => {
-//   dispatch({ type: SET_FILTROS_HUERTA, payload: e });
-// };

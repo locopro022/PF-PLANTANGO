@@ -3,13 +3,18 @@
     margin: auto;
     max-width: 350px;
     display: flex;
+    border: 1px solid #ddd;
+    border-radius: 30px;
 }
 
 .search-button {
     width: 75%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
     background-color: transparent;
-    border: 2px solid whitesmoke;
-    border-radius: 2px;
+    border: 2px solid #ddd;
     border-right: 0px;
     padding: 12px;
     background-color: transparent;
@@ -18,10 +23,13 @@
 }
 
 .search-input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     width: 100%;
     outline: none;
-    border: 2px solid whitesmoke;
-    border-radius: 2px;
+    border: 1px solid #ddd;
     border-right: 0px;
     font-size: "Playfair+Display", serif;
     padding: 12px;
@@ -31,7 +39,7 @@
 
 .search-button {
     width: 70px;
-    background: whitesmoke;
+    background: #ddd;
     color: rgb(39, 72, 57);
     float: right;
     border-left: 0px;

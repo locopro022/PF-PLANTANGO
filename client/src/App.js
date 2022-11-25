@@ -15,7 +15,7 @@ import {
   getTiposHuerta,
   getUser,
   carritoStorage,
-  traerNotificaciones
+  traerNotificaciones,
 } from "./redux/actions";
 import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
@@ -25,10 +25,12 @@ import Favoritos from "./Components/Favoritos";
 import { useAuth0 } from "@auth0/auth0-react";
 import UsuariosInfo from "./Components/UsuariosInfo/UsuarioInfo";
 //import PagoStripe from "./Components/PasarelaPago/Stripe";
-import DetailVivero from './Components/DetailVivero'
-import Vivero from './Components/Vivero'
-import Diario from "./Components/Diario/Index.jsx"
-import CreditCardForm from "./Components/PasarelaPago";
+import DetailVivero from "./Components/DetailVivero";
+import Vivero from "./Components/Vivero";
+import Diario from "./Components/Diario/Index.jsx";
+import SuccessPago from "./Components/PasarelaPago/SuccessPago";
+import CancelPago from "./Components/PasarelaPago/CancelPago";
+import Nosotros from "./Components/Nosotros";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,10 +50,12 @@ function App() {
     if (user) {
       dispatch(getUser(user.email));
     }
-    dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))))
-    dispatch(traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones"))))
+    dispatch(carritoStorage(JSON.parse(localStorage.getItem("carrito"))));
+    dispatch(
+      traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones")))
+    );
   }, [user]);
-  console.log(user)
+  console.log(user);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -74,8 +78,10 @@ function App() {
             <Route path="/ajustes" element={<Ajustes />} />
             <Route path="/favoritos" element={<Favoritos />} />
             <Route path="/recordatorio" element={<Diario />} />
-            <Route path="/ajustes/administrar" element={<UsuariosInfo />} />
-            <Route path="/payment" element={<CreditCardForm />} />
+            <Route path="/recordatorio" element={<Diario />} />
+            <Route path="/success" element={<SuccessPago />} />
+            <Route path="/cancel" element={<CancelPago />} />
+            <Route path="/nosotros" element={<Nosotros />} />
           </Routes>
           <Footer />
         </div>

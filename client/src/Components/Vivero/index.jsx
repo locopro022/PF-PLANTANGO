@@ -45,21 +45,25 @@ const Vivero = () => {
 
   return (
     <>
-      <AlPrincipio />
-      <div>
-        <SearchBarVivero />
-      </div>
-      <div className="container-fluid">
-        <PaginadoVivero
-          enviarPagina={enviarPagina}
-          page={productos.page}
-          max={productos.page_count}
-        />
-      </div>
-      <div className="containerGlobalVivero">
-        <FiltrosVivero options={categorias} apply={apply} />
-        <div className="containerCartasSearch">
-          <CartasVivero />
+      <div className="backgroundGlobal">
+        <AlPrincipio />
+        <div>
+          <div className="containerSearch">
+            <SearchBarVivero />
+          </div>
+          <div className="containerGlobalVivero">
+            <FiltrosVivero options={categorias} apply={apply} />
+            <div className="containerCartasSearch">
+              <CartasVivero />
+            </div>
+            <div className="container-fluid">
+              <PaginadoVivero
+                enviarPagina={enviarPagina}
+                page={productos.page}
+                max={productos.page_count}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
