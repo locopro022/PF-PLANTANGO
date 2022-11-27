@@ -131,7 +131,7 @@ router.get("/coment/:idP", async (req, res) => {
         .status(400)
         .send({ message: "Debes enviar la id de la planta" });
 
-    const coments = await findAll({ where: { idC: idP } });
+    const coments = await Comentarios.findAll({ where: { idC: idP } });
     return res.status(200).send(coments);
   } catch (error) {
     res.status(400).send({ error });
