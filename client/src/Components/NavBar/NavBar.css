@@ -8,10 +8,7 @@
   height: 4rem;
   align-items: center;
   margin-bottom: 1rem;
-  /* border-bottom: solid 1px green; */
   background-color: white;
-  /* box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.2); */
-  overflow-x: hidden;
 }
 
 .containerUl {
@@ -43,15 +40,6 @@
   display: block;
   width: 0%;
   height: 1px;
-  /* background-image: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
   background-color: #90b89b;
   position: absolute;
   left: 0;
@@ -60,15 +48,6 @@
 }
 
 .item:hover {
-  /* background: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
   background-color: #90b89b;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -90,15 +69,6 @@
 .itemActivo {
   cursor: pointer;
   font-size: 16px;
-  /* background: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
   background-color: #90b89b;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -112,15 +82,6 @@
   display: block;
   width: 0%;
   height: 1px;
-  /* background-image: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
   background-color: #90b89b;
   position: absolute;
   left: 0;
@@ -129,15 +90,6 @@
 }
 
 .itemActivo:hover {
-  /* background: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
   background-color: #5f7264;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -164,7 +116,7 @@
   background-color: #fff;
   border: none;
   border-radius: 100px;
-  height: 15px;
+  height: auto;
   width: 45px;
 }
 

@@ -3,6 +3,7 @@ import { Notifications } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import { useSelector, useDispatch } from 'react-redux'
 import { traerNotificaciones, actualizarNotificaciones } from "../../redux/actions";
+import './MenuNotificaciones.css'
 
 //Menu despegable de las notificaciones
 
@@ -40,13 +41,16 @@ const MenuNotificaciones = () => {
             <p className="dropdown-item">No tiene ninguna notificación</p>
           </div>
           :
-          <div className="dropdown-menu" style={{ height: '400px' }}>
+          <div className="dropdown-menu" style={{
+            height: '400px',
+            overflow: 'auto',
+          }}>
             {
               cantidadStorage?.map((noti, index) => {
                 return (
-                  <div key={index} onClick={pararProp}>
-                    <button onClick={() => deleteNoti(noti)} >x</button>
-                    <p className="dropdown-item">{`No olvides el riego de las ${noti.hora}:${noti.minutos}`}</p>
+                  <div key={index} onClick={pararProp} className='containerAlerta'>
+                    <button onClick={() => deleteNoti(noti)} className='btnX' >x</button>
+                    <p className="dropdown-item itemRiego">{`No olvides el riego de las ${noti.hora}:${noti.minutos}`}</p>
                   </div>
                 )
               })

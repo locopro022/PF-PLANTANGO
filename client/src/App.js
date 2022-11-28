@@ -15,7 +15,7 @@ import {
   getTiposHuerta,
   getUser,
   carritoStorage,
-  traerNotificaciones,
+  traerNotificaciones
 } from "./redux/actions";
 import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
@@ -55,7 +55,7 @@ function App() {
       traerNotificaciones(JSON.parse(localStorage.getItem("Notificaciones")))
     );
   }, [user]);
-  console.log(user);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>

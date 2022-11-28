@@ -69,30 +69,41 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { User, DailyUser, Plants, Category, Product, Billing, BillingDetail } =
-  sequelize.models;
+const {
+  User,
+  DailyUser,
+  Comentarios,
+  Plants,
+  Category,
+  Product,
+  Billing,
+  BillingDetail,
+} = sequelize.models;
 
 //Relaciones
 // un usuario - tiene muchos diario
 User.hasMany(DailyUser, { foreignKey: "idUD" });
 DailyUser.belongsTo(User, { foreignKey: "idUD" });
 
+//una planta - tiene muchos comentarios
+Plants.hasMany(Comentarios, { foreignKey: "idC" });
+Comentarios.belongsTo(Plants, { foreignKey: "idC" });
+
 //una Categoria - tiene muchos productos
 Category.hasMany(Product, { foreignKey: "codCategory" });
 Product.belongsTo(Category, { foreignKey: "codCategory" });
 
 //un usuario - tiene muchas facturas
-Billing.belongsTo(User, { foreignKey: 'idUser' })
-User.hasMany(Billing, { foreignKey: 'idUser' });
+Billing.belongsTo(User, { foreignKey: "idUser" });
+User.hasMany(Billing, { foreignKey: "idUser" });
 
 //una factura - tiene muchos detalle-factura (Productos)
-BillingDetail.belongsTo(Billing, { foreignKey: 'codBilling' })
-Billing.hasMany(BillingDetail, { foreignKey: 'codBilling' });
+BillingDetail.belongsTo(Billing, { foreignKey: "codBilling" });
+Billing.hasMany(BillingDetail, { foreignKey: "codBilling" });
 
 //un producto - tiene muchos detalles-factura
-BillingDetail.belongsTo(Product, { foreignKey: 'codProd' });
-Product.hasMany(BillingDetail, { foreignKey: 'codProd' })
-
+BillingDetail.belongsTo(Product, { foreignKey: "codProd" });
+Product.hasMany(BillingDetail, { foreignKey: "codProd" });
 
 //muchos usuarios - muchos favoritos
 
