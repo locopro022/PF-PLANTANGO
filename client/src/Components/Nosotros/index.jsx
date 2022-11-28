@@ -5,7 +5,7 @@ import { LinkedIn, GitHub } from "@mui/icons-material";
 export default function () {
 
   return (
-    <div className="content">
+    <div className="contentAbout">
       <div className="card1">
       <div class="a-box" >
         <div class="img-container">
