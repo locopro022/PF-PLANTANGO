@@ -9,7 +9,7 @@ export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
 export const GET_ARRAY_PRODUCTS = "GET_ARRAY_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
-export const EDIT_LIKE_PLANT = "EDIT_LIKE_PLANT"
+export const EDIT_LIKE_PLANT = "EDIT_LIKE_PLANT";
 
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
@@ -37,7 +37,7 @@ export const TRAER_RECOR = "TRAER_RECOR";
 
 export const GET_BILL = "GET_BILL";
 
-export const GET_COMENTS_OF_PLANTS = "GET_COMENTS_OF_PLANTS"
+export const GET_COMENTS_OF_PLANTS = "GET_COMENTS_OF_PLANTS";
 
 export const SET_PAGE_VIVERO = "SET_PAGE_VIVERO";
 export const SET_FILTROS_VIVERO = "SET_FILTROS_VIVERO";
@@ -45,6 +45,15 @@ export const GET_CATEGORIAS_VIVERO = "GET_CATEGORIAS_VIVERO";
 export const GET_SEARCH_VIVERO = "GET_SEARCH_VIVERO";
 
 const API_URL = "http://localhost:3001";
+
+export const huertaComments = async (config = {}) => {
+  const { data } = await axios({
+    ...config,
+    url: `${API_URL}/plants/coment/${config.url || ""}`,
+  });
+
+  return data;
+};
 
 export const eliminandoRecor = (horario, usuario) => async (dispatch) => {
   const respuesta = await axios.delete(
@@ -181,8 +190,12 @@ export const urlPlantaCreada = (url) => (dispatch) => {
   return dispatch({ type: URL, payload: url });
 };
 
-export function editPlantforLike(obj){
-  return dispatch => axios.put(`${API_URL}/plants`, obj).then(res=>res.data).then(payload=> dispatch({type:EDIT_LIKE_PLANT, payload}))
+export function editPlantforLike(obj) {
+  return (dispatch) =>
+    axios
+      .put(`${API_URL}/plants`, obj)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: EDIT_LIKE_PLANT, payload }));
 }
 export const activaciones = (nombre) => (dispatch) => {
   return dispatch({ type: ACTIVAR, payload: nombre });
@@ -240,8 +253,11 @@ export function getDaily(idU) {
       .then((payload) => dispatch({ type: GET_DAILY_USER, payload }));
 }
 export function createDaily(idU) {
-  return dispatch => axios.post(`${API_URL}/user/daily/${idU}`).then((res) => res.data)
-  .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
+  return (dispatch) =>
+    axios
+      .post(`${API_URL}/user/daily/${idU}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
 }
 export function selectDetailDaily(obj) {
   return (dispatch) => dispatch({ type: SELECT_DETAIL_DAILY, payload: obj });
@@ -351,12 +367,13 @@ export const getCategoriasVivero = () => {
   };
 };
 
-export function getComentPlant(idP){
-  return dispatch=>{
-    axios.get(`${API_URL}/plants/coment/${idP}`)
-    .then(res=> res.data)
-    .then(payload=> dispatch({type: GET_COMENTS_OF_PLANTS, payload}))
-  }
+export function getComentPlant(idP) {
+  return (dispatch) => {
+    axios
+      .get(`${API_URL}/plants/coment/${idP}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: GET_COMENTS_OF_PLANTS, payload }));
+  };
 }
 // export const setFiltrosHuerta = (e) => (dispatch) => {
 //   dispatch({ type: SET_FILTROS_HUERTA, payload: e });

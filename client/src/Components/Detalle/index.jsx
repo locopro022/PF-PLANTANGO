@@ -11,18 +11,12 @@ const Detalle = (props) => {
   const [item, setItem] = useState({});
   const { id } = useParams();
   const dispatch = useDispatch();
-  const coments = useSelector((e) => e.comentariosP);
-
-  //   faltaria agregar "breadcrumbs" para volver hacia atras , etc
 
   useEffect(() => {
     props.from(id).then((plant) => {
       setItem(plant);
-      if (!coments.length) {
-        dispatch(getComentPlant(id));
-      }
     });
-  }, [coments]);
+  }, []);
   return (
     <>
       <div className="container-fluid media altoMedia">
@@ -65,8 +59,8 @@ const Detalle = (props) => {
             : null}
         </div>
       </div>
-      <div className="container_coments_gnrl_plant">
-        <ComentPlant coments={coments}/>
+      <div className="">
+        <ComentPlant />
       </div>
     </>
   );

@@ -131,7 +131,10 @@ router.get("/coment/:idP", async (req, res) => {
         .status(400)
         .send({ message: "Debes enviar la id de la planta" });
 
-    const coments = await Comentarios.findAll({ where: { idC: idP } });
+    const coments = await Comentarios.findAll({
+      where: { idC: idP },
+      order: [["createdAt", "DESC"]],
+    });
     return res.status(200).send(coments);
   } catch (error) {
     res.status(400).send({ error });
@@ -143,16 +146,18 @@ router.post("/coment", async (req, res) => {
     if (!user || !idP)
       return res.status(400).send({ error: "Debes enviar la id del Usuario" });
     await Comentarios.create({ ...req.body, idC: idP });
-    const comentariosRes = await Comentarios.findAll({ where: { idC: idP } });
+    const comentariosRes = await Comentarios.findAll({
+      where: { idC: idP },
+    });
     return res.status(201).send(comentariosRes);
   } catch (error) {
     res.status(400).send({ error });
   }
 });
 router.put("/coment", async (req, res) => {
-  const { codComent, title, cont, user, idC } = req.body;
+  const { codComent, title, cont, idC } = req.body;
   try {
-    if (codComent && user && idC) {
+    if (codComent && idC) {
       await Comentarios.update({ title, cont }, { where: { codComent } });
       const cr = await Comentarios.findAll({ where: { idC } });
       return res.status(201).send(cr);
@@ -165,20 +170,20 @@ router.put("/coment", async (req, res) => {
     res.status(400).send(error);
   }
 });
-router.delete("/coment/:idC", async(req,res)=>{
-  const {idC} = req.params;
+router.delete("/coment/:idC", async (req, res) => {
+  const { idC } = req.params;
   try {
     if (!idC) {
-      return res.status(400).send({error:"Hace falta la id de comentario"})
-    }else{
-      const auxD=await Comentarios.findByPk(idC)
-      await Comentarios.destroy({where:{codComent:idC}});
-      const resp = await Comentarios.findAll({where:{idC:auxD.idC}})
+      return res.status(400).send({ error: "Hace falta la id de comentario" });
+    } else {
+      const auxD = await Comentarios.findByPk(idC);
+      await Comentarios.destroy({ where: { codComent: idC } });
+      const resp = await Comentarios.findAll({ where: { idC: auxD.idC } });
       return res.status(200).send(resp);
     }
   } catch (error) {
-    res.status(400).send(error)
+    res.status(400).send(error);
   }
-})
+});
 
 module.exports = router;
