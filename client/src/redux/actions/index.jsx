@@ -45,6 +45,7 @@ export const GET_SEARCH_VIVERO = "GET_SEARCH_VIVERO";
 const API_URL = "http://localhost:3001";
 
 export const eliminandoRecor = (horario, usuario) => async (dispatch) => {
+  console.log(usuario)
   const respuesta = await axios.delete(
     `${API_URL}/user/delete?horario=${horario}&&usuario=${usuario}`
   );
