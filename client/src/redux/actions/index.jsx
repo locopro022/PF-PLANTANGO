@@ -67,11 +67,10 @@ export const traerRecordatorios = (usuario) => async (dispatch) => {
 };
 
 export const getSearchVivero = (search) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     try {
-      fetch(`/products?search=${search}`)
-        .then((response) => response.json())
-        .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data }));
+      await axios.get(`/products?search=${search}`)
+        .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data.data }));
     } catch (error) {
       throw new Error("Error en actions  -> getSearch");
     }
@@ -93,7 +92,7 @@ export const recordatorio = (hora) => async (dispatch) => {
     .post(`/user/recordatorio?usuario=${usuario}&&horario=${horario}`)
     .then(async (res) => {
       const respuesta = await axios.get(
-        `$/user/noti/notifi?usuario=${usuario}`
+        `/user/noti/notifi?usuario=${usuario}`
       );
       const NotiStora =
         JSON.parse(localStorage.getItem("Notificaciones")) === null
@@ -185,11 +184,10 @@ export const activaciones = (nombre) => (dispatch) => {
 };
 
 export const getSearch = (search) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     try {
-      fetch(`/plants?search=${search}`)
-        .then((response) => response.json())
-        .then((data) => dispatch({ type: GET_SEARCH, payload: data }));
+      await axios.get(`/plants?search=${search}`)
+        .then((data) => dispatch({ type: GET_SEARCH, payload: data.data }));
     } catch (error) {
       throw new Error("Error en actions  -> getSearch");
     }
@@ -256,11 +254,10 @@ export function getUser(user) {
 }
 
 export const getAllUsers = () => {
-  return (dispatch) => {
-    fetch(`/user/all`)
-      .then((response) => response.json())
+  return async (dispatch) => {
+    await axios.get(`/user/all`)
       .then((data) => {
-        dispatch({ type: GET_ALL_USERS, payload: data });
+        dispatch({ type: GET_ALL_USERS, payload: data.data });
       });
   };
 };
