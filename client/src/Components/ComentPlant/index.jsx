@@ -18,7 +18,7 @@ function Coment(props) {
   }
 
   const edit = () => {
-    setInput({ title: props.title, cont: props.title });
+    setInput({ title: props.title, cont: props.cont });
     setEditing(true);
   };
 
