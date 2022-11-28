@@ -179,31 +179,17 @@
     position: relative;
 }
 
-.containerElem::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 80%;
-    height: 2px;
-    background-color: #07f362;
-}
-
 .btnElem {
     font-size: 14px;
     cursor: pointer;
     border: none;
     line-height: 0rem;
     margin-left: 10px;
-    background-image: linear-gradient(to left,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5);
+    background-color: rgb(180, 190, 159, 0.8);
     height: 20px;
     border-radius: 5px;
+}
+
+.btnElem:focus {
+    outline: none;
 }
