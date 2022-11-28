@@ -93,7 +93,7 @@ export const recordatorio = (hora) => async (dispatch) => {
     .post(`/user/recordatorio?usuario=${usuario}&&horario=${horario}`)
     .then(async (res) => {
       const respuesta = await axios.get(
-        `/user/noti/notifi?usuario=${usuario}`
+        `$/user/noti/notifi?usuario=${usuario}`
       );
       const NotiStora =
         JSON.parse(localStorage.getItem("Notificaciones")) === null
@@ -112,11 +112,7 @@ export const recordatorio = (hora) => async (dispatch) => {
             JSON.parse(localStorage.getItem("Notificaciones"))
           )
       );
-
-      const response2 = await axios.get(
-        `/user/traer/notifi/noti?usuario=${usuario}`
-      );
-      return dispatch({ type: TRAER_RECOR, payload: response2.data });
+      return dispatch({ type: TRAER_RECOR, payload: respuesta.data });
     });
 };
 
@@ -234,6 +230,7 @@ export function createDaily(idU) {
       .then((res) => res.data)
       .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
 }
+
 export function selectDetailDaily(obj) {
   return (dispatch) => dispatch({ type: SELECT_DETAIL_DAILY, payload: obj });
 }
@@ -278,6 +275,7 @@ export const addAdmin = (newAdmin) => {
 export const deleteUser = (idUser) => {
   return async function (dispatch) {
     const user = await axios.delete(`/user/${idUser}`);
+
     return dispatch({
       type: DELETE_USER,
       payload: user.data,
@@ -287,17 +285,17 @@ export const deleteUser = (idUser) => {
 
 export const traerProductos =
   (e = null) =>
-  async (dispatch) => {
-    /* console.log("action traer productos", e); */
-    return await axios
-      .get("/products", { params: e })
-      .then((productos) => {
-        dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
-      });
-  };
+    async (dispatch) => {
+      console.log("action traer productos", e);
+      return await axios
+        .get(`/products`, { params: e })
+        .then((productos) => {
+          dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
+        });
+    };
 
 export const setFiltrosProductos = (e) => (dispatch) => {
-  /* console.log("asi llega el filtro a la action", e); */
+  console.log("asi llega el filtro a la action", e);
   dispatch({ type: SET_FILTROS_VIVERO, payload: e });
 };
 
@@ -327,16 +325,15 @@ export const getBill = () => async (dispatch) => {
     kpi4.data.datos,
     kpi5.data.datos,
   ];
-  /* console.log(kpiTotal, "kpiTotal"); */
+  console.log(kpiTotal, "kpiTotal");
   return dispatch({ type: GET_BILL, payload: kpiTotal });
 };
 
 export const getCategoriasVivero = () => {
-  return (dispatch) => {
-    fetch(`/products/types`)
-      .then((response) => response.json())
+  return async (dispatch) => {
+    await axios.get(`/products/types`)
       .then((data) => {
-        dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data });
+        dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data.data });
       });
   };
 };
@@ -347,5 +344,5 @@ export function getComentPlant(idP) {
       .get(`/plants/coment/${idP}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_COMENTS_OF_PLANTS, payload }));
-  };
-}
+  }
+};
