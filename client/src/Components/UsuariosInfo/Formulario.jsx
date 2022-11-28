@@ -23,7 +23,6 @@ const Formulario = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.formulario}>
       <div>
-        {/* <label>Nombre</label><br/> */}
         <input
           className={s.input}
           placeholder="Nombre"
@@ -42,9 +41,7 @@ const Formulario = () => {
           </span>
         )}
       </div>
-
       <div>
-        {/* <label>UserName</label><br/> */}
         <input
           className={s.input}
           placeholder="UserName"
@@ -63,9 +60,7 @@ const Formulario = () => {
           </span>
         )}
       </div>
-
       <div>
-        {/* <label>Email</label><br/> */}
         <input
           className={s.input}
           placeholder="Email"
@@ -87,9 +82,7 @@ const Formulario = () => {
           </span>
         )}
       </div>
-
       <div>
-        {/* <label>Apellido</label><br/> */}
         <input
           className={s.input}
           placeholder="Apellido"
@@ -103,9 +96,7 @@ const Formulario = () => {
           </span>
         )}
       </div>
-
       <div>
-        {/* <label>Contraseña</label><br/> */}
         <input
           className={s.input}
           placeholder="Contraseña"
@@ -119,9 +110,7 @@ const Formulario = () => {
           </span>
         )}
       </div>
-
       <div>
-        {/* <label>Repetir contraseña</label><br/> */}
         <input
           className={s.input}
           placeholder="Repetir contraseña"
@@ -144,16 +133,12 @@ const Formulario = () => {
           </span>
         )}
       </div>
-
       <div>
-        {/* <label>Telefono</label><br/> */}
         <input
           placeholder="Telefono"
           className={s.input} type="tel" name="nPhone" />
       </div>
-      <br/>
-
-      {/* <button className="btn btn-success">Agregar administrador</button> */}
+      <br />
       <div>
         <button className={s.btn}>Agregar administrador</button>
       </div>

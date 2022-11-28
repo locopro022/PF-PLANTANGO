@@ -37,7 +37,7 @@ function Coment(props) {
   };
 
   return (
-    <div className="coment_wrapper">
+    <div className="card coment_wrapper">
       {editing ? (
         <div>
           <form onSubmit={save}>
@@ -52,16 +52,25 @@ function Coment(props) {
               </strong>
             </h3>
             <h5>
-              <input
+              <textarea
                 type="text"
                 name="cont"
+                className="coment_cont"
                 onChange={onChange}
                 value={input.cont}
               />
             </h5>
-            <input type="submit" value="save" />
+            <div className="coment_button">
+              <input
+                className="btn btn-success m-1"
+                type="submit"
+                value="Guardar"
+              />
+              <button className="btn btn-warning m-1" onClick={discard}>
+                Descartar
+              </button>
+            </div>
           </form>
-          <button onClick={discard}>discard</button>
         </div>
       ) : (
         <div>
@@ -70,9 +79,13 @@ function Coment(props) {
           </h3>
           <h5>{props.cont}</h5>
           {isFromUser && (
-            <div>
-              <button onClick={edit}>edit</button>
-              <button onClick={deleteComment}>delete</button>
+            <div className="coment_button">
+              <button className="btn btn-success m-1" onClick={edit}>
+                Editar
+              </button>
+              <button className="btn btn-danger m-1" onClick={deleteComment}>
+                Borrar
+              </button>
             </div>
           )}
         </div>
@@ -128,34 +141,43 @@ function ComentPlant(props) {
     postComment();
   }
   return (
-    <div>
+    <div className="card container-fluid">
       {user ? (
-        <form className="coment_wrapper" onSubmit={onSubmit}>
+        <>
           <h2>Deja tu comentario</h2>
-          <h3>
+          <form className="card coment_wrapper" onSubmit={onSubmit}>
+            <h3>
+              <input
+                type="text"
+                value={input.title}
+                name="title"
+                onChange={onChange}
+                required
+              />
+            </h3>
+            <h5>
+              <textarea
+                type=""
+                value={input.cont}
+                name="cont"
+                onChange={onChange}
+                className="coment_cont"
+                required
+              />
+            </h5>
             <input
-              type="text"
-              value={input.title}
-              name="title"
-              onChange={onChange}
-              required
+              type="submit"
+              value="comentar"
+              className="coment_button btn btn-success"
             />
-          </h3>
-          <h5>
-            <input
-              type=""
-              value={input.cont}
-              name="cont"
-              onChange={onChange}
-              required
-            />
-          </h5>
-          <input type="submit" value={"comentar"} />
-        </form>
+          </form>
+        </>
       ) : (
-        <div>
-          Tenes que estar logeado para comentar.
-          <button onClick={loginWithPopup}>LogIn </button>
+        <div className="text-center">
+          <p>Tenes que estar logeado para comentar.</p>
+          <button className="btn btn-success" onClick={loginWithPopup}>
+            LogIn{" "}
+          </button>
         </div>
       )}
       {coments.map((coment, index) => (
