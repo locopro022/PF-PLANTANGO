@@ -32,6 +32,7 @@ import {
   DELETE_DAILY_USER,
   CREATE_DAILY_USER,
   EDIT_LIKE_PLANT,
+  GET_COMENTS_OF_PLANTS,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -63,6 +64,7 @@ const initialState = {
   bill: [],
   notificaciones: [],
   arrayRecor: [],
+  comentariosP:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -268,7 +270,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         diario: action.payload,
       };
-
+    case GET_COMENTS_OF_PLANTS:
+      return{
+        ...state, comentariosP: action.payload
+      };
     default:
       return state;
   }

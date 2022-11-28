@@ -57,7 +57,8 @@ module.exports = (sequelize) => {
       likes: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
-      },
+      }
+      ,
       imagePlant: {
         type: DataTypes.TEXT,
         defaultValue:
