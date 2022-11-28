@@ -7,7 +7,7 @@ const HomeApartadoVivero = () => {
     <>
       <div className="containerGlobalCardHomeApartado">
         <h1 style={{ textAlign: "center" }}>
-          Mira nuestros productos en el vivero
+         Productos destacados
         </h1>
         <div className="containerCardHomeApartado">
           <ContainerCardHome />

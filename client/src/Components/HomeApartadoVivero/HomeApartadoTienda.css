@@ -1,11 +1,17 @@
 .containerGlobalCardHomeApartado {
-    width: 80vw;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .containerCardHomeApartado {
     height: auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
     flex-wrap: wrap;
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-around;
+    
 }
