@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./FiltrosVivero.css";
 import { Slider, Box } from "@mui/material";
+import { useEffect } from "react";
 
 const FiltrosVivero = ({ options, apply }) => {
   const [filter, setFilter] = useState({
@@ -38,6 +39,25 @@ const FiltrosVivero = ({ options, apply }) => {
     }
   };
 
+
+  const [checkedState, setCheckedState] = useState([false, false, false, false]);
+
+  // const handleChange = (position) => {
+  //   const updatedCheckedState = checkedState.map((item, index) =>
+  //   index === position ? !item : item
+  //   );
+
+  // setCheckedState(updatedCheckedState);
+  // window.localStorage.setItem('checkbox', updatedCheckedState);
+  // }
+
+  // const [aux, setAux] = useState(false)
+  // const handleChange = (position, id) => {
+  //   position + 1 === id ? (
+      
+  //   ) : ()
+  // }
+
   return (
     <>
       <div className="containerBarra">
@@ -64,6 +84,8 @@ const FiltrosVivero = ({ options, apply }) => {
                   onClick={category}
                   id={option.codCategory}
                   style={{ cursor: "pointer" }}
+                  checked={checkedState[index]}
+                  onChange={() => handleChange(index)}
                 />
                 {option.descripCategory}
               </label>
