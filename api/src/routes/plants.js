@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Plants } = require("../db");
+const { Plants, Comentarios } = require("../db");
 const { plantTypes: types } = require("../controller/plantTypes.js");
 const { Op } = require("sequelize");
 
@@ -87,18 +87,18 @@ router.post("/creacion", async (req, res) => {
 
 router.put("/", async (req, res) => {
   const { body } = req;
-  const {r} = req.query;
+  const { r } = req.query;
   try {
     const plant = await Plants.findByPk(body.codPlant);
     await plant.set({
       ...body,
     });
     await plant.save();
-    if(r === "all"){
+    if (r === "all") {
       const resAlt = await Plants.findAll();
       return res.status(201).json(resAlt);
     }
-    
+
     res.status(201).json(plant);
   } catch (e) {
     console.log(e);
@@ -118,6 +118,71 @@ router.delete("/:codProd", async (req, res) => {
   } catch (e) {
     console.log(e);
     res.status(500).json({ error: e });
+  }
+});
+
+//RUTA GET COMENTARIOS
+
+router.get("/coment/:idP", async (req, res) => {
+  const { idP } = req.params;
+  try {
+    if (!idP)
+      return res
+        .status(400)
+        .send({ message: "Debes enviar la id de la planta" });
+
+    const coments = await Comentarios.findAll({
+      where: { idC: idP },
+      order: [["createdAt", "DESC"]],
+    });
+    return res.status(200).send(coments);
+  } catch (error) {
+    res.status(400).send({ error });
+  }
+});
+router.post("/coment", async (req, res) => {
+  const { user, idP } = req.body;
+  try {
+    if (!user || !idP)
+      return res.status(400).send({ error: "Debes enviar la id del Usuario" });
+    await Comentarios.create({ ...req.body, idC: idP });
+    const comentariosRes = await Comentarios.findAll({
+      where: { idC: idP },
+    });
+    return res.status(201).send(comentariosRes);
+  } catch (error) {
+    res.status(400).send({ error });
+  }
+});
+router.put("/coment", async (req, res) => {
+  const { codComent, title, cont, idC } = req.body;
+  try {
+    if (codComent && idC) {
+      await Comentarios.update({ title, cont }, { where: { codComent } });
+      const cr = await Comentarios.findAll({ where: { idC } });
+      return res.status(201).send(cr);
+    } else {
+      return res
+        .status(400)
+        .send({ error: "Hacen falta parametros obligatorios" });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+router.delete("/coment/:idC", async (req, res) => {
+  const { idC } = req.params;
+  try {
+    if (!idC) {
+      return res.status(400).send({ error: "Hace falta la id de comentario" });
+    } else {
+      const auxD = await Comentarios.findByPk(idC);
+      await Comentarios.destroy({ where: { codComent: idC } });
+      const resp = await Comentarios.findAll({ where: { idC: auxD.idC } });
+      return res.status(200).send(resp);
+    }
+  } catch (error) {
+    res.status(400).send(error);
   }
 });
 

@@ -9,7 +9,7 @@ export const GET_ARRAY_HUERTA = "GET_ARRAY_HUERTA";
 export const GET_ARRAY_PRODUCTS = "GET_ARRAY_PRODUCTS";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const GET_ARRAY_CARRITO = "GET_ARRAY_CARRITO";
-export const EDIT_LIKE_PLANT = "EDIT_LIKE_PLANT"
+export const EDIT_LIKE_PLANT = "EDIT_LIKE_PLANT";
 
 export const GET_ARRAY_VIVERO = "GET_ARRAY_VIVERO";
 export const GET_ARRAY_NOTIFICACIONES = "GET_ARRAY_NOTIFICACIONES";
@@ -37,12 +37,23 @@ export const TRAER_RECOR = "TRAER_RECOR";
 
 export const GET_BILL = "GET_BILL";
 
+export const GET_COMENTS_OF_PLANTS = "GET_COMENTS_OF_PLANTS";
+
 export const SET_PAGE_VIVERO = "SET_PAGE_VIVERO";
 export const SET_FILTROS_VIVERO = "SET_FILTROS_VIVERO";
 export const GET_CATEGORIAS_VIVERO = "GET_CATEGORIAS_VIVERO";
 export const GET_SEARCH_VIVERO = "GET_SEARCH_VIVERO";
 
 const API_URL = "http://localhost:3001";
+
+export const huertaComments = async (config = {}) => {
+  const { data } = await axios({
+    ...config,
+    url: `${API_URL}/plants/coment/${config.url || ""}`,
+  });
+
+  return data;
+};
 
 export const eliminandoRecor = (horario, usuario) => async (dispatch) => {
   const respuesta = await axios.delete(
@@ -61,7 +72,7 @@ export const traerRecordatorios = (usuario) => async (dispatch) => {
 export const getSearchVivero = (search) => {
   return (dispatch) => {
     try {
-      fetch(`http://localhost:3001/products?search=${search}`)
+      fetch(`${API_URL}/products?search=${search}`)
         .then((response) => response.json())
         .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data }));
     } catch (error) {
@@ -179,8 +190,12 @@ export const urlPlantaCreada = (url) => (dispatch) => {
   return dispatch({ type: URL, payload: url });
 };
 
-export function editPlantforLike(obj){
-  return dispatch => axios.put(`${API_URL}/plants`, obj).then(res=>res.data).then(payload=> dispatch({type:EDIT_LIKE_PLANT, payload}))
+export function editPlantforLike(obj) {
+  return (dispatch) =>
+    axios
+      .put(`${API_URL}/plants`, obj)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: EDIT_LIKE_PLANT, payload }));
 }
 export const activaciones = (nombre) => (dispatch) => {
   return dispatch({ type: ACTIVAR, payload: nombre });
@@ -189,7 +204,7 @@ export const activaciones = (nombre) => (dispatch) => {
 export const getSearch = (search) => {
   return (dispatch) => {
     try {
-      fetch(`http://localhost:3001/plants?search=${search}`)
+      fetch(`${API_URL}/plants?search=${search}`)
         .then((response) => response.json())
         .then((data) => dispatch({ type: GET_SEARCH, payload: data }));
     } catch (error) {
@@ -212,7 +227,7 @@ export const getSearch = (search) => {
 
 export function getFav(idU) {
   return (dispatch) =>
-    axios(`http://localhost:3001/user/favorites/${idU}`)
+    axios(`${API_URL}/user/favorites/${idU}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_ALL_FAVORITES, payload }));
 }
@@ -220,26 +235,29 @@ export function getFav(idU) {
 export function deleteFav(idU, idP) {
   return (dispatch) =>
     axios
-      .delete(`http://localhost:3001/user/favorites/delete/${idU}/${idP}`)
+      .delete(`${API_URL}/user/favorites/delete/${idU}/${idP}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: DELETE_FAVORITES, payload }));
 }
 export function addFav(idU, idP) {
   return (dispatch) =>
     axios
-      .post(`http://localhost:3001/user/favorites/${idU}/${idP}`)
+      .post(`${API_URL}/user/favorites/${idU}/${idP}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: ADD_FAVORITES, payload }));
 }
 export function getDaily(idU) {
   return (dispatch) =>
-    axios(`http://localhost:3001/user/daily/${idU}`)
+    axios(`${API_URL}/user/daily/${idU}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_DAILY_USER, payload }));
 }
 export function createDaily(idU) {
-  return dispatch => axios.post(`http://localhost:3001/user/daily/${idU}`).then((res) => res.data)
-  .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
+  return (dispatch) =>
+    axios
+      .post(`${API_URL}/user/daily/${idU}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
 }
 export function selectDetailDaily(obj) {
   return (dispatch) => dispatch({ type: SELECT_DETAIL_DAILY, payload: obj });
@@ -247,27 +265,27 @@ export function selectDetailDaily(obj) {
 export function editDaily(idU, idD, obj) {
   return (dispatch) =>
     axios
-      .put(`http://localhost:3001/user/daily/${idU}/${idD}`, obj)
+      .put(`${API_URL}/user/daily/${idU}/${idD}`, obj)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: EDIT_DAILY_USER, payload }));
 }
 export function deleteDailyUser(idU, idD) {
   return (dispatch) =>
     axios
-      .delete(`http://localhost:3001/user/daily/${idU}/${idD}`)
+      .delete(`${API_URL}/user/daily/${idU}/${idD}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: DELETE_DAILY_USER, payload }));
 }
 export function getUser(user) {
   return (dispatch) =>
-    axios(`http://localhost:3001/user/${user}`)
+    axios(`${API_URL}/user/${user}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_USER, payload }));
 }
 
 export const getAllUsers = () => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/user/all`)
+    fetch(`${API_URL}/user/all`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_ALL_USERS, payload: data });
@@ -277,14 +295,14 @@ export const getAllUsers = () => {
 
 export const addAdmin = (newAdmin) => {
   return async (dispatch) => {
-    await axios.post(`http://localhost:3001/user/admin`, newAdmin);
+    await axios.post(`${API_URL}/user/admin`, newAdmin);
     return dispatch({ type: CREATE_ADMIN });
   };
 };
 
 export const deleteUser = (idUser) => {
   return async function (dispatch) {
-    const user = await axios.delete(`http://localhost:3001/user/${idUser}`);
+    const user = await axios.delete(`${API_URL}/user/${idUser}`);
 
     return dispatch({
       type: DELETE_USER,
@@ -298,7 +316,7 @@ export const traerProductos =
   async (dispatch) => {
     console.log("action traer productos", e);
     return await axios
-      .get("http://localhost:3001/products", { params: e })
+      .get(`${API_URL}/products`, { params: e })
       .then((productos) => {
         dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
       });
@@ -311,7 +329,7 @@ export const setFiltrosProductos = (e) => (dispatch) => {
 
 export const traerProducto = (id) => async (dispatch) => {
   return await axios
-    .get(`http://localhost:3001/products/${id}`)
+    .get(`${API_URL}/products/${id}`)
     .then((producto) =>
       dispatch({ type: GET_PRODUCT, payload: producto.data })
     );
@@ -322,11 +340,11 @@ export const clearProducto = () => (dispatch) => {
 };
 
 export const getBill = () => async (dispatch) => {
-  const kpi1 = await axios(`http://localhost:3001/bill/getKPI1`);
-  const kpi2 = await axios(`http://localhost:3001/bill/getKPI2`);
-  const kpi3 = await axios(`http://localhost:3001/bill/getKPI3`);
-  const kpi4 = await axios(`http://localhost:3001/bill/getKPI4`);
-  const kpi5 = await axios(`http://localhost:3001/bill/getKPI5`);
+  const kpi1 = await axios(`${API_URL}/bill/getKPI1`);
+  const kpi2 = await axios(`${API_URL}/bill/getKPI2`);
+  const kpi3 = await axios(`${API_URL}/bill/getKPI3`);
+  const kpi4 = await axios(`${API_URL}/bill/getKPI4`);
+  const kpi5 = await axios(`${API_URL}/bill/getKPI5`);
 
   const kpiTotal = [
     kpi1.data.datos[0],
@@ -341,13 +359,22 @@ export const getBill = () => async (dispatch) => {
 
 export const getCategoriasVivero = () => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/products/types`)
+    fetch(`${API_URL}/products/types`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data });
       });
   };
 };
+
+export function getComentPlant(idP) {
+  return (dispatch) => {
+    axios
+      .get(`${API_URL}/plants/coment/${idP}`)
+      .then((res) => res.data)
+      .then((payload) => dispatch({ type: GET_COMENTS_OF_PLANTS, payload }));
+  };
+}
 // export const setFiltrosHuerta = (e) => (dispatch) => {
 //   dispatch({ type: SET_FILTROS_HUERTA, payload: e });
 // };
