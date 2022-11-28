@@ -1,6 +1,6 @@
 import React from "react";
-import logito from "../../img/plantaCarro.jpg";
-import logito2 from "../../img/Paisaje.jpg";
+import logito from "../../img/plantaCarro.png";
+import logito2 from "../../img/Paisaje.png";
 import "./Carrousel.css";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ const Carrousel = () => {
   return (
     <div
       id="carouselExample"
-      className="carousel slide"
+      className="carousel slide p-4"
       data-ride="carousel"
       data-interval="5000"
     >
@@ -30,27 +30,29 @@ const Carrousel = () => {
         <div className="carousel-item active object">
           <img src={logito} className="d-block w-100 itemImg" alt="img" />
           <div className="carousel-caption d-none d-md-block">
-            <h1>Visita nuestro vivero</h1>
-            <p>Encuentra los mejores productos para tus plantas.</p>
-            <button
-              className="btn btn-success btn-lg degrade"
-              onClick={() => navigate("/vivero")}
-            >
-              Visitar vivero
-            </button>
+            
+       
           </div>
         </div>
         <div className="carousel-item object">
           <img src={logito2} className="d-block w-100 itemImg" alt="img1" />
           <div className="carousel-caption d-none d-md-block">
-            <h1>Ven a investigar a nuestra huerta</h1>
-            <p>Podes encontrar todo tipo de información en nuestra huerta.</p>
-            <button
-              className="btn btn-lg degrade"
+          
+         <div className="buttons">
+         <button
+              className="btn btn-lg degrade buttonn"
               onClick={() => navigate("/huerta")}
             >
-              Visitar huerta
+              Huerta
             </button>
+            <button
+              className="btn  btn-lg degrade buttonn"
+              onClick={() => navigate("/vivero")}
+            >
+              Vivero
+            </button>
+         </div>
+
           </div>
         </div>
       </div>

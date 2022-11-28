@@ -38,7 +38,7 @@ new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/plantango`, {
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 }); */
 
-const sequelize = new Sequelize(DB_DEPLOY, {
+const sequelize =  new Sequelize("postgresql://postgres:BwMB4uBLALmVLtFeNpco@containers-us-west-68.railway.app:5666/railway", {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });

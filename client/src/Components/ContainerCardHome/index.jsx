@@ -22,7 +22,7 @@ const ContainerCardHome = (props) => {
                             <div className="card-body" style={{ cursor: 'pointer' }}>
                                 <img className='card-img-top tamanoImg' src={produc.imageProd} />
                                 <h6 className="card-title" style={{ marginTop: '10px' }}>{produc.nameProd}</h6>
-                                <a className="btn degrade" onClick={() => navigate('/vivero')} >Visitar vivero</a>
+                                <a className="btn btnn" onClick={() => navigate('/vivero')} >Visitar vivero</a>
                             </div>
                         </div>
                     )
