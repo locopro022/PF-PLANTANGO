@@ -2,7 +2,7 @@
     color: red;
     position: absolute;
     left: 25%;
-    animation: deCostado 2s ease-in-out;
+    animation: deCostado .5s ease-in-out;
 }
 
 @keyframes deCostado {
@@ -25,5 +25,5 @@
     color: red;
     position: absolute;
     left: 30%;
-    animation: deCostado 2s ease-in-out;
+    animation: deCostado .5s ease-in-out;
 }

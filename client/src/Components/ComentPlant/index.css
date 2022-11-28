@@ -1,6 +1,13 @@
 .coment_wrapper {
-  margin: 1rem;
-  border: solid 1px darkgreen;
+  margin: 1rem 0 0 0;
   padding: 1rem;
-  border-radius: 1rem;
+}
+
+.coment_button {
+  width: fit-content;
+  margin-left: auto;
+}
+.coment_cont {
+  width: 100%;
+  min-height: 8rem;
 }

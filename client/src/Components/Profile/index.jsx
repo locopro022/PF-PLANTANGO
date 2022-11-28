@@ -3,19 +3,24 @@ import { useAuth0 } from '@auth0/auth0-react'
 import "./profile.css"
 
 const Profile = () => {
-    const {user, isAuthenticated} = useAuth0()
-    console.log(user);
+  const { user, isAuthenticated } = useAuth0()
+  console.log(user);
   return (
     isAuthenticated ? (
-        <div class="container">
-    <div>
-    <h4 class="text-center"><strong>Perfil de Usuario</strong></h4>
-    <div class="profile-card-2"><img src={user.picture} alt={user.name} class="img img-responsive"/>
-        <div class="profile-name">{user.name}</div>
-        <div class="profile-username">{user.email}</div>
-    </div>
-    </div>
-    </div>
+      <div className='containerPerfil'>
+        <h4 style={{ color: '#57652a' }}><strong>Perfil de Usuario</strong></h4>
+        <div className='containerContenido'>
+          <div className='containerImgTitle'>
+            <h4 style={{ color: '#b4be9f' }}>{user.name}</h4>
+            <img className='imgProfile' src={user.picture} alt={user.name} />
+          </div>
+          <div className='containerEmailNick'>
+            <h5 style={{ color: '#b4be9f' }}>Email: {user.email}</h5>
+            <h5 style={{ color: '#b4be9f' }}>Nombre de usuario: {user.nickname}</h5>
+            <h5 style={{ color: '#b4be9f' }}>Email verificado: {user.email_verified ? "Si" : "No"}</h5>
+          </div>
+        </div>
+      </div>
     ) : undefined
   )
 }
