@@ -1,15 +1,3 @@
-.backgroundCrear {
-    background-image: linear-gradient(to right,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5);
-}
-
 .containerCreacionPlanta {
     height: auto;
     display: flex;

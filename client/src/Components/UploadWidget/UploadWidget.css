@@ -1,33 +1,9 @@
 .buttonUp {
-    background-image: linear-gradient(to right,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5);
-    border: none;
-    color: #000;
+    background-color: transparent;
+    border: 1px solid rgb(180, 190, 159, 0.8);
     cursor: pointer;
-    transition: .5 all;
+    transition: .5s all;
     position: relative;
-    padding: 10px 5px;
-    transition: 800ms all;
-    border: 1px solid rgb(40, 189, 75);
-}
-
-.buttonUp:hover {
-    background-image: linear-gradient(to left,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5);
 }
 
 .buttonUp span {
@@ -38,7 +14,7 @@
 .buttonUp span:nth-child(1) {
     width: 25px;
     height: 2px;
-    background-color: rgb(40, 189, 75);
+    background-color: rgb(180, 190, 159, 0.8);
     top: -5px;
     left: -5px;
     transition: 800ms all;
@@ -51,7 +27,7 @@
 .buttonUp span:nth-child(2) {
     width: 25px;
     height: 2px;
-    background-color: rgb(40, 189, 75);
+    background-color: rgb(180, 190, 159, 0.8);
     bottom: -5px;
     right: -5px;
     transition: 800ms all;
@@ -64,25 +40,25 @@
 .buttonUp span:nth-child(3) {
     width: 2px;
     height: 25px;
-    background-color: rgb(40, 189, 75);
+    background-color: rgb(180, 190, 159, 0.8);
     bottom: -5px;
     right: -5px;
     transition: 800ms all
 }
 
 .buttonUp:hover span:nth-child(3) {
-    height: 54px;
+    height: 34px;
 }
 
 .buttonUp span:nth-child(4) {
     width: 2px;
     height: 25px;
-    background-color: rgb(40, 189, 75);
+    background-color: rgb(180, 190, 159, 0.8);
     top: -5px;
     left: -5px;
     transition: 800ms all;
 }
 
 .buttonUp:hover span:nth-child(4) {
-    height: 54px;
+    height: 34px;
 }
