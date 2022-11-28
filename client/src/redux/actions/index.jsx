@@ -42,6 +42,10 @@ export const SET_PAGE_VIVERO = "SET_PAGE_VIVERO";
 export const SET_FILTROS_VIVERO = "SET_FILTROS_VIVERO";
 export const GET_CATEGORIAS_VIVERO = "GET_CATEGORIAS_VIVERO";
 export const GET_SEARCH_VIVERO = "GET_SEARCH_VIVERO";
+//MZ
+export const CREATE_REVIEW = "CREATE_REVIEW";
+export const GET_RATING_PRODUCT = "GET_RATING_PRODUCT";
+export const PUT_RATING_PRODUCT = "PUT_RATING_PRODUCT";
 
 export const huertaComments = async (config = {}) => {
   const { data } = await axios({
@@ -343,3 +347,51 @@ export function getComentPlant(idP) {
       .then((payload) => dispatch({ type: GET_COMENTS_OF_PLANTS, payload }));
   }
 };
+
+//MZ
+
+export function creaReview(review){
+
+  return function (dispatch){
+      return fetch('http://localhost:3001/bill/createReview',{
+              method:'POST',
+              headers: {'Content-Type': 'application/json',},
+              body: JSON.stringify({
+                  codProd: review.codProd,
+                  starsReview: review.stars,
+                  textReview: review.textReview
+              })
+      })
+      .then(res => res.json())
+      .then(res => {  
+          dispatch({
+              type: "CREATE_REVIEW",
+              payload: res
+          })
+      })
+  }   
+};
+
+export const getRatingproduct = (codprod) => {
+  return (dispatch) => {
+    fetch(`http://localhost:3001/bill/ratingproduct/${codprod}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("rating:", Math.round(data.datos[0].Rating))
+        dispatch({ type: GET_RATING_PRODUCT, payload: data.datos[0].Rating });
+      });
+  };
+};
+
+export const ratingproductupdate = (codprod) => {
+  return (dispatch) => {
+    //fetch(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)
+    axios
+      .put(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)  
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({ type: PUT_RATING_PRODUCT, payload: data });
+      });
+  };
+};
+
