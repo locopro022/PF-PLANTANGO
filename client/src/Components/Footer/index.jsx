@@ -1,20 +1,20 @@
 import { Instagram, LinkedIn, Twitter, GitHub } from "@mui/icons-material";
 import platango from "../../img/plantangoTexto.png";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import './footer.css'
 const Footer = () => {
   const { loginWithRedirect } = useAuth0();
   const { isAuthenticated } = useAuth0();
 
   return (
     <footer
-      className="bg-dark text-center text-white"
+      className=" footer-container text-center "
       style={{
         position: "absolute",
         bottom: "0",
         width: "100%",
-        padding: "1rem",
-        marginTop: "2rem",
+        padding: "2px",
+        
       }}
     >
       <div
@@ -26,12 +26,12 @@ const Footer = () => {
         }}
       >
         <div>
-          © 2020 Copyright:
+         
           <img
             src={platango}
             alt="plantango"
-            className="text-white"
-            style={{ height: "2rem", filter: "invert(100%)" }}
+            className=""
+            style={{ height: "50px" }}
           />
         </div>
         <div>
@@ -72,7 +72,7 @@ const Footer = () => {
               </span>
               <button
                 type="button"
-                className="btn btn-outline-light btn-rounded"
+                className="btn btn-outline-light btn-rounded m-1"
                 onClick={() => loginWithRedirect()}
               >
                 Sign up!
