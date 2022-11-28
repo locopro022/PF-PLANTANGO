@@ -2,7 +2,7 @@
     color: red;
     position: absolute;
     left: 25%;
-    animation: deCostado 3s ease-in-out;
+    animation: deCostado 2s ease-in-out;
 }
 
 @keyframes deCostado {
@@ -22,6 +22,8 @@
 }
 
 .warning2 {
-    border: 1px solid transparent;
-    color: transparent;
+    color: red;
+    position: absolute;
+    left: 30%;
+    animation: deCostado 2s ease-in-out;
 }

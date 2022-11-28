@@ -55,7 +55,7 @@ export const huertaComments = async (config = {}) => {
   return data;
 };
 
-export const eliminandoRecor = (horario, usuario) => async (dispatch) => {
+export const eliminandoRecor = (usuario, horario) => async (dispatch) => {
   const respuesta = await axios.delete(
     `${API_URL}/user/delete?horario=${horario}&&usuario=${usuario}`
   );
@@ -112,13 +112,10 @@ export const recordatorio = (hora) => async (dispatch) => {
         ) === null
           ? []
           : traerNotificaciones(
-              JSON.parse(localStorage.getItem("Notificaciones"))
-            )
+            JSON.parse(localStorage.getItem("Notificaciones"))
+          )
       );
-      const response2 = await axios.get(
-        `${API_URL}/user/traer/notifi/noti?usuario=${usuario}`
-      );
-      return dispatch({ type: TRAER_RECOR, payload: response2.data });
+      return dispatch({ type: TRAER_RECOR, payload: respuesta.data });
     });
 };
 
@@ -173,14 +170,14 @@ export const getHuertaDetail = async (id) => {
 
 export const getHuerta =
   (e = null) =>
-  (dispatch) => {
-    return get(`plants`, { params: e }).then((data) => {
-      dispatch({
-        type: GET_ARRAY_HUERTA,
-        payload: data,
+    (dispatch) => {
+      return get(`plants`, { params: e }).then((data) => {
+        dispatch({
+          type: GET_ARRAY_HUERTA,
+          payload: data,
+        });
       });
-    });
-  };
+    };
 
 export const crearPlanta = (planta) => async () => {
   await axios.post(`${API_URL}/plants/creacion`, planta);
@@ -313,14 +310,14 @@ export const deleteUser = (idUser) => {
 
 export const traerProductos =
   (e = null) =>
-  async (dispatch) => {
-    console.log("action traer productos", e);
-    return await axios
-      .get(`${API_URL}/products`, { params: e })
-      .then((productos) => {
-        dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
-      });
-  };
+    async (dispatch) => {
+      console.log("action traer productos", e);
+      return await axios
+        .get(`${API_URL}/products`, { params: e })
+        .then((productos) => {
+          dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
+        });
+    };
 
 export const setFiltrosProductos = (e) => (dispatch) => {
   console.log("asi llega el filtro a la action", e);

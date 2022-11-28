@@ -47,6 +47,10 @@
     cursor: pointer;
 }
 
+.search-button:focus {
+    outline: none;
+}
+
 .search-button::first-letter {
     text-transform: uppercase;
 }
