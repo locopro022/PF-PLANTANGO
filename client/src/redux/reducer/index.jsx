@@ -67,7 +67,7 @@ const initialState = {
   bill: [],
   notificaciones: [],
   arrayRecor: [],
-  comentariosP:[]
+  comentariosP:[],
   review:[],
   rating:0,
 };
