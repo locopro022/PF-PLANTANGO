@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import UploadWidget from "../UploadWidget";
 import imgDefault from "../../img/default.jpg";
 
+
 const ContainerFormPlanta = () => {
   const navigate = useNavigate();
   const tipos = useSelector((state) => state.tiposHuerta);

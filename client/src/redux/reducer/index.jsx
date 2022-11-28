@@ -32,6 +32,9 @@ import {
   DELETE_DAILY_USER,
   CREATE_DAILY_USER,
   EDIT_LIKE_PLANT,
+  CREATE_REVIEW,
+  GET_RATING_PRODUCT,
+  PUT_RATING_PRODUCT,
 } from "../actions";
 
 // import { plantaACarta } from "../utils";
@@ -63,6 +66,8 @@ const initialState = {
   bill: [],
   notificaciones: [],
   arrayRecor: [],
+  review:[],
+  rating:0,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -268,7 +273,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         diario: action.payload,
       };
-
+    case CREATE_REVIEW:
+        return {
+          ...state,
+          review: action.payload,
+        };
+    case GET_RATING_PRODUCT:
+          return {
+            ...state,
+            rating: action.payload,
+          };
+    case PUT_RATING_PRODUCT:
+          return {
+            ...state,
+          rating: action.payload,
+        };
+  
     default:
       return state;
   }
