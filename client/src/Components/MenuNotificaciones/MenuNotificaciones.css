@@ -1,0 +1,46 @@
+.containerMenuRiego {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 5px 0px;
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+}
+
+.containerMenuRiego button {
+    border: none;
+    cursor: pointer;
+    background-color: green;
+    opacity: .8;
+    border-radius: 5px;
+}
+
+.containerMenuRiego p {
+    margin: 0;
+}
+
+.containerAlerta {
+    display: flex;
+    align-items: center;
+}
+
+.itemRiego {
+    width: 70%;
+    margin: 4px 0px;
+}
+
+.btnX {
+    border: 1px solid #57652a;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #57652a;
+    cursor: pointer;
+}
+
+.btnX:focus {
+    outline: none;
+}

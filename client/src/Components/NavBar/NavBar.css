@@ -7,11 +7,8 @@
   justify-content: space-between;
   height: 4rem;
   align-items: center;
-   margin-bottom: 1rem; 
-  /* border-bottom: solid 1px green; */
+  margin-bottom: 1rem;
   background-color: white;
-  /* box-shadow: 3px 6px 20px 0px rgba(0, 0, 0, 0.2); */
-  overflow-x: hidden;
 }
 
 .containerUl {
@@ -34,7 +31,7 @@
   color: #5f7264;
   background: transparent;
   line-height: 4;
-   padding: 0 1em;  
+  padding: 0 1em;
   position: relative;
 }
 
@@ -43,16 +40,7 @@
   display: block;
   width: 0%;
   height: 1px;
-  /* background-image: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
-      background-color: #90b89b;
+  background-color: #90b89b;
   position: absolute;
   left: 0;
   bottom: 10px;
@@ -60,16 +48,7 @@
 }
 
 .item:hover {
-  /* background: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
-      background-color: #90b89b;
+  background-color: #90b89b;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   text-decoration: none;
@@ -90,16 +69,7 @@
 .itemActivo {
   cursor: pointer;
   font-size: 16px;
-  /* background: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
-      background-color: #90b89b;
+  background-color: #90b89b;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   line-height: 4;
@@ -112,16 +82,7 @@
   display: block;
   width: 0%;
   height: 1px;
-  /* background-image: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
-      background-color: #90b89b;
+  background-color: #90b89b;
   position: absolute;
   left: 0;
   bottom: 10px;
@@ -129,16 +90,7 @@
 }
 
 .itemActivo:hover {
-  /* background: linear-gradient(to right,
-      #bafd4e,
-      #79f952,
-      #53f65b,
-      #54f35c,
-      #54f090,
-      #56ed9a,
-      #56efb4,
-      #4ceec5); */
-      background-color: #5f7264;
+  background-color: #5f7264;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   text-decoration: none;
@@ -158,14 +110,13 @@
   display: flex;
   width: 35vw;
   justify-content: end;
-  align-items: center;
 }
 
 .backgroundBtn {
   background-color: #fff;
   border: none;
   border-radius: 100px;
-  height: 15px;
+  height: auto;
   width: 45px;
 }
 

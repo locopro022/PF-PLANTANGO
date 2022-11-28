@@ -32,6 +32,7 @@ import {
   DELETE_DAILY_USER,
   CREATE_DAILY_USER,
   EDIT_LIKE_PLANT,
+  GET_COMENTS_OF_PLANTS,
   CREATE_REVIEW,
   GET_RATING_PRODUCT,
   PUT_RATING_PRODUCT,
@@ -66,6 +67,7 @@ const initialState = {
   bill: [],
   notificaciones: [],
   arrayRecor: [],
+  comentariosP:[]
   review:[],
   rating:0,
 };
@@ -273,7 +275,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         diario: action.payload,
       };
-    case CREATE_REVIEW:
+    case GET_COMENTS_OF_PLANTS:
+      return{
+        ...state, comentariosP: action.payload
+      };    case CREATE_REVIEW:
         return {
           ...state,
           review: action.payload,

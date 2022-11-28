@@ -1,16 +1,47 @@
+require("pg")
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const {
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT, NODE_ENV, DB_DEPLOY
+} = process.env;
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/plantango`,
-  {
-    logging: false, // set to console.log to see the raw SQL queries
-    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  }
-);
+//Sequelize('postgres://user:pass@example.com:5432/dbname')
+
+/* const sequelize = 
+      process.env.NODE_ENV === 'production'
+        ? new Sequelize({
+            database: DB_NAME,
+            dialect: 'postgres',
+            username: DB_USER,
+            password: DB_PASSWORD,
+            host: DB_HOST,
+            port: DB_PORT,
+            dialect: 'postgres',
+            pool: {
+              max: 3,
+              min: 1,
+              idle: 10000,
+            },
+            dialectOptions: {
+              ssl: {
+                require: true,
+                rejectUnauthorized: false,
+              },
+              keepAlive: true,
+            },
+            ssl: true,
+          }) :
+new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/plantango`, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+}); */
+
+const sequelize =  new Sequelize("postgresql://postgres:BwMB4uBLALmVLtFeNpco@containers-us-west-68.railway.app:5666/railway", {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+});
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -38,7 +69,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { User, DailyUser, Plants, Category, Product, ReviewProduct, Billing, BillingDetail } =
+const { User, DailyUser, Plants, Comentarios, Category, Product, ReviewProduct, Billing, BillingDetail } =
   sequelize.models;
 
 //Relaciones
@@ -46,17 +77,21 @@ const { User, DailyUser, Plants, Category, Product, ReviewProduct, Billing, Bill
 User.hasMany(DailyUser, { foreignKey: "idUD" });
 DailyUser.belongsTo(User, { foreignKey: "idUD" });
 
+//una planta - tiene muchos comentarios
+Plants.hasMany(Comentarios, { foreignKey: "idC" });
+Comentarios.belongsTo(Plants, { foreignKey: "idC" });
+
 //una Categoria - tiene muchos productos
 Category.hasMany(Product, { foreignKey: "codCategory" });
 Product.belongsTo(Category, { foreignKey: "codCategory" });
 
 //un usuario - tiene muchas facturas
-Billing.belongsTo(User, { foreignKey: 'idUser' })
-User.hasMany(Billing, { foreignKey: 'idUser' });
+Billing.belongsTo(User, { foreignKey: "idUser" });
+User.hasMany(Billing, { foreignKey: "idUser" });
 
 //una factura - tiene muchos detalle-factura (Productos)
-BillingDetail.belongsTo(Billing, { foreignKey: 'codBilling' })
-Billing.hasMany(BillingDetail, { foreignKey: 'codBilling' });
+BillingDetail.belongsTo(Billing, { foreignKey: "codBilling" });
+Billing.hasMany(BillingDetail, { foreignKey: "codBilling" });
 
 //un producto - tiene muchos detalles-factura
 BillingDetail.belongsTo(Product, { foreignKey: 'codProd' });

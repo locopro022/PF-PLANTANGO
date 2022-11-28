@@ -10,9 +10,13 @@ const path = require("path");
 
 UserR.delete("/delete", async (req, res) => {
   const { horario, usuario } = req.query;
-  await Notification.destroy({ where: { horario: horario } });
-  const nuevo = await Notification.findAll({ where: { usuario: usuario } });
-  res.status(200).json(nuevo);
+  try {
+    await Notification.destroy({ where: { horario: horario } });
+    const nuevo = await Notification.findAll({ where: { usuario: usuario } });
+    res.status(200).json(nuevo);
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
 });
 
 UserR.get("/traer/notifi/noti", async (req, res) => {
@@ -128,7 +132,7 @@ UserR.post("/daily/:idU", async (req, res) => {
       return res.status(400).send({ error: "No se encontro la id" });
     }
     await DailyUser.create({ idUD: idU });
-    let resp = await DailyUser.findAll({where:{idUD:idU}});
+    let resp = await DailyUser.findAll({ where: { idUD: idU } });
     return res.status(201).send(resp)
   } catch (error) {
     res.status(400).send({ error: error });
@@ -162,9 +166,9 @@ UserR.delete("/daily/:idU/:idD", async (req, res) => {
 
     if (!idU || !idD) {
       return res.status(400).send({ error: "No se encontro la id" });
-    }else {
-      await DailyUser.destroy({where:{idUD:idU,codDaily:idD}})
-      let resp = await DailyUser.findAll({where:{idUD:idU}});
+    } else {
+      await DailyUser.destroy({ where: { idUD: idU, codDaily: idD } })
+      let resp = await DailyUser.findAll({ where: { idUD: idU } });
       return res.status(200).send(resp)
     }
   } catch (error) {

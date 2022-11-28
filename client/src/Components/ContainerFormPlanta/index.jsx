@@ -7,6 +7,7 @@ import { getTiposHuerta } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import UploadWidget from "../UploadWidget";
 import imgDefault from "../../img/default.jpg";
+import Notiflix from 'notiflix'
 
 
 const ContainerFormPlanta = () => {
@@ -14,7 +15,6 @@ const ContainerFormPlanta = () => {
   const tipos = useSelector((state) => state.tiposHuerta);
   const url = useSelector((state) => state.url);
   const dispatch = useDispatch();
-  console.log("aca", typeof url);
   const [ocultar, setOcultar] = useState({
     namePlant: false,
     descripPlant: false,
@@ -92,6 +92,9 @@ const ContainerFormPlanta = () => {
       planta.clima.length
     ) {
       dispatch(crearPlanta(planta));
+      Notiflix.Notify.success('Planta creada con exito', {
+        zindex: 999999999999999
+      })
       navigate("/huerta");
     }
   };
@@ -152,7 +155,7 @@ const ContainerFormPlanta = () => {
       </div>
       <form className="text-center">
         <div className="mb-3 containerFlex">
-          <div>
+          <div style={{ marginLeft: '15 0px' }}>
             <div>
               <label for="exampleInputEmail1" className="form-label">
                 Nombre
@@ -168,9 +171,15 @@ const ContainerFormPlanta = () => {
                 onChange={changeValue}
               />
             </div>
-            <div hidden={ocultar.namePlant}>
-              <Obligatorio ocultar={planta.localizacion?.length} />
-            </div>
+            {
+              !planta.namePlant?.length
+                ?
+                <div hidden={planta.namePlant?.length}>
+                  <Obligatorio />
+                </div>
+                :
+                <div style={{ height: '80px' }}></div>
+            }
           </div>
         </div>
         <div className="mb-3 containerFlex">
@@ -179,10 +188,64 @@ const ContainerFormPlanta = () => {
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
                   <label
-                    class="input-group-text degrade"
+                    class="input-group-text"
                     for="inputGroupSelect01"
+                    style={{ background: 'transparent', border: 'none' }}
                   >
-                    Ubicación
+                    Riego |
+                  </label>
+                </div>
+                <select
+                  class="custom-select"
+                  id="inputGroupSelect01"
+                  name="riego"
+                  value={planta.riego}
+                  onChange={changeValue}
+                  style={{ cursor: "pointer", border: 'none', padding: '6px 28px 6px 0' }}
+                >
+                  {tipos.riego?.map((ele) => {
+                    return <option value={ele}>{ele}</option>;
+                  })}
+                </select>
+              </div>
+              <div>
+                <div>
+                  {!ocultar.riego ? (
+                    <Obligatorio ocultar={planta.riego?.length} tipo={"4"} />
+                  ) : (
+                    <div className="containerSelec">
+                      {planta.riego?.map((elem) => {
+                        return (
+                          <div className="containerElem">
+                            <h6>{elem}</h6>
+                            <button
+                              tipo="button"
+                              className=" btnElem"
+                              onClick={(e) => eliminar(e)}
+                              value={elem}
+                              name="riego"
+                            >
+                              X
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3 directionColumna" style={{ margin: '0px 10px' }}>
+            <div>
+              <div className="anchoDeInput">
+                <div class="input-group-prepend">
+                  <label
+                    className="input-group-text"
+                    for="inputGroupSelect01"
+                    style={{ background: 'transparent', border: 'none' }}
+                  >
+                    Ubicación |
                   </label>
                 </div>
                 <select
@@ -191,9 +254,8 @@ const ContainerFormPlanta = () => {
                   value={planta.localizacion}
                   onChange={changeValue}
                   name="localizacion"
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", border: 'none', padding: '6px 28px 6px 0' }}
                 >
-                  <option selected>Ubicación</option>
                   {tipos.localizacion?.map((ele) => {
                     return <option value={ele}>{ele}</option>;
                   })}
@@ -233,10 +295,11 @@ const ContainerFormPlanta = () => {
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
                   <label
-                    class="input-group-text degrade"
+                    class="input-group-text "
                     for="inputGroupSelect01"
+                    style={{ background: 'transparent', border: 'none' }}
                   >
-                    Luminosidad
+                    Luminosidad |
                   </label>
                 </div>
                 <select
@@ -245,9 +308,8 @@ const ContainerFormPlanta = () => {
                   name="luz"
                   value={planta.luz}
                   onChange={changeValue}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", border: 'none', padding: '6px 28px 6px 0' }}
                 >
-                  <option selected>Luminosidad</option>
                   {tipos.luz?.map((ele) => {
                     return <option value={ele}>{ele}</option>;
                   })}
@@ -286,116 +348,11 @@ const ContainerFormPlanta = () => {
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
                   <label
-                    class="input-group-text degrade"
+                    class="input-group-text "
                     for="inputGroupSelect01"
+                    style={{ background: 'transparent', border: 'none' }}
                   >
-                    Riego
-                  </label>
-                </div>
-                <select
-                  class="custom-select"
-                  id="inputGroupSelect01"
-                  name="riego"
-                  value={planta.riego}
-                  onChange={changeValue}
-                  style={{ cursor: "pointer" }}
-                >
-                  <option selected>Riego</option>
-                  {tipos.riego?.map((ele) => {
-                    return <option value={ele}>{ele}</option>;
-                  })}
-                </select>
-              </div>
-              <div>
-                <div>
-                  {!ocultar.riego ? (
-                    <Obligatorio ocultar={planta.riego?.length} tipo={"4"} />
-                  ) : (
-                    <div className="containerSelec">
-                      {planta.riego?.map((elem) => {
-                        return (
-                          <div className="containerElem">
-                            <h6>{elem}</h6>
-                            <button
-                              tipo="button"
-                              className=" btnElem"
-                              onClick={(e) => eliminar(e)}
-                              value={elem}
-                              name="riego"
-                            >
-                              X
-                            </button>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3 directionColumna">
-            <div>
-              <div className="anchoDeInput">
-                <div class="input-group-prepend">
-                  <label
-                    class="input-group-text degrade"
-                    for="inputGroupSelect01"
-                  >
-                    Tamaño
-                  </label>
-                </div>
-                <select
-                  class="custom-select"
-                  id="inputGroupSelect01"
-                  name="dimension"
-                  value={planta.dimension}
-                  onChange={changeValue}
-                  style={{ cursor: "pointer" }}
-                >
-                  <option selected>Tamaño</option>
-                  {tipos.dimension?.map((ele) => {
-                    return <option value={ele}>{ele}</option>;
-                  })}
-                </select>
-              </div>
-              <div>
-                {!ocultar.dimension ? (
-                  <Obligatorio ocultar={planta.dimension?.length} tipo={"5"} />
-                ) : (
-                  <div className="containerSelec">
-                    {planta.dimension?.map((elem) => {
-                      return (
-                        <div className="containerElem">
-                          <h6>{elem}</h6>
-                          <button
-                            tipo="button"
-                            className=" btnElem"
-                            onClick={(e) => eliminar(e)}
-                            value={elem}
-                            name="dimension"
-                          >
-                            X
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mb-3 containerFlex">
-          <div class="input-group mb-3 directionColumna">
-            <div>
-              <div className="anchoDeInput">
-                <div class="input-group-prepend">
-                  <label
-                    class="input-group-text degrade"
-                    for="inputGroupSelect01"
-                  >
-                    Tipo
+                    Tipo |
                   </label>
                 </div>
                 <select
@@ -404,9 +361,8 @@ const ContainerFormPlanta = () => {
                   onChange={changeValue}
                   value={planta.tipo}
                   name="tipo"
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", border: 'none', padding: '6px 28px 6px 0' }}
                 >
-                  <option selected>Tipo</option>
                   {tipos.tipo?.map((ele) => {
                     return <option value={ele}>{ele}</option>;
                   })}
@@ -443,10 +399,88 @@ const ContainerFormPlanta = () => {
               <div className="anchoDeInput">
                 <div class="input-group-prepend">
                   <label
-                    class="input-group-text degrade"
+                    class="input-group-text "
                     for="inputGroupSelect01"
+                    style={{ background: 'transparent', border: 'none' }}
                   >
-                    Clima
+                    Tamaño |
+                  </label>
+                </div>
+                <select
+                  class="custom-select"
+                  id="inputGroupSelect01"
+                  name="dimension"
+                  value={planta.dimension}
+                  onChange={changeValue}
+                  style={{ cursor: "pointer", border: 'none', padding: '6px 28px 6px 0' }}
+                >
+                  {tipos.dimension?.map((ele) => {
+                    return <option value={ele}>{ele}</option>;
+                  })}
+                </select>
+              </div>
+              <div>
+                {!ocultar.dimension ? (
+                  <Obligatorio ocultar={planta.dimension?.length} tipo={"5"} />
+                ) : (
+                  <div className="containerSelec">
+                    {planta.dimension?.map((elem) => {
+                      return (
+                        <div className="containerElem">
+                          <h6>{elem}</h6>
+                          <button
+                            tipo="button"
+                            className=" btnElem"
+                            onClick={(e) => eliminar(e)}
+                            value={elem}
+                            name="dimension"
+                          >
+                            X
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mb-3 containerFlex">
+          <div class="input-group mb-3 directionColumna2">
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div class="input-group-prepend">
+                <label
+                  class="input-group-text "
+                  for="inputGroupSelect01"
+                  style={{ background: 'transparent', border: 'none' }}
+                >
+                  Toxicidad |
+                </label>
+              </div>
+              <select
+                class="custom-select"
+                id="inputGroupSelect01"
+                name="toxicidad"
+                onChange={changeValue}
+                value={planta.toxicidad}
+                style={{ cursor: "pointer", border: 'none', padding: '6px 28px 6px 0' }}
+              >
+                <option value="True">True</option>
+                <option value="False">False</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-group mb-3 directionColumna">
+            <div>
+              <div className="anchoDeInput">
+                <div class="input-group-prepend">
+                  <label
+                    class="input-group-text"
+                    for="inputGroupSelect01"
+                    style={{ background: 'transparent', border: 'none' }}
+                  >
+                    Clima |
                   </label>
                 </div>
                 <select
@@ -455,9 +489,8 @@ const ContainerFormPlanta = () => {
                   value={planta.clima}
                   onChange={changeValue}
                   name="clima"
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", border: 'none', padding: '6px 28px 6px 0' }}
                 >
-                  <option selected>Preferencia climatica</option>
                   {tipos.clima?.map((ele) => {
                     return <option value={ele}>{ele}</option>;
                   })}
@@ -491,25 +524,6 @@ const ContainerFormPlanta = () => {
           </div>
         </div>
         <div className="mb-3 containerFlex">
-          <div class="input-group mb-3 directionColumna">
-            <div class="input-group-prepend">
-              <label class="input-group-text degrade" for="inputGroupSelect01">
-                Toxicidad
-              </label>
-            </div>
-            <select
-              class="custom-select"
-              id="inputGroupSelect01"
-              name="toxicidad"
-              onChange={changeValue}
-              value={planta.toxicidad}
-              style={{ cursor: "pointer" }}
-            >
-              <option selected>Toxicidad</option>
-              <option value="True">True</option>
-              <option value="False">False</option>
-            </select>
-          </div>
           <div className="directionColumna2">
             <label for="exampleInputPassword1" className="form-label ">
               Descripción

@@ -3,26 +3,33 @@
     -webkit-box-shadow: 3px 6px 15px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.15);
     transition: 250ms all;
+    margin: 0 5px;
+    border-radius: 25px;
+   
 }
 
 .estilos:hover {
-    box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.6);
+    box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.199);
     -webkit-box-shadow: 3px 6px 15px 0px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: 3px 6px 42px 0px rgba(0, 0, 0, 0.6);
 }
 
 .tamanoImg {
-    width: 200px;
+    width: 150px;
     height: 160px;
 }
 
 .mediaCard {
-    width: 18rem;
+
     height: auto;
     font-size: 10px;
-    margin-top: 10px
+    margin: 10px 30px;
 }
 
+.btnn{
+    border-radius: 25px;
+    border: 1px solid rgb(211, 211, 211);
+}
 @media(max-width:1500px) {
     .mediaCard {
         width: 20rem;
@@ -31,7 +38,8 @@
 
 @media(min-width:1500px) {
     .mediaCard {
-        width: 24rem;
+        width: 16rem;
+
     }
 }
 
