@@ -7,13 +7,13 @@ import { getTiposHuerta } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import UploadWidget from "../UploadWidget";
 import imgDefault from "../../img/default.jpg";
+import Notiflix from 'notiflix'
 
 const ContainerFormPlanta = () => {
   const navigate = useNavigate();
   const tipos = useSelector((state) => state.tiposHuerta);
   const url = useSelector((state) => state.url);
   const dispatch = useDispatch();
-  console.log("aca", typeof url);
   const [ocultar, setOcultar] = useState({
     namePlant: false,
     descripPlant: false,
@@ -91,6 +91,9 @@ const ContainerFormPlanta = () => {
       planta.clima.length
     ) {
       dispatch(crearPlanta(planta));
+      Notiflix.Notify.success('Planta creada con exito', {
+        zindex: 999999999999999
+      })
       navigate("/huerta");
     }
   };
@@ -167,9 +170,15 @@ const ContainerFormPlanta = () => {
                 onChange={changeValue}
               />
             </div>
-            <div>
-              <Obligatorio ocultar={planta.localizacion?.length} />
-            </div>
+            {
+              !planta.namePlant?.length
+                ?
+                <div hidden={planta.namePlant?.length}>
+                  <Obligatorio />
+                </div>
+                :
+                <div style={{ height: '80px' }}></div>
+            }
           </div>
         </div>
         <div className="mb-3 containerFlex">

@@ -8,7 +8,6 @@ const Recordatorio = () => {
     const dispatch = useDispatch()
     const email = useSelector(state => state.user)
     const arrayRecor = useSelector(state => state.arrayRecor)
-    console.log(email)
 
     const [enviar, setEnviar] = useState({
         usuario: "",
@@ -22,8 +21,9 @@ const Recordatorio = () => {
         })
     }
 
-    const recorDelete = (usuario, horario) => {
-        dispatch(eliminandoRecor(usuario, horario))
+    const recorDelete = (horario) => {
+        console.log("ESTEEEEEE", email.email)
+        dispatch(eliminandoRecor(email.email, horario))
         Notiflix.Notify.success('Recordatorio eliminado con exito', {
             zindex: 99999999
         })
@@ -72,7 +72,7 @@ const Recordatorio = () => {
                                             <div key={index} className='containerRecor'>
                                                 <p>{ele.usuario}</p>
                                                 <p>{`${hora}:${minutos}`}</p>
-                                                <button onClick={() => recorDelete(ele.horario, ele.email)}>x</button>
+                                                <button onClick={() => recorDelete(ele.horario)}>x</button>
                                             </div>
                                         )
                                     })

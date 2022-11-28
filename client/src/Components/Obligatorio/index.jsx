@@ -8,7 +8,7 @@ export const Obligatorio = (props) => {
             case "1":
                 return (
                     <div className='altoCase'>
-                        <div className='warning'>
+                        <div className='warning2'>
                             Se requiere un nombre.
                         </div>
                     </div>

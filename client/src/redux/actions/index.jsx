@@ -52,7 +52,7 @@ export const huertaComments = async (config = {}) => {
   return data;
 };
 
-export const eliminandoRecor = (horario, usuario) => async (dispatch) => {
+export const eliminandoRecor = (usuario, horario) => async (dispatch) => {
   const respuesta = await axios.delete(
     `/user/delete?horario=${horario}&&usuario=${usuario}`
   );
@@ -109,9 +109,10 @@ export const recordatorio = (hora) => async (dispatch) => {
         ) === null
           ? []
           : traerNotificaciones(
-              JSON.parse(localStorage.getItem("Notificaciones"))
-            )
+            JSON.parse(localStorage.getItem("Notificaciones"))
+          )
       );
+
       const response2 = await axios.get(
         `/user/traer/notifi/noti?usuario=${usuario}`
       );
@@ -159,14 +160,14 @@ export const getHuertaDetail = async (id) => {
 
 export const getHuerta =
   (e = null) =>
-  (dispatch) => {
-    return get(`plants`, { params: e }).then((data) => {
-      dispatch({
-        type: GET_ARRAY_HUERTA,
-        payload: data,
+    (dispatch) => {
+      return get(`plants`, { params: e }).then((data) => {
+        dispatch({
+          type: GET_ARRAY_HUERTA,
+          payload: data,
+        });
       });
-    });
-  };
+    };
 
 export const crearPlanta = (planta) => async () => {
   await axios.post(`/plants/creacion`, planta);
