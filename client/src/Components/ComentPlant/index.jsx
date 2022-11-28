@@ -8,7 +8,7 @@ import "./index.css";
 
 function Coment(props) {
   const [editing, setEditing] = useState(false);
-  const [input, setInput] = useState({ title: props.title, cont: props.title });
+  const [input, setInput] = useState({ title: props.title, cont: props.cont });
 
   const user = useSelector((state) => state.user?.idUser);
   const isFromUser = props.user === user;
