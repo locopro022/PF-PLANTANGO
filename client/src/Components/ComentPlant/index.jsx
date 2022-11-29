@@ -37,7 +37,7 @@ function Coment(props) {
   };
 
   return (
-    <div className="card coment_wrapper">
+    <div className="card p-5 coment_wrapper">
       {editing ? (
         <div>
           <form onSubmit={save}>
@@ -145,7 +145,7 @@ function ComentPlant(props) {
       {user ? (
         <>
           <h2>Deja tu comentario</h2>
-          <form className="card coment_wrapper" onSubmit={onSubmit}>
+          <form className="card p-5 coment_wrapper" onSubmit={onSubmit}>
             <h3>
               <input
                 type="text"
@@ -161,7 +161,7 @@ function ComentPlant(props) {
                 value={input.cont}
                 name="cont"
                 onChange={onChange}
-                className="coment_cont"
+                className="coment_cont "
                 required
               />
             </h5>

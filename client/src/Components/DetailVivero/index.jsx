@@ -6,7 +6,7 @@ import { carritoStorage } from '../../redux/actions'
 import './DetailVivero.css'
 import Notiflix from 'notiflix';
 import { FaStar } from 'react-icons/fa';
-
+import Loading from '../Loading'
 //MZ
 import { creaReview } from "../../redux/actions";
 import { ratingproductupdate } from "../../redux/actions";
@@ -18,7 +18,6 @@ const DetailVivero = () => {
     const producto = useSelector(state => state.producto)
     const carritoSto = useSelector(state => state.carrito)
     const [agregado, setAgregado] = useState(false)
-    console.log("PRODUCTO", producto)
 
     const changeValue = (e) => {
         if (numero === 1 && e.target.name === 'resta') setNumero(numero)
@@ -51,19 +50,19 @@ const DetailVivero = () => {
     useEffect(() => {
         dispatch(traerProducto(id))
         return () => dispatch(clearProducto())
-    }, [agregado])
+    }, [])
 
     //MZ
     const initialState = {
         codProd: 0,
-        stars: 0,    
-        textReview: ""
+        stars: 0,
+        textReview: "sfdgdsfsdfds"
     };
     const [review, setReview] = React.useState(initialState);
 
     const colors = {
-        orange : "#FFBA5A",
-        grey : "#a9a9a9"
+        orange: "#FFBA5A",
+        grey: "#a9a9a9"
     }
     const starsA = Array(5).fill(0);
     const [currentStar, setCurrentStar] = useState(0);
@@ -71,9 +70,9 @@ const DetailVivero = () => {
 
     const handleClickStar = value => {
         setCurrentStar(value)
-        setReview({...review, codProd: producto.codProd, stars: value});
+        setReview({ ...review, codProd: producto.codProd, stars: value });
     }
-    const handleMouseOverStar =  value => {
+    const handleMouseOverStar = value => {
         setHoverStar(value)
     }
     const handleMouseLeaveStar = () => {
@@ -81,109 +80,107 @@ const DetailVivero = () => {
     }
 
     let handleOnChange = (e) => {
-        setReview({...review, [e.target.name]: e.target.value});
+        setReview({ ...review, [e.target.name]: e.target.value });
     };
-    
+
     const sendReview = (e) => {
         e.preventDefault();
-        if ( review.stars>0 && review.textReview.length>2) {
+        if (review.stars > 0) {
             dispatch(creaReview(review));
             dispatch(ratingproductupdate(review.codProd));
-            alert("Review creado y Rating actualizado..!")
+            Notiflix.Notify.success('Calificación enviada.', {
+                zindex: 9999999999
+            })
             setReview(initialState);
-        //navigate("/vivero");
+            //navigate("/vivero");
         }
-        else alert("Por favor marque una cantidad de estrellas e ingrese un comentario")
-        
+        else Notiflix.Notify.failure('Ingrese una calificación', {
+            zindex: 9999999999
+        })
+
     };
 
 
 
 
     return (
-        <div className='containerAtrasVivero'>
-            <div className='containerDetailVivero'>
-                <div className='containerTituloImg'>
-                    <h4>{producto?.nameProd}</h4>
-                    <img src={producto?.imageProd} />
-                </div>
-                <div className='containerDescripcion'>
-                    <p>{producto?.descripProd}</p>
-                    <div className='containerAgregarCarro'>
-                        <div className='containerBotones'>
-                            <button className='btnClick' name='resta' onClick={changeValue}>-</button>
-                            <h5>{numero}</h5>
-                            <button className='btnClick' name='suma' onClick={changeValue}>+</button>
+        <>
+            {
+                producto.nameProd?.length
+                    ?
+                    <div className='containerAtrasVivero'>
+                        <div className='containerDetailVivero'>
+                            <div className='containerTituloImg'>
+                                <h4 style={{ fontSize: '15px' }}>{producto?.nameProd}</h4>
+                                <img src={producto?.imageProd} />
+                            </div>
+                            <div className='containerDescripcion'>
+                                <p>{producto?.descripProd}</p>
+                                <div>
+                                    <div style={styles.container}>
+                                        <div style={styles.stars} className='estrellas'>
+                                            {starsA.map((_, index) => {
+                                                return (
+                                                    <FaStar
+                                                        key={index}
+                                                        size={16}
+                                                        style={{
+                                                            marginRight: 10,
+                                                            cursor: "pointer"
+                                                        }}
+                                                        color={(hoverStar || currentStar) > index ? colors.orange : colors.grey}
+                                                        onClick={() => handleClickStar(index + 1)}
+                                                        onMouseOver={() => handleMouseOverStar(index + 1)}
+                                                        onMouseLeave={() => handleMouseLeaveStar}
+                                                    />
+                                                )
+                                            })}
+                                        </div>
+                                        <button
+                                            className='botonEnviarCali'
+                                            onClick={sendReview}
+                                        >
+                                            Calificar
+                                        </button>
+                                    </div>
+                                    <div className='containerAgregarCarro'>
+                                        <div className='containerBotones'>
+                                            <button className='btnClick' name='resta' onClick={changeValue}>-</button>
+                                            <h5>{numero}</h5>
+                                            <button className='btnClick' name='suma' onClick={changeValue}>+</button>
+                                        </div>
+                                        <button className='botonAgregar' onClick={() => addStorage(producto)}>Agregar al carrito</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button className='botonAgregar' onClick={() => addStorage(producto)}>Agregar al carrito</button>
-                    
                     </div>
-
-                    <div style={styles.container}>
-                        <h2 >Califica este producto:</h2>
-                        <div style={styles.stars}>
-                            {starsA.map((_, index) => {
-                            return(
-                                <FaStar
-                                    key={index}
-                                    size={24}
-                                    style={{
-                                        marginRight: 10,
-                                        cursor: "pointer"
-                                    }}
-                                    color={(hoverStar || currentStar) > index ? colors.orange : colors.grey}
-                                    onClick={() => handleClickStar(index + 1)}
-                                    onMouseOver={() => handleMouseOverStar(index + 1)}
-                                    onMouseLeave={() => handleMouseLeaveStar}
-        
-                                />
-
-                            )
-                        })}
-                        </div>
-                        
-                        <textarea 
-                            placeholder="Dejanos tu comentario" 
-                            style={styles.textarea} 
-                            name="textReview"
-                            value={review.textReview}
-                            onChange={(e) => handleOnChange(e)}
-                        ></textarea>
-                        
-                        <button 
-                            styles={styles.button} 
-                            onClick={sendReview}
-                        >
-                        Grabar
-                        </button>                 
-                    </div>
-
-                    
-                </div>
-            </div>
-        </div>
+                    :
+                    <Loading />
+            }
+        </>
     )
 };
 
 const styles = {
-    container : {
+    container: {
         display: "flex",
-        flexDirection: "column",
-        alignItems:"center" 
+        flexDirection: "row",
+        alignItems: "center"
     },
-    textarea:{
+    textarea: {
         border: "1px solid #a9a9a9",
-        borderRadius:5,
+        borderRadius: 5,
         width: 300,
         margin: "20px 0",
-        minHeight: 100, 
-        padding:10
+        minHeight: 100,
+        padding: 10
     },
-    button:{
+    button: {
         border: "1px solid #a9a9a9",
-        borderRadius:5,
+        borderRadius: 5,
         width: 300,
-        padding:10
+        padding: 10
     }
 }
 export default DetailVivero
