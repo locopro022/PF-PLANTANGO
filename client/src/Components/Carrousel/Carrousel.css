@@ -1,37 +1,40 @@
 .itemImg {
-    height: 600px;
+   height: 600px;
 }
 
 .object {
-    width: 90vw;
+    width: 70vw;
 }
 
+.buttons{
+    display: flex;
+    flex-direction: column;
+    
+    max-width: 250px;
+    position: relative;
+    bottom: 120px;
+    left: -60px;
+  }
+
+.buttonn{
+    margin: 40px;
+    position: relative;
+
+
+
+}
 .degrade {
-    /* background-image: linear-gradient(to right,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5); */
-            background-color: #ccd675;
+   
+            background-color: transparent;
     color:   #676951;
+border-radius:  50px 5px 50px 5px ;
+padding: 2px 5px;
 }
 
 .degrade:hover {
-    color:  #ccd675;
-    background-color: #676951;
-    /* background-image: linear-gradient(to left,
-            #bafd4e,
-            #79f952,
-            #53f65b,
-            #54f35c,
-            #54f090,
-            #56ed9a,
-            #56efb4,
-            #4ceec5); */
+    color:  #676951;
+    background-color: #e8ead0;
+  
 }
 
 @media(min-width:2000px) {

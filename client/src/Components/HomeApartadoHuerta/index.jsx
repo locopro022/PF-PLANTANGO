@@ -14,7 +14,7 @@ const HomeApartadoHuerta = () => {
           <>
             <div style={{ marginTop: "20px" }}>
               <h1 style={{ textAlign: "center" }}>
-                Investiga plantas en nuestra huerta
+                Plantas destacadas
               </h1>
               <div className="containerHuertaHome">
                 {arrayRecortado?.map((planta, i) => {
