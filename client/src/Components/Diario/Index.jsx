@@ -19,7 +19,7 @@ import SaveAsIcon from '@mui/icons-material/SaveAs';
 import FeedIcon from '@mui/icons-material/Feed';
 
 function Diario() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const diario = useSelector((e) => e.diario);
   const user = useSelector((e) => e.user);
   const [stdD, setStdD] = useState("");
