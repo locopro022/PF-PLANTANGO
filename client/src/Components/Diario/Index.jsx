@@ -13,7 +13,6 @@ import AlPrincipio from "../AlPrincipio";
 import "./diario.css";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
