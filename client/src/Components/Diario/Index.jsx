@@ -11,6 +11,12 @@ import {
 import Recordatorio from "../Recordatorio";
 import AlPrincipio from "../AlPrincipio";
 import "./diario.css";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from "@mui/material";
+import TextField from '@mui/material/TextField';
+import SaveAsIcon from '@mui/icons-material/SaveAs';
+import FeedIcon from '@mui/icons-material/Feed';
 
 function Diario() {
   const dispatch = useDispatch();
@@ -53,42 +59,35 @@ function Diario() {
     dispatch(deleteDailyUser(user.idUser, e.codDaily));
   }
   let mostrarBTN = diario.length && diarioDetail.hiden === false? (
-    <button onClick={createADaily}>+</button>
+    <Button variant="contained" onClick={createADaily} color="success"><FeedIcon/>Crear nuevo diario</Button>
   ):null;
   let mostrarDiario =
     diario.length && diarioDetail.hiden === false ? (
-      diario.map((e) => (
-        <>
-          <span>{e.title}</span>
-          <button onClick={(el) => hidenONDetail(e, el)}>Editar/Leer</button>
-          <button onClick={(el) => deleteListDaily(e, el)}>Eliminar</button>
-          <span>{e.updatedAt}</span>
+      <ul>
+      {diario.map((e) => (
+        <>        
+          <li>
+            <a href="#">
+            <Button onClick={(el) => hidenONDetail(e, el)}><EditIcon/></Button>
+            <Button onClick={(el) => deleteListDaily(e, el)}><DeleteIcon/></Button>
+            <h2>{e.title}</h2>
+            <p>{e.cont}</p>
+            </a>
+          </li>
         </>
-      ))
+      ))}
+      </ul>
     ) : diario.length && diarioDetail.hiden === true ? (
-      <form onSubmit={(e) => onSubmit(e)}>
-        <input
-          type="title"
-          name="title"
-          id="inputTitleDaily"
-          value={input.title}
-          onChange={(e) => handleInputChange(e)}
-          autoComplete="off"
-        />
-        <input type="submit" value="editar" id="buttomGuardarDaily" />
-        <textarea
-          name="body"
-          id="inputContDaily"
-          value={input.body}
-          onChange={(e) => handleInputChange(e)}
-          autoComplete="off"
-        />
+      <form>
+        <TextField id="outlined-basic" label="Titulo" variant="outlined" name="title" value={input.title} onChange={(e) => handleInputChange(e)}/>
+        <TextField id="outlined-multiline-static" label="Descripcion" multiline rows={4} name="body" value={input.body} onChange={(e) => handleInputChange(e)}/>
+        <Button variant="contained"onClick={(e) => onSubmit(e)} color="success"><SaveAsIcon/>Guardar</Button>
       </form>
     ) : (
       <>
         <h3>Debes crear un diario</h3>
         <br />
-        <button onClick={createADaily}>Crear nuevo diario</button>
+        <Button variant="contained" onClick={createADaily} color="success"><FeedIcon/>Crear nuevo diario</Button>
       </>
     );
 

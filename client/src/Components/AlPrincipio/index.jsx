@@ -3,7 +3,6 @@ const AlPrincipio = () => {
         const destino = document.getElementById('ultimo')
         destino.scrollIntoView({
             top: destino,
-            behavior: "smooth"
         })
     }
     return (

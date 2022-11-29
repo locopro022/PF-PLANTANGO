@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 150px;
 }
 
 .containerCarro {
@@ -13,6 +14,7 @@
 }
 
 .containerPlantango {
+    border: 3px solid red;
     margin-top: 80px;
     margin-bottom: 60px;
     width: 80%;
@@ -27,6 +29,7 @@
 }
 
 .containerPlantango::after {
+    border: 3px solid red;
     content: "";
     position: absolute;
     top: -100%;

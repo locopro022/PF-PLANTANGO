@@ -20,7 +20,6 @@ const Vivero = () => {
   const productos = useSelector((state) => state.arrayVivero);
   const categorias = useSelector((state) => state.tiposCategoria);
   const filter = useSelector((state) => state.filtrosVivero);
-
   //dispatch
   const dispatch = useDispatch();
 
@@ -46,7 +45,13 @@ const Vivero = () => {
   return (
     <>
       <div className="backgroundGlobal">
-        <AlPrincipio />
+        {
+          productos?.length
+            ?
+            <AlPrincipio />
+            :
+            null
+        }
         <div>
           <div className="containerSearch">
             <SearchBarVivero />
