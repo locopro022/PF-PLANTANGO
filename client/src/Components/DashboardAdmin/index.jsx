@@ -51,38 +51,6 @@ export function DashboardAdmin() {
           </div>
         </div>
         <div class="rowInf">
-          {/* <div class="col-lg-6 col-md-12">
-            <div class="card card-tasks">
-              <div class="card-header ">
-                <h6 class="title d-inline">Tareas(1)</h6>
-                <p class="card-category d-inline">Hoy</p>
-              </div>
-              <div class="card-body ">
-                <div class="table-full-width table-responsive">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" />
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="title">Terminar graficos</p>
-                          <p class="text-muted">Terminar componente de Dashboard donde van los graficos</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <div class="col-lg-6 col-md-12">
             <div class="card ">
               <div class="card-header">
@@ -99,9 +67,6 @@ export function DashboardAdmin() {
                         <th>
                           Fact Nº
                         </th>
-                        {/* <th>
-                           City
-                         </th> */}
                         <th class="text-center">
                           Monto de Factura
                         </th>
@@ -115,9 +80,6 @@ export function DashboardAdmin() {
                         <td>
                           0001
                         </td>
-                        {/*  <td>
-                           Oud-Turnhout
-                         </td> */}
                         <td class="text-center">
                           $580
                         </td>
@@ -131,9 +93,6 @@ export function DashboardAdmin() {
                         <td>
                           0002
                         </td>
-                        {/*  <td>
-                           Oud-Turnhout
-                         </td> */}
                         <td class="text-center">
                           $650
                         </td>
@@ -147,9 +106,6 @@ export function DashboardAdmin() {
                         <td>
                           0003
                         </td>
-                        {/*  <td>
-                           Oud-Turnhout
-                         </td> */}
                         <td class="text-center">
                           $450
                         </td>
@@ -163,9 +119,6 @@ export function DashboardAdmin() {
                         <td>
                           0004
                         </td>
-                        {/*  <td>
-                           Oud-Turnhout
-                         </td> */}
                         <td class="text-center">
                           $790
                         </td>
@@ -179,9 +132,6 @@ export function DashboardAdmin() {
                         <td>
                           0005
                         </td>
-                        {/*  <td>
-                           Oud-Turnhout
-                         </td> */}
                         <td class="text-center">
                           $350
                         </td>
@@ -195,9 +145,6 @@ export function DashboardAdmin() {
                         <td>
                           0006
                         </td>
-                        {/*  <td>
-                           Oud-Turnhout
-                         </td> */}
                         <td class="text-center">
                           $400
                         </td>
@@ -211,9 +158,6 @@ export function DashboardAdmin() {
                         <td>
                           0007
                         </td>
-                        {/*  <td>
-                           Oud-Turnhout
-                         </td> */}
                         <td class="text-center">
                           $200
                         </td>
@@ -227,9 +171,6 @@ export function DashboardAdmin() {
                         <td>
                           0008
                         </td>
-                        {/*  <td>
-                           Oud-Turnhout
-                         </td> */}
                         <td class="text-center">
                           $830
                         </td>

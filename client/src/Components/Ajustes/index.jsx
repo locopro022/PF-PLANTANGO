@@ -12,6 +12,8 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import CreacionDePlanta from "../CreacionDePlanta";
 import LocalFlorist from "@mui/icons-material/LocalFloristSharp";
 import { useSelector } from "react-redux";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 const Ajustes = () => {
   const [selectedTab, setSelectedTab] = React.useState("Profile");
@@ -26,12 +28,14 @@ const Ajustes = () => {
     <div className="container">
       <div style={{ display: "flex", flexDirection: "column" }}>
         <h3>Necesitas estar logueado para estar Aqui!</h3>
-        <button className="btn-success" onClick={() => loginWithRedirect()}>
-          Iniciar Sesion
-        </button>
-        <button className="btn-success" onClick={() => navigate("/home")}>
-          Volver a home
-        </button>
+        <Stack direction="row" spacing={20}>
+        <Button variant="contained" color="success" onClick={() => loginWithRedirect()}>
+        Iniciar Sesion
+      </Button>
+      <Button variant="contained" color="success" onClick={() => navigate("/home")}>
+        Volver a Inicio
+      </Button>
+        </Stack>
       </div>
     </div>
   ) : (

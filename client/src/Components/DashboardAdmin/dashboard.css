@@ -1,21 +1,21 @@
-
-
 .card-header {
   padding: 1.25rem 1.5rem;
   margin-bottom: 0;
-  background-color: #6af6ae37;
+  background-color: #90B89B;
   border-bottom: 0.0625rem solid rgba(34, 42, 66, 0.05);
 
 }
 
 .cardsSup {
   border: 10px solid rgba(34, 42, 66, 0.05);
+  border-radius: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 150px;
   width: 300px;
+  background-color: #90b89b15;
 }
 
 .rowSup {
@@ -73,7 +73,7 @@
 }
 
 .card-title{
-  color:#00940fbb
+  color:#57652A
 }
 
 .card-chart .chart-area {
@@ -174,9 +174,9 @@
   margin: 0px;
 }
 
-.text-primary {
-  color: #e14eca !important;
-}
+/* .text-primary {
+  color: #007bff!important;
+} */
 
 .text-center {
   text-align: center !important;
