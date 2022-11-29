@@ -6,8 +6,8 @@ import "./CartasVivero.css";
 import { FaStar } from 'react-icons/fa';
 
 const colors = {
-  orange : "#FFBA5A",
-  grey : "#a9a9a9"
+  orange: "#FFBA5A",
+  grey: "#a9a9a9"
 }
 
 const CartasVivero = (props) => {
@@ -37,6 +37,13 @@ const CartasVivero = (props) => {
                   <p className="nameProduc" style={{ textAlign: "center" }}>
                     {produc.nameProd}
                   </p>
+                  <div class="rating">
+                    <FaStar key={index} size={18} color={produc.starts >= 1 ? colors.orange : colors.grey} />
+                    <FaStar key={index} size={18} color={produc.starts >= 2 ? colors.orange : colors.grey} />
+                    <FaStar key={index} size={18} color={produc.starts >= 3 ? colors.orange : colors.grey} />
+                    <FaStar key={index} size={18} color={produc.starts >= 4 ? colors.orange : colors.grey} />
+                    <FaStar key={index} size={18} color={produc.starts >= 5 ? colors.orange : colors.grey} />
+                  </div>
                   <h5 className="cardcomprar"></h5>
                   <h6 className="vermas">Ver mas</h6>
                   <h6 className="stock">{`Stock actual / ${produc.stockActual}`}</h6>
@@ -47,32 +54,6 @@ const CartasVivero = (props) => {
           :
           <div className="containerNoHayNada">No se encontraron productos</div>
       }
-      {arrayVivero.results?.map((produc, index) => {
-        return (
-          <div
-            key={index}
-            className="cardContainerVivero estilos"
-            onClick={() => navigate(`/vivero/${produc.codProd}`)}
-          >
-            <img src={produc.imageProd} alt="img" className="imgVivero" />
-            <p className="nameProduc" style={{ textAlign: "center" }}>
-              {produc.nameProd}
-            </p>
-
-            <div class="rating">
-            <FaStar key={index} size={18} color={ produc.starts >= 1 ? colors.orange : colors.grey}/>
-            <FaStar key={index} size={18} color={ produc.starts >= 2 ? colors.orange : colors.grey}/>
-            <FaStar key={index} size={18} color={ produc.starts >= 3 ? colors.orange : colors.grey}/>
-            <FaStar key={index} size={18} color={ produc.starts >= 4 ? colors.orange : colors.grey}/>
-            <FaStar key={index} size={18} color={ produc.starts >= 5 ? colors.orange : colors.grey}/>
-            </div>
-
-
-            <h5 className="price">{`$${parseInt(produc.precio)}`}</h5>
-            <h5 className="cardcomprar">Ver mas</h5>
-          </div>
-        );
-      })}
     </div>
   );
 };

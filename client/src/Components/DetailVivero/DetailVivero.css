@@ -1,14 +1,15 @@
 .containerAtrasVivero {
     position: relative;
     height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .containerDetailVivero {
     display: flex;
-    width: 80%;
+    width: 90%;
     position: absolute;
-    bottom: 15%;
-    left: 12%;
     background-color: rgb(245, 245, 245);
     box-shadow: 2px 1px 17px -3px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 2px 1px 8px -3px rgba(0, 0, 0, 0.75);
