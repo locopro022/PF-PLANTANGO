@@ -35,7 +35,13 @@ const CartasVivero = (props) => {
                   <img src={produc.imageProd} alt="img" className="imgVivero" />
                   <h5 className="price">{`$${parseInt(produc.precio)}`}</h5>
                   <p className="nameProduc" style={{ textAlign: "center" }}>
-                    {produc.nameProd}
+                    {
+                      produc.nameProd === "Hoz Hierbera Wolfpack Mango Vuelto 22 mm. Derecha (Diestros)"
+                        ?
+                        "Hoz Hierbera Wolfpack Mango Vuelto 22 mm. Derecha"
+                        :
+                        produc.nameProd
+                    }
                   </p>
                   <div class="rating">
                     <FaStar key={index} size={18} color={produc.starts >= 1 ? colors.orange : colors.grey} />
