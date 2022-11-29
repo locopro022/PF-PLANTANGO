@@ -33,7 +33,7 @@ const Detalle = (props) => {
             }}
           />
         ) : null}
-        <div className="media-body ml-4" style={{ minWidth: "50vw" }}>
+        <div className="media-body ml-4 pb-4" style={{ minWidth: "50vw" }}>
           {item.title ? (
             <h1 className="mt-0" style={{ textTransform: "uppercase" }}>
               <strong>{item.title}</strong>
@@ -59,7 +59,7 @@ const Detalle = (props) => {
             : null}
         </div>
       </div>
-      <div className="">
+      <div className="p-5">
         <ComentPlant />
       </div>
     </>
