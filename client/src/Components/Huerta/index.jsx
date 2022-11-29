@@ -23,7 +23,7 @@ const Vivero = () => {
   const dispatch = useDispatch();
   const user = useSelector((e) => e.user);
   const [cambioProducto, setCP] = useState("");
-
+  console.log("FILTROS", filtros)
   useEffect(() => {
     let filter = {};
 
@@ -63,7 +63,9 @@ const Vivero = () => {
     <>
       {!iniciarPagina ? (
         <>
-          <AlPrincipio />
+          {
+            !filtros?.length ? <AlPrincipio /> : null
+          }
           <div className="">
             <SearchBarHuerta />
           </div>
