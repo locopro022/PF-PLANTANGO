@@ -3,7 +3,7 @@ import "./FiltrosVivero.css";
 import { Slider, Box } from "@mui/material";
 import { useEffect } from "react";
 
-const FiltrosVivero = ({ options, apply }) => {
+const FiltrosVivero = ({ options, apply}) => {
   const [filter, setFilter] = useState({
     codCategory: [],
     precio: { min: options.price?.min, max: options.price?.max },
@@ -40,23 +40,17 @@ const FiltrosVivero = ({ options, apply }) => {
   };
 
 
-  const [checkedState, setCheckedState] = useState([false, false, false, false]);
+  const [checkedState, setCheckedState] = useState([false, false, false, false]); //.some
 
-  // const handleChange = (position) => {
-  //   const updatedCheckedState = checkedState.map((item, index) =>
-  //   index === position ? !item : item
-  //   );
+  const handleChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+    index === position ? !item : item
+    );
 
-  // setCheckedState(updatedCheckedState);
-  // window.localStorage.setItem('checkbox', updatedCheckedState);
-  // }
+  setCheckedState(updatedCheckedState);
+  window.localStorage.setItem('checkbox', updatedCheckedState);
+  }
 
-  // const [aux, setAux] = useState(false)
-  // const handleChange = (position, id) => {
-  //   position + 1 === id ? (
-      
-  //   ) : ()
-  // }
 
   return (
     <>
@@ -84,7 +78,7 @@ const FiltrosVivero = ({ options, apply }) => {
                   onClick={category}
                   id={option.codCategory}
                   style={{ cursor: "pointer" }}
-                  checked={checkedState[index]}
+                  checked={checkedState[index]} 
                   onChange={() => handleChange(index)}
                 />
                 {option.descripCategory}
