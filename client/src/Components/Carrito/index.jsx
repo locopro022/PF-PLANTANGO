@@ -92,8 +92,8 @@ const Carrito = () => {
           quantity: i.cantidad,
         }));
         const email = user.email;
-        const response = await axios.post(
-          "/pagos/create-checkout-session",
+        await axios.post(
+          "https://pf-plantango.vercel.app/pagos/create-checkout-session",
           { items, email }
         ).then((res) => {
           if (res.data) {
@@ -103,7 +103,7 @@ const Carrito = () => {
           }
         }).catch((err) => console.log(err));
       } else {
-        const response = await axios.post("/pagos/create-checkout-session")
+        const response = await axios.post("https://pf-plantango.vercel.app/pagos/create-checkout-session")
         Notiflix.Notify.failure(response.data.info, {
           zindex: 999999999999999,
           position: "left-top",
