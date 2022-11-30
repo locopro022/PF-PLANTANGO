@@ -37,6 +37,9 @@ function App() {
 
   const theme = createTheme({
     palette: {
+      primary: {
+        main: '#57652a'
+      },
       secondary: {
         main: "#000",
       },
@@ -83,9 +86,9 @@ function App() {
             <Route path="/cancel" element={<CancelPago />} />
             <Route path="/nosotros" element={<Nosotros />} />
           </Routes>
-          <Footer />
         </div>
       </BrowserRouter>
+      <Footer />
     </ThemeProvider>
   );
 }

@@ -10,11 +10,10 @@ const Footer = () => {
     <footer
       className=" footer-container text-center "
       style={{
-        position: "absolute",
+        position: "relative",
         bottom: "0",
         width: "100%",
         padding: "2px",
-        
       }}
     >
       <div
@@ -26,13 +25,14 @@ const Footer = () => {
         }}
       >
         <div>
-         
-          <img
-            src={platango}
-            alt="plantango"
-            className=""
-            style={{ height: "50px" }}
-          />
+          <a href="http://localhost:3000/home">
+            <img
+              src={platango}
+              alt="plantango"
+              className=""
+              style={{ height: "50px" }}
+            />
+          </a>
         </div>
         <div>
           <a
@@ -40,28 +40,28 @@ const Footer = () => {
             href="#"
             role="button"
           >
-            <Twitter />
+            <Twitter style={{ color: 'green' }} />
           </a>
           <a
             className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
-            <Instagram />
+            <Instagram style={{ color: 'green' }} />
           </a>
           <a
             className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
-            <LinkedIn />
+            <LinkedIn style={{ color: 'green' }} />
           </a>
           <a
             className="btn btn-outline-light btn-floating m-1"
             href="#"
             role="button"
           >
-            <GitHub />
+            <GitHub style={{ color: 'green' }} />
           </a>
         </div>
         <div>

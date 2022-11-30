@@ -58,36 +58,36 @@ function Diario() {
     el.preventDefault();
     dispatch(deleteDailyUser(user.idUser, e.codDaily));
   }
-  let mostrarBTN = diario.length && diarioDetail.hiden === false? (
-    <Button variant="contained" onClick={createADaily} color="success"><FeedIcon/>Crear nuevo diario</Button>
-  ):null;
+  let mostrarBTN = diario.length && diarioDetail.hiden === false ? (
+    <Button variant="contained" onClick={createADaily} color="primary"><FeedIcon />Crear nuevo diario</Button>
+  ) : null;
   let mostrarDiario =
     diario.length && diarioDetail.hiden === false ? (
       <ul>
-      {diario.map((e) => (
-        <>        
-          <li>
-            <a href="#">
-            <Button onClick={(el) => hidenONDetail(e, el)}><EditIcon/></Button>
-            <Button onClick={(el) => deleteListDaily(e, el)}><DeleteIcon/></Button>
-            <h2>{e.title}</h2>
-            <p>{e.cont}</p>
-            </a>
-          </li>
-        </>
-      ))}
+        {diario.map((e) => (
+          <>
+            <li>
+              <a href="#">
+                <Button onClick={(el) => hidenONDetail(e, el)}><EditIcon /></Button>
+                <Button onClick={(el) => deleteListDaily(e, el)}><DeleteIcon /></Button>
+                <h2>{e.title}</h2>
+                <p>{e.cont}</p>
+              </a>
+            </li>
+          </>
+        ))}
       </ul>
     ) : diario.length && diarioDetail.hiden === true ? (
       <form>
-        <TextField id="outlined-basic" label="Titulo" variant="outlined" name="title" value={input.title} onChange={(e) => handleInputChange(e)}/>
-        <TextField id="outlined-multiline-static" label="Descripcion" multiline rows={4} name="body" value={input.body} onChange={(e) => handleInputChange(e)}/>
-        <Button variant="contained"onClick={(e) => onSubmit(e)} color="success"><SaveAsIcon/>Guardar</Button>
+        <TextField id="outlined-basic" label="Titulo" variant="outlined" name="title" value={input.title} onChange={(e) => handleInputChange(e)} />
+        <TextField id="outlined-multiline-static" label="Descripcion" multiline rows={4} name="body" value={input.body} onChange={(e) => handleInputChange(e)} />
+        <Button variant="contained" onClick={(e) => onSubmit(e)} color="primary"><SaveAsIcon />Guardar</Button>
       </form>
     ) : (
       <>
         <h3>Debes crear un diario</h3>
         <br />
-        <Button variant="contained" onClick={createADaily} color="success"><FeedIcon/>Crear nuevo diario</Button>
+        <Button variant="contained" onClick={createADaily} color="primary"><FeedIcon />Crear nuevo diario</Button>
       </>
     );
 
@@ -119,7 +119,7 @@ function Diario() {
           {mostrarDiario}
           <br />
           {mostrarBTN}
-          </div>
+        </div>
         <div className="seccionRecordatorio_rutDiario">
           <Recordatorio />
         </div>

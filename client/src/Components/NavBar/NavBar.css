@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Arsenal&display=swap");
+
+* {
+  font-family: "Arsenal", sans-serif;
+}
+
 .containerNavBar {
   position: sticky;
   z-index: 69420;

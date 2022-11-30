@@ -94,11 +94,8 @@ UserR.get("/noti/notifi", async (req, res) => {
 
 UserR.get("/all", async (req, res) => {
   try {
-    console.log("ENTRE A LA RUTA ALL");
 
     const allUsers = await User.findAll();
-
-    console.log("allUsers: ", allUsers);
 
     if (!allUsers) {
       return res.status(400).json({ error: "Error en ruta get /user/all" });
