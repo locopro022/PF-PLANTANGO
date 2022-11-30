@@ -46,10 +46,11 @@ const Recordatorio = () => {
     }, [])
 
     return (
-        <div>
+        <div className='containerCrono'>
             <div className='containerLabelInput'>
                 <label>Programa un recordatorio de riego</label>
                 <div className='containerInputRecor'>
+                    <label style={{ marginRight: '10px' }}>Ingrese su horario aqui</label>
                     <input
                         type='time'
                         onChange={changeValue}
