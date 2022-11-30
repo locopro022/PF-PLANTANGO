@@ -8,7 +8,6 @@ import {
   getDaily,
   selectDetailDaily,
 } from "../../redux/actions";
-import Recordatorio from "../Recordatorio";
 import AlPrincipio from "../AlPrincipio";
 import "./diario.css";
 import EditIcon from '@mui/icons-material/Edit';
@@ -119,9 +118,6 @@ function Diario() {
           {mostrarDiario}
           <br />
           {mostrarBTN}
-        </div>
-        <div className="seccionRecordatorio_rutDiario">
-          <Recordatorio />
         </div>
       </div>
     </div>

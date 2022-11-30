@@ -79,7 +79,7 @@ const Carrito = () => {
   };
 
   const handleCheckout = async () => {
-    if(user){
+    if (user) {
       if (arrayCarrito.length) {
         const items = arrayCarrito.map((i) => ({
           price_data: {
@@ -93,7 +93,7 @@ const Carrito = () => {
         }));
         const email = user.email;
         const response = await axios.post(
-          "http://localhost:3001/pagos/create-checkout-session",
+          "/pagos/create-checkout-session",
           { items, email }
         ).then((res) => {
           if (res.data) {
@@ -103,14 +103,14 @@ const Carrito = () => {
           }
         }).catch((err) => console.log(err));
       } else {
-        const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
+        const response = await axios.post("/pagos/create-checkout-session")
         Notiflix.Notify.failure(response.data.info, {
           zindex: 999999999999999,
           position: "left-top",
           timeout: 2000,
         });
       }
-    }else{
+    } else {
       Notiflix.Notify.failure('Debes iniciar sesión para poder comprar!!', {
         zindex: 999999999999999,
         position: "left-top",
