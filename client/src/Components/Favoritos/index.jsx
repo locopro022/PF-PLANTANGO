@@ -17,7 +17,7 @@ function Favoritos() {
     if (userDB) {
       dispatch(getFav(userDB.idUser));
     }
-  }, [userDB]);
+  }, [userDB,favs]);
   if (favs.length) {
     result = favs.map((e) => <CartasFavoritos items={e} />);
   }

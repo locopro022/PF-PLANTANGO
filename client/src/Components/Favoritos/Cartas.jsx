@@ -8,17 +8,20 @@ const CartasFavoritos = ({ items }) => {
   const dispatch = useDispatch();
   function eliminarFav(e, items) {
     e.preventDefault();
-    dispatch(deleteFav(user.idUser, items.codPlant));
-    dispatch(
-      editPlantforLike({
-        codPlant: items.codPlant,
-        namePlant: items.namePlant,
-        descripPlant: items.descripPlant,
-        tipo: items.tipo,
-        imagePlant: items.imagePlant,
-        likes: items.likes - 1,
-      })
-    ).then(dispatch(getFav(user.idUser)));
+    dispatch(deleteFav(user.idUser, items.codPlant))
+      .then(
+        dispatch(
+          editPlantforLike({
+            codPlant: items.codPlant,
+            namePlant: items.namePlant,
+            descripPlant: items.descripPlant,
+            tipo: items.tipo,
+            imagePlant: items.imagePlant,
+            likes: items.likes - 1,
+          })
+        )
+      )
+      .then(dispatch(getFav(user.idUser)));
   }
   return (
     <div className="cardCartaFav">
@@ -47,17 +50,19 @@ const CartasFavoritos = ({ items }) => {
             </h4>
           )}
           {items.tipo && (
-              <p className="cuerpo-caracteristica">
-                {items.tipo.map((caracteristica, i) => (
-                  <span className="cuerpo-caracteristica-caracteristica" key={i}>
-                    {caracteristica}
-                  </span>
-                ))}
-              </p>
+            <p className="cuerpo-caracteristica">
+              {items.tipo.map((caracteristica, i) => (
+                <span className="cuerpo-caracteristica-caracteristica" key={i}>
+                  {caracteristica}
+                </span>
+              ))}
+            </p>
           )}
         </div>
         <div className="button-container">
-          {items.precio && <p className="cuerpo-precio">${items.precio / 100}</p>}
+          {items.precio && (
+            <p className="cuerpo-precio">${items.precio / 100}</p>
+          )}
           <button className="favON" onClick={(e) => eliminarFav(e, items)} />
         </div>
       </div>

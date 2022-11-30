@@ -2,15 +2,16 @@ import "./Filtros.css";
 import Loading from '../Loading'
 
 const Filtros = (props) => {
+
   const cambio = (e) => {
     const selected = {
       type: e.target.name,
       value: e.target.value,
       checked: true,
     };
-    console.log("SELECT", selected)
     props.apply(selected);
   };
+
   const borrar = (e) => {
     e.preventDefault();
     props.apply("clear");
