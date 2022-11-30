@@ -296,6 +296,7 @@ export const traerProductos =
     };
 
 export const setFiltrosProductos = (e) => (dispatch) => {
+  console.log("asi llega el filtro a la action", e);
   dispatch({ type: SET_FILTROS_VIVERO, payload: e });
 };
 
