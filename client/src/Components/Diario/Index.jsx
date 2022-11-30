@@ -16,6 +16,7 @@ import { Button } from "@mui/material";
 import TextField from '@mui/material/TextField';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 import FeedIcon from '@mui/icons-material/Feed';
+import SinFav from '../../img/SinFav.svg'
 
 function Diario() {
   const dispatch = useDispatch()
