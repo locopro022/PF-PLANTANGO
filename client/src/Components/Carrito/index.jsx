@@ -87,7 +87,7 @@ const Carrito = () => {
             product_data: {
               name: i.nameProd,
             },
-            unit_amount: i.precio * 10,
+            unit_amount: i.precio * 100,
           },
           quantity: i.cantidad,
         }));
