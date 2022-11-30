@@ -79,7 +79,7 @@ const Carrito = () => {
   };
 
   const handleCheckout = async () => {
-    if(userCheck === true){
+    if(user){
       if (arrayCarrito.length) {
         const items = arrayCarrito.map((i) => ({
           price_data: {
