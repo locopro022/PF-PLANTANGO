@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import "./profile.css"
+import Avatar from '@mui/material/Avatar';
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0()
@@ -12,7 +13,7 @@ const Profile = () => {
         <div className='containerContenido'>
           <div className='containerImgTitle'>
             <h4 style={{ color: '#b4be9f' }}>{user.name}</h4>
-            <img className='imgProfile' src={user.picture} alt={user.name} />
+            <img className='imgProfile' src={user.picture? user.picture : <Avatar src="/broken-image.jpg" /> } alt={<Avatar src="/broken-image.jpg" />} />
           </div>
           <div className='containerEmailNick'>
             <h5 style={{ color: '#b4be9f' }}>Email: {user.email}</h5>
