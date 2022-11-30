@@ -8,17 +8,20 @@ const CartasFavoritos = ({ items }) => {
   const dispatch = useDispatch();
   function eliminarFav(e, items) {
     e.preventDefault();
-    dispatch(deleteFav(user.idUser, items.codPlant));
-    dispatch(
-      editPlantforLike({
-        codPlant: items.codPlant,
-        namePlant: items.namePlant,
-        descripPlant: items.descripPlant,
-        tipo: items.tipo,
-        imagePlant: items.imagePlant,
-        likes: items.likes - 1,
-      })
-    ).then(dispatch(getFav(user.idUser)));
+    dispatch(deleteFav(user.idUser, items.codPlant))
+      .then(
+        dispatch(
+          editPlantforLike({
+            codPlant: items.codPlant,
+            namePlant: items.namePlant,
+            descripPlant: items.descripPlant,
+            tipo: items.tipo,
+            imagePlant: items.imagePlant,
+            likes: items.likes - 1,
+          })
+        )
+      )
+      .then(dispatch(getFav(user.idUser)));
   }
   return (
     <div className="cardCartaFav">

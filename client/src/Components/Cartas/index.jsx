@@ -8,13 +8,12 @@ const Cartas = (props) => {
   const user = useSelector((e) => e.user);
   const favorites = useSelector((e) => e.favoritos);
   const dispatch = useDispatch();
-  console.log(user)
 
+  let clsN = "favOFF";
   function addfav(e, item, user) {
     e.preventDefault();
     if (!user.idUser) {
       alert("Debes Iniciar sesion para usar Favoritos :)");
-      console.log(user)
     }
     if (user.idUser) {
       if (e.target.className === "favOFF") {
@@ -29,6 +28,7 @@ const Cartas = (props) => {
             likes: item.likes + 1,
           })
         ).then(props.aux("like"));
+        clsN = "favON"
       } else if (e.target.className === "favON") {
         dispatch(deleteFav(user.idUser, item.id));
         dispatch(
@@ -41,6 +41,7 @@ const Cartas = (props) => {
             likes: item.likes - 1,
           })
         ).then(props.aux("like"))
+        clsN = "favOFF";
       }
     }
   }
@@ -48,9 +49,9 @@ const Cartas = (props) => {
   function onOf(item, favorites) {
     if (favorites) {
       if (favorites.find((e) => e.codPlant === item.id)) {
-        return "favON";
+        return clsN = "favON";
       } else {
-        return "favOFF";
+        return clsN = "favOFF";
       }
     }
   }
@@ -100,7 +101,7 @@ const Cartas = (props) => {
                     <p className="numeroP">{`Likes ${item.likes}`}</p>
                     <button
                       className={
-                        favorites.length ? onOf(item, favorites) : "favOFF"
+                        favorites.length ? onOf(item, favorites) : clsN
                       }
                       onClick={(e) => addfav(e, item, user)}
                     />
