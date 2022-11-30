@@ -7,7 +7,6 @@ import { IconButton, Badge } from "@mui/material";
 import MenuDesplegable from "../MenuDesplegable";
 import { NavLink, useNavigate } from "react-router-dom";
 import Carrito from "../Carrito";
-import MenuNotificaciones from "../MenuNotificaciones";
 import MenuInicioSesion from "../MenuInicioSesion";
 import MenuSesionIniciada from "../MenuSesionIniciada";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -90,7 +89,6 @@ const NavBar = () => {
             <ShoppingCart color="secondary" />
           </Badge>
         </IconButton>
-        <MenuNotificaciones />
         {isAuthenticated ? <MenuSesionIniciada /> : <MenuInicioSesion />}
       </div>
     </div>

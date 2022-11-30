@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { getFav } from "../../redux/actions";
 import CartasFavoritos from "./Cartas";
 import "./Favoritos.css";
+import SinFav from '../../img/SinFav.svg'
 
 function Favoritos() {
   const { isAuthenticated } = useAuth0();
@@ -12,19 +13,19 @@ function Favoritos() {
   const userDB = useSelector((e) => e.user);
   const favs = useSelector((e) => e.favoritos);
 
-  let result = <h1>Debes añadir plantas</h1>;
+  let result = <img src={SinFav} />;
   useEffect(() => {
     if (userDB) {
       dispatch(getFav(userDB.idUser));
     }
-  }, [userDB]);
+  }, [userDB, favs]);
   if (favs.length) {
     result = favs.map((e) => <CartasFavoritos items={e} />);
   }
 
   return (
     <div className="contGeneralFavoritosIndex">
-      {isAuthenticated ? <>{result}</> : <h1>Debes iniciar sesion</h1>}
+      {isAuthenticated ? <>{result}</> : <img src={SinFav} />}
     </div>
   );
 }

@@ -121,6 +121,7 @@ const Carrito = () => {
   // };
 
   const handleCheckout = async () => {
+
     if (arrayCarrito.length) {
       const items = arrayCarrito.map((i) => ({
         id: i.codProd,
@@ -139,8 +140,8 @@ const Carrito = () => {
             dispatch(carritoStorage([]));
           }
         })
-    }
-  };
+  }
+};
 
   return (
     <div
