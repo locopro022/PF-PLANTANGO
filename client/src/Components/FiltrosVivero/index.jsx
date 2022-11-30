@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./FiltrosVivero.css";
 import { Slider, Box } from "@mui/material";
+import { useEffect } from "react";
 
-const FiltrosVivero = ({ options, apply }) => {
+const FiltrosVivero = ({ options, apply}) => {
   const [filter, setFilter] = useState({
     codCategory: [],
     precio: { min: options.price?.min, max: options.price?.max },
@@ -38,6 +39,19 @@ const FiltrosVivero = ({ options, apply }) => {
     }
   };
 
+
+  const [checkedState, setCheckedState] = useState([false, false, false, false]); //.some
+
+  const handleChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+    index === position ? !item : item
+    );
+
+  setCheckedState(updatedCheckedState);
+  window.localStorage.setItem('checkbox', updatedCheckedState);
+  }
+
+
   return (
     <>
       <div className="containerBarra">
@@ -64,6 +78,8 @@ const FiltrosVivero = ({ options, apply }) => {
                   onClick={category}
                   id={option.codCategory}
                   style={{ cursor: "pointer" }}
+                  checked={checkedState[index]} 
+                  onChange={() => handleChange(index)}
                 />
                 {option.descripCategory}
               </label>

@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./Modal.css";
 import { useSelector, useDispatch } from "react-redux";
-import { carritoStorage } from "../../redux/actions";
+import { carritoStorage, getUser } from "../../redux/actions";
 import Notiflix from "notiflix";
 import axios from "axios";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 const Carrito = () => {
+  const { user } = useAuth0()
   const [aux, setAux] = useState("");
   const dispatch = useDispatch();
   const arrayCarrito = useSelector((state) => state.carrito); // array para mapear y mostrar en el carrito
+  const userCheck = useSelector((state) => state.user); // DEVUELVE TRUE(LOGGEADO) O array vacío.
   const borrarCarrito = () => {
     Notiflix.Confirm.show(
       "Vaciar carrito",
@@ -75,31 +79,39 @@ const Carrito = () => {
   };
 
   const handleCheckout = async () => {
-    if (arrayCarrito.length) {
-      const items = arrayCarrito.map((i) => ({
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: i.nameProd,
+    if(user){
+      if (arrayCarrito.length) {
+        const items = arrayCarrito.map((i) => ({
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: i.nameProd,
+            },
+            unit_amount: i.precio * 10,
           },
-          unit_amount: i.precio * 100,
-        },
-        quantity: i.cantidad,
-      }));
-      const response = axios.post(
-        "http://localhost:3001/pagos/create-checkout-session",
-        { items }
-      ).then((res) => {
-        if (res.data) {
-          window.location.href = res.data// force de URL
-          localStorage.removeItem("carrito");
-          dispatch(carritoStorage([]));
-        }
-      }).catch((err) => console.log(err));
-    } else {
-      const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
-      // console.log(response.data.info);
-      Notiflix.Notify.success(response.data.info, {
+          quantity: i.cantidad,
+        }));
+        const email = user.email;
+        const response = await axios.post(
+          "http://localhost:3001/pagos/create-checkout-session",
+          { items, email }
+        ).then((res) => {
+          if (res.data) {
+            window.location.href = res.data// force de URL
+            localStorage.removeItem("carrito");
+            dispatch(carritoStorage([]));
+          }
+        }).catch((err) => console.log(err));
+      } else {
+        const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
+        Notiflix.Notify.failure(response.data.info, {
+          zindex: 999999999999999,
+          position: "left-top",
+          timeout: 2000,
+        });
+      }
+    }else{
+      Notiflix.Notify.failure('Debes iniciar sesión para poder comprar!!', {
         zindex: 999999999999999,
         position: "left-top",
         timeout: 2000,
