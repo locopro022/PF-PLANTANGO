@@ -7,14 +7,16 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 
 pagos.post('/create-checkout-session', async (req, res) => {
-  const {items} = req.body;
+  const {items, email} = req.body;
   if(items){
   const session = await stripe.checkout.sessions.create({
+    customer_email: email,
     line_items: items,
     mode: 'payment',
     success_url: 'http://localhost:3000/success',
     cancel_url: 'http://localhost:3000/cancel',
   });
+  // console.log(session);
 
   res.json(session.url);
 }else{
