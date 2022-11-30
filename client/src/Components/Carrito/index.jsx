@@ -96,7 +96,7 @@ const Carrito = () => {
           "https://pf-plantango.vercel.app/pagos/create-checkout-session",
           { items, email }
         ).then((res) => {
-          if (res.data) {
+          if (res?.data) {
             window.location.href = res.data// force de URL
             localStorage.removeItem("carrito");
             dispatch(carritoStorage([]));
