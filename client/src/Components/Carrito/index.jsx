@@ -8,7 +8,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Carrito = () => {
-  const { user } = useAuth0()
+  const { user } = useAuth0();
   const [aux, setAux] = useState("");
   const dispatch = useDispatch();
   const arrayCarrito = useSelector((state) => state.carrito); // array para mapear y mostrar en el carrito
@@ -78,44 +78,68 @@ const Carrito = () => {
     }
   };
 
+  // const handleCheckout = async () => {
+  //   if(user){
+  //     if (arrayCarrito.length) {
+  //       console.log(arrayCarrito);
+  //       const items = arrayCarrito.map((i) => ({
+  //         price_data: {
+  //           currency: "usd",
+  //           product_data: {
+  //             name: i.nameProd,
+  //           },
+  //           unit_amount: i.precio * 100,
+  //         },
+  //         quantity: i.cantidad,
+  //       }));
+  //       const email = user.email;
+  //       const response = await axios.post(
+  //         "http://localhost:3001/pagos/create-checkout-session",
+  //         { items, email }
+  //       ).then((res) => {
+  //         if (res.data) {
+  //           // window.location.href = res.data// force de URL
+  //           localStorage.removeItem("carrito");
+  //           dispatch(carritoStorage([]));
+  //         }
+  //       }).catch((err) => console.log(err));
+  //     } else {
+  //       const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
+  //       Notiflix.Notify.failure(response.data.info, {
+  //         zindex: 999999999999999,
+  //         position: "left-top",
+  //         timeout: 2000,
+  //       });
+  //     }
+  //   }else{
+  //     Notiflix.Notify.failure('Debes iniciar sesión para poder comprar!!', {
+  //       zindex: 999999999999999,
+  //       position: "left-top",
+  //       timeout: 2000,
+  //     });
+  //   }
+  // };
+
   const handleCheckout = async () => {
-    if (user) {
-      if (arrayCarrito.length) {
-        const items = arrayCarrito.map((i) => ({
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: i.nameProd,
-            },
-            unit_amount: i.precio * 100,
-          },
-          quantity: i.cantidad,
-        }));
-        const email = user.email;
-        await axios.post(
-          "https://pf-plantango.vercel.app/pagos/create-checkout-session",
-          { items, email }
-        ).then((res) => {
-          if (res?.data) {
-            window.location.href = res.data// force de URL
+
+    if (arrayCarrito.length) {
+      const items = arrayCarrito.map((i) => ({
+        id: i.codProd,
+        title: i.nameProd,
+        unit_price: parseInt(i.precio),
+        quantity: i.cantidad,
+        currency_id: "ARS",
+      }));
+      console.log(items);
+      const response = await axios.post("/payments", { items })
+        // console.log(response);
+        .then((res) => {
+          if (res.data) {
+            window.location.href = res.data.url// force de URL
             localStorage.removeItem("carrito");
             dispatch(carritoStorage([]));
           }
-        }).catch((err) => console.log(err));
-      } else {
-        const response = await axios.post("https://pf-plantango.vercel.app/pagos/create-checkout-session")
-        Notiflix.Notify.failure(response.data.info, {
-          zindex: 999999999999999,
-          position: "left-top",
-          timeout: 2000,
-        });
-      }
-    } else {
-      Notiflix.Notify.failure('Debes iniciar sesión para poder comprar!!', {
-        zindex: 999999999999999,
-        position: "left-top",
-        timeout: 2000,
-      });
+        })
     }
   };
 
@@ -136,7 +160,11 @@ const Carrito = () => {
       >
         <div className="modal-content" style={{ zIndex: "999999999" }}>
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLongTitle" style={{ color: '#b4be9f' }}>
+            <h5
+              className="modal-title"
+              id="exampleModalLongTitle"
+              style={{ color: "#b4be9f" }}
+            >
               Carrito de compras
             </h5>
             <button className="close" data-dismiss="modal" aria-label="Close">
@@ -181,7 +209,9 @@ const Carrito = () => {
                   })}
                 </>
               ) : (
-                <div style={{ color: '#b4be9f' }}>Sin productos en el carrito</div>
+                <div style={{ color: "#b4be9f" }}>
+                  Sin productos en el carrito
+                </div>
               )}
             </>
           </div>
@@ -200,7 +230,10 @@ const Carrito = () => {
             <button className="btn colorVaciar" onClick={borrarCarrito}>
               Vaciar carrito
             </button>
-            <button className="btn colorComprar" onClick={() => handleCheckout()}>
+            <button
+              className="btn colorComprar"
+              onClick={() => handleCheckout()}
+            >
               Comprar
             </button>
           </div>
