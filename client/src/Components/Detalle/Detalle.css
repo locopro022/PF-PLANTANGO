@@ -1,8 +1,29 @@
-@media(min-width:2000px) {
-    .altoMedia {
-        height: 1200px
-    }
+@media (min-width: 2000px) {
+  .altoMedia {
+    height: 1200px;
+  }
 }
-.container_coments_gnrl_plant{
-    background-color: aqua;
+@media screen and (max-width: 800px) {
+  .detalle_fijo {
+    position: static !important;
+  }
+  .detalle_grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+.container_coments_gnrl_plant {
+  background-color: aqua;
+}
+
+.detalle_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding-bottom: 8rem;
+}
+
+.detalle_fijo {
+  top: 6rem;
+  position: sticky;
 }

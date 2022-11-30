@@ -9,6 +9,7 @@ import UploadWidget from "../UploadWidget";
 import imgDefault from "../../img/default.jpg";
 import Notiflix from 'notiflix'
 
+
 const ContainerFormPlanta = () => {
   const navigate = useNavigate();
   const tipos = useSelector((state) => state.tiposHuerta);

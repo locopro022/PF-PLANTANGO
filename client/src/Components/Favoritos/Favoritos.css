@@ -1,11 +1,84 @@
 .contGeneralFavoritosIndex {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   margin-top: 40px;
   margin-left: 50px;
   flex-wrap: wrap;
-  overflow-x: hidden;
+  overflow-x: hidden; */
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  justify-content: space-around;
+  text-align: center;
+  cursor: pointer;
+  padding-bottom: 55px;
 }
+
+.cardCartaFav{
+  width: 24rem;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  background-color: #fff;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+.cuerpo{
+  width: auto;
+  /* display: flex; */
+  justify-content: space-between;
+  /* border: solid 1px black; */
+}
+
+.data-container{
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  max-width: 350px;
+}
+
+.imagen-cabeza{
+  width: 22rem;
+  height: 250px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.cuerpo-titulo{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.cuerpo-subtitulo {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 20px;
+}
+
+/* .aux{
+  display: flex;
+  justify-content: center;
+} */
+
+.cuerpo-caracteristica-caracteristica{
+  margin: 12px;
+}
+
+
+
+
+
+
+
+
+
 
 .favOFF {
   background-image: url("../../img/estrellaoff.png");
@@ -47,13 +120,18 @@
   border-style: none;
 }
 
-.cardCartaFav {
-  max-width: 500px;
-  max-height: 450px;
-  min-height: 450px;
-  min-width: 500px;
-  margin: 30px;
-  border-style: solid;
-  border-width: 1px;
+
+/* .cuerpo-caracteristica-container{
   position: relative;
-}
+  align-items: center;
+  text-align: center;
+} */
+
+
+
+/* .cuerpo-caracteristica-caracteristica {
+  margin-left: 20px;
+} */
+
+
+

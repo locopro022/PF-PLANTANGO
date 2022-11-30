@@ -37,7 +37,7 @@ function Coment(props) {
   };
 
   return (
-    <div className="card coment_wrapper">
+    <div className="card p-1 coment_wrapper">
       {editing ? (
         <div>
           <form onSubmit={save}>
@@ -62,11 +62,11 @@ function Coment(props) {
             </h5>
             <div className="coment_button">
               <input
-                className="btn btn-success m-1"
+                className="btn btn-success mr-1"
                 type="submit"
                 value="Guardar"
               />
-              <button className="btn btn-warning m-1" onClick={discard}>
+              <button className="btn btn-warning" onClick={discard}>
                 Descartar
               </button>
             </div>
@@ -80,10 +80,10 @@ function Coment(props) {
           <h5>{props.cont}</h5>
           {isFromUser && (
             <div className="coment_button">
-              <button className="btn btn-success m-1" onClick={edit}>
+              <button className="btn btn-success mr-1" onClick={edit}>
                 Editar
               </button>
-              <button className="btn btn-danger m-1" onClick={deleteComment}>
+              <button className="btn btn-danger" onClick={deleteComment}>
                 Borrar
               </button>
             </div>
@@ -145,7 +145,7 @@ function ComentPlant(props) {
       {user ? (
         <>
           <h2>Deja tu comentario</h2>
-          <form className="card coment_wrapper" onSubmit={onSubmit}>
+          <form className="card p-2 coment_wrapper" onSubmit={onSubmit}>
             <h3>
               <input
                 type="text"
@@ -161,7 +161,7 @@ function ComentPlant(props) {
                 value={input.cont}
                 name="cont"
                 onChange={onChange}
-                className="coment_cont"
+                className="coment_cont "
                 required
               />
             </h5>

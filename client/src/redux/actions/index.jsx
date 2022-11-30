@@ -42,6 +42,10 @@ export const SET_PAGE_VIVERO = "SET_PAGE_VIVERO";
 export const SET_FILTROS_VIVERO = "SET_FILTROS_VIVERO";
 export const GET_CATEGORIAS_VIVERO = "GET_CATEGORIAS_VIVERO";
 export const GET_SEARCH_VIVERO = "GET_SEARCH_VIVERO";
+//MZ
+export const CREATE_REVIEW = "CREATE_REVIEW";
+export const GET_RATING_PRODUCT = "GET_RATING_PRODUCT";
+export const PUT_RATING_PRODUCT = "PUT_RATING_PRODUCT";
 
 export const huertaComments = async (config = {}) => {
   const { data } = await axios({
@@ -67,11 +71,10 @@ export const traerRecordatorios = (usuario) => async (dispatch) => {
 };
 
 export const getSearchVivero = (search) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     try {
-      fetch(`/products?search=${search}`)
-        .then((response) => response.json())
-        .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data }));
+      await axios.get(`/products?search=${search}`)
+        .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data.data }));
     } catch (error) {
       throw new Error("Error en actions  -> getSearch");
     }
@@ -112,11 +115,7 @@ export const recordatorio = (hora) => async (dispatch) => {
             JSON.parse(localStorage.getItem("Notificaciones"))
           )
       );
-
-      const response2 = await axios.get(
-        `/user/traer/notifi/noti?usuario=${usuario}`
-      );
-      return dispatch({ type: TRAER_RECOR, payload: response2.data });
+      return dispatch({ type: TRAER_RECOR, payload: respuesta.data });
     });
 };
 
@@ -189,11 +188,10 @@ export const activaciones = (nombre) => (dispatch) => {
 };
 
 export const getSearch = (search) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     try {
-      fetch(`/plants?search=${search}`)
-        .then((response) => response.json())
-        .then((data) => dispatch({ type: GET_SEARCH, payload: data }));
+      await axios.get(`/plants?search=${search}`)
+        .then((data) => dispatch({ type: GET_SEARCH, payload: data.data }));
     } catch (error) {
       throw new Error("Error en actions  -> getSearch");
     }
@@ -234,6 +232,7 @@ export function createDaily(idU) {
       .then((res) => res.data)
       .then((payload) => dispatch({ type: CREATE_DAILY_USER, payload }));
 }
+
 export function selectDetailDaily(obj) {
   return (dispatch) => dispatch({ type: SELECT_DETAIL_DAILY, payload: obj });
 }
@@ -259,11 +258,10 @@ export function getUser(user) {
 }
 
 export const getAllUsers = () => {
-  return (dispatch) => {
-    fetch(`/user/all`)
-      .then((response) => response.json())
+  return async (dispatch) => {
+    await axios.get(`/user/all`)
       .then((data) => {
-        dispatch({ type: GET_ALL_USERS, payload: data });
+        dispatch({ type: GET_ALL_USERS, payload: data.data });
       });
   };
 };
@@ -278,6 +276,7 @@ export const addAdmin = (newAdmin) => {
 export const deleteUser = (idUser) => {
   return async function (dispatch) {
     const user = await axios.delete(`/user/${idUser}`);
+
     return dispatch({
       type: DELETE_USER,
       payload: user.data,
@@ -287,17 +286,17 @@ export const deleteUser = (idUser) => {
 
 export const traerProductos =
   (e = null) =>
-  async (dispatch) => {
-    /* console.log("action traer productos", e); */
-    return await axios
-      .get("/products", { params: e })
-      .then((productos) => {
-        dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
-      });
-  };
+    async (dispatch) => {
+      console.log("action traer productos", e);
+      return await axios
+        .get(`/products`, { params: e })
+        .then((productos) => {
+          dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
+        });
+    };
 
 export const setFiltrosProductos = (e) => (dispatch) => {
-  /* console.log("asi llega el filtro a la action", e); */
+  console.log("asi llega el filtro a la action", e);
   dispatch({ type: SET_FILTROS_VIVERO, payload: e });
 };
 
@@ -327,16 +326,15 @@ export const getBill = () => async (dispatch) => {
     kpi4.data.datos,
     kpi5.data.datos,
   ];
-  /* console.log(kpiTotal, "kpiTotal"); */
+  console.log(kpiTotal, "kpiTotal");
   return dispatch({ type: GET_BILL, payload: kpiTotal });
 };
 
 export const getCategoriasVivero = () => {
-  return (dispatch) => {
-    fetch(`/products/types`)
-      .then((response) => response.json())
+  return async (dispatch) => {
+    await axios.get(`/products/types`)
       .then((data) => {
-        dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data });
+        dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data.data });
       });
   };
 };
@@ -347,5 +345,53 @@ export function getComentPlant(idP) {
       .get(`/plants/coment/${idP}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_COMENTS_OF_PLANTS, payload }));
+  }
+};
+
+//MZ
+
+export function creaReview(review){
+
+  return function (dispatch){
+      return fetch('http://localhost:3001/bill/createReview',{
+              method:'POST',
+              headers: {'Content-Type': 'application/json',},
+              body: JSON.stringify({
+                  codProd: review.codProd,
+                  starsReview: review.stars,
+                  textReview: review.textReview
+              })
+      })
+      .then(res => res.json())
+      .then(res => {  
+          dispatch({
+              type: "CREATE_REVIEW",
+              payload: res
+          })
+      })
+  }   
+};
+
+export const getRatingproduct = (codprod) => {
+  return (dispatch) => {
+    fetch(`http://localhost:3001/bill/ratingproduct/${codprod}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("rating:", Math.round(data.datos[0].Rating))
+        dispatch({ type: GET_RATING_PRODUCT, payload: data.datos[0].Rating });
+      });
   };
-}
+};
+
+export const ratingproductupdate = (codprod) => {
+  return (dispatch) => {
+    //fetch(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)
+    axios
+      .put(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)  
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({ type: PUT_RATING_PRODUCT, payload: data });
+      });
+  };
+};
+

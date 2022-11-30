@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
+import Notiflix from 'notiflix'
 import "./index.css";
 import { addFav, deleteFav, editPlantforLike } from "../../redux/actions";
 
@@ -18,6 +18,9 @@ const Cartas = (props) => {
     if (user.idUser) {
       if (e.target.className === "favOFF") {
         dispatch(addFav(user.idUser, item.id));
+        Notiflix.Notify.success('Agregada con exito.', {
+          zindex: 9999999
+        })
         dispatch(
           editPlantforLike({
             codPlant: item.id,

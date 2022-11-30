@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./Modal.css";
 import { useSelector, useDispatch } from "react-redux";
-import { carritoStorage } from "../../redux/actions";
+import { carritoStorage, getUser } from "../../redux/actions";
 import Notiflix from "notiflix";
 import axios from "axios";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 const Carrito = () => {
+  const { user } = useAuth0()
   const [aux, setAux] = useState("");
   const dispatch = useDispatch();
   const arrayCarrito = useSelector((state) => state.carrito); // array para mapear y mostrar en el carrito
+  const userCheck = useSelector((state) => state.user); // DEVUELVE TRUE(LOGGEADO) O array vacío.
   const borrarCarrito = () => {
     Notiflix.Confirm.show(
       "Vaciar carrito",
@@ -24,7 +28,7 @@ const Carrito = () => {
           timeout: 1500,
         });
       },
-      () => {},
+      () => { },
       {
         zindex: 99999999,
       }
@@ -52,10 +56,10 @@ const Carrito = () => {
       let carritoNuevoValor = arrayCarrito?.map((el) =>
         el.nameProd === ele.nameProd
           ? {
-              ...el,
-              cantidad:
-                ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
-            }
+            ...el,
+            cantidad:
+              ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
+          }
           : el
       );
       localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
@@ -64,9 +68,9 @@ const Carrito = () => {
       let carritoNuevoValor = arrayCarrito?.map((el) =>
         el.nameProd === ele.nameProd
           ? {
-              ...el,
-              cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
-            }
+            ...el,
+            cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
+          }
           : el
       );
       localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
@@ -75,29 +79,39 @@ const Carrito = () => {
   };
 
   const handleCheckout = async () => {
-    if(arrayCarrito.length){
-      const items = arrayCarrito.map((i) => ({
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: i.nameProd,
+    if(user){
+      if (arrayCarrito.length) {
+        const items = arrayCarrito.map((i) => ({
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: i.nameProd,
+            },
+            unit_amount: i.precio * 10,
           },
-          unit_amount: i.precio * 100,
-        },
-        quantity: i.cantidad,
-      }));
-      const response = axios.post(
-        "http://localhost:3001/pagos/create-checkout-session",
-        { items }
-      ).then((res)=>{
-        if(res.data){
-          window.location.href = res.data // force de URL
-        }
-      }).catch((err)=>console.log(err));
+          quantity: i.cantidad,
+        }));
+        const email = user.email;
+        const response = await axios.post(
+          "http://localhost:3001/pagos/create-checkout-session",
+          { items, email }
+        ).then((res) => {
+          if (res.data) {
+            window.location.href = res.data// force de URL
+            localStorage.removeItem("carrito");
+            dispatch(carritoStorage([]));
+          }
+        }).catch((err) => console.log(err));
+      } else {
+        const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
+        Notiflix.Notify.failure(response.data.info, {
+          zindex: 999999999999999,
+          position: "left-top",
+          timeout: 2000,
+        });
+      }
     }else{
-      const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
-      // console.log(response.data.info);
-      Notiflix.Notify.success(response.data.info, {
+      Notiflix.Notify.failure('Debes iniciar sesión para poder comprar!!', {
         zindex: 999999999999999,
         position: "left-top",
         timeout: 2000,
@@ -122,7 +136,7 @@ const Carrito = () => {
       >
         <div className="modal-content" style={{ zIndex: "999999999" }}>
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLongTitle">
+            <h5 className="modal-title" id="exampleModalLongTitle" style={{ color: '#b4be9f' }}>
               Carrito de compras
             </h5>
             <button className="close" data-dismiss="modal" aria-label="Close">
@@ -154,9 +168,8 @@ const Carrito = () => {
                             +
                           </button>
                         </div>
-                        <h5 className="precioApartado">{`$${
-                          ele.cantidad * parseInt(ele.precio)
-                        }`}</h5>
+                        <h5 className="precioApartado">{`$${ele.cantidad * parseInt(ele.precio)
+                          }`}</h5>
                         <button
                           className="btnMapeo"
                           onClick={() => eliminarProduct(ele.nameProd)}
@@ -168,7 +181,7 @@ const Carrito = () => {
                   })}
                 </>
               ) : (
-                <div>Sin productos en el carrito</div>
+                <div style={{ color: '#b4be9f' }}>Sin productos en el carrito</div>
               )}
             </>
           </div>
@@ -178,20 +191,18 @@ const Carrito = () => {
                 position: "absolute",
                 left: "20px",
                 bottom: "0%",
-                color: "#000",
+                color: "#b4be9f",
               }}
             >{`$${arrayCarrito?.reduce(
               (ant, des) => ant + parseInt(des.precio) * des.cantidad,
               0
             )}`}</p>
-            <button className="btn btn-danger" onClick={borrarCarrito}>
+            <button className="btn colorVaciar" onClick={borrarCarrito}>
               Vaciar carrito
             </button>
-
-            <button className="btn btn-success" onClick={()=>handleCheckout()}>
+            <button className="btn colorComprar" onClick={() => handleCheckout()}>
               Comprar
             </button>
-
           </div>
         </div>
       </div>

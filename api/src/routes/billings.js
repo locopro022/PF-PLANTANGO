@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { fn, col, literal } = require("sequelize");
-const { Category, Product, Billing, User, BillingDetail } = require("../db");
+const { Category, Product, ReviewProduct, Billing, User, BillingDetail } = require("../db");
 
 const bill = Router();
 
@@ -37,6 +37,51 @@ bill.post('/createproduct', async (req, res) => {
         res.json( {error: error})
     })
 })
+
+//localhost:3001/bill/createreview
+bill.post('/createreview', async (req, res) => {
+    await ReviewProduct.create(req.body)
+    .then( (data) => {
+        res.json( {datos:data})
+    })
+    .catch( (error) => {
+        res.json( {error: error})
+    })
+})
+
+//localhost:3001/bill/ratingproduct
+bill.get('/ratingproduct/:codProd', async (req, res) => {
+    const {codProd} = req.params
+    
+    await ReviewProduct.findAll({
+        where: { codProd: codProd},
+        attributes: [ [fn('AVG', col('starsReview')), 'Rating'] ]
+    })
+    .then( (data) => {
+        res.json( {datos:data})
+    })
+    .catch( (error) => {
+        res.json( {error: error.message})
+    })
+})
+
+//localhost:3001/bill/ratingproductUpdate
+bill.put('/ratingproductupdate/:codProd', async (req, res) => {
+    const {codProd} = req.params
+    await Product.update(
+//        {starts : [literal(`select avg("starsReview") from "ReviewProduct" where "codProd"=${codProd}`), 'Rating']},
+    {starts : literal(`(select ceiling(avg("starsReview")) from "ReviewProduct" where "codProd"=${codProd})`)},
+    {where: { codProd: codProd}}
+    )    
+    .then( (data) => {
+        res.json( {datos:data})
+    })
+    .catch( (error) => {
+        res.json( {error: error.message})
+    })
+})
+
+//----------------------------------------------------
 
 //localhost:3001/bill/getproduct
 bill.get('/getproduct', async (req, res) => {

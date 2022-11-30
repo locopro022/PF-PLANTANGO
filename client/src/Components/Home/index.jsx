@@ -20,11 +20,15 @@ const Home = () => {
                             <div className='containerCarro'>
                                 <Carrousel />
                             </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            
                             <HomeApartadoVivero />
-                            <div className='containerPlantango estilos'>
-                                <h2>Plantango</h2>
-                                <h6>Somos una empresa Argentina que se dedica a vender los mejores productos para el mantenimiento de tus plantas, tambien brindamos informacion sobre plantas que encontras en cualquier vivero, para que te conviertas en un experto.</h6>
-                            </div>
+                            
                             <HomeApartadoHuerta />
                         </div>
                     </>
