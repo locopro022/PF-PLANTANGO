@@ -18,7 +18,9 @@ const server = express();
 
 server.name = "API";
 
-server.use(cors())
+server.use(cors({
+  origin: ["http://localhost:3001", "https://checkout.stripe.com", "https://pf-plantango.vercel.app/"],
+}))
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
