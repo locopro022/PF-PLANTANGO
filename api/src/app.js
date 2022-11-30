@@ -11,6 +11,7 @@ const bill = require("./routes/billings.js");
 const prod = require("./routes/products.js");
 const noti = require("./routes/notificaciones.js");
 const pagos = require("./routes/pagos.js");
+const merPago = require('./routes/mercadoPagoRo.js')
 // const cors = require("cors");
 require("./db.js");
 
@@ -44,6 +45,7 @@ server.use("/user", UserR)
 server.use("/products", prod)
 server.use("/noti", noti)
 server.use("/pagos", pagos)
+server.use("/payments", merPago)
 
 // Error catching endware.
 server.use((err, req, res, next) => {
