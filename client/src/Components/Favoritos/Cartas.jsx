@@ -50,17 +50,19 @@ const CartasFavoritos = ({ items }) => {
             </h4>
           )}
           {items.tipo && (
-              <p className="cuerpo-caracteristica">
-                {items.tipo.map((caracteristica, i) => (
-                  <span className="cuerpo-caracteristica-caracteristica" key={i}>
-                    {caracteristica}
-                  </span>
-                ))}
-              </p>
+            <p className="cuerpo-caracteristica">
+              {items.tipo.map((caracteristica, i) => (
+                <span className="cuerpo-caracteristica-caracteristica" key={i}>
+                  {caracteristica}
+                </span>
+              ))}
+            </p>
           )}
         </div>
         <div className="button-container">
-          {items.precio && <p className="cuerpo-precio">${items.precio / 100}</p>}
+          {items.precio && (
+            <p className="cuerpo-precio">${items.precio / 100}</p>
+          )}
           <button className="favON" onClick={(e) => eliminarFav(e, items)} />
         </div>
       </div>
