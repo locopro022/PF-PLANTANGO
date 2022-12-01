@@ -15,7 +15,7 @@ import {
   getTiposHuerta,
   getUser,
   carritoStorage,
-  traerNotificaciones
+  traerNotificaciones,
 } from "./redux/actions";
 import Detalle from "./Components/Detalle";
 import Breadcrumbs from "./Components/Breadcrumbs";
@@ -38,7 +38,7 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#57652a'
+        main: "#57652a",
       },
       secondary: {
         main: "#000",

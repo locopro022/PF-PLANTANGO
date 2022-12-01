@@ -121,7 +121,6 @@ const Carrito = () => {
   // };
 
   const handleCheckout = async () => {
-
     if (arrayCarrito.length) {
       const items = arrayCarrito.map((i) => ({
         id: i.codProd,
@@ -130,18 +129,19 @@ const Carrito = () => {
         quantity: i.cantidad,
         currency_id: "ARS",
       }));
-      console.log(items);
-      const response = await axios.post("/payments", {items})
-      // console.log(response);
+      // console.log(items);
+      const response = await axios
+        .post("/payments", { items })
+        // console.log(response);
         .then((res) => {
-            if (res.data) {
-            window.location.href = res.data.url// force de URL
+          if (res.data) {
+            window.location.href = res.data.url; // force de URL
             localStorage.removeItem("carrito");
             dispatch(carritoStorage([]));
           }
-        })
-  }
-};
+        });
+    }
+  };
 
   return (
     <div

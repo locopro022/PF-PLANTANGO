@@ -350,9 +350,9 @@ const filtros = [
     options: {
       buttons: [
         {
-          name: "Dime hijo de puta",
+          name: "Dime una palabrota",
           callback: () => {
-            console.log("Hijo de puta");
+            console.log("pamplinas");
           },
         },
         {
