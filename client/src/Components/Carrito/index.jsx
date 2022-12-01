@@ -28,7 +28,7 @@ const Carrito = () => {
           timeout: 1500,
         });
       },
-      () => {},
+      () => { },
       {
         zindex: 99999999,
       }
@@ -56,10 +56,10 @@ const Carrito = () => {
       let carritoNuevoValor = arrayCarrito?.map((el) =>
         el.nameProd === ele.nameProd
           ? {
-              ...el,
-              cantidad:
-                ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
-            }
+            ...el,
+            cantidad:
+              ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
+          }
           : el
       );
       localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
@@ -68,9 +68,9 @@ const Carrito = () => {
       let carritoNuevoValor = arrayCarrito?.map((el) =>
         el.nameProd === ele.nameProd
           ? {
-              ...el,
-              cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
-            }
+            ...el,
+            cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
+          }
           : el
       );
       localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
@@ -78,68 +78,40 @@ const Carrito = () => {
     }
   };
 
-  // const handleCheckout = async () => {
-  //   if(user){
-  //     if (arrayCarrito.length) {
-  //       console.log(arrayCarrito);
-  //       const items = arrayCarrito.map((i) => ({
-  //         price_data: {
-  //           currency: "usd",
-  //           product_data: {
-  //             name: i.nameProd,
-  //           },
-  //           unit_amount: i.precio * 100,
-  //         },
-  //         quantity: i.cantidad,
-  //       }));
-  //       const email = user.email;
-  //       const response = await axios.post(
-  //         "http://localhost:3001/pagos/create-checkout-session",
-  //         { items, email }
-  //       ).then((res) => {
-  //         if (res.data) {
-  //           // window.location.href = res.data// force de URL
-  //           localStorage.removeItem("carrito");
-  //           dispatch(carritoStorage([]));
-  //         }
-  //       }).catch((err) => console.log(err));
-  //     } else {
-  //       const response = await axios.post("http://localhost:3001/pagos/create-checkout-session")
-  //       Notiflix.Notify.failure(response.data.info, {
-  //         zindex: 999999999999999,
-  //         position: "left-top",
-  //         timeout: 2000,
-  //       });
-  //     }
-  //   }else{
-  //     Notiflix.Notify.failure('Debes iniciar sesión para poder comprar!!', {
-  //       zindex: 999999999999999,
-  //       position: "left-top",
-  //       timeout: 2000,
-  //     });
-  //   }
-  // };
-
   const handleCheckout = async () => {
-    if (arrayCarrito.length) {
-      const items = arrayCarrito.map((i) => ({
-        id: i.codProd,
-        title: i.nameProd,
-        unit_price: parseInt(i.precio),
-        quantity: i.cantidad,
-        currency_id: "ARS",
-      }));
-      console.log(items);
-      const response = await axios
-        .post("/payments", { items })
-        // console.log(response);
-        .then((res) => {
-          if (res.data) {
-            window.location.href = res.data.url; // force de URL
-            localStorage.removeItem("carrito");
-            dispatch(carritoStorage([]));
-          }
+    if (user) {
+      if (arrayCarrito.length) {
+        const items = arrayCarrito.map((i) => ({
+          id: i.codProd,
+          title: i.nameProd,
+          unit_price: parseInt(i.precio),
+          quantity: i.cantidad,
+          currency_id: "ARS",
+        }));
+        console.log(items);
+        const response = await axios
+          .post("/payments", { items })
+          // console.log(response);
+          .then((res) => {
+            if (res.data) {
+              window.location.href = res.data.url; // force de URL
+              localStorage.removeItem("carrito");
+              dispatch(carritoStorage([]));
+            }
+          });
+      } else {
+        Notiflix.Notify.failure("Tu carrito está vacio, visita el vivero!!", {
+          zindex: 999999999999999,
+          position: "left-top",
+          timeout: 2000,
         });
+      }
+    } else {
+      Notiflix.Notify.failure("Debes iniciar sesión para poder comprar!!", {
+        zindex: 999999999999999,
+        position: "left-top",
+        timeout: 2000,
+      });
     }
   };
 
@@ -196,9 +168,8 @@ const Carrito = () => {
                             +
                           </button>
                         </div>
-                        <h5 className="precioApartado">{`$${
-                          ele.cantidad * parseInt(ele.precio)
-                        }`}</h5>
+                        <h5 className="precioApartado">{`$${ele.cantidad * parseInt(ele.precio)
+                          }`}</h5>
                         <button
                           className="btnMapeo"
                           onClick={() => eliminarProduct(ele.nameProd)}
