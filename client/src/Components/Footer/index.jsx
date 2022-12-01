@@ -25,7 +25,7 @@ const Footer = () => {
         }}
       >
         <div>
-          <a href="http://localhost:3000/home">
+          <a href="https://plantango.vercel.app/">
             <img
               src={platango}
               alt="plantango"

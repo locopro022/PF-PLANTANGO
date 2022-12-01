@@ -17,13 +17,13 @@ const ContainerCardHome = (props) => {
     <>
       {arrayVivero?.results?.slice(0, 6).map((produc) => {
         return (
-          <div className="card text-center estilos mediaCard">
+          <div className="card text-center estilos mediaCard" onClick={() => navigate("/vivero")}>
             <div className="card-body" style={{ cursor: "pointer" }}>
               <img className="card-img-top tamanoImg" src={produc.imageProd} />
               <h6 className="card-title" style={{ marginTop: "10px" }}>
                 {produc.nameProd}
               </h6>
-              <a className="btn btnn" onClick={() => navigate("/vivero")}>
+              <a className="btn btnn">
                 Visitar vivero
               </a>
             </div>
