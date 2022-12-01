@@ -1,8 +1,6 @@
 import React from "react";
 
 const Pagination = (props) => {
-
-
   const max = props.max;
   const curr = props.curr;
   const apply = props.apply;
@@ -10,13 +8,11 @@ const Pagination = (props) => {
   // const dispatch = useDispatch();
 
   const movements = {
-    prev: () => curr > 0 ? parseInt(curr) - 1 : parseInt(curr),
+    prev: () => (curr > 0 ? parseInt(curr) - 1 : parseInt(curr)),
     next: () => (curr < max - 1 ? parseInt(curr) + 1 : parseInt(curr)),
   };
 
-
-
-  console.log(max, curr);
+  // console.log(max, curr);
 
   const move = (dir) => {
     apply(movements[dir] ? movements[dir]() : dir);
@@ -46,13 +42,12 @@ const Pagination = (props) => {
           >
             {"<"}
           </button>
-          {
-            [...Array(max).keys()].map((index) => (
-              <button
-                onClick={() => move(index)}
-                style={
-                  parseInt(curr) === index
-                    ? {
+          {[...Array(max).keys()].map((index) => (
+            <button
+              onClick={() => move(index)}
+              style={
+                parseInt(curr) === index
+                  ? {
                       outline: "2px solid #90b89b",
                       margin: "0px 10px",
                       border: "none",
@@ -60,7 +55,7 @@ const Pagination = (props) => {
                       borderRadius: "5px",
                       cursor: "pointer",
                     }
-                    : {
+                  : {
                       margin: "0px 10px",
                       border: "none",
                       width: "35px",
@@ -68,11 +63,11 @@ const Pagination = (props) => {
                       cursor: "pointer",
                       outline: "none",
                     }
-                }
-              >
-                {index + 1}
-              </button>
-            ))}
+              }
+            >
+              {index + 1}
+            </button>
+          ))}
           <button
             onClick={() => move("next")}
             style={{

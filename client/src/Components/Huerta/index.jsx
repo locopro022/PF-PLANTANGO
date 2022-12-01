@@ -23,17 +23,17 @@ const Vivero = () => {
   const dispatch = useDispatch();
   const user = useSelector((e) => e.user);
   const [cambioProducto, setCP] = useState("");
-  console.log("FILTROS", filtros)
+  // console.log("FILTROS", filtros)
   useEffect(() => {
     let filter = {};
 
     for (let item of filtros) {
       let slice = item.options.some(({ checked }) => checked)
         ? {
-          [item.filter]: item.options
-            .filter(({ checked }) => checked)
-            .map(({ value }) => value),
-        }
+            [item.filter]: item.options
+              .filter(({ checked }) => checked)
+              .map(({ value }) => value),
+          }
         : {};
       filter = { ...filter, ...slice };
     }
@@ -63,9 +63,7 @@ const Vivero = () => {
     <>
       {!iniciarPagina ? (
         <>
-          {
-            !filtros?.length ? <AlPrincipio /> : null
-          }
+          {!filtros?.length ? <AlPrincipio /> : null}
           <div className="">
             <SearchBarHuerta />
           </div>

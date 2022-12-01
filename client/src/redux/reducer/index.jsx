@@ -67,9 +67,9 @@ const initialState = {
   bill: [],
   notificaciones: [],
   arrayRecor: [],
-  comentariosP:[],
-  review:[],
-  rating:0,
+  comentariosP: [],
+  review: [],
+  rating: 0,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -127,7 +127,7 @@ const rootReducer = (state = initialState, action) => {
             })),
           },
         ];
-      console.log(filtrosHuerta);
+      // console.log(filtrosHuerta);
       return {
         ...state,
         tiposHuerta: action.payload,
@@ -276,24 +276,26 @@ const rootReducer = (state = initialState, action) => {
         diario: action.payload,
       };
     case GET_COMENTS_OF_PLANTS:
-      return{
-        ...state, comentariosP: action.payload
-      };    case CREATE_REVIEW:
-        return {
-          ...state,
-          review: action.payload,
-        };
+      return {
+        ...state,
+        comentariosP: action.payload,
+      };
+    case CREATE_REVIEW:
+      return {
+        ...state,
+        review: action.payload,
+      };
     case GET_RATING_PRODUCT:
-          return {
-            ...state,
-            rating: action.payload,
-          };
+      return {
+        ...state,
+        rating: action.payload,
+      };
     case PUT_RATING_PRODUCT:
-          return {
-            ...state,
-          rating: action.payload,
-        };
-  
+      return {
+        ...state,
+        rating: action.payload,
+      };
+
     default:
       return state;
   }

@@ -5,10 +5,10 @@ import "./Vivero.css";
 import { useDispatch, useSelector } from "react-redux";
 import PaginadoVivero from "./PaginadoVivero";
 import {
-  getCategoriasVivero,
   setNumPage,
   traerProductos,
   setFiltrosProductos,
+  getCategoriasVivero,
 } from "../../redux/actions";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -31,35 +31,32 @@ const Vivero = () => {
 
   const apply = (filtro) => {
     dispatch(setFiltrosProductos(filtro));
-    console.log("Funcion apply es esta:", filtro);
   };
-
   useEffect(() => {
     dispatch(getCategoriasVivero());
   }, []);
-
   useEffect(() => {
     dispatch(traerProductos({ page, filter }));
-  }, [page, filter]);
+  }, [filter, page]);
 
   return (
     <>
       <div className="backgroundGlobal">
-        {
-          productos?.length
-            ?
-            <AlPrincipio />
-            :
-            null
-        }
+        {productos?.length ? <AlPrincipio /> : null}
         <div>
           <div className="containerSearch">
             <SearchBarVivero />
           </div>
           <div className="containerGlobalVivero">
-            <FiltrosVivero options={categorias} apply={apply} />
+            {categorias ? (
+              <FiltrosVivero
+                options={categorias}
+                apply={apply}
+                activos={filter}
+              />
+            ) : null}
             <div className="containerCartasSearch">
-              <CartasVivero />
+              <CartasVivero {...{ productos }} />
             </div>
             <div className="container-fluid">
               <PaginadoVivero

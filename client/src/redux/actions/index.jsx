@@ -73,8 +73,11 @@ export const traerRecordatorios = (usuario) => async (dispatch) => {
 export const getSearchVivero = (search) => {
   return async (dispatch) => {
     try {
-      await axios.get(`/products?search=${search}`)
-        .then((data) => dispatch({ type: GET_SEARCH_VIVERO, payload: data.data }));
+      await axios
+        .get(`/products?search=${search}`)
+        .then((data) =>
+          dispatch({ type: GET_SEARCH_VIVERO, payload: data.data })
+        );
     } catch (error) {
       throw new Error("Error en actions  -> getSearch");
     }
@@ -95,9 +98,7 @@ export const recordatorio = (hora) => async (dispatch) => {
   await axios
     .post(`/user/recordatorio?usuario=${usuario}&&horario=${horario}`)
     .then(async (res) => {
-      const respuesta = await axios.get(
-        `/user/noti/notifi?usuario=${usuario}`
-      );
+      const respuesta = await axios.get(`/user/noti/notifi?usuario=${usuario}`);
       const NotiStora =
         JSON.parse(localStorage.getItem("Notificaciones")) === null
           ? []
@@ -112,8 +113,8 @@ export const recordatorio = (hora) => async (dispatch) => {
         ) === null
           ? []
           : traerNotificaciones(
-            JSON.parse(localStorage.getItem("Notificaciones"))
-          )
+              JSON.parse(localStorage.getItem("Notificaciones"))
+            )
       );
       return dispatch({ type: TRAER_RECOR, payload: respuesta.data });
     });
@@ -159,14 +160,14 @@ export const getHuertaDetail = async (id) => {
 
 export const getHuerta =
   (e = null) =>
-    (dispatch) => {
-      return get(`/plants`, { params: e }).then((data) => {
-        dispatch({
-          type: GET_ARRAY_HUERTA,
-          payload: data,
-        });
+  (dispatch) => {
+    return get(`/plants`, { params: e }).then((data) => {
+      dispatch({
+        type: GET_ARRAY_HUERTA,
+        payload: data,
       });
-    };
+    });
+  };
 
 export const crearPlanta = (planta) => async () => {
   await axios.post(`/plants/creacion`, planta);
@@ -190,7 +191,8 @@ export const activaciones = (nombre) => (dispatch) => {
 export const getSearch = (search) => {
   return async (dispatch) => {
     try {
-      await axios.get(`/plants?search=${search}`)
+      await axios
+        .get(`/plants?search=${search}`)
         .then((data) => dispatch({ type: GET_SEARCH, payload: data.data }));
     } catch (error) {
       throw new Error("Error en actions  -> getSearch");
@@ -259,10 +261,9 @@ export function getUser(user) {
 
 export const getAllUsers = () => {
   return async (dispatch) => {
-    await axios.get(`/user/all`)
-      .then((data) => {
-        dispatch({ type: GET_ALL_USERS, payload: data.data });
-      });
+    await axios.get(`/user/all`).then((data) => {
+      dispatch({ type: GET_ALL_USERS, payload: data.data });
+    });
   };
 };
 
@@ -286,17 +287,14 @@ export const deleteUser = (idUser) => {
 
 export const traerProductos =
   (e = null) =>
-    async (dispatch) => {
-      console.log("action traer productos", e);
-      return await axios
-        .get(`/products`, { params: e })
-        .then((productos) => {
-          dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
-        });
-    };
+  async (dispatch) => {
+    // console.log("action traer productos", e);
+    const productos = await axios.get(`/products`, { params: e });
+    dispatch({ type: GET_ARRAY_PRODUCTS, payload: productos.data });
+  };
 
 export const setFiltrosProductos = (e) => (dispatch) => {
-  console.log("asi llega el filtro a la action", e);
+  // console.log("asi llega el filtro a la action", e);
   dispatch({ type: SET_FILTROS_VIVERO, payload: e });
 };
 
@@ -326,16 +324,15 @@ export const getBill = () => async (dispatch) => {
     kpi4.data.datos,
     kpi5.data.datos,
   ];
-  console.log(kpiTotal, "kpiTotal");
+  // console.log(kpiTotal, "kpiTotal");
   return dispatch({ type: GET_BILL, payload: kpiTotal });
 };
 
 export const getCategoriasVivero = () => {
   return async (dispatch) => {
-    await axios.get(`/products/types`)
-      .then((data) => {
-        dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data.data });
-      });
+    await axios.get(`/products/types`).then((data) => {
+      dispatch({ type: GET_CATEGORIAS_VIVERO, payload: data.data });
+    });
   };
 };
 
@@ -345,39 +342,38 @@ export function getComentPlant(idP) {
       .get(`/plants/coment/${idP}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_COMENTS_OF_PLANTS, payload }));
-  }
-};
+  };
+}
 
 //MZ
 
 export function creaReview(review) {
-
   return function (dispatch) {
-    return fetch('http://localhost:3001/bill/createReview', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', },
+    return fetch("http://localhost:3001/bill/createReview", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         codProd: review.codProd,
         starsReview: review.stars,
-        textReview: review.textReview
-      })
+        textReview: review.textReview,
+      }),
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         dispatch({
           type: "CREATE_REVIEW",
-          payload: res
-        })
-      })
-  }
-};
+          payload: res,
+        });
+      });
+  };
+}
 
 export const getRatingproduct = (codprod) => {
   return (dispatch) => {
     fetch(`http://localhost:3001/bill/ratingproduct/${codprod}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("rating:", Math.round(data.datos[0].Rating))
+        // console.log("rating:", Math.round(data.datos[0].Rating))
         dispatch({ type: GET_RATING_PRODUCT, payload: data.datos[0].Rating });
       });
   };
@@ -394,4 +390,3 @@ export const ratingproductupdate = (codprod) => {
       });
   };
 };
-
