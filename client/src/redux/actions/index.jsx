@@ -354,7 +354,7 @@ export function getComentPlant(idP) {
 export function creaReview(review) {
 
   return function (dispatch) {
-    return fetch('http://localhost:3001/bill/createReview', {
+    return fetch('bill/createReview', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', },
       body: JSON.stringify({
@@ -375,7 +375,7 @@ export function creaReview(review) {
 
 export const getRatingproduct = (codprod) => {
   return (dispatch) => {
-    fetch(`http://localhost:3001/bill/ratingproduct/${codprod}`)
+    fetch(`bill/ratingproduct/${codprod}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("rating:", Math.round(data.datos[0].Rating))
@@ -388,7 +388,7 @@ export const ratingproductupdate = (codprod) => {
   return (dispatch) => {
     //fetch(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)
     axios
-      .put(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)
+      .put(`bill/ratingproductupdate/${codprod}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: PUT_RATING_PRODUCT, payload: data });
