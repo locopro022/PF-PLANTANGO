@@ -354,7 +354,7 @@ export function getComentPlant(idP) {
 export function creaReview(review) {
 
   return function (dispatch) {
-    return fetch('https://plantango.vercel.app//bill/createReview', {
+    return fetch('http://localhost:3001/bill/createReview', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', },
       body: JSON.stringify({
@@ -376,7 +376,7 @@ export function creaReview(review) {
 export const ratingproductupdate = (codprod) => {
   return (dispatch) => {
     axios
-      .put(`https://plantango.vercel.app//bill/ratingproductupdate/${codprod}`)
+      .put(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: PUT_RATING_PRODUCT, payload: data });
