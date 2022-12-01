@@ -131,7 +131,7 @@ const get = async (url, parameter = {}) => {
 };
 
 export const getTiposHuerta = () => (dispatch) => {
-  return get(`plants/types`).then((data) => {
+  return get(`/plants/types`).then((data) => {
     dispatch({
       type: GET_TIPOS_HUERTA,
       payload: data,
@@ -152,7 +152,7 @@ export const setNumPage = (num) => (dispatch) => {
 };
 
 export const getHuertaDetail = async (id) => {
-  const planta = await get(`plants/${id}`).then((planta) => {
+  const planta = await get(`/plants/${id}`).then((planta) => {
     return plantaADetalle(planta);
   });
   return planta;
@@ -160,11 +160,12 @@ export const getHuertaDetail = async (id) => {
 
 export const getHuerta =
   (e = null) =>
-  (dispatch) => {
-    return get(`plants`, { params: e }).then((data) => {
-      dispatch({
-        type: GET_ARRAY_HUERTA,
-        payload: data,
+    (dispatch) => {
+      return get(`/plants`, { params: e }).then((data) => {
+        dispatch({
+          type: GET_ARRAY_HUERTA,
+          payload: data,
+        });
       });
     });
   };

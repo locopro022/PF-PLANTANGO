@@ -129,7 +129,7 @@ const Carrito = () => {
         quantity: i.cantidad,
         currency_id: "ARS",
       }));
-      // console.log(items);
+      console.log(items);
       const response = await axios
         .post("/payments", { items })
         // console.log(response);

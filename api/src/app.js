@@ -12,7 +12,6 @@ const prod = require("./routes/products.js");
 const noti = require("./routes/notificaciones.js");
 const pagos = require("./routes/pagos.js");
 const merPago = require('./routes/mercadoPagoRo.js')
-// const cors = require("cors");
 require("./db.js");
 
 const server = express();
@@ -20,15 +19,14 @@ const server = express();
 server.name = "API";
 
 server.use(cors({
-  origin: ["http://localhost:3001", "https://plantango.vercel.app/", "https://checkout.stripe.com", "https://pf-plantango.vercel.app/"],
+  origin: '*'
 }))
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://plantango.vercel.app/")
-  res.header("Access-Control-Allow-Origin", "https://pf-plantango.vercel.app/"); // update to match the domain you will make the request from// update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "*") // update to match the domain you will make the request from// update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "https://checkout.stripe.com");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
