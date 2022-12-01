@@ -30,10 +30,10 @@ const Vivero = () => {
     for (let item of filtros) {
       let slice = item.options.some(({ checked }) => checked)
         ? {
-            [item.filter]: item.options
-              .filter(({ checked }) => checked)
-              .map(({ value }) => value),
-          }
+          [item.filter]: item.options
+            .filter(({ checked }) => checked)
+            .map(({ value }) => value),
+        }
         : {};
       filter = { ...filter, ...slice };
     }
@@ -61,7 +61,7 @@ const Vivero = () => {
 
   return (
     <>
-      {!iniciarPagina ? (
+      {!iniciarPagina && filtros?.length ? (
         <>
           {!filtros?.length ? <AlPrincipio /> : null}
           <div className="">

@@ -199,8 +199,9 @@ export const getSearch = (search) => {
 };
 
 export function getFav(idU) {
+  if (!idU) idU = ""
   return (dispatch) =>
-    axios(`/user/favorites/${idU}`)
+    axios(`user/favorites/${idU}`)
       .then((res) => res.data)
       .then((payload) => dispatch({ type: GET_ALL_FAVORITES, payload }));
 }
