@@ -356,12 +356,11 @@ export function creaReview(review) {
   return function (dispatch) {
     return fetch('https://plantango.vercel.app//bill/createReview', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', },
-      body: JSON.stringify({
+      body: {
         codProd: review.codProd,
         starsReview: review.stars,
         textReview: review.textReview
-      })
+      }
     })
       .then(res => res.json())
       .then(res => {
