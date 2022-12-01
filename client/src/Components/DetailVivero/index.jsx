@@ -117,7 +117,7 @@ const DetailVivero = () => {
                             <div className='containerDescripcion'>
                                 <p>{producto?.descripProd}</p>
                                 <div>
-                                    <div style={styles.container}>
+                                    {/*                                     <div style={styles.container}>
                                         <div style={styles.stars} className='estrellas'>
                                             {starsA.map((_, index) => {
                                                 return (
@@ -142,7 +142,7 @@ const DetailVivero = () => {
                                         >
                                             Calificar
                                         </button>
-                                    </div>
+                                    </div> */}
                                     <div className='containerAgregarCarro'>
                                         <div className='containerBotones'>
                                             <button className='btnClick' name='resta' onClick={changeValue}>-</button>

@@ -26,11 +26,11 @@ const CartasVivero = ({ productos }) => {
                 <h5 className="price">{`$${parseInt(produc.precio)}`}</h5>
                 <p className="nameProduc" style={{ textAlign: "center" }}>
                   {produc.nameProd ===
-                  "Hoz Hierbera Wolfpack Mango Vuelto 22 mm. Derecha (Diestros)"
+                    "Hoz Hierbera Wolfpack Mango Vuelto 22 mm. Derecha (Diestros)"
                     ? "Hoz Hierbera Wolfpack Mango Vuelto 22 mm. Derecha"
                     : produc.nameProd}
                 </p>
-                <div class="rating">
+                {/*                 <div class="rating">
                   <FaStar
                     key={index}
                     size={18}
@@ -56,7 +56,7 @@ const CartasVivero = ({ productos }) => {
                     size={18}
                     color={produc.starts >= 5 ? colors.orange : colors.grey}
                   />
-                </div>
+                </div> */}
                 <h5 className="cardcomprar"></h5>
                 <h6 className="vermas">Ver mas</h6>
                 <h6 className="stock">{`Stock actual / ${produc.stockActual}`}</h6>
