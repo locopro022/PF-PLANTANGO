@@ -12,14 +12,15 @@ const prod = require("./routes/products.js");
 const noti = require("./routes/notificaciones.js");
 const pagos = require("./routes/pagos.js");
 const merPago = require('./routes/mercadoPagoRo.js')
-// const cors = require("cors");
 require("./db.js");
 
 const server = express();
 
 server.name = "API";
 
-server.use(cors())
+server.use(cors({
+  origin: '*'
+}))
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
