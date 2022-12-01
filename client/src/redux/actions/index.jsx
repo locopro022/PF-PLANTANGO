@@ -389,7 +389,6 @@ export const ratingproductupdate = (codprod) => {
     //fetch(`http://localhost:3001/bill/ratingproductupdate/${codprod}`)
     axios
       .put(`bill/ratingproductupdate/${codprod}`)
-      .then((response) => response.json())
       .then((data) => {
         dispatch({ type: PUT_RATING_PRODUCT, payload: data });
       });
