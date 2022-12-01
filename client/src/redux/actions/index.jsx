@@ -160,12 +160,11 @@ export const getHuertaDetail = async (id) => {
 
 export const getHuerta =
   (e = null) =>
-    (dispatch) => {
-      return get(`/plants`, { params: e }).then((data) => {
-        dispatch({
-          type: GET_ARRAY_HUERTA,
-          payload: data,
-        });
+  (dispatch) => {
+    return get(`/plants`, { params: e }).then((data) => {
+      dispatch({
+        type: GET_ARRAY_HUERTA,
+        payload: data,
       });
     });
   };
