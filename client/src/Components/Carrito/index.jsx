@@ -28,7 +28,7 @@ const Carrito = () => {
           timeout: 1500,
         });
       },
-      () => {},
+      () => { },
       {
         zindex: 99999999,
       }
@@ -56,10 +56,10 @@ const Carrito = () => {
       let carritoNuevoValor = arrayCarrito?.map((el) =>
         el.nameProd === ele.nameProd
           ? {
-              ...el,
-              cantidad:
-                ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
-            }
+            ...el,
+            cantidad:
+              ele.cantidad === ele.maxStock ? ele.cantidad : ele.cantidad + 1,
+          }
           : el
       );
       localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
@@ -68,9 +68,9 @@ const Carrito = () => {
       let carritoNuevoValor = arrayCarrito?.map((el) =>
         el.nameProd === ele.nameProd
           ? {
-              ...el,
-              cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
-            }
+            ...el,
+            cantidad: ele.cantidad > 1 ? ele.cantidad - 1 : ele.cantidad,
+          }
           : el
       );
       localStorage.setItem("carrito", JSON.stringify(carritoNuevoValor));
@@ -131,17 +131,17 @@ const Carrito = () => {
         currency_id: "ARS",
       }));
       console.log(items);
-      const response = await axios.post("/payments", {items})
-      // console.log(response);
+      const response = await axios.post("/payments", { items })
+        // console.log(response);
         .then((res) => {
-            if (res.data) {
+          if (res.data) {
             window.location.href = res.data.url// force de URL
             localStorage.removeItem("carrito");
             dispatch(carritoStorage([]));
           }
         })
-  }
-};
+    }
+  };
 
   return (
     <div
@@ -196,9 +196,8 @@ const Carrito = () => {
                             +
                           </button>
                         </div>
-                        <h5 className="precioApartado">{`$${
-                          ele.cantidad * parseInt(ele.precio)
-                        }`}</h5>
+                        <h5 className="precioApartado">{`$${ele.cantidad * parseInt(ele.precio)
+                          }`}</h5>
                         <button
                           className="btnMapeo"
                           onClick={() => eliminarProduct(ele.nameProd)}
